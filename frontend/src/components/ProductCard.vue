@@ -36,7 +36,11 @@
                         @click="navigateToProduct"
                     />
                     <Icon icon="cil:heart" width="20" class="customerIcon"/>
-                    <Icon icon="bi:cart" width="20" class="customerIcon"/>
+                    <Icon 
+                        icon="bi:cart" 
+                        width="20" 
+                        class="customerIcon" 
+                        @click="addToCart"/>
                 </div>
             </div>
         </div>
@@ -49,6 +53,7 @@
     import { Icon } from '@iconify/vue'; // importe les icones Iconify
     import { useRouter } from 'vue-router'; // utilise useRouter pour la navigation 
     import { useRoute } from 'vue-router'; // importe la fonction useRoute pour accéder aux informations de la route
+    import { useCatalogueStore } from '@/stores/CatalogueStore'; // importe les datas du catalogue géré par le store Pinia
 
     const currency = '$'; // devise qui sera accollée au prix
     const availableMention = 'in stock'; 
@@ -61,7 +66,6 @@
     });
 
     const router = useRouter(); //utilise useRouter pour accéder à l'instance du router
-
     const navigateToProduct = () => {
         router.push({ // methode vue-router permet de naviguer vers nouvelle route
            name: 'ProductDetail', // nom de la route vers laquelle naviguer (definie dans router)
@@ -72,10 +76,14 @@
     }
 
     const route = useRoute();
-
     const showImageClickable = route.name === 'Categories' || route.name === 'Category'; // contrôle la visibilité de l'image clickable
 
-    console.log('showImageClickable:', showImageClickable);
+    const addToCart = () => {
+        console.log("addToCart is called");
+        const store = useCatalogueStore()
+        store.addToCart(props.product); // ajoute l'article au panier
+        console.log("Cart Items:", store.cartItems);
+    };
 
 </script>
 

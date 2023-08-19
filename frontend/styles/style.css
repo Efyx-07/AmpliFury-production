@@ -1,0 +1,23 @@
+:root {
+    --darkColor: #1a1a1a;
+    --lightColor: #F2ECDD;
+}
+
+*, 
+*:before, 
+*:after {
+    box-sizing: border-box;
+}
+html {
+    font-size: 16px;
+    font-family: 'Blinker';
+    margin: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    color: var(--darkColor);
+}
+
+body {
+    margin: 0 auto;
+    background: var(--lightColor);
+}

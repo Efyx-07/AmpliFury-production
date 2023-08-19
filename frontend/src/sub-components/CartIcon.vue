@@ -1,6 +1,6 @@
 <template>
-    <div class="cartIcon_container">
-        <Icon icon="bi:cart" width="27" class="customerIcon cartIcon"/>
+    <div class="cartIcon_container" @click="openCart">
+        <Icon icon="bi:cart" width="25" class="customerIcon cartIcon"/>
         <div class="cartIcon-badge" v-if="cartItemCount > 0">
             <p class="incrementation">{{ cartItemCount }}</p>
         </div>
@@ -8,14 +8,21 @@
 </template>
 
 <script setup>
+
     import { Icon } from '@iconify/vue';
     import { useCatalogueStore } from '@/stores/CatalogueStore';
     import { computed } from 'vue';
+    import { useShoppingCartStore } from '@/stores/ShoppingCartStore';
 
     const cartItemCount = computed(() => {
-        console.log("Computing cartItemCount");
         return useCatalogueStore().cartItems.length;
     });
+
+    const cartStore = useShoppingCartStore();
+    const openCart = () => {
+        cartStore.openCart();
+    };
+    
 </script>
 
 
@@ -24,10 +31,11 @@
     @import '@/assets/sass/variables.scss';
     .cartIcon_container {
         position: relative;
+        cursor: pointer;
 
         .cartIcon-badge {
-            width: 1.1rem;
-            height: 1.1rem;
+            width: .9rem;
+            height: .9rem;
             background: $darkColor;
             border-radius: 100%;
             display: flex;

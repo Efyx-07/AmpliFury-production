@@ -15,4 +15,4 @@ export const useShoppingCartStore = defineStore('shoppingCart', {
             this.isCartOpen = false;
         }
     }
-})
+});

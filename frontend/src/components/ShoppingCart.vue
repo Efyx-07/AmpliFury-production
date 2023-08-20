@@ -6,7 +6,8 @@
                 <div class="closeIcon-bar2"></div>
             </div>
         </div>
-        <h1>Your shopping cart (<!--nbre d'articles presents dans le panier-->)</h1> 
+        <h1>{{ shoppingCartTitle }} ({{ cartItemCount }})</h1> 
+        <p v-if ="cartItemCount === 0">{{ emptyCartMention }}</p>
         <ul class="cart-items">
             <!-- liste des articles dans le panier -->
         </ul>
@@ -26,19 +27,21 @@
 <script setup>
 
     import { Icon } from '@iconify/vue';
+    import { useCatalogueStore } from '@/stores/CatalogueStore';
     import { useShoppingCartStore } from '@/stores/ShoppingCartStore';
     import { computed } from 'vue';
 
-    const cartStore = useShoppingCartStore();
-    const isCartOpen = computed(() => cartStore.isCartOpen);
+    const shoppingCartTitle = 'Your shopping Cart';
+    const emptyCartMention = 'Your cart is empty';
 
-    const cartContainerStyle = computed(() => {
-        return {
-            transform: isCartOpen.value ? 'translateX(0)' : 'translateX(496px)',
-            transition: 'transform 0.3s ease-in-out'
-        };
+    // permet l'incrémentation du nombre d'article dans le panier
+    const cartItemCount = computed(() => {
+        return useCatalogueStore().cartItems.length;
     });
 
+    // permet la fermeture de la fenetre au click sur l'icone
+    const cartStore = useShoppingCartStore();
+    const isCartOpen = computed(() => cartStore.isCartOpen);
     const closeCart = () => {
         cartStore.closeCart();
     };

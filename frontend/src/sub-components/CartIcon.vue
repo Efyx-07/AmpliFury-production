@@ -14,10 +14,12 @@
     import { computed } from 'vue';
     import { useShoppingCartStore } from '@/stores/ShoppingCartStore';
 
+    // permet l'incrémentation du nombre d'article dans le panier
     const cartItemCount = computed(() => {
         return useCatalogueStore().cartItems.length;
     });
 
+    // permet l'ouverture de la fenetre au click sur l'icone
     const cartStore = useShoppingCartStore();
     const openCart = () => {
         cartStore.openCart();

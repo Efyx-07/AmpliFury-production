@@ -11,15 +11,24 @@
                     <div class="cart-item_image-container">
                         <img :src="item.image.source" alt="item.image.alt" class="cart-item_image">
                     </div>
-                    <div class="cart-item_infos-container">
-                        <p class="item-name">{{ item.brand }} {{ item.model }}</p>
-                        <p class="item-price">{{ item.price }} {{ currency }}</p>
+                    <div class="cart-item_infos-counter_container">
+                        <div class="cart-item_infos-container">
+                            <p class="item-name">{{ item.brand }} {{ item.model }}</p>
+                            <p class="item-price">{{ item.price }} {{ currency }}</p>
+                        </div>
+                        <div class="quantity-counter_container">
+                            <div class="decrementor_container" @click="decreaseQuantity(item)"><p>-</p></div>
+                            <div class="quantity-counter"><p>{{ item.quantity }}</p></div>
+                            <div class="incrementor_container" @click="increaseQuantity(item)"><p>+</p></div>
+                        </div>
                     </div>
                     <Icon icon="ph:trash-light" width="25" class="removeIcon" @click="removeFromCart(item)"/>
                 </li>
-                <div v-if ="cartItemCount > 0" class="clearCart-button" @click="clearCart"> 
-                    <p>Clear cart</p> 
-                    <Icon icon="prime:replay" width="20"/>
+                <div class="clearCart-button_container">
+                    <div v-if ="cartItemCount > 0" class="clearCart-button" @click="clearCart"> 
+                        <p>Clear cart</p> 
+                        <Icon icon="prime:replay" width="20"/>
+                    </div>
                 </div>
             </ul>
             <div class="shoppingCart-footer">
@@ -75,6 +84,19 @@
     const totalPrice = computed(() => {
         return cartItems.value.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2);
     });
+
+    // parametrage du compteur quantité 
+
+    const increaseQuantity = (item) => {
+        console.log('ok +')
+        item.quantity++;
+    };
+    const decreaseQuantity = (item) => {
+        console.log('ok -')
+        if (item.quantity > 1) {
+            item.quantity--;
+        }
+    }
 
     // permet la fermeture de la fenetre au click sur l'icone
     const cartStore = useShoppingCartStore();
@@ -165,33 +187,65 @@
                         object-fit: cover;
                         border-radius: inherit;
                     }
-
-                    .cart-item_infos-container {
+                    .cart-item_infos-counter_container {   
                         padding: 2rem 1rem;
-                        .item-name, .item-price {
-                            margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        .cart-item_infos-container {
+                            .item-name, .item-price {
+                                margin: 0;
+                            }
+                            .item-name {
+                                font-size: 1.4rem;
+                                font-weight: 600;
+                            }
+                            .item-price {
+                                font-size: 1.1rem;
+                            }
                         }
-                        .item-name {
-                            font-size: 1.4rem;
-                            font-weight: 600;
-                        }
-                        .item-price {
-                            font-size: 1.1rem;
+                        .quantity-counter_container {
+                            margin-top: auto;
+                            display: flex;
+                            width: 6rem;
+                            box-shadow: $shadow;
+                            .decrementor_container,.quantity-counter, .incrementor_container {
+                                width: 2rem;
+                                height: 2rem;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                            .decrementor_container, .incrementor_container {
+                                background: $lightColor;
+                                font-size: 1.5rem;
+                                cursor: pointer;
+                            }
                         }
                     }
                     .removeIcon {
-                        position: absolute;
-                        bottom: 1rem;
-                        right: 1rem;
-                        cursor: pointer;
+                            position: absolute;
+                            bottom: 1rem;
+                            right: 1rem;
+                            cursor: pointer;
                     }
                 }
-                .clearCart-button {
+
+                .clearCart-button_container {
                     display: flex;
-                    align-items: center;
-                    gap: .3rem;
-                    cursor: pointer;
-                    justify-content: flex-end;
+                    justify-content: end;
+                    .clearCart-button {
+                        width: 6rem;
+                        display: flex;
+                        align-items: center;
+                        gap: .3rem;
+                        cursor: pointer;
+                        justify-content: center;
+                        background: $ultraLightColor;
+
+                        p {
+                            margin: 0;
+                        }
+                    }
                 }
             }
             .shoppingCart-footer {
@@ -224,7 +278,7 @@
                         font-weight: 300;
                     }
                     .totalPrice {
-                        font-weight: 600;
+                        font-weight: 400;
                     }
                 }
                 .checkout-button {

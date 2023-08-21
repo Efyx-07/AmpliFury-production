@@ -79,8 +79,9 @@
     const showImageClickable = route.name === 'Categories' || route.name === 'Category'; // contrôle la visibilité de l'image clickable
 
     const addToCart = () => {
-        const store = useCatalogueStore()
-        store.addToCart(props.product); // ajoute l'article au panier
+        const store = useCatalogueStore();
+        const itemToAdd = { ...props.product, quantity: 1 };
+        store.addToCart(itemToAdd); // ajoute l'article au panier avec une quantité de 1
     };
 
 </script>

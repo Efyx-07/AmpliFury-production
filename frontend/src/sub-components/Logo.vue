@@ -10,7 +10,7 @@
 <script setup>
     const storeLogo = {
         image: {
-            source: 'src/assets/logo/AmpliFury.png',
+            source: '/src/assets/logo/AmpliFury.png',
             alt: 'AmpliFury logo'
         }
     }

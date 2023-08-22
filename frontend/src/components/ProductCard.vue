@@ -1,6 +1,7 @@
 <template>
     
     <div class="product-card">
+
         <div class="product-image_container">
             <img 
                 :src="product.image.source" 
@@ -17,6 +18,7 @@
                 v-else
             >
         </div>
+
         <div class="product-infos_container">
             <div class="product-brand-and-model_container">
                 <p class="product-brand">{{ product.brand }}</p>
@@ -44,10 +46,12 @@
                 </div>
             </div>
         </div>
+
         <div v-if="addedToCart" class="addedToCart-mention">
             <Icon icon="icons8:checked" width="15" class="validateIcon"/>
             <p>Added to cart</p>
         </div>
+
     </div>
     
 </template>
@@ -60,18 +64,22 @@
     import { useCatalogueStore } from '@/stores/CatalogueStore'; // importe les datas du catalogue géré par le store Pinia
     import { computed } from 'vue';
 
-    // text data
-    const currency = '$'; // devise qui sera accollée au prix
+    // datas
+    const currency = '$'; 
     const availableMention = 'in stock'; 
     const notAvailableMention = 'on demand';
 
+    // déefinition des propriétés
     const props = defineProps({
-        product: Object, // propriété reçue pour représenter les détails du produit
-        showEyeIcon: Boolean, // prop pour contrôler l'affichage de l'icone eye
-        showDescription: Boolean, // prop pour contrôler l'affichage de la description
+        product: Object, // représente les détails du produit
+        showEyeIcon: Boolean, // contrôle l'affichage de l'icone 
+        showDescription: Boolean, // contrôle l'affichage de la description
     });
 
-    const router = useRouter(); //utilise useRouter pour accéder à l'instance du router
+    // utilise useRouter pour accéder à l'instance du router
+    const router = useRouter(); 
+
+    // naviguer vers la route dynamique du produit
     const navigateToProduct = () => {
         router.push({ // methode vue-router permet de naviguer vers nouvelle route
            name: 'ProductDetail', // nom de la route vers laquelle naviguer (definie dans router)
@@ -81,11 +89,16 @@
         });
     }
 
+    // utilise useRoute pour accéder à l'instance du router
     const route = useRoute();
-    const showImageClickable = route.name === 'Categories' || route.name === 'Category'; // contrôle la visibilité de l'image clickable
 
-    const store = useCatalogueStore(); // obtention instance store CatlogueStore
+    // contrôle la visibilité de l'image clickable
+    const showImageClickable = route.name === 'Categories' || route.name === 'Category'; 
 
+    // obtention instance store CatlogueStore
+    const store = useCatalogueStore(); 
+
+    // ajout de l'article dans le panier
     const addToCart = () => {
         const itemToAdd = { ...props.product, quantity: 1, initialPrice: props.product.price }; // initialPrice est défini ici pour maj dans le panier selon la quantité
         // empeche l'affichage de l'article plus d'une fois dans le panier 
@@ -99,7 +112,7 @@
         };
     };
 
-    // vérifie si l'article est dans le panier et renvoie un booléen 
+    // vérifie si l'article est dans le panier et retourne un booléen 
     const addedToCart = computed(() =>{
         return store.cartItems.some(item => item.id === props.product.id);
     });

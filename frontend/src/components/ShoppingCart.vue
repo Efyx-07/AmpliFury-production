@@ -1,10 +1,14 @@
 <template>
+
     <div class="shoppingCart_container" v-if="isCartOpen">
+
         <div class="shoppingCart">
+
             <div class="shoppingCart-header">
                 <h1>{{ shoppingCartTitle }} ({{ cartItemCount }})</h1> 
                 <Icon icon="carbon:close" width="40" class="closeIcon" @click="closeCart"/>
             </div>
+
             <div v-if ="cartItemCount === 0" class="emptyCart">
                 <p>{{ emptyCartMention }}</p>
                 <img :src="emptyCartImage.source" :alt="emptyCartImage.alt">
@@ -13,6 +17,7 @@
                     <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
                 </div>
             </div>
+
             <ul class="cart-items">
                 <li v-for="item in cartItems" :key="item.id" class="cart-item">
                     <div class="cart-item_image-container">
@@ -26,9 +31,15 @@
                         <p class="" v-if="item.available">{{ availableMention }}</p>
                         <p class="" v-else>{{ notAvailableMention }}</p>
                         <div class="quantity-counter_container">
-                            <div class="decrementor_container" @click="decreaseQuantity(item)"><p>-</p></div>
-                            <div class="quantity-counter"><p>{{ item.quantity }}</p></div>
-                            <div class="incrementor_container" @click="increaseQuantity(item)"><p>+</p></div>
+                            <div class="decrementor_container" @click="decreaseQuantity(item)">
+                                <p>{{ decreaseCounterIcon }}</p>
+                            </div>
+                            <div class="quantity-counter">
+                                <p>{{ item.quantity }}</p>
+                            </div>
+                            <div class="incrementor_container" @click="increaseQuantity(item)">
+                                <p>{{ increaseCounterIcon }}</p>
+                            </div>
                         </div>
                     </div>
                     <Icon icon="ph:trash-light" width="25" class="removeIcon" @click="removeFromCart(item)"/>
@@ -40,7 +51,8 @@
                     </div>
                 </div>
             </ul>
-            <div class="shoppingCart-footer">
+
+            <div v-if ="cartItemCount > 0" class="shoppingCart-footer">
                 <div class="shoppingCart-footer_content">
                     <div class="totalPrice_container">
                         <p class="totalPrice-mention">{{ totalPriceMention }}</p>
@@ -52,8 +64,11 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
+
 </template>
 
 <script setup>
@@ -68,16 +83,19 @@
     const currency = '$';
     const availableMention = 'in stock'; 
     const notAvailableMention = 'on demand';
+    const decreaseCounterIcon = '-';
+    const increaseCounterIcon = '+';
     const clearCartMention = 'Clear cart';
     const totalPriceMention = 'Subtotal';
     const linkToCheckoutMention = 'Go to checkout';
     const emptyCartMention = 'Your cart is empty';
     const emptyCartImage = {
-        source: 'src/assets/decoration/empty-cart.jpg',
+        source: '/src/assets/decoration/monkey-in-a-cart.jpg',
         alt: 'image of an empty cart'
     }
 
-    const catalogueStore = useCatalogueStore(); //obtention de l'instance du store CatalogueStore
+    //obtention de l'instance du store CatalogueStore
+    const catalogueStore = useCatalogueStore(); 
 
     // permet l'incrémentation du nombre d'article dans le panier
     const cartItemCount = computed(() => {
@@ -105,12 +123,10 @@
     });
 
     // parametrage du compteur quantité 
-
     const increaseQuantity = (item) => {
         item.quantity++;
         catalogueStore.updateItemPrice(item); // met à jour le prix de l'article
     };
-
     const decreaseQuantity = (item) => {
         if (item.quantity > 1) {
             item.quantity--;
@@ -183,7 +199,7 @@
                 padding: 2rem;
                 position: absolute;
                 top: 50%;
-                transform: translateY(-75%);
+                transform: translateY(-60%);
 
                 p {
                     font-size: 1.25rem;

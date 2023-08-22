@@ -1,0 +1,17 @@
+- Shopping Cart : 
+
+	-statut in stock / on demand : 
+
+		-in stock / le compteur ne peut pas incrémenter au delà de la quantité disponible.
+			=> mention "uniquement X exemplaires en stock"
+	
+		-on demand / à la place du compteur, bouton "contact us" (bouton vers la view 'Contact' à créer')
+
+- Catégories : 
+
+	-Mettre en place une présentation des produits dans un ordre aléatoire. 
+	-Implementer une option de tri ( prix croissant / décroissant / ordre alphabetique)
+	-Implementer un bouton "back"
+
+- Persistance des données : utiliser local storage pour persistance des données au rafraichissement de la page.
+

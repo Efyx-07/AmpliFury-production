@@ -15,7 +15,7 @@
 
 <script setup>
     const image = {
-        source: "src/assets/decoration/monkey band.jpg",
+        source: "/src/assets/decoration/monkey band.jpg",
         alt: "AmpliFury banner"
     };
     const toplinePart1 = "UNLEASH YOUR";

@@ -14,7 +14,7 @@
 
 <script setup>
     const image = {
-        source: "src/assets/decoration/monkey-nobg.png",
+        source: "/src/assets/decoration/monkey-nobg.png",
         alt: "musician-monkey in forest"
     };
     const textTitle = "ENVIRONMENT CARE";

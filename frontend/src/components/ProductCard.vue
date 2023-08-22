@@ -55,6 +55,7 @@
     import { useRoute } from 'vue-router'; // importe la fonction useRoute pour accéder aux informations de la route
     import { useCatalogueStore } from '@/stores/CatalogueStore'; // importe les datas du catalogue géré par le store Pinia
 
+    // text data
     const currency = '$'; // devise qui sera accollée au prix
     const availableMention = 'in stock'; 
     const notAvailableMention = 'on demand';
@@ -80,7 +81,7 @@
 
     const addToCart = () => {
         const store = useCatalogueStore();
-        const itemToAdd = { ...props.product, quantity: 1 };
+        const itemToAdd = { ...props.product, quantity: 1, initialPrice: props.product.price }; // initialPrice est défini ici pour maj dans le panier selon la quantité
         store.addToCart(itemToAdd); // ajoute l'article au panier avec une quantité de 1
     };
 

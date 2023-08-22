@@ -28,7 +28,8 @@
         position: sticky;
         top: 0;
         z-index: 99; 
-        background: $lightColor;
+        background: rgba($lightColor, .9);
+        backdrop-filter: blur(5px);
         box-shadow: $shadow;   
     }
     .header-mainbar {

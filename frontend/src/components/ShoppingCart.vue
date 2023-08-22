@@ -5,7 +5,14 @@
                 <h1>{{ shoppingCartTitle }} ({{ cartItemCount }})</h1> 
                 <Icon icon="carbon:close" width="40" class="closeIcon" @click="closeCart"/>
             </div>
-            <p v-if ="cartItemCount === 0">{{ emptyCartMention }}</p>
+            <div v-if ="cartItemCount === 0" class="emptyCart">
+                <p>{{ emptyCartMention }}</p>
+                <img :src="emptyCartImage.source" :alt="emptyCartImage.alt">
+                <div class="keepBrowsing-button" @click="closeCart">
+                    <p>Keep browsing</p>
+                    <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
+                </div>
+            </div>
             <ul class="cart-items">
                 <li v-for="item in cartItems" :key="item.id" class="cart-item">
                     <div class="cart-item_image-container">
@@ -16,6 +23,8 @@
                             <p class="item-name">{{ item.brand }} {{ item.model }}</p>
                             <p class="item-price">{{ item.price }} {{ currency }}</p>
                         </div>
+                        <p class="" v-if="item.available">{{ availableMention }}</p>
+                        <p class="" v-else>{{ notAvailableMention }}</p>
                         <div class="quantity-counter_container">
                             <div class="decrementor_container" @click="decreaseQuantity(item)"><p>-</p></div>
                             <div class="quantity-counter"><p>{{ item.quantity }}</p></div>
@@ -26,20 +35,20 @@
                 </li>
                 <div class="clearCart-button_container">
                     <div v-if ="cartItemCount > 0" class="clearCart-button" @click="clearCart"> 
-                        <p>Clear cart</p> 
-                        <Icon icon="prime:replay" width="20"/>
+                        <p>{{ clearCartMention }}</p> 
+                        <Icon icon="prime:replay" width="15"/>
                     </div>
                 </div>
             </ul>
             <div class="shoppingCart-footer">
                 <div class="shoppingCart-footer_content">
                     <div class="totalPrice_container">
-                        <p class="totalPrice-mention">Subtotal</p>
+                        <p class="totalPrice-mention">{{ totalPriceMention }}</p>
                         <p class="totalPrice"> {{ totalPrice }} {{ currency }}</p>
                     </div>
                     <div class="checkout-button">
-                        <p>Go to checkout</p>
-                        <Icon icon="system-uicons:arrow-up" width="30" :rotate="1" />
+                        <p>{{ linkToCheckoutMention }}</p>
+                        <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
                     </div>
                 </div>
             </div>
@@ -54,9 +63,19 @@
     import { useShoppingCartStore } from '@/stores/ShoppingCartStore';
     import { computed } from 'vue';
 
+    // datas
     const shoppingCartTitle = 'Your shopping Cart';
-    const emptyCartMention = 'Your cart is empty';
     const currency = '$';
+    const availableMention = 'in stock'; 
+    const notAvailableMention = 'on demand';
+    const clearCartMention = 'Clear cart';
+    const totalPriceMention = 'Subtotal';
+    const linkToCheckoutMention = 'Go to checkout';
+    const emptyCartMention = 'Your cart is empty';
+    const emptyCartImage = {
+        source: 'src/assets/decoration/empty-cart.jpg',
+        alt: 'image of an empty cart'
+    }
 
     // permet l'incrémentation du nombre d'article dans le panier
     const cartItemCount = computed(() => {
@@ -88,15 +107,22 @@
     // parametrage du compteur quantité 
 
     const increaseQuantity = (item) => {
-        console.log('ok +')
         item.quantity++;
+        updateItemPrice(item); // met à jour le prix de l'article
+        //updateTotalPrice(); // met à jour le prix total
     };
     const decreaseQuantity = (item) => {
-        console.log('ok -')
         if (item.quantity > 1) {
             item.quantity--;
-        }
-    }
+            updateItemPrice(item); // met à jour le prix de l'article
+            //updateTotalPrice(); // met à jour le prix total
+        };
+    };
+
+    // met à jour le prix des articles dans le panier selon la quantité géré par le compteur
+    const updateItemPrice = (item) => {
+        item.price = (parseFloat(item.initialPrice) * item.quantity).toFixed(2);
+    };
 
     // permet la fermeture de la fenetre au click sur l'icone
     const cartStore = useShoppingCartStore();
@@ -152,6 +178,33 @@
                     margin: 0;
                     line-height: 1;
                     padding: 2rem;
+                }
+            }
+            .emptyCart {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                padding: 2rem;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-75%);
+
+                p {
+                    font-size: 1.25rem;
+                    font-weight: 300;
+                    margin: 0;
+                }
+
+                img {
+                    border-radius: 100%;
+                    width: 50%;
+                }
+                .keepBrowsing-button {
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
                 }
             }
             .cart-items {
@@ -249,15 +302,15 @@
                 }
             }
             .shoppingCart-footer {
-                height: 10rem;
+                height: 12rem;
                 width: 31rem;
                 background: $darkColor;
                 color: $lightColor;
                 position: fixed;
                 bottom: 0;
                 display: flex;
-                align-items: center;
-                padding: 0 2rem;
+                align-items: flex-start;
+                padding: 2rem;
 
                 &_content {
                     width: 100%;
@@ -276,6 +329,7 @@
                     }
                     .totalPrice-mention {
                         font-weight: 300;
+                        font-size: 1.7rem;
                     }
                     .totalPrice {
                         font-weight: 400;
@@ -284,6 +338,7 @@
                 .checkout-button {
                     display: flex;
                     align-items: center;
+                    cursor: pointer;
 
                     p {
                         margin: 0;

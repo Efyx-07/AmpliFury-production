@@ -280,6 +280,7 @@
                 .clearCart-button_container {
                     display: flex;
                     justify-content: end;
+                    padding-bottom: 1rem;
                     .clearCart-button {
                         width: 6rem;
                         display: flex;

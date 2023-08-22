@@ -44,6 +44,10 @@
                 </div>
             </div>
         </div>
+        <div v-if="addedToCart" class="addedToCart-mention">
+            <Icon icon="icons8:checked" width="15" class="validateIcon"/>
+            <p>Added to cart</p>
+        </div>
     </div>
     
 </template>
@@ -54,6 +58,7 @@
     import { useRouter } from 'vue-router'; // utilise useRouter pour la navigation 
     import { useRoute } from 'vue-router'; // importe la fonction useRoute pour accéder aux informations de la route
     import { useCatalogueStore } from '@/stores/CatalogueStore'; // importe les datas du catalogue géré par le store Pinia
+    import { computed } from 'vue';
 
     // text data
     const currency = '$'; // devise qui sera accollée au prix
@@ -83,7 +88,6 @@
 
     const addToCart = () => {
         const itemToAdd = { ...props.product, quantity: 1, initialPrice: props.product.price }; // initialPrice est défini ici pour maj dans le panier selon la quantité
-        console.log("Initial Price:", props.product.price);
         // empeche l'affichage de l'article plus d'une fois dans le panier 
         const existingItem = store.cartItems.find(item => item.id === itemToAdd.id); // compare si l'id de l'article à ajouter existe déjà dans le panier
 
@@ -92,8 +96,13 @@
             store.updateItemPrice(existingItem); // utilise la méthode du store updateItemPrice
         } else {
             store.addToCart(itemToAdd); // ajoute l'article au panier avec une quantité de 1
-        }
+        };
     };
+
+    // vérifie si l'article est dans le panier et renvoie un booléen 
+    const addedToCart = computed(() =>{
+        return store.cartItems.some(item => item.id === props.product.id);
+    });
 
 </script>
 
@@ -106,6 +115,7 @@
         background: $ultraLightColor;
         border-radius: $containerBorderRadius;
         box-shadow: $shadow;
+        position: relative;
         .product-image_container {
             width: 100%;
             height: 288px;
@@ -167,6 +177,27 @@
                 .customerIcon {
                     cursor: pointer;
                 }
+            }
+        }
+        .addedToCart-mention {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+            background: rgba($darkColor, .5);
+            color: $lightColor;
+            border-radius: 5px;
+            position: absolute;
+            top: .5rem;
+            left: .5rem;
+            padding: .3rem;
+
+            p {
+                font-size: .8rem;
+                margin: 0;
+                font-weight: 400;
+            }
+            .validateIcon {
+                color: #45AA43;
             }
         }
     }

@@ -43,16 +43,10 @@
     
     if (categoryFilter && categoryFilter !== 'all') {
         const filtered = [];
-
         catalogueStore.products.forEach(category => {
             const categoryProducts = category.products.filter(product => product.category === categoryFilter);
             filtered.push(...categoryProducts);
         });
-
-        filtered.forEach(product => {
-          console.log('Image Path:', product.image.source);
-        });
-
         return filtered
     } else {
         return allProducts

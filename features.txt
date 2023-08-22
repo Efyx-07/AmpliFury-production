@@ -1,9 +1,5 @@
 Shopping Cart : 
 
-	-Article ajouté dans panier ne peut s'afficher qu'une fois. Si besoin d'une quantité supérieure à un, 
-	utiliser le compteur.
-
-	-Mettre à jour prix dans la carte article et le subtotal en fonction de la quantité du compteur.
 
 		-statut in stock / on demand : 
 

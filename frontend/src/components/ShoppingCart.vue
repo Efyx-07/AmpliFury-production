@@ -77,51 +77,45 @@
         alt: 'image of an empty cart'
     }
 
+    const catalogueStore = useCatalogueStore(); //obtention de l'instance du store CatalogueStore
+
     // permet l'incrémentation du nombre d'article dans le panier
     const cartItemCount = computed(() => {
-        return useCatalogueStore().cartItems.length;
+        return catalogueStore.cartItems.length;
     });
 
     // ajoute les articles dans le panier
     const cartItems = computed(() => {
-        return useCatalogueStore().cartItems;
+        return catalogueStore.cartItems;
     });
 
     // retire les articles du panier 
     const removeFromCart = (item) => {
-        const store = useCatalogueStore();
-        store.removeFromCart(item);
+        catalogueStore.removeFromCart(item);
     };
 
     // retire tous les articles du panier 
     const clearCart = () => {
-        const store = useCatalogueStore();
-        store.clearCart();
+        catalogueStore.clearCart();
     };
 
-    // convertit le prix des articles en number et calcule la somme des articles du panier (au format 2 décimales apres la virgule )
+    // convertit le prix des articles en number et calcule la somme des articles du panier (au format 2 décimales apres la virgule)
     const totalPrice = computed(() => {
-        return cartItems.value.reduce((total, item) => total + parseFloat(item.price), 0).toFixed(2);
+        return catalogueStore.totalPrice;
     });
 
     // parametrage du compteur quantité 
 
     const increaseQuantity = (item) => {
         item.quantity++;
-        updateItemPrice(item); // met à jour le prix de l'article
-        //updateTotalPrice(); // met à jour le prix total
+        catalogueStore.updateItemPrice(item); // met à jour le prix de l'article
     };
+
     const decreaseQuantity = (item) => {
         if (item.quantity > 1) {
             item.quantity--;
-            updateItemPrice(item); // met à jour le prix de l'article
-            //updateTotalPrice(); // met à jour le prix total
+            catalogueStore.updateItemPrice(item); // met à jour le prix de l'article
         };
-    };
-
-    // met à jour le prix des articles dans le panier selon la quantité géré par le compteur
-    const updateItemPrice = (item) => {
-        item.price = (parseFloat(item.initialPrice) * item.quantity).toFixed(2);
     };
 
     // permet la fermeture de la fenetre au click sur l'icone

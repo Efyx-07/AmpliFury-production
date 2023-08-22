@@ -79,10 +79,20 @@
     const route = useRoute();
     const showImageClickable = route.name === 'Categories' || route.name === 'Category'; // contrôle la visibilité de l'image clickable
 
+    const store = useCatalogueStore(); // obtention instance store CatlogueStore
+
     const addToCart = () => {
-        const store = useCatalogueStore();
         const itemToAdd = { ...props.product, quantity: 1, initialPrice: props.product.price }; // initialPrice est défini ici pour maj dans le panier selon la quantité
-        store.addToCart(itemToAdd); // ajoute l'article au panier avec une quantité de 1
+        console.log("Initial Price:", props.product.price);
+        // empeche l'affichage de l'article plus d'une fois dans le panier 
+        const existingItem = store.cartItems.find(item => item.id === itemToAdd.id); // compare si l'id de l'article à ajouter existe déjà dans le panier
+
+        if (existingItem) {
+            existingItem.quantity++; // incrémente la quantité de l'article dans le panier
+            store.updateItemPrice(existingItem); // utilise la méthode du store updateItemPrice
+        } else {
+            store.addToCart(itemToAdd); // ajoute l'article au panier avec une quantité de 1
+        }
     };
 
 </script>

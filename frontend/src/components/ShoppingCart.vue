@@ -5,16 +5,16 @@
         <div class="shoppingCart">
 
             <div class="shoppingCart-header">
-                <h1>{{ shoppingCartTitle }} ({{ cartItemCount }})</h1> 
+                <h1>{{ data.shoppingCartTitle }} ({{ cartItemCount }})</h1> 
                 <Icon icon="carbon:close" width="40" class="closeIcon" @click="closeCart"/>
             </div>
 
             <!-- mention visible quand panier est vide, contient bouton retour navigation -->
             <div v-if ="cartItemCount === 0" class="emptyCart"> 
-                <p>{{ emptyCartMention }}</p>
-                <img :src="emptyCartImage.source" :alt="emptyCartImage.alt">
+                <p>{{ data.emptyCart.mention }}</p>
+                <img :src="data.emptyCart.image.source" :alt="data.emptyCart.image.alt">
                 <div class="keepBrowsing-button" @click="closeCart">
-                    <p>Keep browsing</p>
+                    <p>{{ data.emptyCart.buttonMention }}</p>
                     <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
                 </div>
             </div>
@@ -28,21 +28,21 @@
                     <div class="cart-item_infos-counter_container">
                         <div class="cart-item_infos-container">
                             <p class="item-name">{{ item.brand }} {{ item.model }}</p>
-                            <p class="item-price">{{ item.price }} {{ currency }}</p>
+                            <p class="item-price">{{ item.price }} {{ data.currency }}</p>
                         </div>
-                        <p class="" v-if="item.available">{{ availableMention }}</p>
-                        <p class="" v-else>{{ notAvailableMention }}</p>
+                        <p class="" v-if="item.available">{{ data.availableMention }}</p>
+                        <p class="" v-else>{{ data.notAvailableMention }}</p>
 
                         <!-- compteur quantité article -->
                         <div class="quantity-counter_container">
                             <div class="decrementor_container" @click="decreaseQuantity(item)">
-                                <p>{{ decreaseCounterIcon }}</p>
+                                <p>{{ data.counter.decreaseIcon }}</p>
                             </div>
                             <div class="quantity-counter">
                                 <p>{{ item.quantity }}</p>
                             </div>
                             <div class="incrementor_container" @click="increaseQuantity(item)">
-                                <p>{{ increaseCounterIcon }}</p>
+                                <p>{{ data.counter.increaseIcon  }}</p>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                 <!-- bouton qui vide le panier, visible à partir de 2 articles ajoutés -->
                 <div class="clearCart-button_container">
                     <div v-if ="cartItemCount > 1" class="clearCart-button" @click="clearCart"> 
-                        <p>{{ clearCartMention }}</p> 
+                        <p>{{ data.clearCartButtonMention }}</p> 
                         <Icon icon="prime:replay" width="15"/>
                     </div>
                 </div>
@@ -62,11 +62,11 @@
             <div v-if ="cartItemCount > 0" class="shoppingCart-footer">
                 <div class="shoppingCart-footer_content">
                     <div class="totalPrice_container">
-                        <p class="totalPrice-mention">{{ totalPriceMention }}</p>
-                        <p class="totalPrice"> {{ totalPrice }} {{ currency }}</p>
+                        <p class="totalPrice-mention">{{ data.totalPrice }}</p>
+                        <p class="totalPrice"> {{ totalPrice }} {{ data.currency }}</p>
                     </div>
                     <div class="checkout-button">
-                        <p>{{ linkToCheckoutMention }}</p>
+                        <p>{{ data.linkToCheckout }}</p>
                         <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
                     </div>
                 </div>
@@ -86,20 +86,27 @@
     import { computed } from 'vue';
 
     // datas
-    const shoppingCartTitle = 'Your shopping Cart';
-    const currency = '$';
-    const availableMention = 'in stock'; 
-    const notAvailableMention = 'on demand';
-    const decreaseCounterIcon = '-';
-    const increaseCounterIcon = '+';
-    const clearCartMention = 'Clear cart';
-    const totalPriceMention = 'Subtotal';
-    const linkToCheckoutMention = 'Go to checkout';
-    const emptyCartMention = 'Your cart is empty';
-    const emptyCartImage = {
-        source: '/src/assets/decoration/monkey-in-a-cart.jpg',
-        alt: 'image of an empty cart'
-    }
+    const data = {
+        shoppingCartTitle: 'Your shopping Cart',
+        currency: '$',
+        emptyCart: {
+            mention: 'Your cart is empty',
+            buttonMention: 'Keep browsing',
+            image: {
+                source: '/src/assets/decoration/monkey-in-a-cart.jpg',
+                alt: 'image of an empty cart'
+            }
+        },
+        counter: {
+            decreaseIcon: '-',
+            increaseIcon: '+'
+        },
+        availableMention: 'in stock',
+        notAvailableMention: 'in demand', 
+        clearCartButtonMention: 'Clear cart',
+        totalPrice: 'Subtotal',
+        linkToCheckout: 'Go to checkout'
+    };
 
     //obtention de l'instance du store CatalogueStore
     const catalogueStore = useCatalogueStore(); 

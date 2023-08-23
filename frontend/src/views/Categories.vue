@@ -61,8 +61,6 @@
     return catalogueStore._randomizeProducts(filteredProds);
   });
 
-  console.log(randomOrderProducts.value)
-
 </script>
 
   <style lang="scss" scoped>

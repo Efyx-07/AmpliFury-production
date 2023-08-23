@@ -13,5 +13,4 @@
 	-Implementer une option de tri ( prix croissant / décroissant / ordre alphabetique)
 	-Implementer un bouton "back"
 
-- Persistance des données : utiliser local storage pour persistance des données au rafraichissement de la page.
 

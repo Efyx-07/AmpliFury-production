@@ -9,6 +9,12 @@ export const useCatalogueStore = defineStore('catalogue', {
   }),
 
   actions: {
+
+    // sauvegarde dans le Local Storage après chaque modification du panier
+    saveInLocalStorage() {
+      localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+    },
+
     // ajoute l'article au panier
     addToCart(product) {
 
@@ -22,7 +28,7 @@ export const useCatalogueStore = defineStore('catalogue', {
         const itemToAdd = { ...product, quantity: 1, initialPrice: product.price }; // initialPrice est défini ici pour maj dans le panier selon la quantité
         this.cartItems.push(itemToAdd); 
       };
-      
+      this.saveInLocalStorage(); 
     },
 
     // retire l'article du panier
@@ -31,11 +37,13 @@ export const useCatalogueStore = defineStore('catalogue', {
       if (index !== -1) {
         this.cartItems.splice(index, 1);
       };
+      this.saveInLocalStorage();
     },
 
     // retire tous les articles du panier
     clearCart() {
       this.cartItems = [];
+      this.saveInLocalStorage();
     },
 
     // met à jour le prix des articles dans le panier selon la quantité compteur
@@ -45,7 +53,8 @@ export const useCatalogueStore = defineStore('catalogue', {
       } else {
         item.price = item.initialPrice;
       }
-    }
+    },
+
   },
 
   getters: {

@@ -141,6 +141,14 @@
         cartStore.closeCart();
     };
 
+    // récupère les données stockées dans le local storage
+    const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+    if (savedCartItems) {
+        catalogueStore.cartItems = savedCartItems;
+    }
+
+    console.log(localStorage.getItem('cartItems'));
+
 </script>
 
 <style lang="scss" scoped>

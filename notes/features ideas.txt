@@ -1,0 +1,4 @@
+PRODUCTS WAY
+
+=> rating sur produit
+=> related products sur view { Product }

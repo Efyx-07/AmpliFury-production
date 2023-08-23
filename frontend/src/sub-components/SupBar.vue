@@ -1,29 +1,28 @@
 <template>
+
     <div class="supBar">
       <div class="supBar-content">
         <template v-for="(item, index) in repeatedItems" :key="index">
             <div class="supBar-textIcon-wrapper">
-                <p class="supBar-text">{{ supBar.text }}</p>
+                <p class="supBar-text">{{ supBarText }}</p>
                 <Icon icon="ic:sharp-star" class="supBar-icon" />
             </div>
             <div class="spacer" v-if="index !== repeatedItems.length - 1"></div>
         </template>
       </div>
     </div>
+    
 </template>
 
 <script setup>
+
     import { Icon } from '@iconify/vue';
-
-    const supBar = {
-        components: {
-            Icon,
-        },
-        text: 'EVERYTHING STARTS IN A GARAGE',
-        };
-
     import { computed } from 'vue';
 
+    // datas
+    const supBarText = 'EVERYTHING STARTS IN A GARAGE';
+
+    // repete le contenu 
     const repeatCount = 120; 
 
     const repeatedItems = computed(() => {
@@ -33,9 +32,11 @@
         }
         return items;
     });
+
 </script>
 
 <style lang="scss" scoped>
+
     @import '@/assets/sass/variables.scss';
 
     .supBar {

@@ -9,7 +9,8 @@
                 <Icon icon="carbon:close" width="40" class="closeIcon" @click="closeCart"/>
             </div>
 
-            <div v-if ="cartItemCount === 0" class="emptyCart">
+            <!-- mention visible quand panier est vide, contient bouton retour navigation -->
+            <div v-if ="cartItemCount === 0" class="emptyCart"> 
                 <p>{{ emptyCartMention }}</p>
                 <img :src="emptyCartImage.source" :alt="emptyCartImage.alt">
                 <div class="keepBrowsing-button" @click="closeCart">
@@ -18,6 +19,7 @@
                 </div>
             </div>
 
+            <!-- liste articles ajoutés au panier -->
             <ul class="cart-items">
                 <li v-for="item in cartItems" :key="item.id" class="cart-item">
                     <div class="cart-item_image-container">
@@ -30,6 +32,8 @@
                         </div>
                         <p class="" v-if="item.available">{{ availableMention }}</p>
                         <p class="" v-else>{{ notAvailableMention }}</p>
+
+                        <!-- compteur quantité article -->
                         <div class="quantity-counter_container">
                             <div class="decrementor_container" @click="decreaseQuantity(item)">
                                 <p>{{ decreaseCounterIcon }}</p>
@@ -44,14 +48,17 @@
                     </div>
                     <Icon icon="ph:trash-light" width="25" class="removeIcon" @click="removeFromCart(item)"/>
                 </li>
+
+                <!-- bouton qui vide le panier, visible à partir de 2 articles ajoutés -->
                 <div class="clearCart-button_container">
-                    <div v-if ="cartItemCount > 0" class="clearCart-button" @click="clearCart"> 
+                    <div v-if ="cartItemCount > 1" class="clearCart-button" @click="clearCart"> 
                         <p>{{ clearCartMention }}</p> 
                         <Icon icon="prime:replay" width="15"/>
                     </div>
                 </div>
             </ul>
 
+            <!-- contient sous-total et bouton vers caisse, visible quand au moins 1 produit ajouté -->
             <div v-if ="cartItemCount > 0" class="shoppingCart-footer">
                 <div class="shoppingCart-footer_content">
                     <div class="totalPrice_container">

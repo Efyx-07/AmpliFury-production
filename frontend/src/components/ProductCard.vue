@@ -3,6 +3,7 @@
     <div class="product-card">
 
         <div class="product-image_container">
+            <!-- image click actif/inactif selon la vue -->
             <img 
                 :src="product.image.source" 
                 :alt="product.image.alt" 
@@ -46,7 +47,7 @@
                 </div>
             </div>
         </div>
-
+        <!-- mention ajoutée à la carte produit quand produit ajouté au panier -->
         <div v-if="addedToCart" class="addedToCart-mention">
             <Icon icon="icons8:checked" width="15" class="validateIcon"/>
             <p>Added to cart</p>
@@ -160,7 +161,6 @@
                 display: flex;
                 gap: .2rem;
             }
-
             .product-brand, .product-model {
                 font-size: 1.25rem;
                 margin: 0;

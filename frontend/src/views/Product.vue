@@ -2,6 +2,7 @@
     <h1>
         Je suis la page product
     </h1>
+    <!-- importe composant ProductCard avec image non clickable-->
     <ProductCard 
         class="product-card"
         :product="selectedProduct" 

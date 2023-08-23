@@ -3,6 +3,7 @@
       <h1 class="category-title">{{ pageTitle }}</h1> 
       <div class="categories-content_wrapper">
         <div class="product-cards_container">
+          <!-- importe composant ProductCard avec image clickable -->
           <ProductCard 
             class="product-card"
             v-for="product in randomOrderProducts" 
@@ -59,6 +60,8 @@
     const filteredProds = filteredProducts.value;
     return catalogueStore._randomizeProducts(filteredProds);
   });
+
+  console.log(randomOrderProducts.value)
 
 </script>
 

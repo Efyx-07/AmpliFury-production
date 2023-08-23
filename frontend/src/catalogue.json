@@ -10,6 +10,7 @@
         {
           "id": "0001",
           "category": "Guitars",
+          "type": "Guitar",
           "brand": "Bender",
           "model": "Telemaster M-101",
           "image": {
@@ -25,6 +26,7 @@
         {
           "id": "0002",
           "category": "Guitars",
+          "type": "Guitar",
           "brand": "Bender",
           "model": "Telemaster M-102",
           "image": {
@@ -40,6 +42,7 @@
         {
           "id": "0003",
           "category": "Guitars",
+          "type": "Guitar",
           "brand": "Gibbons",
           "model": "Lep Saul",
           "image": {
@@ -55,6 +58,7 @@
         {
           "id": "0004",
           "category": "Guitars",
+          "type": "Guitar",
           "brand": "Gibbons",
           "model": "Melody Faker",
           "image": {
@@ -70,6 +74,7 @@
         {
           "id": "0005",
           "category": "Guitars",
+          "type": "Guitar",
           "brand": "Greta",
           "model": "Lucilla",
           "image": {
@@ -85,6 +90,7 @@
         {
           "id": "0006",
           "category": "Guitars",
+          "type": "Guitar",
           "brand": "Schelter",
           "model": "GMK Signature",
           "image": {
@@ -109,6 +115,7 @@
         {
           "id": "1001",
           "category": "Basses",
+          "type": "Bass",
           "brand": "Bender",
           "model": "Decision J37",
           "image": {
@@ -124,6 +131,7 @@
         {
           "id": "1002",
           "category": "Basses",
+          "type": "Bass",
           "brand": "Ivarez",
           "model": "Blizzard",
           "image": {
@@ -139,6 +147,7 @@
         {
           "id": "1003",
           "category": "Basses",
+          "type": "Bass",
           "brand": "Kickenbacker",
           "model": "Paul MyCourtney",
           "image": {
@@ -163,6 +172,7 @@
         {
           "id": "2001",
           "category": "Acoustic",
+          "type": "Acoustic guitar",
           "brand": "Bender",
           "model": "Arizona",
           "image": {
@@ -178,6 +188,7 @@
         {
           "id": "2002",
           "category": "Acoustic",
+          "type": "Acoustic guitar",
           "brand": "Matakine",
           "model": "Velvet",
           "image": {
@@ -193,6 +204,7 @@
         {
           "id": "2003",
           "category": "Acoustic",
+          "type": "Acoustic guitar",
           "brand": "Saylor",
           "model": "Girlstar",
           "image": {
@@ -217,6 +229,7 @@
         {
           "id": "3001",
           "category": "Amps",
+          "type": "Amp",
           "brand": "Leavey",
           "model": "HSR9902",
           "image": {
@@ -232,6 +245,7 @@
         {
           "id": "3002",
           "category": "Amps",
+          "type": "Amp",
           "brand": "Marshiall",
           "model": "Headbanger",
           "image": {
@@ -247,6 +261,7 @@
         {
           "id": "3003",
           "category": "Amps",
+          "type": "Amp",
           "brand": "Vex",
           "model": "Vortex 222",
           "image": {
@@ -271,6 +286,7 @@
         {
           "id": "4001",
           "category": "Synths",
+          "type": "Synth",
           "brand": "Borg",
           "model": "MT20",
           "image": {
@@ -286,6 +302,7 @@
         {
           "id": "4002",
           "category": "Synths",
+          "type": "Synth",
           "brand": "Romand",
           "model": "Juny 70",
           "image": {
@@ -301,6 +318,7 @@
         {
           "id": "4003",
           "category": "Synths",
+          "type": "Synth",
           "brand": "Voog",
           "model": "Uzi 16",
           "image": {
@@ -325,6 +343,7 @@
         {
           "id": "5001",
           "category": "Drums",
+          "type": "Drums",
           "brand": "Connor",
           "model": "DevilKit",
           "image": {
@@ -340,6 +359,7 @@
         {
           "id": "5002",
           "category": "Drums",
+          "type": "Drums",
           "brand": "Diamond",
           "model": "Manchester",
           "image": {
@@ -355,6 +375,7 @@
         {
           "id": "5003",
           "category": "Drums",
+          "type": "Drums",
           "brand": "Tamaha",
           "model": "DK707",
           "image": {

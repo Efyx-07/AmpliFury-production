@@ -1,6 +1,0 @@
-- Bug au rafraichissement sur views avec produits filtrés (actuellement Categories et Product), 
-n'apparait qu'à partir des routes dynamiques
-
-	=> erreur 404 chargement style.css et images autres que catalogue 
-
-// RESOLVED => changement chemins relatifs src/... devient /src/...

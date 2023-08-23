@@ -145,9 +145,7 @@
     const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
     if (savedCartItems) {
         catalogueStore.cartItems = savedCartItems;
-    }
-
-    console.log(localStorage.getItem('cartItems'));
+    };
 
 </script>
 

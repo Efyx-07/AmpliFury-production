@@ -95,7 +95,7 @@
     // contrôle la visibilité de l'image clickable
     const showImageClickable = route.name === 'Categories' || route.name === 'Category'; 
 
-    // obtention instance store CatlogueStore
+    // obtention instance store CatalogueStore
     const store = useCatalogueStore(); 
 
     // ajout de l'article dans le panier

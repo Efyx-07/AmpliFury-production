@@ -5,7 +5,8 @@
         <div class="product-cards_container">
           <ProductCard 
             class="product-card"
-            v-for="product in filteredProducts" :key="product.model" 
+            v-for="product in randomOrderProducts" 
+            :key="product.model" 
             :product="product" 
             :showDescription="false" 
             :showEyeIcon="true"
@@ -37,7 +38,7 @@
   
   const allProducts = catalogueStore.products.flatMap(category => category.products); // crée une liste de tous les produits
   
-  // Crée une propriété calculée filteredProducts qui filtre en parcourant les catégories et leurs produits
+  // crée une propriété calculée filteredProducts qui filtre en parcourant les catégories et leurs produits
   const filteredProducts = computed(() => {
     const categoryFilter = route.params.category; // récupère le paramètre "category" de la route
     
@@ -51,6 +52,12 @@
     } else {
         return allProducts
     }
+  });
+
+  // crée une propriété calculée randomOrderproducts qui permet un présentation aléatoire des produits et reprenant le filtrage de filteredProducts
+  const randomOrderProducts = computed(() => {
+    const filteredProds = filteredProducts.value;
+    return catalogueStore._randomizeProducts(filteredProds);
   });
 
 </script>

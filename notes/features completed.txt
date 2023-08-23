@@ -1,0 +1,48 @@
+{ view : Categories }
+
+    => présentation produits avec filtrage par catégorie
+        - définition des routes dynamiques dans le router
+        - mise en place des router-link (boutons et liens)
+
+    => présentation produits dans un ordre aléatoire à chaque rafraichissement en conservant le filtrage par categorie
+        - mise en place d'une action privée dans catalogueStore.js
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+{ component: ShoppingCart }
+
+    => incrementation du nombre d'articles dans le { sub-component: CartIcon } et header du { Shoppingcart }
+
+    => gestion de l'ouverture / fermeture de la fenetre
+
+    => mise en place ajout article dans le panier
+
+    => mise en place suppression article du panier 
+    
+    => mise en place du compteur incrémentation / décrémentation du nombre d'articles et mise à jour du montant 
+       de l'article selon la quantité
+
+    => mise à jour du montant du Subtotal en fonction des montants articles 
+
+    => mise en place bouton "Clear cart" permettant de vider le panier en une fois
+
+    => ajout d'une présentation en cas de panier vide avec bouton invitant à poursuivre la navigation et fermant la fenetre.
+
+    => mise en place d'une persistance des données avec localStorage (conserve toutes les mises à jour du panier)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+{ component: ProductCard }
+
+    => mise en place de routes dynamiques permettant de naviguer vers { view Product } présentant le produit individuellement 
+        - comparaison ID
+
+    => controle du click image (actif / inactif) selon les views nécessaires
+
+    => filtrage des détails produits selon les views où le produit sera affiché
+
+    => mise en place de l'ajout du produit au panier par le click de l'icone panier. permet l'incrementation du compteur article de { ShoppingCart }
+
+    => mise en place d'un affichage unique dans le panier
+
+    => ajout d'une mention signalant que le produit est dans le panier. comparaison ID

@@ -55,6 +55,11 @@ export const useCatalogueStore = defineStore('catalogue', {
       }
     },
 
+    // action privée - génére un ordre aléatoire des produits
+    _randomizeProducts(products) {
+      return products.slice().sort(() => Math.random() - 0.5);
+    }
+
   },
 
   getters: {

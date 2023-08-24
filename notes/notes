@@ -1,0 +1,8 @@
+WISHLIST
+
+icon Heart de Productcard doit envoyer le produit dans la wishlist 
+    => créer fonction addToWishlist dans le store : 
+        - ajoute  les articles sous forme de liste 
+        - un article ne peut être ajouté qu'une seule fois
+        - si l'article est present dans le ShoppingCart, il ne peut pas être ajouté à la wishlist
+        - si un article est ajouté dans le shoppingCart, il doit disparaitre de la wishlist

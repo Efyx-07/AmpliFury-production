@@ -5,6 +5,8 @@ créer view "WISHLIST" : regroupe les produits selectionnés par l'utilisateur �
 - Wishlist :
 
 	- persistance des données / avec date à laquelle le produit a été ajouté
+	- bouton qui ajoute tout le contenu au cart
+	- bouton qui retire tout le contenu de la wishlist
 
 - Shopping Cart : 
 

@@ -6,6 +6,7 @@ export const useCatalogueStore = defineStore('catalogue', {
   state: () => ({
     products: catalogueData.categories,
     cartItems: [], // propriété permettant de stocker les articles dans le panier
+    wishlistItems: [], // propriété permettant de stocker les articles dans la wishlist
   }),
 
   actions: {
@@ -13,14 +14,13 @@ export const useCatalogueStore = defineStore('catalogue', {
     // sauvegarde dans le Local Storage après chaque modification du panier
     saveInLocalStorage() {
       localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+      localStorage.setItem('wishlistItems', JSON.stringify(this.wishlistItems));
     },
 
     // ajoute l'article au panier
     addToCart(product) {
-
       // empeche l'affichage de l'article plus d'une fois dans le panier 
       const existingItem = this.cartItems.find(item => item.id === product.id); // compare si l'id de l'article à ajouter existe déjà dans le panier
-
       if (existingItem) {
         existingItem.quantity++; // si article déjà présent dans panier, alors augmente la quantité
         this.updateItemPrice(product); // met à jour le prix
@@ -86,7 +86,29 @@ export const useCatalogueStore = defineStore('catalogue', {
       this.products.forEach(category => {
         category.products.sort((a, b) => b.brand.localeCompare(a.brand));
       });
-    }
+    },
+
+    // ajoute l'article à la wishlist 
+    addToWishlist(product) {
+      // verifie si l'article est déjà dans la wishlist (un article ne peut y être ajouté qu'une fois) - comparaison des ID retourne un booléen 
+      const isAlreadyInWishlist = this.wishlistItems.some(item => item.id === product.id);
+      // verifie si l'article est déjà dans le panier (un article ne peut pas se trouver dans la wishlist si présent dans le panier) - comparaison des ID retourne un booléen 
+      const isAlreadyInCart = this.cartItems.some(item => item.id === product.id);
+      // si article pas présent dans la wishlist ni dans le panier, envoie dans la wishlist
+      if(!isAlreadyInWishlist && !isAlreadyInCart) {
+        this.wishlistItems.push(product);
+      }
+      this.saveInLocalStorage(); 
+    },
+
+    // retire l'article de la wishlist
+    removeFromWishlist(product) {
+      const index = this.wishlistItems.findIndex( item => item.id === product.id);
+      if (index !== -1) {
+        this.wishlistItems.splice(index, 1);
+      };
+      this.saveInLocalStorage();
+    },
 
   },
 

@@ -38,12 +38,20 @@
                         v-if="showEyeIcon" 
                         @click="navigateToProduct"
                     />
-                    <Icon icon="cil:heart" width="20" class="customerIcon"/>
+
+                    <Icon 
+                        icon="cil:heart" 
+                        width="20" 
+                        class="customerIcon"
+                        @click="addToWishlist"
+                    />
+            
                     <Icon 
                         icon="bi:cart" 
                         width="20" 
                         class="customerIcon" 
-                        @click="addToCart"/>
+                        @click="addToCart"
+                    />
                 </div>
             </div>
         </div>
@@ -117,6 +125,10 @@
     const addedToCart = computed(() =>{
         return store.cartItems.some(item => item.id === props.product.id);
     });
+
+    const addToWishlist = () => {
+        store.addToWishlist(props.product);
+    }
 
 </script>
 

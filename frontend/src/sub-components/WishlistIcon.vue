@@ -1,5 +1,5 @@
 <template>
-    
+
     <router-link to="/wishlist" class="wishlistIcon_container">
         <Icon icon="cil:heart" width="25" class="customerIcon wishlistIcon"/>
         <div class="wishlistIcon-badge" v-if="wishlistItemCount > 0">
@@ -17,7 +17,7 @@
 
     // permet l'incrémentation du nombre d'article dans la wishlist
     const wishlistItemCount = computed(() => {
-        return useCatalogueStore().cartItems.length;
+        return useCatalogueStore().wishlistItems.length;
     });
     
 </script>

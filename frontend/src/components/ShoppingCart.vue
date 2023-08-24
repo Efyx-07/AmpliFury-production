@@ -1,6 +1,6 @@
 <template>
 
-    <div class="shoppingCart_container" v-if="isCartOpen">
+    <div class="shoppingCart_container" :class="{ hidden: !isCartVisible }">
 
         <div class="shoppingCart">
 
@@ -82,8 +82,7 @@
 
     import { Icon } from '@iconify/vue';
     import { useCatalogueStore } from '@/stores/CatalogueStore';
-    import { useShoppingCartStore } from '@/stores/ShoppingCartStore';
-    import { computed } from 'vue';
+    import { ref, onMounted, computed } from 'vue';
 
     // datas
     
@@ -147,12 +146,22 @@
         };
     };
 
+    // statut par défaut de la visibilité de la fenetre
+    const isCartVisible = ref(false);
+    
     // permet la fermeture de la fenetre au click sur l'icone
-    const cartStore = useShoppingCartStore();
-    const isCartOpen = computed(() => cartStore.isCartOpen);
     const closeCart = () => {
-        cartStore.closeCart();
+        isCartVisible.value = false;
     };
+
+    // ecoute l'événement personnalisé (créé sur 'CartIcon') pour réafficher la fenetre
+    onMounted(() => {
+        window.addEventListener('show-cart', () => {
+            isCartVisible.value = true;
+        });
+    });
+
+
 
     // récupère les données stockées dans le local storage
     const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
@@ -165,6 +174,11 @@
 <style lang="scss" scoped>
 
     @import '@/assets/sass/variables.scss';
+
+        .hidden {
+            transform: translateX(100%);  
+        }
+
         .shoppingCart_container {
         position: fixed;
         z-index: 999;

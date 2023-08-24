@@ -1,6 +1,0 @@
-{ ShoppingCart }
-
-Trouver solution ouverture/fermeture permettant les transitions. 
-
-	=> le changement d'état défini dans ShoppingCartStore retourne un booléen qui se traduit par un display none quand false 
-		/ incompatible avec mise en place d'une transition CSS

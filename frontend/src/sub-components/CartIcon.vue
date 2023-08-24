@@ -1,5 +1,5 @@
 <template>
-    <div class="cartIcon_container" @click="openCart">
+    <div class="cartIcon_container" @click="toggleCartVisibility">
         <Icon icon="bi:cart" width="25" class="customerIcon cartIcon"/>
         <div class="cartIcon-badge" v-if="cartItemCount > 0">
             <p class="incrementation">{{ cartItemCount }}</p>
@@ -12,19 +12,20 @@
     import { Icon } from '@iconify/vue';
     import { useCatalogueStore } from '@/stores/CatalogueStore';
     import { computed } from 'vue';
-    import { useShoppingCartStore } from '@/stores/ShoppingCartStore';
 
     // permet l'incrémentation du nombre d'article dans le panier
     const cartItemCount = computed(() => {
         return useCatalogueStore().cartItems.length;
     });
 
-    // permet l'ouverture de la fenetre au click sur l'icone
-    const cartStore = useShoppingCartStore();
-    const openCart = () => {
-        cartStore.openCart();
+    // ouvre la fentetre 'ShoppingCart' au clic de l'icone
+    const toggleCartVisibility = () => {
+        // crée un nouvel evenement personnalisé 
+        const showCartEvent = new Event('show-cart');
+        // déclenche l'événement 'show-cart' sur l'objet window
+        window.dispatchEvent(showCartEvent);
     };
-    
+   
 </script>
 
 

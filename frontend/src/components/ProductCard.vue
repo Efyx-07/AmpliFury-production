@@ -55,10 +55,15 @@
                 </div>
             </div>
         </div>
-        <!-- mention ajoutée à la carte produit quand produit ajouté au panier -->
+        <!-- mention ajoutée à la carte produit quand produit ajouté au panier ou à la wishlist-->
         <div v-if="addedToCart" class="addedToCart-mention">
             <Icon icon="icons8:checked" width="15" class="validateIcon"/>
             <p>Added to cart</p>
+        </div>
+
+        <div v-if="addedToWishlist" class="addedToWishlist-mention">
+            <Icon icon="cil:heart" width="15" class="validateIcon2"/>
+            <p>Added to wishlist</p>
         </div>
 
     </div>
@@ -126,9 +131,15 @@
         return store.cartItems.some(item => item.id === props.product.id);
     });
 
+    // ajout de l'article dans la wishlist
     const addToWishlist = () => {
         store.addToWishlist(props.product);
     }
+
+    // vérifie si l'article est dans la wishlist et retourne un booléen 
+    const addedToWishlist = computed(() =>{
+        return store.wishlistItems.some(item => item.id === props.product.id);
+    });
 
 </script>
 
@@ -204,7 +215,7 @@
                 }
             }
         }
-        .addedToCart-mention {
+        .addedToCart-mention, .addedToWishlist-mention {
             display: flex;
             align-items: center;
             gap: .3rem;
@@ -223,6 +234,9 @@
             }
             .validateIcon {
                 color: #45AA43;
+            }
+            .validateIcon2 {
+                color: #CA0B0B;
             }
         }
     }

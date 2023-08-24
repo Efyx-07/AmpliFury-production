@@ -65,10 +65,10 @@
                         <p class="totalPrice-mention">{{ totalPriceMention }}</p>
                         <p class="totalPrice"> {{ totalPrice }} {{ currency }}</p>
                     </div>
-                    <div class="checkout-button">
+                    <router-link to="/checkout" class="checkout-button" @click="closeCart"> <!-- relie le bouton à la route checkout -->       
                         <p>{{ linkToCheckout }}</p>
                         <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
-                    </div>
+                    </router-link>
                 </div>
             </div>
 
@@ -369,6 +369,8 @@
                 .checkout-button {
                     display: flex;
                     align-items: center;
+                    text-decoration: none;
+                    color: $lightColor;
                     cursor: pointer;
 
                     p {

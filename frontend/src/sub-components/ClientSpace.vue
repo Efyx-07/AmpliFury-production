@@ -1,7 +1,7 @@
 <template>
     <div class="customersIcons-container">
         <Icon icon="ph:user" width="25" class="customerIcon"/>
-        <Icon icon="cil:heart" width="25" class="customerIcon"/>
+        <WishlistIcon />
         <CartIcon />
     </div>
 </template>
@@ -9,6 +9,7 @@
 <script setup>
     import { Icon } from '@iconify/vue';
     import CartIcon from '@/sub-components/CartIcon.vue';
+    import WishlistIcon from '@/sub-components/WishlistIcon.vue'
 </script>
 
 <style lang="scss" scoped>

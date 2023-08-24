@@ -1,3 +1,11 @@
+PARCOURS PRODUIT 
+
+créer view "WISHLIST" : regroupe les produits selectionnés par l'utilisateur à partir de ProductCard (icone 'heart').
+
+- Wishlist :
+
+	- persistance des données / avec date à laquelle le produit a été ajouté
+
 - Shopping Cart : 
 
 	-statut in stock / on demand : 
@@ -7,12 +15,6 @@
 		-on demand / à la place du compteur, bouton "contact us" (bouton vers la view 'Contact' à créer')
 
 - Catégories : 
-
-	-Implementer une option de tri ( prix croissant / décroissant / ordre alphabetique)
-		=> "Sort by" :  - Price: low to high
-						- Price: high to low
-						- Alphabet: A to Z
-						- Alphabet: Z to A
 
 	-Implementer un bouton "back"
 

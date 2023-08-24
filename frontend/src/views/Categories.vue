@@ -110,6 +110,7 @@
       }
       .sortSelectButton {
         font-size: 1.2rem;
+        padding: .5rem;
         border: none;
         border-radius: 15px;
         background: $ultraLightColor;

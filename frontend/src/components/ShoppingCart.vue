@@ -1,86 +1,80 @@
 <template>
 
-    <transition name="slide-fade">
+    <div class="shoppingCart_container" v-if="isCartOpen">
 
-        <div class="shoppingCart_container" :class="{'visible': isCartOpen}">
+        <div class="shoppingCart">
 
-            <div class="shoppingCart">
+            <div class="shoppingCart-header">
+                <h1>{{ shoppingCartTitle }} ({{ cartItemCount }})</h1> 
+                <Icon icon="carbon:close" width="40" class="closeIcon" @click="closeCart"/>
+            </div>
 
-                <div class="shoppingCart-header">
-                    <h1>{{ data.shoppingCartTitle }} ({{ cartItemCount }})</h1> 
-                    <Icon icon="carbon:close" width="40" class="closeIcon" @click="toggleCart"/>
+            <!-- mention visible quand panier est vide, contient bouton retour navigation -->
+            <div v-if ="cartItemCount === 0" class="emptyCart"> 
+                <p>{{ emptyCart.mention }}</p>
+                <img :src="emptyCart.image.source" :alt="emptyCart.image.alt">
+                <div class="keepBrowsing-button" @click="closeCart">
+                    <p>{{ emptyCart.buttonMention }}</p>
+                    <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
                 </div>
+            </div>
 
-                <!-- mention visible quand panier est vide, contient bouton retour navigation -->
-                <div v-if ="cartItemCount === 0" class="emptyCart"> 
-                    <p>{{ data.emptyCart.mention }}</p>
-                    <img :src="data.emptyCart.image.source" :alt="data.emptyCart.image.alt">
-                    <div class="keepBrowsing-button" @click="closeCart">
-                        <p>{{ data.emptyCart.buttonMention }}</p>
+            <!-- liste articles ajoutés au panier -->
+            <ul class="cart-items">
+                <li v-for="item in cartItems" :key="item.id" class="cart-item">
+                    <div class="cart-item_image-container">
+                        <img :src="item.image.source" alt="item.image.alt" class="cart-item_image">
+                    </div>
+                    <div class="cart-item_infos-counter_container">
+                        <div class="cart-item_infos-container">
+                            <p class="item-name">{{ item.brand }} {{ item.model }}</p>
+                            <p class="item-price">{{ item.price }} {{ currency }}</p>
+                        </div>
+                        <p class="" v-if="item.available">{{ availableMention }}</p>
+                        <p class="" v-else>{{ notAvailableMention }}</p>
+
+                        <!-- compteur quantité article -->
+                        <div class="quantity-counter_container">
+                            <div class="decrementor_container" @click="decreaseQuantity(item)">
+                                <p>{{ counter.decreaseIcon }}</p>
+                            </div>
+                            <div class="quantity-counter">
+                                <p>{{ item.quantity }}</p>
+                            </div>
+                            <div class="incrementor_container" @click="increaseQuantity(item)">
+                                <p>{{ counter.increaseIcon  }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <Icon icon="ph:trash-light" width="25" class="removeIcon" @click="removeFromCart(item)"/>
+                </li>
+
+                <!-- bouton qui vide le panier, visible à partir de 2 articles ajoutés -->
+                <div class="clearCart-button_container">
+                    <div v-if ="cartItemCount > 1" class="clearCart-button" @click="clearCart"> 
+                        <p>{{ clearCartButtonMention }}</p> 
+                        <Icon icon="prime:replay" width="15"/>
+                    </div>
+                </div>
+            </ul>
+
+            <!-- contient sous-total et bouton vers caisse, visible quand au moins 1 produit ajouté -->
+            <div v-if ="cartItemCount > 0" class="shoppingCart-footer">
+                <div class="shoppingCart-footer_content">
+                    <div class="totalPrice_container">
+                        <p class="totalPrice-mention">{{ totalPriceMention }}</p>
+                        <p class="totalPrice"> {{ totalPrice }} {{ currency }}</p>
+                    </div>
+                    <div class="checkout-button">
+                        <p>{{ linkToCheckout }}</p>
                         <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
                     </div>
                 </div>
-
-                <!-- liste articles ajoutés au panier -->
-                <ul class="cart-items">
-                    <li v-for="item in cartItems" :key="item.id" class="cart-item">
-                        <div class="cart-item_image-container">
-                            <img :src="item.image.source" alt="item.image.alt" class="cart-item_image">
-                        </div>
-                        <div class="cart-item_infos-counter_container">
-                            <div class="cart-item_infos-container">
-                                <p class="item-name">{{ item.brand }} {{ item.model }}</p>
-                                <p class="item-price">{{ item.price }} {{ data.currency }}</p>
-                            </div>
-                            <p class="" v-if="item.available">{{ data.availableMention }}</p>
-                            <p class="" v-else>{{ data.notAvailableMention }}</p>
-
-                            <!-- compteur quantité article -->
-                            <div class="quantity-counter_container">
-                                <div class="decrementor_container" @click="decreaseQuantity(item)">
-                                    <p>{{ data.counter.decreaseIcon }}</p>
-                                </div>
-                                <div class="quantity-counter">
-                                    <p>{{ item.quantity }}</p>
-                                </div>
-                                <div class="incrementor_container" @click="increaseQuantity(item)">
-                                    <p>{{ data.counter.increaseIcon  }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <Icon icon="ph:trash-light" width="25" class="removeIcon" @click="removeFromCart(item)"/>
-                    </li>
-
-                    <!-- bouton qui vide le panier, visible à partir de 2 articles ajoutés -->
-                    <div class="clearCart-button_container">
-                        <div v-if ="cartItemCount > 1" class="clearCart-button" @click="clearCart"> 
-                            <p>{{ data.clearCartButtonMention }}</p> 
-                            <Icon icon="prime:replay" width="15"/>
-                        </div>
-                    </div>
-                </ul>
-
-                <!-- contient sous-total et bouton vers caisse, visible quand au moins 1 produit ajouté -->
-                <div v-if ="cartItemCount > 0" class="shoppingCart-footer">
-                    <div class="shoppingCart-footer_content">
-                        <div class="totalPrice_container">
-                            <p class="totalPrice-mention">{{ data.totalPrice }}</p>
-                            <p class="totalPrice"> {{ totalPrice }} {{ data.currency }}</p>
-                        </div>
-                        <div class="checkout-button">
-                            <p>{{ data.linkToCheckout }}</p>
-                            <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
         </div>
 
-    </transition>
-
-   
+    </div>
 
 </template>
 
@@ -92,28 +86,27 @@
     import { computed } from 'vue';
 
     // datas
-    const data = {
-        shoppingCartTitle: 'Your shopping Cart',
-        currency: '$',
-        emptyCart: {
+    
+    const shoppingCartTitle = 'Your shopping Cart';
+    const currency = '$';
+    const emptyCart = {
             mention: 'Your cart is empty',
             buttonMention: 'Keep browsing',
             image: {
                 source: '/src/assets/decoration/monkey-in-a-cart.jpg',
                 alt: 'image of an empty cart'
             }
-        },
-        counter: {
+        };
+    const counter = {
             decreaseIcon: '-',
             increaseIcon: '+'
-        },
-        availableMention: 'in stock',
-        notAvailableMention: 'in demand', 
-        clearCartButtonMention: 'Clear cart',
-        totalPrice: 'Subtotal',
-        linkToCheckout: 'Go to checkout'
-    };
-
+        };
+    const availableMention = 'in stock';
+    const notAvailableMention = 'in demand'; 
+    const clearCartButtonMention = 'Clear cart';
+    const totalPriceMention = 'Subtotal';
+    const linkToCheckout = 'Go to checkout';
+   
     //obtention de l'instance du store CatalogueStore
     const catalogueStore = useCatalogueStore(); 
 
@@ -157,8 +150,8 @@
     // permet la fermeture de la fenetre au click sur l'icone
     const cartStore = useShoppingCartStore();
     const isCartOpen = computed(() => cartStore.isCartOpen);
-    const toggleCart = () => {
-        cartStore.toggleCart();
+    const closeCart = () => {
+        cartStore.closeCart();
     };
 
     // récupère les données stockées dans le local storage
@@ -172,12 +165,7 @@
 <style lang="scss" scoped>
 
     @import '@/assets/sass/variables.scss';
-
-    .visible {
-        display: block;
-        transform: translateX(0);
-    }
-    .shoppingCart_container {
+        .shoppingCart_container {
         position: fixed;
         z-index: 999;
         top: 0;

@@ -1,5 +1,5 @@
 <template>
-    <div class="cartIcon_container" @click="toggleCart">
+    <div class="cartIcon_container" @click="openCart">
         <Icon icon="bi:cart" width="25" class="customerIcon cartIcon"/>
         <div class="cartIcon-badge" v-if="cartItemCount > 0">
             <p class="incrementation">{{ cartItemCount }}</p>
@@ -21,8 +21,8 @@
 
     // permet l'ouverture de la fenetre au click sur l'icone
     const cartStore = useShoppingCartStore();
-    const toggleCart = () => {
-        cartStore.toggleCart();
+    const openCart = () => {
+        cartStore.openCart();
     };
     
 </script>

@@ -49,3 +49,13 @@
     => mise en place d'un affichage unique dans le panier
 
     => ajout d'une mention signalant que le produit est dans le panier. comparaison ID
+
+    => ajout d'une mention signalant que le produit est dans la wishlist. comparaison ID
+
+{ view: Wishlist }
+
+    => incrementation du nombre d'articles dans le { sub-component: wishlistIcon }
+
+    => mise en place ajout consitionnel article dans la wishlist
+
+    => mise en place suppression article de la wishlist 

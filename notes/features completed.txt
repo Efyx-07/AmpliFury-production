@@ -7,6 +7,9 @@
     => présentation produits dans un ordre aléatoire à chaque rafraichissement en conservant le filtrage par categorie
         - mise en place d'une action privée dans catalogueStore.js
 
+    => Implementation d'une option de tri ( prix croissant / décroissant / ordre alphabetique) avec select button
+		
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 { component: ShoppingCart }

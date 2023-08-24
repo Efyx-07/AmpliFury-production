@@ -9,6 +9,11 @@
 - Catégories : 
 
 	-Implementer une option de tri ( prix croissant / décroissant / ordre alphabetique)
+		=> "Sort by" :  - Price: low to high
+						- Price: high to low
+						- Alphabet: A to Z
+						- Alphabet: Z to A
+
 	-Implementer un bouton "back"
 
 

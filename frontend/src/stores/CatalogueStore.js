@@ -58,6 +58,34 @@ export const useCatalogueStore = defineStore('catalogue', {
     // action privée - génére un ordre aléatoire des produits
     _randomizeProducts(products) {
       return products.slice().sort(() => Math.random() - 0.5);
+    },
+
+    // tri par prix croissant
+    sortProductsByAscPrice() {
+      this.products.forEach(category => {
+        category.products.sort((a, b) => a.price - b.price);
+      });
+    },
+
+    // tri par prix décroissant
+    sortProductsByDescPrice() {
+      this.products.forEach(category => {
+        category.products.sort((a, b) => b.price - a.price);
+      });
+    },
+
+    // tri par ordre alphabetique A à Z
+    sortProductsByAscAlphabet() {
+      this.products.forEach(category => {
+        category.products.sort((a, b) => a.brand.localeCompare(b.brand));
+      });
+    },
+
+    // tri par ordre alphabetique Z à A
+    sortProductsByDescAlphabet() {
+      this.products.forEach(category => {
+        category.products.sort((a, b) => b.brand.localeCompare(a.brand));
+      });
     }
 
   },

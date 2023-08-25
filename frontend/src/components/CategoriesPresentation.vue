@@ -32,7 +32,7 @@
     
     const catalogueStore = useCatalogueStore();
     const categories = catalogueStore.products;
-
+   
     const sectionTitle = "OUR CATEGORIES";
     const button1Text = "Explore All";
     const categoryButton = "Explore";

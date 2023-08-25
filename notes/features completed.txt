@@ -56,6 +56,8 @@
 
     => incrementation du nombre d'articles dans le { sub-component: wishlistIcon }
 
-    => mise en place ajout consitionnel article dans la wishlist
+    => mise en place ajout conditionnel article dans la wishlist
 
     => mise en place suppression article de la wishlist 
+
+    => mise en place bouton ajoute au panier et retire de wishlist

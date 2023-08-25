@@ -4,7 +4,18 @@
     <ul class="wishlist-items">
         <li v-for="item in wishlistItems " :key="item.id">
             <img :src="item.image.source" :alt="item.image.alt">
-            <Icon icon="ph:trash-light" width="25" class="removeIcon" @click="removeFromWishlist(item)"/>
+            <Icon 
+                icon="bi:cart" 
+                width="20" 
+                class="cartIcon icon" 
+                @click="addToCartFromWishlist(item)"
+            />
+            <Icon 
+                icon="ph:trash-light" 
+                width="25" 
+                class="removeIcon icon" 
+                @click="removeFromWishlist(item)"
+            />
         </li>
     </ul>
 </template>
@@ -26,6 +37,12 @@
         catalogueStore.removeFromWishlist(item);
     };
 
+    // ajoute article au panier et le retire de la wishlist
+    const addToCartFromWishlist = (item) => {
+        catalogueStore.addToCart(item);
+        catalogueStore.removeFromWishlist(item)
+    }
+
     // récupère les données stockées dans le local storage
     const savedWishlistItems = JSON.parse(localStorage.getItem('wishlistItems'));
     if (savedWishlistItems) {
@@ -42,7 +59,7 @@
     li img {
         width: 300px;
     }
-    .removeIcon {
+    .icon {
         cursor: pointer;
     }
 </style>

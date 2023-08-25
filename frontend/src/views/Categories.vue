@@ -107,6 +107,7 @@
         text-align: center;
         font-size: 4rem;
         margin: 0;
+        line-height: 1;
       }
       .sortSelectButton {
         font-size: 1.2rem;
@@ -122,6 +123,7 @@
     .categories-content_wrapper {
       display: flex;
       justify-content: center;
+      padding-bottom: 8rem;
     }
     .product-cards_container {
       width: 1440px;

@@ -16,8 +16,12 @@ créer view "WISHLIST" : regroupe les produits selectionnés par l'utilisateur �
 			=> mention "uniquement X exemplaires en stock"
 		-on demand / à la place du compteur, bouton "contact us" (bouton vers la view 'Contact' à créer')
 
+	- ajouter à article un bouton ajouter à la wishlist quand clické supprime du cart.
+
 - Catégories : 
 
 	-Implementer un bouton "back"
 
+- ProductCard : quand un article est dans la wishlist (avec mention "addedToWishlist")  et que le bouton addToCart est clické, 
+	la mention doit disparaitre et l'article doit etre supprimé de la wishlist.
 

@@ -1,23 +1,25 @@
 <template>
-    <h1>Je suis wishlist</h1>
-    <!-- liste articles ajoutés à la wishlist -->
-    <ul class="wishlist-items">
-        <li v-for="item in wishlistItems " :key="item.id">
-            <img :src="item.image.source" :alt="item.image.alt">
-            <Icon 
-                icon="bi:cart" 
-                width="20" 
-                class="cartIcon icon" 
-                @click="addToCartFromWishlist(item)"
-            />
-            <Icon 
-                icon="ph:trash-light" 
-                width="25" 
-                class="removeIcon icon" 
-                @click="removeFromWishlist(item)"
-            />
-        </li>
-    </ul>
+    <div class="wishlist">
+        <h1>Je suis wishlist</h1>
+        <!-- liste articles ajoutés à la wishlist -->
+        <ul class="wishlist-items">
+            <li v-for="item in wishlistItems " :key="item.id">
+                <img :src="item.image.source" :alt="item.image.alt">
+                <Icon 
+                    icon="bi:cart" 
+                    width="20" 
+                    class="cartIcon icon" 
+                    @click="addToCartFromWishlist(item)"
+                />
+                <Icon 
+                    icon="ph:trash-light" 
+                    width="25" 
+                    class="removeIcon icon" 
+                    @click="removeFromWishlist(item)"
+                />
+            </li>
+        </ul>
+    </div>
 </template>
 <script setup>
     import { useCatalogueStore } from '@/stores/CatalogueStore';
@@ -51,6 +53,10 @@
 </script>
 
 <style lang="scss" scoped> 
+
+    .wishlist {
+        min-height: 50vh;
+    }
     .wishlist-items {
         display: flex;
         list-style-type: none;

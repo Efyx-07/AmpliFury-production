@@ -31,7 +31,7 @@
 
     => ajout d'une présentation en cas de panier vide avec bouton invitant à poursuivre la navigation et fermant la fenetre.
 
-    => mise en place d'une persistance des données avec localStorage (conserve toutes les mises à jour du panier)
+    => mise en place d'une persistance des données avec localStorage (conserve toutes les mises à jour du panier).
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

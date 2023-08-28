@@ -53,6 +53,7 @@ export const useCatalogueStore = defineStore('catalogue', {
       } else {
         item.price = item.initialPrice;
       }
+      this.saveInLocalStorage();
     },
 
     // action privée - génére un ordre aléatoire des produits

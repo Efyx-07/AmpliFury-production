@@ -63,3 +63,11 @@
     => mise en place suppression article de la wishlist 
 
     => mise en place bouton ajoute au panier et retire de wishlist
+
+    => ajout bouton tout ajouter au panier (supprime tout de la wishlist)
+
+    => ajout bouton nettoyer la wishlist (supprime tout de la wishlist)
+
+    => ajout titre à la page et compteur du nombre d'articles présents dans la wishlist
+
+    => ajout mention si la wishlist est vide

@@ -33,6 +33,8 @@
 
     => mise en place d'une persistance des données avec localStorage (conserve toutes les mises à jour du panier).
 
+    => ajout bouton redéplace dans la wishlist
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 { component: ProductCard }

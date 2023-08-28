@@ -135,6 +135,24 @@ export const useCatalogueStore = defineStore('catalogue', {
       this.saveInLocalStorage();
     },
 
+    // rebascule article du panier vers la wishlist
+    toggleFromCartToWishlist(product) {
+      //vérifie si l'article est déja dans la wishlist
+      const isAlreadyInWishlist = this.wishlistItems.some(item => item.id === product.id);
+      if(!isAlreadyInWishlist) {
+        //supprimer article du panier
+        const index = this.cartItems.findIndex(item => item.id === product.id);
+        if(index !== -1) {
+          const removedItem = this.cartItems.splice(index, 1)[0]; // retire l'article du panier
+          // réinitialise la quantité et le prix
+          removedItem.quantity = 1;
+          removedItem.price = product.initialPrice;
+          this.addToWishlist(removedItem); // ajoute article à la wishlist
+          this.saveInLocalStorage();
+        };
+      };
+    },
+
   },
 
   getters: {

@@ -6,7 +6,12 @@
 
             <div class="shoppingCart-header">
                 <h1>{{ shoppingCartTitle }} ({{ cartItemCount }})</h1> 
-                <Icon icon="carbon:close" width="40" class="closeIcon" @click="closeCart"/>
+                <Icon 
+                    icon="carbon:close" 
+                    width="40" 
+                    class="closeIcon" 
+                    @click="closeCart"
+                />
             </div>
 
             <!-- mention visible quand panier est vide, contient bouton retour navigation -->
@@ -15,13 +20,18 @@
                 <img :src="emptyCart.image.source" :alt="emptyCart.image.alt">
                 <div class="keepBrowsing-button" @click="closeCart">
                     <p>{{ emptyCart.buttonMention }}</p>
-                    <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
+                    <Icon 
+                        icon="system-uicons:arrow-up" 
+                        width="20" 
+                        :rotate="1" 
+                    />
                 </div>
             </div>
 
             <!-- liste articles ajoutés au panier -->
             <ul class="cart-items">
                 <li v-for="item in cartItems" :key="item.id" class="cart-item">
+
                     <div class="cart-item_image-container">
                         <img :src="item.image.source" :alt="item.image.alt" class="cart-item_image">
                     </div>
@@ -46,14 +56,32 @@
                             </div>
                         </div>
                     </div>
-                    <Icon icon="ph:trash-light" width="25" class="removeIcon" @click="removeFromCart(item)"/>
+
+                    <!-- conteneur des boutons remove de la carte article -->
+                    <div class="remove-buttons_container">
+                        <Icon 
+                            icon="cil:heart" 
+                            width="23" 
+                            class="removeIcon"
+                            @click="toggleFromCartToWishlist(item)"
+                        />
+                        <Icon 
+                            icon="ph:trash-light" 
+                            width="25" 
+                            class="removeIcon" 
+                            @click="removeFromCart(item)"
+                        />
+                    </div>
                 </li>
 
                 <!-- bouton qui vide le panier, visible à partir de 2 articles ajoutés -->
                 <div class="clearCart-button_container">
                     <div v-if ="cartItemCount > 1" class="clearCart-button" @click="clearCart"> 
                         <p>{{ clearCartButtonMention }}</p> 
-                        <Icon icon="prime:replay" width="15"/>
+                        <Icon 
+                            icon="prime:replay" 
+                            width="15"
+                        />
                     </div>
                 </div>
             </ul>
@@ -67,7 +95,11 @@
                     </div>
                     <router-link to="/checkout" class="checkout-button" @click="closeCart"> <!-- relie le bouton à la route checkout -->       
                         <p>{{ linkToCheckout }}</p>
-                        <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" />
+                        <Icon 
+                            icon="system-uicons:arrow-up" 
+                            width="20" 
+                            :rotate="1" 
+                        />
                     </router-link>
                 </div>
             </div>
@@ -145,6 +177,11 @@
             catalogueStore.updateItemPrice(item); // met à jour le prix de l'article
         };
     };
+
+    // déplace article vers la wishlist
+    const toggleFromCartToWishlist = (item) => {
+        catalogueStore.toggleFromCartToWishlist(item);
+    }
 
     // statut par défaut de la visibilité de la fenetre
     const isCartVisible = ref(false);
@@ -319,10 +356,12 @@
                             }
                         }
                     }
-                    .removeIcon {
+                    .remove-buttons_container {
                             position: absolute;
                             bottom: 1rem;
                             right: 1rem;
+                            display: flex;
+                            gap: .5rem;
                             cursor: pointer;
                     }
                 }

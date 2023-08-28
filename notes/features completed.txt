@@ -52,6 +52,8 @@
 
     => ajout d'une mention signalant que le produit est dans la wishlist. comparaison ID
 
+    => suppression de l'article de la wishlist quand ajouté au panier (supprime aussi automatiquemnt la mention "Added to wishlist")
+
 { view: Wishlist }
 
     => incrementation du nombre d'articles dans le { sub-component: wishlistIcon }

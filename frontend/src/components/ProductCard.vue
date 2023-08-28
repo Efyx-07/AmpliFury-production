@@ -124,6 +124,10 @@
         } else {
             store.addToCart(itemToAdd); // ajoute l'article au panier avec une quantité de 1
         };
+
+        if (addedToWishlist.value) { // retire l'article de la wishlist quand ajouté au panier
+            store.removeFromWishlist(props.product);
+        };
     };
 
     // vérifie si l'article est dans le panier et retourne un booléen 

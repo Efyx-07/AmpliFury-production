@@ -57,13 +57,21 @@
         </div>
         <!-- mention ajoutée à la carte produit quand produit ajouté au panier ou à la wishlist-->
         <div v-if="addedToCart" class="addedToCart-mention">
-            <Icon icon="icons8:checked" width="15" class="validateIcon"/>
-            <p>Added to cart</p>
+            <Icon 
+                icon="icons8:checked" 
+                width="15" 
+                class="validateIcon"
+            />
+            <p>{{ addedToCartMention }}</p>
         </div>
 
         <div v-if="addedToWishlist" class="addedToWishlist-mention">
-            <Icon icon="cil:heart" width="15" class="validateIcon2"/>
-            <p>Added to wishlist</p>
+            <Icon 
+                icon="cil:heart" 
+                width="15" 
+                class="validateIcon2"
+            />
+            <p>{{ addedToWishlistMention }}</p>
         </div>
 
     </div>
@@ -82,6 +90,8 @@
     const currency = '$'; 
     const availableMention = 'in stock'; 
     const notAvailableMention = 'on demand';
+    const addedToCartMention = 'Added to cart';
+    const addedToWishlistMention = 'Added to wishlist';
 
     // déefinition des propriétés
     const props = defineProps({

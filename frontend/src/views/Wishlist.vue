@@ -1,17 +1,34 @@
 <template>
 
     <div class="wishlist">
-        <h1 class="wishlistTitle">Your wishlist ( {{ wishlistItemCount }})</h1>
+        <h1 class="wishlistTitle">{{ wishlistPageTitle }}({{ wishlistItemCount }})</h1>
 
         <!-- mention visible quand wishlist est vide -->
         <div class="emptyWishlist" v-if="wishlistItemCount === 0">
-            <p>Your wishlist is empty</p>
+            <p>{{ emptyWishlistMention }}</p>
         </div>
 
         <!-- liste articles ajoutés à la wishlist -->
         <ul class="wishlist-items">
             <li v-for="item in wishlistItems " :key="item.id">
-                <img :src="item.image.source" :alt="item.image.alt">
+                <img 
+                    :src="item.image.source" 
+                    :alt="item.image.alt"
+                    class="product-image"
+                    @click="navigateToProduct(item)"
+                >
+                <div class="product-brand-and-model_container">
+                    <p class="product-brand">{{ item.brand }}</p>
+                    <p class="product-model">{{ item.model }}</p>
+                </div>
+                <p class="product-price">{{ item.price }} {{ currency }}</p>
+
+                <Icon 
+                    icon="ph:eye-light" 
+                    width="20" 
+                    class="watchIcon icon" 
+                    @click="navigateToProduct(item)"
+                />
                 <Icon 
                     icon="bi:cart" 
                     width="20" 
@@ -30,10 +47,10 @@
         <!-- contient les boutons permettant de vider la wishlist soit en ajoutant tout au panier soit en supprimant tout de la wishlist -->
         <div class="wishlist-buttons_container" v-if="wishlistItemCount > 0">
             <div class="addAllToCart-button" @click="addAllFromWishlistToCart">
-                <p>Add all to cart</p>
+                <p>{{ addAllToCartButtonMention }}</p>
             </div>
             <div class="clearWishlist-button" @click="clearWishlist">
-                <p>Clear wishlist</p>
+                <p>{{ clearWishlistButtonMention }}</p>
             </div>
         </div>
 
@@ -41,10 +58,20 @@
     </div>
     
 </template>
+
 <script setup>
+
     import { useCatalogueStore } from '@/stores/CatalogueStore';
     import { computed } from 'vue';
     import { Icon } from '@iconify/vue';
+    import { useRouter } from 'vue-router'; // utilise useRouter pour la navigation 
+
+    //datas
+    const wishlistPageTitle = "Your wishlist";
+    const emptyWishlistMention = "Your wishlist is empty";
+    const addAllToCartButtonMention = "Add all to cart";
+    const clearWishlistButtonMention = "Clear wishlist";
+    const currency = '$';
 
 
     //obtention de l'instance du store CatalogueStore
@@ -81,11 +108,25 @@
         catalogueStore.clearWishlist();
     };
 
+    // utilise useRouter pour accéder à l'instance du router
+    const router = useRouter(); 
+
+    // naviguer vers la route dynamique du produit
+    const navigateToProduct = (item) => {
+        router.push({ // methode vue-router permet de naviguer vers nouvelle route
+           name: 'ProductDetail', // nom de la route vers laquelle naviguer (definie dans router)
+           params: {
+            productId: item.id // parametres de la route - transmet l'ID du produit selectionné
+           } 
+        });
+    }
+
     // récupère les données stockées dans le local storage
     const savedWishlistItems = JSON.parse(localStorage.getItem('wishlistItems'));
     if (savedWishlistItems) {
         catalogueStore.wishlistItems = savedWishlistItems;
     };
+
 </script>
 
 <style lang="scss" scoped> 
@@ -98,9 +139,9 @@
         display: flex;
         list-style-type: none;
     }
-
-    li img {
+    .product-image {
         width: 300px;
+        cursor: pointer;
     }
     .icon {
         cursor: pointer;

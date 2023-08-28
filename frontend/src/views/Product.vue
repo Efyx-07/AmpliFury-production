@@ -38,4 +38,8 @@
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    .product-card {
+        height: 70vh;
+    }
+</style>

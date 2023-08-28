@@ -1,7 +1,5 @@
 PARCOURS PRODUIT 
 
-créer view "WISHLIST" : regroupe les produits selectionnés par l'utilisateur à partir de ProductCard (icone 'heart').
-
 - Wishlist :
 
 	- persistance des données / avec date à laquelle le produit a été ajouté
@@ -13,8 +11,6 @@ créer view "WISHLIST" : regroupe les produits selectionnés par l'utilisateur �
 		-in stock / le compteur ne peut pas incrémenter au delà de la quantité disponible.
 			=> mention "uniquement X exemplaires en stock"
 		-on demand / à la place du compteur, bouton "contact us" (bouton vers la view 'Contact' à créer')
-
-	- ajouter à article un bouton ajouter à la wishlist quand clické supprime du cart.
 
 - Catégories : 
 

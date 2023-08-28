@@ -1,0 +1,43 @@
+{PARCOURS PRODUIT}
+
+- ACCEDER A LA LISTE DE PRODUITS (HOMEPAGE) :
+
+    => liste des categories de produits (Homepage : accessible via boutons Navbar et section 'Our Categories')
+
+- LISTE DE PRODUITS (view CATEGORIES):
+
+    => Consultation de la liste entière (Categories / All products)
+    => Consultation liste avec filtrage categories (Categories / category-name : accessible via boutons Navbar)
+    => Consultation liste entière ou liste filtrée par categorie avec plusieurs options d'odre de présentation : Random, par prix(croissant, décroissant), 
+        alphabétique(A à Z ou Z à A). (Categories / et ou category-name : bouton select)
+
+- CONSULTATION D'UN PRODUIT SELECTIONNE (view PRODUCT):
+
+    => fiche produit détaillé (Product)
+    => possibilité de l'ajouter à la liste de souhait (Wishlist: via wishlistIcon de la fiche produit)
+    => possibilité de l'ajouter au panier d'achat (ShoppingCart: via cartIcon de la fiche produit)
+
+- SAUVEGARDER UN OU DES PRODUITS SELECTIONNES (view WISHLIST) :
+
+    => liste d'un ou plusieurs produits (Productcard: sauvegarde via wishlistIcon de la fiche produit) 
+    => consultation de la liste (Navbar: via wishlistIcon)
+    => possibilité de supprimer le produit de la liste (via trashIcon de la fiche produit)
+    => possibilité d'ajouter le produit au panier d'achat (ShoppingCart via cartIcon)
+    => possibilté de consulter le produit (vers Product via eyeIcon)
+    => possibilité de basculer le contenu de la liste de souhaits sur le panier d'achat (ShoppingCart via bouton 'Add all to cart')
+    => possibilité de supprimer le contenu de la liste de souhaits (via bouton 'Clear wishlist')
+
+- SAUVEGARDER DANS LE PANIER D'ACHAT (component SHOPPINGCART) :
+
+    => ajout de l'article à partir de (Categories / Product / Wishlist via cartIcon)
+    => possibilité d'augmenter/diminuer la quantité de chaque article (ShoppingCart: counter)
+    => possibilité de supprimer un article (via trashIcon)
+    => possibilté de basculer le produit dans la wishlist (via wishlistIcon)
+    => possibilité de supprimer le contenu du panier d'achat (via bouton 'Clear cart')
+    => possibilité d'accéder à la caisse
+
+- ACHETER LES PRODUITS (view CHECKOUT) :
+
+    => possibilité de consulter le produit (Product via eyeIcon)
+    => possibilité de modifier la quantité (counter)
+    => possibiliter de supprimer le produit (trashIcon)

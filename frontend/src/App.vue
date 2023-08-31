@@ -1,5 +1,5 @@
 <template>
-
+  
   <Header />
   <ShoppinCart />
   <RouterView /> <!-- affiche la vue correspondante en fonction de l'URL -->
@@ -18,5 +18,3 @@ import ShoppinCart from '@/components/ShoppingCart.vue';
 </script>
 
 
-<style scoped>
-</style>

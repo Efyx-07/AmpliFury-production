@@ -1,6 +1,6 @@
 <template>
     <div class="cartIcon_container" @click="toggleCartVisibility">
-        <Icon icon="bi:cart" width="25" class="customerIcon cartIcon"/>
+        <Icon icon="bi:cart" class="customerIcon cartIcon"/>
         <div class="cartIcon-badge" v-if="cartItemCount > 0">
             <p class="incrementation">{{ cartItemCount }}</p>
         </div>
@@ -35,6 +35,17 @@
     .cartIcon_container {
         position: relative;
         cursor: pointer;
+        .cartIcon {
+            font-size: $mobileIconSize1;
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: $tabletIconSize1;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                font-size: $desktopIconSize1;
+            }
+        }
 
         .cartIcon-badge {
             width: .9rem;

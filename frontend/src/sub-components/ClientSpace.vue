@@ -1,6 +1,6 @@
 <template>
     <div class="customersIcons-container">
-        <Icon icon="ph:user" width="25" class="customerIcon"/>
+        <Icon icon="ph:user" class="customerIcon"/>
         <WishlistIcon />
         <CartIcon />
     </div>
@@ -16,10 +16,24 @@
     @import '@/assets/sass/variables.scss';
     .customersIcons-container {
         display: flex;
-        gap: 20px;
+        align-items: center;
+        gap: 4rem;
+
+        @media screen and (min-width: $breakpointDesktop) {
+            gap: 2rem;
+        }
 
         & .customerIcon {
             color: $darkColor;
+            font-size: $mobileIconSize1;
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: $tabletIconSize1;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                font-size: $desktopIconSize1;
+            }
         }
     }
 </style>

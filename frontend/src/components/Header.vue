@@ -4,10 +4,8 @@
             <div class="header-mainbar">
                 <Logo class="logo"/>
                 <Navbar class="navbar"/>
-                <div class="seachBar_clientSpace-wrapper">
-                    <SearchBar class="searchbar"/>
-                    <ClientSpace class="clientSpace"/>
-                </div>
+                <ClientSpace class="clientSpace"/> 
+                <BurgerMenuIcon class="burgerMenuIcon"/>             
             </div>
         </header>
         
@@ -17,8 +15,8 @@
     import SupBar from '@/sub-components/Supbar.vue';
     import Logo from '@/sub-components/Logo.vue';
     import Navbar from '@/sub-components/Navbar.vue';
-    import SearchBar from '@/sub-components/SearchBar.vue';
     import ClientSpace from '@/sub-components/ClientSpace.vue';
+    import BurgerMenuIcon from '@/sub-components/BurgerMenuIcon.vue';
 </script>
 
 <style scoped lang="scss">
@@ -28,28 +26,39 @@
         position: sticky;
         top: 0;
         z-index: 99; 
-        background: rgba($lightColor, .9);
+        background: $accentColor;
         backdrop-filter: blur(5px);
         box-shadow: $shadow;   
     }
     .header-mainbar {
-        width: 1440px;
-        height: 96px;
-        display: grid;
-        grid-template-columns: 1fr 8fr 1fr;
+        width: 100%;
+        height: 3rem;
+        padding: .5rem 1rem;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        margin: 0 auto;
-        padding: .5rem 5rem;
-        position: relative;
-        .navbar {
-            grid-column: 2/-2;
+
+        @media screen and (min-width: $breakpointTablet) {
+            height: 5rem;
+            padding: .5rem 2rem;
         }
-        .seachBar_clientSpace-wrapper {
-            grid-column: 3/-1;
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            gap: 5rem;
+        
+        @media screen and (min-width: $breakpointDesktop) {
+            height: 6rem;
+            padding: 1rem 4rem;
+        }
+        .navbar {
+            display: none;
+
+            @media screen and (min-width: $breakpointDesktop) {
+                display: block;
+            }
+        }
+
+        .burgerMenuIcon {
+            @media screen and (min-width: $breakpointDesktop) {
+                display: none;
+            }
         }
     }
 </style>

@@ -46,7 +46,6 @@
         gap: 3rem;
 
         li {
-
             .navButton_container {
                 text-decoration: none;
                 display: flex;

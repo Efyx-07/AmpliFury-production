@@ -42,9 +42,13 @@
     .supBar {
         display: flex;
         align-items: center;
-        height: 2rem;
+        height: 1rem;
         background: $darkColor;
         color: $lightColor;
+
+        @media screen and (min-width: $breakpointTablet) {
+            height: 2rem;
+        }
 
         &-content {
             display: flex;
@@ -61,8 +65,12 @@
 
         &-text {
             margin: 0;
-            font-size: 1rem;
+            font-size: .7rem;
             font-weight: bold;
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: 1rem;
+            }
         }
 
         &-icon {
@@ -81,4 +89,5 @@
             transform: translateX(-100%);
         }
     }
+
 </style>

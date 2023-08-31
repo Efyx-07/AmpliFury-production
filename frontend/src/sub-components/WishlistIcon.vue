@@ -1,7 +1,7 @@
 <template>
 
     <router-link to="/wishlist" class="wishlistIcon_container">
-        <Icon icon="cil:heart" width="25" class="customerIcon wishlistIcon"/>
+        <Icon icon="cil:heart" class="customerIcon wishlistIcon"/>
         <div class="wishlistIcon-badge" v-if="wishlistItemCount > 0">
             <p class="incrementation">{{ wishlistItemCount }}</p>
         </div>
@@ -31,6 +31,17 @@
         cursor: pointer;
         text-decoration: none;
         color: $darkColor;
+        .wishlistIcon {
+            font-size: $mobileIconSize1;
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: $tabletIconSize1;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                font-size: $desktopIconSize1;
+            }
+        }
 
         .wishlistIcon-badge {
             width: .9rem;

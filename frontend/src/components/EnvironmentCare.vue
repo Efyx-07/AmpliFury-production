@@ -46,6 +46,10 @@
             padding: 2.5rem;
         }
 
+        @media screen and (min-width: $breakpointDesktop) {
+            padding: 4rem;
+        }
+
         &-tabDesk_container {
             display: none;
         }
@@ -92,6 +96,10 @@
                     border-radius: $containerBorderRadius;
                     padding: 2rem;
 
+                    @media screen and (min-width: $breakpointDesktop) {
+                        padding: 4rem;
+                    }
+
                     img {
                         position: absolute;
                         bottom: 1rem;
@@ -109,6 +117,31 @@
                         @media screen and (min-width: 1050px) {
                             height: 55vh;
                         }
+
+                        @media screen and (min-width: $breakpointDesktop) {
+                            height: 61vh;
+                        }
+
+                        @media screen and (min-width: 1280px) {
+                            height: 65vh; 
+                        }
+
+                        @media screen and (min-width: 1350px) {
+                            height: 70vh; 
+                        }
+
+                        @media screen and (min-width: 1480px) {
+                            height: 75vh; 
+                        }
+
+                        @media screen and (min-width: 1750px) {
+                            height: 80vh; 
+                        }
+
+                        @media screen and (min-width: 1900px) {
+                            height: 53rem; 
+                        }
+
                     }
 
                     .environmentCare-text_container {

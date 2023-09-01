@@ -13,17 +13,18 @@
         <ul class="categoryList">
           <li v-for="category in categories" :key="category.name">
             <div class="category_container">
+              <img :src="category.categoryImage.source" :alt="category.categoryImage.alt" class="category-image"/>
               <router-link :to="`/categories/${category.name}`" class="toCategory-image">
-                <img :src="category.categoryImage.source" :alt="category.categoryImage.alt" class="category-image"/>
+                <img :src="category.categoryImage.source" :alt="category.categoryImage.alt" class="category-image_mobile"/>
                 <div class="categoryMobile-overlay">
                   <p>{{ category.name }}</p>
                 </div>
               </router-link>
               <div class="category-image-overlay">
-                <p>{{ category.name }}</p>
+                <p class="categoryName">{{ category.name }}</p>
                 <router-link :to="`/categories/${category.name}`" class="toCategory-button">
                   <p>{{ categoryButton }}</p>
-                  <Icon icon="system-uicons:arrow-up" width="20" :rotate="1" class="arrow"/>
+                  <Icon icon="system-uicons:arrow-up" :rotate="1" class="arrow"/>
                 </router-link>
               </div>
             </div>
@@ -70,6 +71,7 @@
 
         @media screen and (min-width: $breakpointDesktop) {
           padding: 4rem;
+          gap: 3rem;
         }
         .title-and-button1_container {
           display: flex;
@@ -105,6 +107,7 @@
               p, &-arrow {
                 font-size: 1.5rem;
                 margin: 0;
+                font-weight: 300;
 
                 @media screen and (min-width: $breakpointDesktop) {
                   font-size: 2.5rem;
@@ -140,6 +143,26 @@
             overflow: hidden;
             border-radius: $containerBorderRadius;
 
+            &:hover {
+              >.category-image {
+                transform: scale(1.07);
+              }
+            }
+
+            .category-image {
+              display: none;
+
+              @media screen and (min-width: $breakpointTablet) {
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+                object-fit: cover;
+                border-radius: $containerBorderRadius;
+                transition: transform 0.5s ease-in-out;
+              }
+            }
+
             @media screen and (min-width: $breakpointTablet) {
               width: calc(50vw - 4rem);
               height: calc(50vw - 4rem);
@@ -149,14 +172,17 @@
               width: calc(33.33vw - 4rem);
               height: calc(33.33vw - 4rem);
             }
-
-            .category-image {
+            .category-image_mobile {
               width: 100%;
               height: 100%;
               display: block;
               position: absolute;
               object-fit: cover;
-              border-radius: $containerBorderRadius;
+              border-radius: $containerBorderRadius; 
+
+              @media screen and (min-width: $breakpointTablet) {
+                display: none;
+              }
             }
             .categoryMobile-overlay {
               position: absolute;
@@ -171,6 +197,52 @@
               p {
                 font-size: 2rem;
                 color: $lightColor;
+              }
+
+              @media screen and (min-width: $breakpointDesktop) {
+                display: none;
+              }
+
+            }
+            .category-image-overlay {
+              display: none;
+              opacity: 0;
+
+              @media screen and (min-width: $breakpointDesktop) {
+                position: absolute;
+                bottom: 0;
+                background: rgba($darkColor, .8);
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: .5rem;
+                color: $lightColor;
+              }
+
+              &:hover {
+                opacity: 1;
+              }
+              .categoryName {
+                margin: 0;
+                font-size: 3rem;
+                font-weight: 600;
+              }
+              .toCategory-button {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: $lightColor;
+                border: solid 1px $lightColor;
+                padding: .3rem 1rem;
+
+                p, .arrow {
+                  margin: 0;
+                  font-size: 1.5rem;
+                  font-weight: 300;
+                }
               }
             }
           }

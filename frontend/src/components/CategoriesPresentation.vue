@@ -67,6 +67,10 @@
         @media screen and (min-width: $breakpointTablet) {
           padding: 2rem 2rem;
         }
+
+        @media screen and (min-width: $breakpointDesktop) {
+          padding: 4rem;
+        }
         .title-and-button1_container {
           display: flex;
           justify-content: center;
@@ -84,6 +88,10 @@
             @media screen and (min-width: $breakpointTablet) {
               font-size: 4rem;
             }
+
+            @media screen and (min-width: $breakpointDesktop) {
+              font-size: 8vw;
+            }
           }
           .button1 {
             display: none;
@@ -97,6 +105,10 @@
               p, &-arrow {
                 font-size: 1.5rem;
                 margin: 0;
+
+                @media screen and (min-width: $breakpointDesktop) {
+                  font-size: 2.5rem;
+                }
               }
   
             }
@@ -111,9 +123,14 @@
           overflow-x: scroll;
 
           @media screen and (min-width: $breakpointTablet) {
+            justify-content: center;
             flex-wrap: wrap;
             overflow-x: hidden;
             gap: 2rem; 
+          }
+
+          @media screen and (min-width: $breakpointDesktop) {
+            gap: 1rem;
           }
           .category_container {
             width: 16rem;
@@ -124,7 +141,13 @@
             border-radius: $containerBorderRadius;
 
             @media screen and (min-width: $breakpointTablet) {
-              
+              width: calc(50vw - 4rem);
+              height: calc(50vw - 4rem);
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+              width: calc(33.33vw - 4rem);
+              height: calc(33.33vw - 4rem);
             }
 
             .category-image {

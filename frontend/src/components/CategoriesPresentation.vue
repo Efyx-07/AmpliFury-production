@@ -259,6 +259,7 @@
           p {
             margin: 0;
             font-size: 2rem;
+            font-weight: 300;
             padding: .5rem;
           }
 

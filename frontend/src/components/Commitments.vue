@@ -10,7 +10,7 @@
                 <div v-for="deal in deals" :key="deal.name">
                     <div class="deal-card">
                         <div v-if="deal.icon">
-                            <Icon :icon="deal.icon" :style="{ fontSize: '3rem' }"/>
+                            <Icon :icon="deal.icon" class="icon" />
                         </div>
                         <div class="deal-card_text-container">
                             <h4>{{ deal.title }}</h4>
@@ -56,76 +56,72 @@
 <style lang="scss" scoped>
 
     @import '@/assets/sass/variables.scss';
-    @import '@/assets/sass/mixins.scss';
+
     .commitments {
-        padding: 4rem 0;
-        display: flex;
-        justify-content: center;
-        background: $greyColor;
+        padding: 3rem 1rem;
+        margin-top: 3rem;
+        background: $accentColor;
 
         &-content {
-            @include desktopSectionContentWidth;
             display: flex;
             flex-direction: column;
             gap: 3rem;
-
             .supText_container {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 gap: 2rem;
 
-                h1 {
+                h1{
                     margin: 0;
-                    font-size: 6rem;
                     line-height: 1;
+                    font-size: 12vw;
                 }
 
                 p {
                     margin: 0;
-                    font-size: 1.75rem;
+                    font-size: clamp(1rem ,3.5vw, 3.5vw);
                     text-align: center;
-                    padding: 0 5rem;
                 }
             }
             .deal-cards_container {
                 display: flex;
-                justify-content: space-between;
+                flex-direction: column;
+                gap: 1rem;
                 .deal-card {
-                    width: 25.625rem;
-                    height: 11.52575rem;
-                    border-radius: 0.9375rem;
-                    background: $lightColor;
-                    box-shadow:$shadow;
+                    background: rgba($lightColor, .8);
+                    border-radius: $containerBorderRadius;
+                    min-height: 8.125rem;
+                    padding: 1.5rem 3rem 1.5rem 1rem;
                     display: flex;
                     gap: 1rem;
-                    padding: 2rem;
+                    .icon {
+                        font-size: 2.5rem;
+                    }
 
                     &_text-container {
                         display: flex;
                         flex-direction: column;
-                        gap: .5rem;
+                        gap: .6rem;
+                        margin-top: .5rem;
+
+                        h4, p {
+                            margin: 0;
+                        }
 
                         h4 {
-                            margin: 0;
-                            font-size: 1.5rem;
-                            font-weight: 700;
+                            font-size: clamp(1.3rem ,3vw, 3vw);
                         }
 
                         p {
-                            margin: 0;
-                            font-size: 1.25rem;
-                            font-weight: 400;
+                            font-size: clamp(1rem ,2.5vw, 2.5vw);
                             text-align: justify;
                         }
-
-
                     }
                 }
-
-
             }
         }
-    }   
+    }
+
 
 </style>

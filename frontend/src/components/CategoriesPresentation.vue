@@ -58,7 +58,6 @@
   <style lang="scss" scoped>
 
       @import '@/assets/sass/variables.scss';
-      @import '@/assets/sass/mixins.scss';
       .categories-presentation {
         padding: 2rem 1rem;
         display: flex;

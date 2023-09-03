@@ -66,23 +66,47 @@
             padding: 3rem 2rem
         }
 
+        @media screen and (min-width: $breakpointDesktop) {
+            padding: 6rem 4rem;
+            margin-top: 4rem;
+        }
+
         &-content {
             display: flex;
             flex-direction: column;
             gap: 3rem;
+
+            @media screen and (min-width: $breakpointDesktop) {
+                gap: 6rem;
+            }
             .supText_container {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 gap: 2rem;
 
-                h1{
+                @media screen and (min-width: $breakpointDesktop) {
+                    padding: 0 5rem;
+                    gap: 2rem;
+                }
+
+                @media screen and (min-width: 1380px) {
+                    padding: 0 12rem;
+                    gap: 3rem;
+                }
+
+                h1 {
                     margin: 0;
                     line-height: 1;
                     font-size: 12vw;
 
                     @media screen and (min-width: $breakpointTablet) {
                         font-size: 4rem;
+                    }
+
+                    @media screen and (min-width: $breakpointDesktop) {
+                        font-size: 8vw;
+                        line-height: .8;
                     }
                 }
 
@@ -94,6 +118,11 @@
                     @media screen and (min-width: $breakpointTablet) {
                         font-size: 1.5rem;
                     }
+
+                    @media screen and (min-width: $breakpointDesktop) {
+                        font-size: 2vw;
+                        font-weight: 300;
+                    }
                 }
             }
             .deal-cards_container {
@@ -104,6 +133,11 @@
                 @media screen and (min-width: $breakpointTablet) {
                     flex-direction: row;
                     justify-content: space-between;
+                }
+
+                @media screen and (min-width: $breakpointDesktop) {
+                    justify-content: unset;
+                    gap: 2rem;
                 }
                 .deal-card {
                     background: rgba($lightColor, .8);
@@ -119,13 +153,31 @@
                         align-items: center;
                         gap: .5rem;
                         padding: 1rem 2rem;
+                        min-height: unset;
                         height: 12rem;
+                    }
+
+                    @media screen and (min-width: $breakpointDesktop) {
+                        flex-direction: row;
+                        align-items: unset;
+                        gap: 1.5rem;
+                        padding: 2rem 3rem;
+                        min-height: 20rem;
+                        height: unset;
+                    }
+
+                    @media screen and (min-width: 1270px) {
+                        min-height: 16rem;
                     }
                     .icon {
                         font-size: 2.5rem;
 
                         @media screen and (min-width: $breakpointTablet) {
                             font-size: 1.8125rem;
+                        }
+
+                        @media screen and (min-width: $breakpointDesktop) {
+                            font-size: clamp(2.5rem, 3vw, 3vw);
                         }
                     }
 
@@ -140,6 +192,11 @@
                             text-align: center;
                         }
 
+                        @media screen and (min-width: $breakpointDesktop) {
+                            margin-top: .5rem;
+                            text-align: unset;
+                        }
+
                         h4, p {
                             margin: 0;
                         }
@@ -151,6 +208,11 @@
                                 white-space: nowrap;
                                 font-size: clamp(1.1rem ,2vw, 2.2vw);
                             }
+
+                            @media screen and (min-width: $breakpointDesktop) {
+                                
+                                font-size: clamp(1.5rem ,1.5vw, 1.5vw);
+                            }
                         }
 
                         p {
@@ -160,6 +222,11 @@
                             @media screen and (min-width: $breakpointTablet) {
                                 font-size: 1rem;
                                 text-align: unset;
+                            }
+
+                            @media screen and (min-width: $breakpointDesktop) {
+                                font-size: clamp(1.3rem, 1.3vw, 1.3vw);
+                                text-align: justify;
                             }
                         }
                     }

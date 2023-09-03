@@ -62,6 +62,10 @@
         margin-top: 3rem;
         background: $accentColor;
 
+        @media screen and (min-width: $breakpointTablet) {
+            padding: 3rem 2rem
+        }
+
         &-content {
             display: flex;
             flex-direction: column;
@@ -76,27 +80,53 @@
                     margin: 0;
                     line-height: 1;
                     font-size: 12vw;
+
+                    @media screen and (min-width: $breakpointTablet) {
+                        font-size: 4rem;
+                    }
                 }
 
                 p {
                     margin: 0;
                     font-size: clamp(1rem ,3.5vw, 3.5vw);
                     text-align: center;
+
+                    @media screen and (min-width: $breakpointTablet) {
+                        font-size: 1.5rem;
+                    }
                 }
             }
             .deal-cards_container {
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
+
+                @media screen and (min-width: $breakpointTablet) {
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
                 .deal-card {
                     background: rgba($lightColor, .8);
                     border-radius: $containerBorderRadius;
+                    box-shadow: $shadow;
                     min-height: 8.125rem;
                     padding: 1.5rem 3rem 1.5rem 1rem;
                     display: flex;
                     gap: 1rem;
+
+                    @media screen and (min-width: $breakpointTablet) {
+                        flex-direction: column;
+                        align-items: center;
+                        gap: .5rem;
+                        padding: 1rem 2rem;
+                        height: 12rem;
+                    }
                     .icon {
                         font-size: 2.5rem;
+
+                        @media screen and (min-width: $breakpointTablet) {
+                            font-size: 1.8125rem;
+                        }
                     }
 
                     &_text-container {
@@ -105,17 +135,32 @@
                         gap: .6rem;
                         margin-top: .5rem;
 
+                        @media screen and (min-width: $breakpointTablet) {
+                            margin-top: 0;
+                            text-align: center;
+                        }
+
                         h4, p {
                             margin: 0;
                         }
 
                         h4 {
                             font-size: clamp(1.3rem ,3vw, 3vw);
+
+                            @media screen and (min-width: $breakpointTablet) {
+                                white-space: nowrap;
+                                font-size: clamp(1.1rem ,2vw, 2.2vw);
+                            }
                         }
 
                         p {
                             font-size: clamp(1rem ,2.5vw, 2.5vw);
                             text-align: justify;
+
+                            @media screen and (min-width: $breakpointTablet) {
+                                font-size: 1rem;
+                                text-align: unset;
+                            }
                         }
                     }
                 }

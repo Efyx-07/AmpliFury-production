@@ -3,19 +3,16 @@
         <div class="highPart">
 
         </div>
-        <div class="lowpart">
-            <p class="copyright">{{copyrightLogo}} {{ currentYear }} {{ corpName }}</p>
-        </div>
+        <Copyright />
+        
     </div>
     
 </template>
 
 <script setup>
+    import Copyright from '@/sub-components/Copyright.vue';
     
-    const corpName = 'Amplifury';
-    const copyrightLogo = '©'
-    const currenDate = new Date();    
-    const currentYear = currenDate.getFullYear();
+    
 
 </script>
 

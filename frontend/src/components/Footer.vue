@@ -1,36 +1,41 @@
 <template>
     <div class="footer">
-        <div class="highPart">
-
-        </div>
+        <FooterMainPart />
         <Copyright />
-        <ToTopButton />
-        
+        <ToTopButton class="toTopButton"/>   
     </div>
     
 </template>
 
 <script setup>
+
+    import FooterMainPart from '@/sub-components/FooterMainPart.vue';
     import Copyright from '@/sub-components/Copyright.vue';
     import ToTopButton from '@/sub-components/ToTopButton.vue';
 
-    
-    
-
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 
     @import '@/assets/sass/variables.scss';
-    .footer {
-        width: 100%;
-        height: 22rem;
-        background: $darkColor;
-        display: flex;
-        flex-direction: column-reverse;
-        .highpart {
-            height: 17rem;
-        }
 
+    .footer{
+        position: relative;
+
+        .toTopButton {
+            position: absolute;
+            right: 1rem;
+            bottom: 1.5rem;
+
+            @media screen and (min-width: $breakpointTablet) {
+                right: 2rem;
+                bottom: 2rem;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                right: 4rem;
+            }
+        }
     }
+    
 </style>

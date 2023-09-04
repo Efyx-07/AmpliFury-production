@@ -33,20 +33,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        position: absolute;
-        right: 1rem;
-        margin-bottom: 1.5rem;
 
         @media screen and (min-width: $breakpointTablet) {
             width: 5rem;
             height: 5rem;
-            right: 2rem;
-            margin-bottom: 2rem;
             border-width: 4px;
-        }
-
-        @media screen and (min-width: $breakpointDesktop) {
-            right: 4rem;
         }
 
         p {

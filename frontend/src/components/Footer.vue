@@ -4,6 +4,7 @@
 
         </div>
         <Copyright />
+        <ToTopButton />
         
     </div>
     
@@ -11,6 +12,8 @@
 
 <script setup>
     import Copyright from '@/sub-components/Copyright.vue';
+    import ToTopButton from '@/sub-components/ToTopButton.vue';
+
     
     
 
@@ -28,16 +31,6 @@
         .highpart {
             height: 17rem;
         }
-        .lowpart {
-            background: $lightColor;
-            height: 5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            p {
-                margin: 0;
-                font-size: 1.5rem;
-            }
-        }
+
     }
 </style>

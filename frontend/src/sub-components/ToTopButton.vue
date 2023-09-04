@@ -1,8 +1,8 @@
 <template>
 
-    <router-link to="/" class="toTopButton" @click="scrollToTop">
+    <div class="toTopButton" @click="scrollToTop">
             <p>{{ toTopButtonText }}</p>
-    </router-link>
+    </div>
     
 </template>
 
@@ -12,9 +12,11 @@
     const toTopButtonText = "TOP";
 
     //permet le retour vers le haut de page
-
     const scrollToTop = () => {
-        window.scrollTo(0, 0);
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     };
 
 </script>
@@ -33,6 +35,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
 
         @media screen and (min-width: $breakpointTablet) {
             width: 5rem;

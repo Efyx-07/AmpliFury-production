@@ -227,11 +227,16 @@
         
         .shoppingCart {
             position: relative;
-            width: 31rem;
+            width: 100vw;
             height: 100vh;
             overflow-y: scroll;
             scrollbar-width: none;
             -ms-overflow-style: none;
+
+            @media screen and (min-width: $breakpointTablet) {
+                width: 31rem;
+            }
+
             &::-webkit-scrollbar {
                 display: none;
             }

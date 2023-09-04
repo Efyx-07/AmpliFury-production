@@ -13,7 +13,7 @@
             <form action="" class="newsletterForm">
                 <input type="mail" id="email-input" name="email" :placeholder= "newsletterInputPlaceholder">
                 <div class="button-container">
-                    <button type="submit">SUBMIT</button>
+                    <button type="submit">{{ newsletterButtonLabel }}</button>
                     <Icon icon="system-uicons:arrow-up" :rotate="1" class="arrow"/>
                 </div>
             </form>
@@ -45,7 +45,8 @@
 
     const toContactButtonMention = 'Contact us';
     
-    const newsletterInputPlaceholder = 'YOUR MAIL ADDRESS';
+    const newsletterInputPlaceholder = 'Your mail address';
+    const newsletterButtonLabel = 'Subscribe';
 
     const socialLinks = [
         {
@@ -94,9 +95,28 @@
         gap: 4rem;
         padding: 4rem 1rem;
 
+        @media screen and (min-width: $breakpointTablet) {
+            padding: 4rem 2rem;
+        }
+
+        @media screen and (min-width: $breakpointDesktop) {
+            padding: 6rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: start;
+        }
+
         h1 {
             margin: 0;
             font-size: 2.5rem;
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: 3rem;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                font-size: 4rem;
+            }
         }
         .contactPart, .newsletterPart, .socialLinksPart {
             display: flex;
@@ -116,10 +136,18 @@
             border: solid 1px $accentColor;
             width: 100%;
 
+            @media screen and (min-width: $breakpointTablet) {
+                width: 18rem;
+            }
+
             p, .arrow {
                 margin: 0;
                 font-size: 2rem;
                 font-weight: 300;
+
+                @media screen and (min-width: $breakpointTablet) {
+                    font-size: 1.5rem;
+                }
             }
         }
         .newsletterForm {
@@ -132,6 +160,10 @@
                 border: none;
                 border-bottom: solid 1px $accentColor;
                 height: 2rem;
+
+                @media screen and (min-width: $breakpointTablet) {
+                    height: 3rem;
+                }
 
                 &::placeholder {
                     font-size: 1.5rem;
@@ -147,6 +179,10 @@
                 height: 2rem;
                 cursor: pointer;
 
+                @media screen and (min-width: $breakpointTablet) {
+                    height: 3rem;
+                }
+
                 button, .arrow {
                     font-size: 1.5rem;
                     color: $accentColor;
@@ -161,12 +197,26 @@
         } 
         .socialLogos-container {
             width: 100%;
-            padding: 0 2rem;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            gap: 1.5rem;
+
+            @media screen and (min-width: $breakpointTablet) {
+                gap: 4rem;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                gap: unset;
+                justify-content: space-around;
+                width: 70%;
+            }
             .socialLogos {
-                font-size: 1.875rem;
+                font-size: 1.5rem;
                 color: $accentColor;
+
+                @media screen and (min-width: $breakpointTablet) {
+                    font-size: 2rem;
+                }
             }
         }
     }

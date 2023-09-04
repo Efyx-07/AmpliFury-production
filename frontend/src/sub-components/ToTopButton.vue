@@ -40,6 +40,11 @@
             border-width: 4px;
         }
 
+        @media screen and (min-width: $breakpointDesktop) {
+            width: 6rem;
+            height: 6rem;
+        }
+
         p {
             margin: 0;
             color: $accentColor;
@@ -48,6 +53,10 @@
 
             @media screen and (min-width: $breakpointTablet) {
                 font-size: 1.5rem;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                font-size: 2rem;
             }
         }
     }

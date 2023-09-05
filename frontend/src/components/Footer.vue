@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <FooterMainPart />
+        <FooterMainPart :route="route"/>
         <Copyright />
         <ToTopButton class="toTopButton"/>   
     </div>
@@ -12,6 +12,11 @@
     import FooterMainPart from '@/sub-components/FooterMainPart.vue';
     import Copyright from '@/sub-components/Copyright.vue';
     import ToTopButton from '@/sub-components/ToTopButton.vue';
+    import { useRoute } from 'vue-router';
+
+    const route = useRoute();
+
+    console.log(route.name)
 
 </script>
 

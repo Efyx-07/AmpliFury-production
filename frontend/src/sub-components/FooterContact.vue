@@ -41,7 +41,7 @@
 
             p, .arrow {
                 margin: 0;
-                font-size: 2rem;
+                font-size: 1.5rem;
                 font-weight: 300;
 
                 @media screen and (min-width: $breakpointTablet) {

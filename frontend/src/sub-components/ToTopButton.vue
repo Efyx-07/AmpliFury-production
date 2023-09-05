@@ -26,7 +26,7 @@
     @import '@/assets/sass/variables.scss';
 
     .toTopButton {
-        background: $darkColor;
+        background-color: $darkColor;
         border: solid 3px $accentColor;
         border-radius: 100%;
         text-decoration: none;
@@ -36,6 +36,11 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        transition: transform .3s ease-in-out;
+
+        &:hover {
+            transform: rotate(360deg)
+        }
 
         @media screen and (min-width: $breakpointTablet) {
             width: 5rem;

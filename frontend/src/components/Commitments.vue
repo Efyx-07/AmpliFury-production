@@ -9,7 +9,7 @@
             <div class="deal-cards_container">
                 <div v-for="deal in deals" :key="deal.name">
                     <div class="deal-card">
-                        <div v-if="deal.icon">
+                        <div>
                             <Icon :icon="deal.icon" class="icon" />
                         </div>
                         <div class="deal-card_text-container">
@@ -48,7 +48,7 @@
             description:"Our price match applies to the retailers that have identical product available.",
             icon: "material-symbols:social-leaderboard-outline"
         },
-    ]
+    ];
  
 
 </script>

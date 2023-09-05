@@ -1,46 +1,41 @@
 <template>
     <div class="footer">
-        <div class="highPart">
-
-        </div>
-        <div class="lowpart">
-            <p class="copyright">{{copyrightLogo}} {{ currentYear }} {{ corpName }}</p>
-        </div>
+        <FooterMainPart />
+        <Copyright />
+        <ToTopButton class="toTopButton"/>   
     </div>
     
 </template>
 
 <script setup>
-    
-    const corpName = 'Amplifury';
-    const copyrightLogo = '©'
-    const currenDate = new Date();    
-    const currentYear = currenDate.getFullYear();
+
+    import FooterMainPart from '@/sub-components/FooterMainPart.vue';
+    import Copyright from '@/sub-components/Copyright.vue';
+    import ToTopButton from '@/sub-components/ToTopButton.vue';
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 
     @import '@/assets/sass/variables.scss';
-    .footer {
-        width: 100%;
-        height: 22rem;
-        background: $darkColor;
-        display: flex;
-        flex-direction: column-reverse;
-        .highpart {
-            height: 17rem;
-        }
-        .lowpart {
-            background: $lightColor;
-            height: 5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            p {
-                margin: 0;
-                font-size: 1.5rem;
+
+    .footer{
+        position: relative;
+
+        .toTopButton {
+            position: absolute;
+            right: 1rem;
+            bottom: 1.5rem;
+
+            @media screen and (min-width: $breakpointTablet) {
+                right: 2rem;
+                bottom: 2rem;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                right: 4rem;
             }
         }
     }
+    
 </style>

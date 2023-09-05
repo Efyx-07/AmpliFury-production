@@ -1,6 +1,8 @@
 <template>
 
-  <div class="titleAndOptionButton_container">
+  <div class="categoryPage">
+
+    <div class="titleAndOptionButton_container">
       <h1 class="category-title">{{ pageTitle }}</h1> 
       <!-- bouton de tri des produits -->
       <select class="sortSelectButton" v-model="selectedSortOption">
@@ -10,20 +12,24 @@
         <option value="alphaAsc">Alphabet: A to Z</option>
         <option value="alphaDesc">Alphabet: Z to A</option>
       </select>
-  </div>
-  <div class="categories-content_wrapper">
-    <div class="product-cards_container">
-      <!-- importe composant ProductCard avec image clickable -->
-      <ProductCard 
-        class="product-card"
-        v-for="product in sortedProducts" 
-        :key="product.model" 
-        :product="product" 
-        :showDescription="false" 
-        :showEyeIcon="true"
-      />
     </div>
+
+    <div class="categories-content_wrapper">
+      <div class="product-cards_container">
+        <!-- importe composant ProductCard avec image clickable -->
+        <ProductCard 
+          class="product-card"
+          v-for="product in sortedProducts" 
+          :key="product.model" 
+          :product="product" 
+          :showDescription="false" 
+          :showEyeIcon="true"
+        />
+      </div>
+    </div>
+
   </div>
+  
 
 </template>
   
@@ -116,9 +122,7 @@
         border-radius: 15px;
         background: $ultraLightColor;
       }
-      /*.sortSelectButton:focus {
-      
-      }*/
+    
     }
     .categories-content_wrapper {
       display: flex;
@@ -126,7 +130,7 @@
       padding-bottom: 8rem;
     }
     .product-cards_container {
-      width: 1440px;
+      width: 100%;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;

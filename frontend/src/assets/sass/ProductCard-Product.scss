@@ -1,0 +1,10 @@
+@import '@/assets/sass/variables.scss';
+
+.product-card {
+    width: 1296px;
+    height: 384px;
+    background: green;
+    border-radius: $containerBorderRadius;
+    box-shadow: $shadow;
+    position: relative;
+}

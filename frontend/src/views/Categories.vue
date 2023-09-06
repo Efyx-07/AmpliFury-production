@@ -4,14 +4,17 @@
 
     <div class="titleAndOptionButton_container">
       <h1 class="category-title">{{ pageTitle }}</h1> 
-      <!-- bouton de tri des produits -->
-      <select class="sortSelectButton" v-model="selectedSortOption">
-        <option value="random">Random</option>
-        <option value="priceAsc">Price: low to high</option>
-        <option value="priceDesc">Price: high to low</option>
-        <option value="alphaAsc">Alphabet: A to Z</option>
-        <option value="alphaDesc">Alphabet: Z to A</option>
-      </select>
+      <div class="sortSelect-container">
+        <p>Sort by:</p>
+        <!-- bouton de tri des produits -->
+        <select class="sortSelectButton" v-model="selectedSortOption">
+          <option value="random">Random</option>
+          <option value="priceAsc">Price: low to high</option>
+          <option value="priceDesc">Price: high to low</option>
+          <option value="alphaAsc">Alphabet: A to Z</option>
+          <option value="alphaDesc">Alphabet: Z to A</option>
+        </select>
+      </div>
     </div>
 
     <div class="categories-content_wrapper">
@@ -102,39 +105,108 @@
   <style lang="scss" scoped>
 
     @import '@/assets/sass/variables.scss';
-    .titleAndOptionButton_container {
-      display: flex;
-      justify-content: center;
-      align-items: baseline;
-      gap: 3rem;
-      padding: 3rem;
 
-      .category-title {
-        text-align: center;
-        font-size: 4rem;
-        margin: 0;
-        line-height: 1;
-      }
-      .sortSelectButton {
-        font-size: 1.2rem;
-        padding: .5rem;
-        border: none;
-        border-radius: 15px;
-        background: $ultraLightColor;
-      }
-    
-    }
-    .categories-content_wrapper {
-      display: flex;
-      justify-content: center;
-      padding-bottom: 8rem;
-    }
-    .product-cards_container {
-      width: 100%;
+    .categoryPage {
+      padding: 2rem 1rem 4rem 1rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap:2rem;
+      gap: 2rem;
+      background: radial-gradient(ellipse at center, $accentColor 0%, $lightColor 90%);
+
+      @media screen and (min-width: $breakpointTablet) {
+        padding: 2rem 2rem 4rem 2rem;
+      }
+
+      @media screen and (min-width: $breakpointDesktop) {
+        padding: 4rem 4rem 8rem 4rem;
+        gap: 4rem;
+      }
+
+      .titleAndOptionButton_container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        @media screen and (min-width: 1047px) {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          text-align: center;
+          align-items: baseline;
+        }
+
+        h1 {
+          margin: 0;
+          font-size: 2.5rem;
+
+          @media screen and (min-width: $breakpointTablet) {
+            font-size: 3rem;
+          }
+
+          @media screen and (min-width: 1047px) {
+            grid-column: 2 / -2;
+          }
+
+          @media screen and (min-width: $breakpointDesktop) {
+            font-size: clamp(4rem, 6vw, 6rem);
+            white-space: nowrap;
+            line-height: 1;
+          }
+        }
+        .sortSelect-container {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+
+          @media screen and (min-width: 1047px) {
+            grid-column: 3 / -1;
+            justify-content: end;
+          }
+
+          p {
+            margin: 0;
+
+            @media screen and (min-width: $breakpointDesktop) {
+              font-size: clamp(1rem, 1.5vw, 1.5rem);
+            }
+          }
+
+          .sortSelectButton {
+            width: 10rem;
+            border: none;
+            border-radius: $containerBorderRadius;
+            background: $ultraLightColor;
+            padding: .5rem 1rem;
+            font-size: 1rem;
+
+            @media screen and (min-width: $breakpointDesktop) {
+              width: 15rem;
+              font-size: clamp(1rem, 1.2vw, 1.2rem);
+            }
+          }
+
+          
+        }
+      }
+
+      .categories-content_wrapper {
+        display: flex;
+        justify-content: center;
+
+        .product-cards_container {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap:2rem;
+
+          @media screen and (min-width: $breakpointDesktop) {
+            gap: 1rem;
+          }
+        }
+      }
     }
-    
+
   </style>

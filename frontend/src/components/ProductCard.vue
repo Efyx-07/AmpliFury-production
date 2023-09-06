@@ -32,8 +32,7 @@
                 <p class="onDemand" v-else>{{ notAvailableMention }}</p>
                 <div class="action-icons_container">
                     <Icon 
-                        icon="ph:eye-light" 
-                        width="20" 
+                        icon="ph:eye-light"
                         class="customerIcon" 
                         v-if="showEyeIcon" 
                         @click="navigateToProduct"
@@ -41,14 +40,12 @@
 
                     <Icon 
                         icon="cil:heart" 
-                        width="20" 
                         class="customerIcon"
                         @click="addToWishlist"
                     />
             
                     <Icon 
-                        icon="bi:cart" 
-                        width="20" 
+                        icon="bi:cart"
                         class="customerIcon" 
                         @click="addToCart"
                     />
@@ -155,11 +152,30 @@
         return store.wishlistItems.some(item => item.id === props.product.id);
     });
 
+    // conditionne l'import du style selon la route
+    const isProductView = route.name === 'Categories';
+
+    if(isProductView) {
+        import ('@/assets/sass/ProductCard-Categories.scss');
+    }
+    else {
+        import ('@/assets/sass/ProductCard-Product.scss');
+    }
+
+    // force le rechargement de la page quand retour vers view 'Categories' à partir de 'ProductDetail' afin de revenir au 1er style 
+    router.afterEach((to, from) => {
+        if(from.name === 'ProductDetail' && to.name === 'Categories') {
+            window.location.reload()
+        }
+    })
+
 </script>
 
 <style lang="scss" scoped>
 
     @import '@/assets/sass/variables.scss';
+
+    /*
     .product-card {
         width: 296px;
         height: 384px;
@@ -254,5 +270,5 @@
             }
         }
     }
-
+*/
 </style>

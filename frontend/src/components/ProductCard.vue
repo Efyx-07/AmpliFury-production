@@ -1,6 +1,6 @@
 <template>
     
-    <div class="product-card">
+    <div class="product-card" :class="productCardClass">
 
         <div class="product-image_container">
             <!-- image click actif/inactif selon la vue -->
@@ -153,122 +153,18 @@
     });
 
     // conditionne l'import du style selon la route
-    const isProductView = route.name === 'Categories';
-
-    if(isProductView) {
-        import ('@/assets/sass/ProductCard-Categories.scss');
-    }
-    else {
-        import ('@/assets/sass/ProductCard-Product.scss');
-    }
-
-    // force le rechargement de la page quand retour vers view 'Categories' à partir de 'ProductDetail' afin de revenir au 1er style 
-    router.afterEach((to, from) => {
-        if(from.name === 'ProductDetail' && to.name === 'Categories') {
-            window.location.reload()
-        }
-    })
+    const productCardClass = computed(() => {
+        return route.name === 'Categories' || route.name === 'Category'
+        ? 'product-card productCardCategories'
+        : 'product-card';
+    });
 
 </script>
 
 <style lang="scss" scoped>
 
-    @import '@/assets/sass/variables.scss';
+    @import '@/assets/sass/ProductCard-Product.scss';
+    @import '@/assets/sass/ProductCard-Categories.scss';
+    
 
-    /*
-    .product-card {
-        width: 296px;
-        height: 384px;
-        background: $ultraLightColor;
-        border-radius: $containerBorderRadius;
-        box-shadow: $shadow;
-        position: relative;
-        .product-image_container {
-            width: 100%;
-            height: 288px;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            border-radius: $containerBorderRadius $containerBorderRadius 0 0;
-        }
-        .product-image {
-            width: 100%;
-            height: 100%;
-            display: block;
-            position: relative;
-            object-fit: cover;
-            border-radius: inherit;
-
-            &.clickable {
-                cursor: pointer;
-                transition: transform .3s ease-in-out;
-
-                &:hover {
-                    transform: scale(1.1);
-                }
-            }
-        }
-        .product-infos_container {
-            padding: 0 1rem;
-            .product-brand-and-model_container {
-                display: flex;
-                gap: .2rem;
-            }
-            .product-brand, .product-model {
-                font-size: 1.25rem;
-                margin: 0;
-            }
-            .product-price {
-                font-size: 1.5rem;
-                font-weight: 600;
-                margin: 0;
-            }
-        }
-        .product-card-line_container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: .25rem;
-            .inStock {
-                margin: 0;
-                color: #45AA43;
-            }
-            .onDemand {
-                margin: 0;
-                color: #CA0B0B;
-            }
-            .action-icons_container {
-                display: flex;
-                gap: 10px;
-                .customerIcon {
-                    cursor: pointer;
-                }
-            }
-        }
-        .addedToCart-mention, .addedToWishlist-mention {
-            display: flex;
-            align-items: center;
-            gap: .3rem;
-            background: rgba($darkColor, .5);
-            color: $lightColor;
-            border-radius: 5px;
-            position: absolute;
-            top: .5rem;
-            left: .5rem;
-            padding: .3rem;
-
-            p {
-                font-size: .8rem;
-                margin: 0;
-                font-weight: 400;
-            }
-            .validateIcon {
-                color: #45AA43;
-            }
-            .validateIcon2 {
-                color: #CA0B0B;
-            }
-        }
-    }
-*/
 </style>

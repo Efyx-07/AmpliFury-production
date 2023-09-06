@@ -58,8 +58,7 @@
     @import '@/assets/sass/variables.scss';
 
     .commitments {
-        padding: 3rem 1rem;
-        margin-top: 3rem;
+        padding: 2rem 1rem;
         background: $accentColor;
 
         @media screen and (min-width: $breakpointTablet) {
@@ -68,7 +67,6 @@
 
         @media screen and (min-width: $breakpointDesktop) {
             padding: 6rem 4rem;
-            margin-top: 4rem;
         }
 
         &-content {

@@ -40,14 +40,14 @@
     @import '@/assets/sass/variables.scss';
     
     .environmentCare {
-        padding: 1rem;
+        padding: 1rem 1rem 3rem 1rem;
 
         @media screen and (min-width: $breakpointTablet) {
-            padding: 2.5rem;
+            padding: 2.5rem 2.5rem 4rem 2.5rem;
         }
 
         @media screen and (min-width: $breakpointDesktop) {
-            padding: 4rem;
+            padding: 4rem 4rem 8rem 4rem;
         }
 
         &-tabDesk_container {

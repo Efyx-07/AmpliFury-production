@@ -1,5 +1,5 @@
 <template>
-    <div class="footer-wrapper" :class="{'homePage-style': isHomePage }"> <!-- change le style selon la view -->
+    <div class="footer-wrapper" :class="{'homePage-style': isHomePage }"> <!-- change le style selon la route -->
         <div class="footerMainPart">
         <FooterContact />
         <FooterNewsletter />

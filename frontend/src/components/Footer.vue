@@ -14,9 +14,7 @@
     import ToTopButton from '@/sub-components/ToTopButton.vue';
     import { useRoute } from 'vue-router';
 
-    const route = useRoute();
-
-    console.log(route.name)
+    const route = useRoute(); // permet d'envoyer la route aux composants enfants
 
 </script>
 

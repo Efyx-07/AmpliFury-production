@@ -1,8 +1,10 @@
 <template>
 
   <HomeBanner />
-  <CategoriesPresentation />
-  <EnvironmentCare />
+  <div class="sections-wrapper">
+    <CategoriesPresentation />
+    <EnvironmentCare />
+  </div>
   <Commitments />
   
 </template>
@@ -16,5 +18,11 @@
   
 </script>
 
-<style scoped> 
+<style lang="scss" scoped> 
+
+  @import '@/assets/sass/variables.scss';
+  .sections-wrapper {
+    background: $lightColor;
+  }
+
 </style>

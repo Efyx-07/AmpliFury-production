@@ -1,14 +1,16 @@
 <template>
-    <h1>
-        Je suis la page product
-    </h1>
-    <!-- importe composant ProductCard avec image non clickable-->
+
+    <div class="productPage">
+
+        <!-- importe composant ProductCard avec image non clickable-->
     <ProductCard 
         class="product-card"
         :product="selectedProduct" 
         :showDescription="true" 
         :showEyeIcon="false"
     />
+
+    </div>
 
 </template>
 
@@ -39,7 +41,12 @@
 </script>
 
 <style lang="scss" scoped>
-    .product-card {
-        height: 70vh;
+
+    @import '@/assets/sass/variables.scss';
+    .productPage {
+        padding: 2rem 1rem 4rem 1rem;
+        display: flex;
+        justify-content: center;
+        background: radial-gradient(ellipse at center, $accentColor 0%, $lightColor 90%);
     }
 </style>

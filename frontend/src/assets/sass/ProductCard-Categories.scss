@@ -26,7 +26,7 @@
         height: 36rem;
     }
 
-    .product-image_container {
+    .productImageContainerCategories {
         width: 100%;
         height: 19.12913rem;
         display: inline-block;
@@ -51,7 +51,7 @@
         }
     }
 
-    .product-image {
+    .productImageCategories {
         width: 100%;
         height: 100%;
         display: block;
@@ -68,21 +68,24 @@
             }
         }
     }
-    .product-infos_container {
+
+    .productInfoContainerCategories {
         padding: 0 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: unset;
 
         @media screen and (min-width: $breakpointDesktop) {
             padding: 1rem;
         }
 
-        .product-brand-and-model_container {
+        .productBrandAndModelContainerCategories {
             display: flex;
             gap: .2rem;
         }
-        .product-brand, .product-model {
+
+        .productBrandCategories, .productModelCategories {
             font-size: 1.25rem;
             margin: 0;
 
@@ -90,29 +93,35 @@
                 font-size: 1.5rem;
             }
         }
-        .product-price {
+
+        .productPriceCategories {
             font-size: 1.5rem;
             font-weight: 600;
             margin: 0;
         }
+
     }
-    .product-card-line_container {
+
+    .productCardLineContainerCategories {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding-top: .25rem;
 
-        .inStock {
+        .inStockCategories {
             margin: 0;
             color: #45AA43;
         }
-        .onDemand {
+
+        .onDemandCategories {
             margin: 0;
             color: #CA0B0B;
         }
-        .action-icons_container {
+
+        .actionIconsContainerCategories {
             display: flex;
             gap: 10px;
+
             .customerIcon {
                 cursor: pointer;
                 font-size: 1.3rem;
@@ -122,8 +131,10 @@
                 }
             }
         }
+
     }
-    .addedToCart-mention, .addedToWishlist-mention {
+
+    .addedToCartMentionCategories, .addedToWishlistMentionCategories {
         display: flex;
         align-items: center;
         gap: .3rem;
@@ -135,15 +146,17 @@
         left: .5rem;
         padding: .3rem;
 
-        p {
+        .addedToCartMentionTextCategories {
             font-size: .8rem;
             margin: 0;
             font-weight: 400;
         }
-        .validateIcon {
+
+        .validateIconCategories {
             color: #45AA43;
         }
-        .validateIcon2 {
+
+        .validateIcon2Categories {
             color: #CA0B0B;
         }
     }

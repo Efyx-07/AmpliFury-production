@@ -2,7 +2,7 @@
     
     <div class="product-card" :class="productCardClass">
 
-        <div class="product-image_container">
+        <div class="product-image_container" :class="productImageContainerClass">
             <!-- image click actif/inactif selon la vue -->
             <img 
                 :src="product.image.source" 
@@ -10,30 +10,31 @@
                 class="product-image" 
                 @click="navigateToProduct"
                 v-if = "showImageClickable"
-                :class="{ 'clickable': showImageClickable }"
+                :class="[productImageClass, { 'clickable': showImageClickable }]"
             >
             <img 
                 :src="product.image.source" 
                 :alt="product.image.alt" 
-                class="product-image" 
+                class="product-image"
                 v-else
             >
         </div>
 
-        <div class="product-infos_container">
-            <div class="product-brand-and-model_container">
-                <p class="product-brand">{{ product.brand }}</p>
-                <p class="product-model">{{ product.model }}</p>
+        <div class="product-infos_container" :class="productInfoContainerClass">
+            <div class="product-brand-and-model_container" :class="productBrandAndModelContainerClass">
+                <p class="product-brand" :class="productBrandClass">{{ product.brand }}</p>
+                <p class="product-model" :class="productModelClass">{{ product.model }}</p>
             </div>
             <p class="product-description" v-if="showDescription">{{ product.description }}</p>
-            <p class="product-price">{{ product.price }} {{ currency }}</p>
-            <div class="product-card-line_container">
-                <p class="inStock" v-if="product.available">{{ availableMention }}</p>
-                <p class="onDemand" v-else>{{ notAvailableMention }}</p>
-                <div class="action-icons_container">
+            <p class="product-price" :class="productPriceClass">{{ product.price }} {{ currency }}</p>
+            <div class="product-card-line_container" :class="productCardLineContainerClass">
+                <p class="inStock" :class="inStockClass" v-if="product.available">{{ availableMention }}</p>
+                <p class="onDemand" :class="onDemandClass" v-else>{{ notAvailableMention }}</p>
+                <div class="action-icons_container" :class="actionIconsContainerClass">
                     <Icon 
                         icon="ph:eye-light"
-                        class="customerIcon" 
+                        class="customerIcon"
+                        :class="customerIconClass" 
                         v-if="showEyeIcon" 
                         @click="navigateToProduct"
                     />
@@ -41,34 +42,38 @@
                     <Icon 
                         icon="cil:heart" 
                         class="customerIcon"
+                        :class="customerIconClass" 
                         @click="addToWishlist"
                     />
             
                     <Icon 
                         icon="bi:cart"
                         class="customerIcon" 
+                        :class="customerIconClass" 
                         @click="addToCart"
                     />
                 </div>
             </div>
         </div>
+
         <!-- mention ajoutée à la carte produit quand produit ajouté au panier ou à la wishlist-->
-        <div v-if="addedToCart" class="addedToCart-mention">
+        <div v-if="addedToCart" class="addedToCart-mention" :class="addedToCartMentionClass">
             <Icon 
                 icon="icons8:checked" 
                 width="15" 
                 class="validateIcon"
+                :class="validateIconClass"
             />
-            <p>{{ addedToCartMention }}</p>
+            <p class="addedToCart-mention_text" :class="addedToCartMentionTextClass">{{ addedToCartMention }}</p>
         </div>
-
-        <div v-if="addedToWishlist" class="addedToWishlist-mention">
+        <div v-if="addedToWishlist" class="addedToWishlist-mention" :class="addedToWishlistMentionClass">
             <Icon 
                 icon="cil:heart" 
                 width="15" 
                 class="validateIcon2"
+                :class="validateIcon2Class"
             />
-            <p>{{ addedToWishlistMention }}</p>
+            <p class="addedToCart-mention_text" :class="addedToCartMentionTextClass">{{ addedToWishlistMention }}</p>
         </div>
 
     </div>
@@ -152,12 +157,34 @@
         return store.wishlistItems.some(item => item.id === props.product.id);
     });
 
-    // conditionne l'import du style selon la route
-    const productCardClass = computed(() => {
-        return route.name === 'Categories' || route.name === 'Category'
-        ? 'product-card productCardCategories'
-        : 'product-card';
-    });
+    // création d'une fonction pour générer des classes conditionnelles qui conditionne l'import du style selon la route
+    const generateConditionClass = (baseClass, additionalClass) => {
+        return computed(() => {
+            return route.name === 'Categories' || route.name === 'Category'
+                ? `${baseClass} ${additionalClass}`
+                : baseClass;
+        });
+    };
+
+    // attibution des classes conditionnelles 
+    const productCardClass = generateConditionClass('product-card', 'productCardCategories');
+    const productImageContainerClass = generateConditionClass('product-image_container', 'productImageContainerCategories');
+    const productImageClass = generateConditionClass('product-image', 'productImageCategories');
+    const productInfoContainerClass = generateConditionClass('product-infos_container', 'productInfoContainerCategories');
+    const productBrandAndModelContainerClass = generateConditionClass('product-brand-and-model_container', 'productBrandAndModelContainerCategories');
+    const productBrandClass = generateConditionClass('product-brand', 'productBrandCategories');
+    const productModelClass = generateConditionClass('product-model', 'productModelCategories');
+    const productPriceClass = generateConditionClass('product-price', 'productPriceCategories');
+    const productCardLineContainerClass = generateConditionClass('product-card-line_container', 'productCardLineContainerCategories');
+    const inStockClass = generateConditionClass('inStock', 'inStockCategories');
+    const onDemandClass = generateConditionClass('onDemand', 'onDemandCategories');
+    const actionIconsContainerClass = generateConditionClass('action-icons_container', 'actionIconsContainerCategories');
+    const customerIconClass = generateConditionClass('customerIcon', 'customerIconCategories');
+    const addedToCartMentionClass = generateConditionClass('addedToCart-mention', 'addedToCartMentionCategories');
+    const addedToWishlistMentionClass = generateConditionClass('addedToWishlist-mention', 'addedToWishlistMentionCategories');
+    const validateIconClass = generateConditionClass('validateIcon', 'validateIconCategories');
+    const validateIcon2Class = generateConditionClass('validateIcon2', 'validateIcon2Categories');
+    const addedToCartMentionTextClass = generateConditionClass('addedToCart-mention_text', 'addedToCartMentionTextCategories');
 
 </script>
 

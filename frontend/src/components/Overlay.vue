@@ -26,8 +26,7 @@
         position: fixed;
         width: 100vw;
         height: 100vh;
-        background: rgba($darkColor, .7);
-        backdrop-filter: blur(2px);
+        background: rgba($darkColor, .5);
         top: 0;
         z-index: 998;
     }

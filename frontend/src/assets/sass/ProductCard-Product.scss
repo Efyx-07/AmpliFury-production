@@ -11,6 +11,12 @@
     @media screen and (min-width: $breakpointTablet) {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        max-width: 69rem;
+    }
+
+    @media screen and (min-width: $breakpointDesktop) {
+        height: 33.93444rem; 
+        gap: 2rem;
     }
 
     .product-image_container {
@@ -31,6 +37,10 @@
 
         @media screen and (min-width: $breakpointTablet) {
             border-radius: $containerBorderRadius 0 0 $containerBorderRadius;
+        }
+
+        @media screen and (min-width: $breakpointDesktop) {
+            height: 100%; 
         }
     }
 
@@ -55,6 +65,10 @@
             padding: 1rem;
             gap: 2rem;
             position: relative;
+        }
+
+        @media screen and (min-width: $breakpointDesktop) {
+            padding: 2rem;
         }
 
         .product-brand-and-model_container {
@@ -106,6 +120,11 @@
             position: absolute;
             bottom: 1rem;
             right: 1rem;
+        }
+
+        @media screen and (min-width: $breakpointDesktop) {
+            bottom: 2rem;
+            right: 2rem;
         }
 
         .inStock {

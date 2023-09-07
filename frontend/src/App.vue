@@ -1,7 +1,7 @@
 <template>
   
   <Header />
-  <ShoppinCart />
+  <ShoppingCart />
   <RouterView /> <!-- affiche la vue correspondante en fonction de l'URL -->
   <Footer />
   
@@ -13,10 +13,9 @@
 import { RouterView } from 'vue-router'; // importe le composant RouterView
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-import ShoppinCart from '@/components/ShoppingCart.vue';
+import ShoppingCart from '@/components/ShoppingCart.vue';
 
 </script>
-
 
 
 

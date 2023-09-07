@@ -24,6 +24,10 @@
         const showCartEvent = new Event('show-cart');
         // déclenche l'événement 'show-cart' sur l'objet window
         window.dispatchEvent(showCartEvent);
+        // crée un nouvel evenement personnalisé 
+        const showOverlayEvent = new Event('show-overlay')
+        // déclenche l'événement 'show-overlay' sur l'objet window
+        window.dispatchEvent(showOverlayEvent)
     };
    
 </script>
@@ -46,7 +50,6 @@
                 font-size: $desktopIconSize1;
             }
         }
-
         .cartIcon-badge {
             width: .9rem;
             height: .9rem;

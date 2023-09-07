@@ -10,7 +10,7 @@
                     icon="carbon:close" 
                     width="40" 
                     class="closeIcon" 
-                    @click="closeCart"
+                    @click="closeCartAndOverlay"
                 />
             </div>
 
@@ -105,8 +105,15 @@
             </div>
 
         </div>
-
     </div>
+
+    <Overlay 
+        :showOverlay="isCartVisible" 
+        class="pageOverlay" 
+        v-show="isCartVisible" 
+        :class="{ show: isCartVisible }"
+    >
+    </Overlay>
 
 </template>
 
@@ -115,6 +122,7 @@
     import { Icon } from '@iconify/vue';
     import { useCatalogueStore } from '@/stores/CatalogueStore';
     import { ref, onMounted, computed } from 'vue';
+    import Overlay from '@/components/Overlay.vue';
 
     // datas
     
@@ -191,10 +199,18 @@
         isCartVisible.value = false;
     };
 
+    const closeCartAndOverlay = () => {
+        window.dispatchEvent(new Event('hide-overlay'));
+        closeCart();
+    }
+ 
     // ecoute l'événement personnalisé (créé sur 'CartIcon') pour réafficher la fenetre
     onMounted(() => {
         window.addEventListener('show-cart', () => {
             isCartVisible.value = true;
+        });
+        window.addEventListener('hide-overlay', () => {
+            isCartVisible.value = true; 
         });
     });
 
@@ -213,186 +229,191 @@
     @import '@/assets/sass/variables.scss';
         .hidden {
             transform: translateX(100%);  
+            opacity: 0;
         }
         .shoppingCart_container {
             position: fixed;
+            width: 100%;
             z-index: 999;
             top: 0;
             right: 0;
-            background: $lightColor;
             box-shadow: -3px 0px 5px #33333341; 
-            transition: transform .3s ease-in-out;     
-        .shoppingCart {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            overflow-y: scroll;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-
-            @media screen and (min-width: $breakpointTablet) {
-                width: 31rem;
-            }
-
-            &::-webkit-scrollbar {
-                display: none;
-            }
-
-            &-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                position: sticky;
-                top:0;
-                z-index: 1;
-                background: $lightColor;
-                .closeIcon {
-                    cursor: pointer;
-                    transition: transform .2s ease-in-out;
-
-                    &:hover {
-                        transform: rotate(90deg);
-                    }
-                }
-
-                h1 {
-                    font-size: 2rem;
-                    font-weight: 600;
-                    margin: 0;
-                    line-height: 1;
-                    padding: 2rem;
-                }
-
-            }
-            .emptyCart {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 2rem;
-                padding: 2rem;
-                position: absolute;
-                top: 50%;
-                transform: translateY(-60%);
-
-                p {
-                    font-size: 1.25rem;
-                    font-weight: 300;
-                    margin: 0;
-                }
-
-                img {
-                    border-radius: 100%;
-                    width: 50%;
-                }
-                .keepBrowsing-button {
-                    display: flex;
-                    align-items: center;
-                    cursor: pointer;
-                }
-
-            }
-            .cart-items {
-                list-style-type: none;
-                padding: 0 2rem 12rem 2rem;
+            transition: all .3s ease-in-out;  
+            
+            display: flex;
+            justify-content: end;
+            .shoppingCart {
                 position: relative;
-                display: flex;
-                flex-direction: column;
-                gap: 2rem;
-                .cart-item {
-                    background: $ultraLightColor;
-                    position: relative;
+                width: 100vw;
+                height: 100vh;
+                background: $lightColor;
+                overflow-y: scroll;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+
+                @media screen and (min-width: $breakpointTablet) {
+                    width: 31rem;
+                }
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                &-header {
                     display: flex;
-                    width: 100%;
-                    height: 13rem;
-                    border-radius: $containerBorderRadius;
-                    box-shadow: $shadow;
+                    justify-content: space-between;
+                    align-items: center;
+                    position: sticky;
+                    top:0;
+                    z-index: 1;
+                    background: $lightColor;
+                    .closeIcon {
+                        cursor: pointer;
+                        transition: transform .2s ease-in-out;
 
-                    &_image-container {
-                        width: 10rem;
-                        height: 100%;
-                        position: relative;
-                        display: inline-block;
-                        overflow: hidden;
-                        border-radius: 15px 0 0 15px;
-                    }
-
-                    &_image {
-                        width: 100%;
-                        height: 100%;
-                        display: block;
-                        position: relative;
-                        object-fit: cover;
-                        border-radius: inherit;
-                    }
-                    .cart-item_infos-counter_container {   
-                        padding: 2rem 1rem;
-                        display: flex;
-                        flex-direction: column;
-                        .cart-item_infos-container {
-                            .item-name, .item-price {
-                                margin: 0;
-                            }
-                            .item-name {
-                                font-size: 1.4rem;
-                                font-weight: 600;
-                            }
-                            .item-price {
-                                font-size: 1.1rem;
-                            }
+                        &:hover {
+                            transform: rotate(90deg);
                         }
-                        .quantity-counter_container {
-                            margin-top: auto;
-                            display: flex;
-                            width: 6rem;
-                            box-shadow: $shadow;
-                            .decrementor_container,.quantity-counter, .incrementor_container {
-                                width: 2rem;
-                                height: 2rem;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                            }
-                            .decrementor_container, .incrementor_container {
-                                background: $lightColor;
-                                font-size: 1.5rem;
-                                cursor: pointer;
-                            }
-
-                        }
-
                     }
-                    .remove-buttons_container {
-                            position: absolute;
-                            bottom: 1rem;
-                            right: 1rem;
-                            display: flex;
-                            gap: .5rem;
-                            cursor: pointer;
+
+                    h1 {
+                        font-size: 2rem;
+                        font-weight: 600;
+                        margin: 0;
+                        line-height: 1;
+                        padding: 2rem;
                     }
 
                 }
-
-                .clearCart-button_container {
+                .emptyCart {
                     display: flex;
-                    justify-content: end;
-                    padding-bottom: 1rem;
-                    .clearCart-button {
-                        width: 6rem;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 2rem;
+                    padding: 2rem;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-60%);
+
+                    p {
+                        font-size: 1.25rem;
+                        font-weight: 300;
+                        margin: 0;
+                    }
+
+                    img {
+                        border-radius: 100%;
+                        width: 50%;
+                    }
+                    .keepBrowsing-button {
                         display: flex;
                         align-items: center;
-                        gap: .3rem;
                         cursor: pointer;
-                        justify-content: center;
-                        background: $ultraLightColor;
+                    }
 
-                        p {
-                            margin: 0;
+                }
+                .cart-items {
+                    list-style-type: none;
+                    padding: 0 2rem 12rem 2rem;
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2rem;
+                    .cart-item {
+                        background: $ultraLightColor;
+                        position: relative;
+                        display: flex;
+                        width: 100%;
+                        height: 13rem;
+                        border-radius: $containerBorderRadius;
+                        box-shadow: $shadow;
+
+                        &_image-container {
+                            width: 10rem;
+                            height: 100%;
+                            position: relative;
+                            display: inline-block;
+                            overflow: hidden;
+                            border-radius: 15px 0 0 15px;
+                        }
+
+                        &_image {
+                            width: 100%;
+                            height: 100%;
+                            display: block;
+                            position: relative;
+                            object-fit: cover;
+                            border-radius: inherit;
+                        }
+                        .cart-item_infos-counter_container {   
+                            padding: 2rem 1rem;
+                            display: flex;
+                            flex-direction: column;
+                            .cart-item_infos-container {
+                                .item-name, .item-price {
+                                    margin: 0;
+                                }
+                                .item-name {
+                                    font-size: 1.4rem;
+                                    font-weight: 600;
+                                }
+                                .item-price {
+                                    font-size: 1.1rem;
+                                }
+                            }
+                            .quantity-counter_container {
+                                margin-top: auto;
+                                display: flex;
+                                width: 6rem;
+                                box-shadow: $shadow;
+                                .decrementor_container,.quantity-counter, .incrementor_container {
+                                    width: 2rem;
+                                    height: 2rem;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+                                .decrementor_container, .incrementor_container {
+                                    background: $lightColor;
+                                    font-size: 1.5rem;
+                                    cursor: pointer;
+                                }
+
+                            }
+
+                        }
+                        .remove-buttons_container {
+                                position: absolute;
+                                bottom: 1rem;
+                                right: 1rem;
+                                display: flex;
+                                gap: .5rem;
+                                cursor: pointer;
                         }
 
                     }
 
-                }
+                    .clearCart-button_container {
+                        display: flex;
+                        justify-content: end;
+                        padding-bottom: 1rem;
+                        .clearCart-button {
+                            width: 6rem;
+                            display: flex;
+                            align-items: center;
+                            gap: .3rem;
+                            cursor: pointer;
+                            justify-content: center;
+                            background: $ultraLightColor;
+
+                            p {
+                                margin: 0;
+                            }
+
+                        }
+
+                    }
 
             }
             .shoppingCart-footer {
@@ -448,6 +469,17 @@
             }
 
         }
+        .pageOverlay {
+            position: fixed;
+            z-index: -1;
+            right: 0;
+            opacity: 0;
+            transition: opacity .5s;
+        }
+        .pageOverlay.show {
+            opacity: 1;
+        }
+
     }
     
 </style>

@@ -162,7 +162,7 @@
 
           @media screen and (min-width: 1047px) {
             grid-column: 3 / -1;
-            justify-content: end;
+            justify-content: center;
           }
 
           p {

@@ -103,6 +103,10 @@
               text-decoration: none;
               color: $darkColor;
 
+              &:hover {
+                color: $accentColor;
+              }
+
               p, &-arrow {
                 font-size: 1.5rem;
                 margin: 0;
@@ -237,6 +241,10 @@
                 border: solid 1px $lightColor;
                 padding: .3rem 1rem;
 
+                &:hover {
+                  background: $accentColor;
+                  border-color: $accentColor;
+                }
                 p, .arrow {
                   margin: 0;
                   font-size: 1.5rem;
@@ -254,6 +262,11 @@
           justify-content: center;
           align-items: center;
           border: solid 1px $darkColor;
+
+          &:hover {
+            color: $accentColor;
+            border-color: $accentColor;
+          }
 
           p {
             margin: 0;

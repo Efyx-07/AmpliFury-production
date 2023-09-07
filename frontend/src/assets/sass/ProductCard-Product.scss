@@ -2,8 +2,8 @@
 
 .product-card {
     width: 100%;
-    height: 29rem;
-    background: $ultraLightColor;;
+    height: unset;
+    background: $ultraLightColor;
     border-radius: $containerBorderRadius;
     box-shadow: $shadow;
     position: relative;
@@ -15,6 +15,14 @@
         position: relative;
         overflow: hidden;
         border-radius: $containerBorderRadius $containerBorderRadius 0 0;
+
+        @media screen and (min-width: 400px) {
+            height: 23rem;
+        }
+
+        @media screen and (min-width: 550px) {
+            height: 28rem;
+        }
     }
 
     .product-image {
@@ -36,11 +44,12 @@
     }
 
     .product-infos_container {
-        padding: 0 1rem;
+        padding: .5rem 1rem 1rem 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: .5rem;
 
         @media screen and (min-width: $breakpointDesktop) {
             padding: 1rem;
@@ -50,16 +59,24 @@
             display: flex;
             gap: .2rem;
         }
+
         .product-brand, .product-model {
             font-size: 1.25rem;
+            font-weight: 600;
             margin: 0;
 
             @media screen and (min-width: $breakpointDesktop) {
                 font-size: 1.5rem;
             }
         }
+
+        .product-description {
+            font-size: .9rem;
+            margin: 0;
+        }
+
         .product-price {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 600;
             margin: 0;
         }
@@ -68,7 +85,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-top: .25rem;
+        padding-top: unset;
+        width: 100%;
 
         .inStock {
             margin: 0;
@@ -81,6 +99,7 @@
         .action-icons_container {
             display: flex;
             gap: 10px;
+            
             .customerIcon {
                 cursor: pointer;
                 font-size: 1.3rem;

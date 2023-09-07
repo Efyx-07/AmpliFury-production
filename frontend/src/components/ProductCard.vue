@@ -25,7 +25,7 @@
                 <p class="product-brand" :class="productBrandClass">{{ product.brand }}</p>
                 <p class="product-model" :class="productModelClass">{{ product.model }}</p>
             </div>
-            <p class="product-description" v-if="showDescription">{{ product.description }}</p>
+            <p class="product-description" v-if="showDescription">"{{ product.description }}"</p>
             <p class="product-price" :class="productPriceClass">{{ product.price }} {{ currency }}</p>
             <div class="product-card-line_container" :class="productCardLineContainerClass">
                 <p class="inStock" :class="inStockClass" v-if="product.available">{{ availableMention }}</p>

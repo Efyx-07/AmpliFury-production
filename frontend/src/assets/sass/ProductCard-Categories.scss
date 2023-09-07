@@ -8,6 +8,10 @@
     box-shadow: $shadow;
     position: relative;
 
+    @media screen and (min-width: $breakpointTablet) {
+        display: unset;
+    }
+
     @media screen and (min-width: 400px) {
         height: 30rem;
     }
@@ -110,6 +114,11 @@
         justify-content: space-between;
         padding-top: .25rem;
         width: unset;
+
+        @media screen and (min-width: $breakpointTablet) {
+            flex-direction: unset;
+            position: unset;
+        }
 
         .inStockCategories {
             margin: 0;

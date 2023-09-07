@@ -48,5 +48,9 @@
         display: flex;
         justify-content: center;
         background: radial-gradient(ellipse at center, $accentColor 0%, $lightColor 90%);
+
+        @media screen and (min-width: $breakpointTablet) {
+            padding: 3rem 2rem;
+        }
     }
 </style>

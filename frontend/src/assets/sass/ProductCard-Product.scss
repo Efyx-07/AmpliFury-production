@@ -8,6 +8,11 @@
     box-shadow: $shadow;
     position: relative;
 
+    @media screen and (min-width: $breakpointTablet) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
     .product-image_container {
         width: 100%;
         height: 19.12913rem;
@@ -23,6 +28,10 @@
         @media screen and (min-width: 550px) {
             height: 28rem;
         }
+
+        @media screen and (min-width: $breakpointTablet) {
+            border-radius: $containerBorderRadius 0 0 $containerBorderRadius;
+        }
     }
 
     .product-image {
@@ -32,15 +41,6 @@
         position: relative;
         object-fit: cover;
         border-radius: inherit;
-
-        &.clickable {
-            cursor: pointer;
-            transition: transform .3s ease-in-out;
-
-            &:hover {
-                transform: scale(1.1);
-            }
-        }
     }
 
     .product-infos_container {
@@ -51,8 +51,10 @@
         align-items: center;
         gap: .5rem;
 
-        @media screen and (min-width: $breakpointDesktop) {
+        @media screen and (min-width: $breakpointTablet) {
             padding: 1rem;
+            gap: 2rem;
+            position: relative;
         }
 
         .product-brand-and-model_container {
@@ -65,20 +67,29 @@
             font-weight: 600;
             margin: 0;
 
-            @media screen and (min-width: $breakpointDesktop) {
-                font-size: 1.5rem;
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: 1.75rem;
             }
         }
 
         .product-description {
             font-size: .9rem;
             margin: 0;
+            text-align: justify;
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: 1rem;
+            }
         }
 
         .product-price {
             font-size: 1.25rem;
             font-weight: 600;
             margin: 0;
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: 1.75rem;
+            }
         }
     }
     .product-card-line_container {
@@ -87,6 +98,15 @@
         justify-content: space-between;
         padding-top: unset;
         width: 100%;
+
+        @media screen and (min-width: $breakpointTablet) {
+            flex-direction: column;
+            align-items: end;
+            gap: .5rem;
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+        }
 
         .inStock {
             margin: 0;
@@ -104,7 +124,7 @@
                 cursor: pointer;
                 font-size: 1.3rem;
 
-                @media screen and (min-width: $breakpointDesktop) {
+                @media screen and (min-width: $breakpointTablet) {
                     font-size: 1.5rem;
                 }
             }

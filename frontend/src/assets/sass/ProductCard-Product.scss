@@ -21,26 +21,14 @@
 
     .product-image_container {
         width: 100%;
-        height: 19.12913rem;
+        height: unset;
         display: inline-block;
         position: relative;
         overflow: hidden;
         border-radius: $containerBorderRadius $containerBorderRadius 0 0;
 
-        @media screen and (min-width: 400px) {
-            height: 23rem;
-        }
-
-        @media screen and (min-width: 550px) {
-            height: 28rem;
-        }
-
         @media screen and (min-width: $breakpointTablet) {
             border-radius: $containerBorderRadius 0 0 $containerBorderRadius;
-        }
-
-        @media screen and (min-width: $breakpointDesktop) {
-            height: 100%; 
         }
     }
 
@@ -89,10 +77,11 @@
         .product-description {
             font-size: .9rem;
             margin: 0;
-            text-align: justify;
+            text-align: center;
 
             @media screen and (min-width: $breakpointTablet) {
                 font-size: 1rem;
+                text-align: justify;
             }
         }
 

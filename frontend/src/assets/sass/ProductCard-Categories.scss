@@ -2,7 +2,7 @@
 
 .productCardCategories {
     width: 100%;
-    height: 25.50556rem;
+    height: unset;
     background: $ultraLightColor;
     border-radius: $containerBorderRadius;
     box-shadow: $shadow;
@@ -10,49 +10,20 @@
 
     @media screen and (min-width: $breakpointTablet) {
         display: unset;
-    }
-
-    @media screen and (min-width: 400px) {
-        height: 30rem;
-    }
-
-    @media screen and (min-width: 550px) {
-        height: 35rem;
-    }
-
-    @media screen and (min-width: 692px) {
-        width: unset;
-        height: 25.50556rem;    
+        width: 19.5rem;
     }
 
     @media screen and (min-width: $breakpointDesktop) {
         width: 26.5rem;
-        height: 36rem;
     }
 
     .productImageContainerCategories {
         width: 100%;
-        height: 19.12913rem;
+        height: unset;
         display: inline-block;
         position: relative;
         overflow: hidden;
         border-radius: $containerBorderRadius $containerBorderRadius 0 0;
-
-        @media screen and (min-width: 400px) {
-            height: 23rem;
-        }
-
-        @media screen and (min-width: 550px) {
-            height: 28rem;
-        }
-
-        @media screen and (min-width: 692px) {
-            height: 19.12913rem;
-        }
-
-        @media screen and (min-width: $breakpointDesktop) {
-            height: 27rem;
-        }
     }
 
     .productImageCategories {
@@ -74,16 +45,12 @@
     }
 
     .productInfoContainerCategories {
-        padding: 0 1rem;
+        padding: .5rem 1rem 1rem 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: unset;
         gap: unset;
-
-        @media screen and (min-width: $breakpointDesktop) {
-            padding: 1rem;
-        }
 
         .productBrandAndModelContainerCategories {
             display: flex;

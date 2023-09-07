@@ -69,7 +69,7 @@
         }
 
         @media screen and (min-width: $breakpointDesktop) {
-          padding: 4rem;
+          padding: 3rem 4rem 4rem 4rem;
           gap: 3rem;
         }
         .title-and-button1_container {

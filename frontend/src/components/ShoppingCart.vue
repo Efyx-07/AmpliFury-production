@@ -211,20 +211,17 @@
 <style lang="scss" scoped>
 
     @import '@/assets/sass/variables.scss';
-
         .hidden {
             transform: translateX(100%);  
         }
-
         .shoppingCart_container {
-        position: fixed;
-        z-index: 999;
-        top: 0;
-        right: 0;
-        background: $lightColor;
-        box-shadow: -3px 0px 5px #33333341; 
-        transition: transform .3s ease-in-out;
-        
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            right: 0;
+            background: $lightColor;
+            box-shadow: -3px 0px 5px #33333341; 
+            transition: transform .3s ease-in-out;     
         .shoppingCart {
             position: relative;
             width: 100vw;
@@ -265,6 +262,7 @@
                     line-height: 1;
                     padding: 2rem;
                 }
+
             }
             .emptyCart {
                 display: flex;
@@ -292,6 +290,7 @@
                     align-items: center;
                     cursor: pointer;
                 }
+
             }
             .cart-items {
                 list-style-type: none;
@@ -359,7 +358,9 @@
                                 font-size: 1.5rem;
                                 cursor: pointer;
                             }
+
                         }
+
                     }
                     .remove-buttons_container {
                             position: absolute;
@@ -369,6 +370,7 @@
                             gap: .5rem;
                             cursor: pointer;
                     }
+
                 }
 
                 .clearCart-button_container {
@@ -387,8 +389,11 @@
                         p {
                             margin: 0;
                         }
+
                     }
+
                 }
+
             }
             .shoppingCart-footer {
                 height: 12rem;
@@ -423,6 +428,7 @@
                     .totalPrice {
                         font-weight: 400;
                     }
+
                 }
                 .checkout-button {
                     display: flex;
@@ -436,9 +442,12 @@
                         font-size: 1.25rem;
                         font-weight: 200;
                     }
+
                 }
+
             }
 
         }
     }
+    
 </style>

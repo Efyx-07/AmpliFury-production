@@ -44,13 +44,22 @@
 
     @import '@/assets/sass/variables.scss';
     .productPage {
-        padding: 2rem 1rem 4rem 1rem;
+        padding: 0 1rem;
         display: flex;
         justify-content: center;
-        background: radial-gradient(ellipse at center, $accentColor 0%, $lightColor 90%);
+        align-items: center;
+        background: $gradientBackground;
+        height: calc(100vh - 4rem);
+
 
         @media screen and (min-width: $breakpointTablet) {
-            padding: 3rem 2rem;
+            padding: 0 2rem;
+            height: calc(100vh - 6rem);
+        }
+
+        @media screen and (min-width: $breakpointDesktop) {
+            padding: 0 4rem;
+            height: calc(100vh - 8rem);
         }
     }
 </style>

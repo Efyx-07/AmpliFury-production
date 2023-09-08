@@ -27,7 +27,7 @@
         // crée un nouvel evenement personnalisé 
         const showOverlayEvent = new Event('show-overlay')
         // déclenche l'événement 'show-overlay' sur l'objet window
-        window.dispatchEvent(showOverlayEvent)
+        window.dispatchEvent(showOverlayEvent);
     };
    
 </script>

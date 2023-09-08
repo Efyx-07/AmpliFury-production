@@ -8,9 +8,12 @@
 
     import { Icon } from '@iconify/vue';
 
+    // ouvre fenetre 'BurgerMenu' au clic de l'icone
     const toggleBurgerMenuVisibility = () => {
+        // crée un nouvel element personnalisé
         const showBurgerMenuEvent = new Event('show-burgerMenu');
-        window.dispatchEvent(showBurgerMenuEvent)
+        // déclenche l'évènement 'show-burgerMenu' sur l'objet window
+        window.dispatchEvent(showBurgerMenuEvent);
     };
 
 </script>

@@ -8,7 +8,7 @@
             class="closeIcon"
             @click="closeBurgerMenu"
         />
-        <Navbar parentComponent="burgermenu"/>
+        <Navbar :closeBurgerMenu="closeBurgerMenu" parentComponent="burgermenu"/>
     </div>
     
 </template>
@@ -28,6 +28,7 @@
         isBurgerMenuVisible.value = false;
     };
 
+    // écoute evenment personnalisé (crée sur BurgerMenuIcon) pour réafficher le burgerMenu
     onMounted(() => {
         window.addEventListener('show-burgerMenu', () => {
             isBurgerMenuVisible.value = true;

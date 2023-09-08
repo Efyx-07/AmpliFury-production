@@ -2,7 +2,7 @@
     <nav>
         <ul :class="navbarClasses">
             <li>
-                <router-link to="/categories" class="navButton_container" :class="navButtonContainerClasses"> <!-- relie le 1er bouton à la route Categories -->
+                <router-link to="/categories" class="navButton_container" :class="navButtonContainerClasses" @click="handleNavButtonClick"> <!-- relie le 1er bouton à la route Categories -->
                     <div class="potentiometer-icon" :class="potentiometerIconClasses">
                         <div class="potentiometer-icon-bar" :class="potentiometerIconBarClasses"></div>
                     </div>
@@ -10,7 +10,7 @@
                 </router-link>
             </li>
             <li v-for="category in categories" :key="category.name">
-                <router-link :to="`/categories/${category.name}`" class="navButton_container" :class="navButtonContainerClasses"> <!-- relie les autres boutons à leur route dynamique respective (categorie filtrée) -->
+                <router-link :to="`/categories/${category.name}`" class="navButton_container" :class="navButtonContainerClasses" @click="handleNavButtonClick"> <!-- relie les autres boutons à leur route dynamique respective (categorie filtrée) -->
                     <div class="potentiometer-icon" :class="potentiometerIconClasses">
                         <div class="potentiometer-icon-bar" :class="potentiometerIconBarClasses"></div>
                     </div>
@@ -35,7 +35,8 @@
 
     // recupération des props définies dans les composants parents (permet de styliser différement selon le composant)
     const props = defineProps({
-        parentComponent: String
+        parentComponent: String,
+        closeBurgerMenu: Function
     });
 
     // gestion des classes conditionnelles
@@ -64,7 +65,9 @@
         'navButtonName-burgermenu': props.parentComponent === 'burgermenu'
     }));
 
-//---------------------------------------------------------
+    const handleNavButtonClick = () => {
+        props.closeBurgerMenu();
+    };
   
 </script>
 

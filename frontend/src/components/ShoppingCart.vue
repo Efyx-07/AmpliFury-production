@@ -18,7 +18,7 @@
             <div v-if ="cartItemCount === 0" class="emptyCart"> 
                 <p>{{ emptyCart.mention }}</p>
                 <img :src="emptyCart.image.source" :alt="emptyCart.image.alt">
-                <div class="keepBrowsing-button" @click="closeCart">
+                <div class="keepBrowsing-button" @click="closeCartAndOverlay">
                     <p>{{ emptyCart.buttonMention }}</p>
                     <Icon 
                         icon="system-uicons:arrow-up" 

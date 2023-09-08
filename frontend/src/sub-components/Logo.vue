@@ -1,5 +1,5 @@
 <template>
-    <router-link to="/">
+    <router-link to="/" @click="handleNavButtonClick">
         <img :src="storeLogo.image.source" :alt="storeLogo.image.alt" :class="logoClasses">
     </router-link>
     
@@ -17,9 +17,10 @@
         }
     }
 
-    // recupération des props définies dans les composants parents (permet de styliser différement selon le composant)
+    // recupération des props définies dans les composants parents
     const props = defineProps({
-        parentComponent: String
+        parentComponent: String,
+        closeBurgerMenu: Function
     });
 
     // gestion des classes conditionnelles
@@ -28,6 +29,10 @@
         'logo-burgermenu': props.parentComponent === 'burgermenu'
     }));
 
+    // récupération via props de la fonction closeBurgerMenu definie dans composant parent BurgerMenu
+    const handleNavButtonClick = () => {
+        props.closeBurgerMenu();
+    };
 
 </script>
 

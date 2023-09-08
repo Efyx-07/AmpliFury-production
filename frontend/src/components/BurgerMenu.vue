@@ -1,7 +1,7 @@
 <template>
 
     <div class="burgerMenu" :class="{ hidden: !isBurgerMenuVisible }">
-        <Logo parentComponent="burgermenu" class="logo-burgermenu"/>
+        <Logo :closeBurgerMenu="closeBurgerMenu" parentComponent="burgermenu" class="logo-burgermenu"/>
         <Icon 
             icon="carbon:close" 
             width="40" 

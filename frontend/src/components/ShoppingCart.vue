@@ -111,7 +111,6 @@
         :showOverlay="isCartVisible" 
         class="pageOverlay" 
         v-show="isCartVisible" 
-        :class="{ hidden: !isCartVisible }"
     >
     </Overlay>
 
@@ -229,18 +228,16 @@
     @import '@/assets/sass/variables.scss';
         .hidden {
             transform: translateX(100%);
-            opacity: 0;
         }
         .shoppingCart_container {
             position: fixed;
-            width: 100%;
             z-index: 999;
             top: 0;
             right: 0;
             display: flex;
             justify-content: end;
             box-shadow: -3px 0px 5px #33333341; 
-            transition: all .2s ease-in-out;  
+            transition: transform .3s ease-in-out;  
             .shoppingCart {
                 position: relative;
                 width: 100vw;
@@ -392,7 +389,6 @@
                         }
 
                     }
-
                     .clearCart-button_container {
                         display: flex;
                         justify-content: end;
@@ -467,11 +463,11 @@
 
             }
 
-        }
+        } 
         .pageOverlay {
             position: fixed;
             z-index: -1;
-            right: 0;
+            right: 0;           
         }
 
     }

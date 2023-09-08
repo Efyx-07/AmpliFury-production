@@ -33,7 +33,7 @@
     // datas
     const defaultButtonName = "All products";
 
-    // recupération des props définies dans les composants parents (permet de styliser différement selon le composant)
+    // recupération des props définies dans les composants parents
     const props = defineProps({
         parentComponent: String,
         closeBurgerMenu: Function
@@ -65,6 +65,7 @@
         'navButtonName-burgermenu': props.parentComponent === 'burgermenu'
     }));
 
+    // récupération via props de la fonction closeBurgerMenu definie dans composant parent BurgerMenu
     const handleNavButtonClick = () => {
         props.closeBurgerMenu();
     };

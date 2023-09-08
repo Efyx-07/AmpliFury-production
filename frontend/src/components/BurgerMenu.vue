@@ -59,7 +59,7 @@
         transition: transform .3s ease-in-out; 
 
         @media screen and (min-width: $breakpointTablet) {
-            width: 33.33vh;
+            width: 60vw;
         }
         
         @media screen and (min-width: $breakpointDesktop) {

@@ -99,7 +99,7 @@ export const useCatalogueStore = defineStore('catalogue', {
       if(!isAlreadyInWishlist && !isAlreadyInCart) {
         this.wishlistItems.push(product);
       }
-      this.saveInLocalStorage(); 
+      this.saveInLocalStorage();
     },
 
     // retire l'article de la wishlist

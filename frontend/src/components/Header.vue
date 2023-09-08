@@ -2,8 +2,8 @@
         <header>
             <SupBar />
             <div class="header-mainbar">
-                <Logo class="logo"/>
-                <Navbar class="navbar"/>
+                <Logo class="logo" parentComponent="header"/>
+                <Navbar class="navbar" parentComponent="header"/>
                 <ClientSpace class="clientSpace"/> 
                 <BurgerMenuIcon class="burgerMenuIcon"/>             
             </div>
@@ -12,14 +12,17 @@
 </template>
 
 <script setup>
+
     import SupBar from '@/sub-components/Supbar.vue';
     import Logo from '@/sub-components/Logo.vue';
     import Navbar from '@/sub-components/Navbar.vue';
     import ClientSpace from '@/sub-components/ClientSpace.vue';
     import BurgerMenuIcon from '@/sub-components/BurgerMenuIcon.vue';
+
 </script>
 
 <style scoped lang="scss">
+
     @import '@/assets/sass/variables.scss';
 
     header {
@@ -61,4 +64,5 @@
             }
         }
     }
+
 </style>

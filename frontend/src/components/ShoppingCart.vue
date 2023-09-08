@@ -237,11 +237,10 @@
             z-index: 999;
             top: 0;
             right: 0;
-            box-shadow: -3px 0px 5px #33333341; 
-            transition: all .2s ease-in-out;  
-            
             display: flex;
             justify-content: end;
+            box-shadow: -3px 0px 5px #33333341; 
+            transition: all .2s ease-in-out;  
             .shoppingCart {
                 position: relative;
                 width: 100vw;
@@ -267,14 +266,6 @@
                     top:0;
                     z-index: 1;
                     background: $lightColor;
-                    .closeIcon {
-                        cursor: pointer;
-                        transition: transform .2s ease-in-out;
-
-                        &:hover {
-                            transform: rotate(90deg);
-                        }
-                    }
 
                     h1 {
                         font-size: 2rem;
@@ -282,6 +273,14 @@
                         margin: 0;
                         line-height: 1;
                         padding: 2rem;
+                    }
+                    .closeIcon {
+                        cursor: pointer;
+                        transition: transform .2s ease-in-out;
+
+                        &:hover {
+                            transform: rotate(90deg);
+                        }
                     }
 
                 }

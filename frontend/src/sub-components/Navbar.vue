@@ -1,20 +1,20 @@
 <template>
     <nav>
-        <ul>
+        <ul :class="navbarClasses">
             <li>
-                <router-link to="/categories" class="navButton_container"> <!-- relie le 1er bouton à la route Categories -->
-                    <div class="potentiometer-icon">
-                        <div class="potentiometer-icon-bar"></div>
+                <router-link to="/categories" class="navButton_container" :class="navButtonContainerClasses"> <!-- relie le 1er bouton à la route Categories -->
+                    <div class="potentiometer-icon" :class="potentiometerIconClasses">
+                        <div class="potentiometer-icon-bar" :class="potentiometerIconBarClasses"></div>
                     </div>
-                    <p>{{ defaultButtonName }}</p>
+                    <p :class="navButtonNameClasses">{{ defaultButtonName }}</p>
                 </router-link>
             </li>
             <li v-for="category in categories" :key="category.name">
-                <router-link :to="`/categories/${category.name}`" class="navButton_container"> <!-- relie les autres boutons à leur route dynamique respective (categorie filtrée) -->
-                    <div class="potentiometer-icon">
-                        <div class="potentiometer-icon-bar"></div>
+                <router-link :to="`/categories/${category.name}`" class="navButton_container" :class="navButtonContainerClasses"> <!-- relie les autres boutons à leur route dynamique respective (categorie filtrée) -->
+                    <div class="potentiometer-icon" :class="potentiometerIconClasses">
+                        <div class="potentiometer-icon-bar" :class="potentiometerIconBarClasses"></div>
                     </div>
-                    <p>{{ category.name }}</p> <!-- donne le nom des categories respectives aux boutons -->
+                    <p :class="navButtonNameClasses">{{ category.name }}</p> <!-- donne le nom des categories respectives aux boutons -->
                 </router-link>
             </li>
         </ul>
@@ -23,14 +23,46 @@
 
 <script setup>
 
-// importe les datas du catalogue géré par le store Pinia
+    // importe les datas du catalogue géré par le store Pinia
+    import { useCatalogueStore } from '@/stores/CatalogueStore';
+    import { computed } from 'vue';
+    
+    const catalogueStore = useCatalogueStore();
+    const categories = catalogueStore.products;
 
-  import { useCatalogueStore } from '@/stores/CatalogueStore';
-  
-  const catalogueStore = useCatalogueStore();
-  const categories = catalogueStore.products;
+    // datas
+    const defaultButtonName = "All products";
 
-  const defaultButtonName = "All products";
+    // recupération des props définies dans les composants parents (permet de styliser différement selon le composant)
+    const props = defineProps({
+        parentComponent: String
+    });
+
+    // gestion des classes conditionnelles
+    const navbarClasses = computed(() => ({
+        'navbar-header': props.parentComponent === 'header',
+        'navbar-burgermenu': props.parentComponent === 'burgermenu'
+    }));
+
+    const navButtonContainerClasses = computed(() => ({
+        'navButtonContainer-header': props.parentComponent === 'header',
+        'navButtonContainer-burgermenu': props.parentComponent === 'burgermenu'
+    }));
+
+    const potentiometerIconClasses = computed(() => ({
+        'potentiometerIcon-header': props.parentComponent === 'header',
+        'potentiometerIcon-burgermenu': props.parentComponent === 'burgermenu'
+    }));
+
+    const potentiometerIconBarClasses = computed(() => ({
+        'potentiometerIconBar-header': props.parentComponent === 'header',
+        'potentiometerIconBar-burgermenu': props.parentComponent === 'burgermenu'
+    }));
+
+    const navButtonNameClasses = computed(() => ({
+        'navButtonName-header': props.parentComponent === 'header',
+        'navButtonName-burgermenu': props.parentComponent === 'burgermenu'
+    }));
 
 //---------------------------------------------------------
   
@@ -38,15 +70,14 @@
 
 <style lang="scss" scoped>
     @import '@/assets/sass/variables.scss';
-
-    ul {
+    .navbar-header {
         list-style-type: none;
         display: flex;
         justify-content: center;
         gap: 3rem;
 
         li {
-            .navButton_container {
+            .navButtonContainer-header {
                 text-decoration: none;
                 display: flex;
                 flex-direction: column;
@@ -54,7 +85,7 @@
                 align-items: center;
                 cursor: pointer;
 
-                .potentiometer-icon {
+                .potentiometerIcon-header {
                     width: 30px;
                     height: 30px;
                     background: $darkColor;
@@ -62,20 +93,59 @@
                     display: flex;
                     justify-content: center;
                     transition: all .3s ease-in-out;
-
-                    &-bar {
+                    .potentiometerIconBar-header {
                         width: 3px;
                         height: 15px;
                         background: $lightColor;
                     }
                 }
-
-                p {
+                .navButtonName-header {
                     margin: 0;
                     font-weight: 400;
                     color: $darkColor;
                 }
-                &:hover > .potentiometer-icon {
+                &:hover > .potentiometerIcon-header {
+                    transform: rotate(120deg);
+                }
+            }
+        }
+    }
+    .navbar-burgermenu {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 3rem;
+
+        li {
+            .navButtonContainer-burgermenu {
+                text-decoration: none;
+                display: flex;
+                gap:1rem;
+                align-items: center;
+                cursor: pointer;
+
+                .potentiometerIcon-burgermenu {
+                    width: 30px;
+                    height: 30px;
+                    background: $darkColor;
+                    border-radius: 100%;
+                    display: flex;
+                    justify-content: center;
+                    transition: all .3s ease-in-out;
+                    .potentiometerIconBar-burgermenu {
+                        width: 3px;
+                        height: 15px;
+                        background: $lightColor;
+                    }
+                }
+                .navButtonName-burgermenu {
+                    margin: 0;
+                    font-size: 1.5rem;
+                    font-weight: 400;
+                    color: $darkColor;
+                }
+                &:hover > .potentiometerIcon-burgermenu {
                     transform: rotate(120deg);
                 }
             }

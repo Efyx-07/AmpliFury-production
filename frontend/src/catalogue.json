@@ -158,6 +158,54 @@
           "quantity": 1,
           "available": true,
           "description": "The signature Mycourtney delivers punchy, iconic bass sound that's both captivating and sonically rich."
+        },
+
+        {
+          "id": "1004",
+          "category": "Basses",
+          "type": "Bass",
+          "brand": "Epiklone",
+          "model": "Marcus Thriller",
+          "image": {
+            "source": "/src/assets/catalogue/products/basses/epiklone-marcus-thriller.jpg",
+            "alt": "Epiklone Marcus Thriller"
+          },
+          "price": "2299.00",
+          "quantity": 2,
+          "available": true,
+          "description": "The Epiklone Marcus Thriller electric bass guitar delivers a thrilling combination of powerful bass tones and versatile playability, making it the bassist's ultimate toolkit for laying down a wide range of groovy rhythms."
+        },
+
+        {
+          "id": "1005",
+          "category": "Basses",
+          "type": "Bass",
+          "brand": "Ivarez",
+          "model": "Thunder",
+          "image": {
+            "source": "/src/assets/catalogue/products/basses/ivarez-thunder.jpg",
+            "alt": "Ivarez Thunder"
+          },
+          "price": "1699.00",
+          "quantity": 0,
+          "available": false,
+          "description": "The Ivarez Thunder electric bass guitar electrifies the stage with its thunderous tones and versatile playability, serving as the bassist's ultimate toolkit for crafting a diverse range of impactful basslines."
+        },
+
+        {
+          "id": "1006",
+          "category": "Basses",
+          "type": "Bass",
+          "brand": "Ivarez",
+          "model": "Hurricane",
+          "image": {
+            "source": "/src/assets/catalogue/products/basses/ivarez-hurricane.jpg",
+            "alt": "Ivarez Hurricane"
+          },
+          "price": "1439.00",
+          "quantity": 2,
+          "available": true,
+          "description": "The Ivarez Hurricane electric bass guitar storms the music scene with its powerful tones and versatile playability, making it the bassist's ultimate toolkit for delivering a wide range of impactful and dynamic basslines."
         }
       ]
     },
@@ -215,6 +263,54 @@
           "quantity": 2,
           "available": true,
           "description": "Unleash your inner star with Girlstar's vibrant sound and artistic details, a harmonious blend of style and melody."
+        },
+
+        {
+          "id": "2004",
+          "category": "Acoustic",
+          "type": "Acoustic guitar",
+          "brand": "Rainbow",
+          "model": "UkukukuLele",
+          "image": {
+            "source": "/src/assets/catalogue/products/acoustic/rainbow-ukukukulele.jpg",
+            "alt": "Rainbow UkukukuLele"
+          },
+          "price": "149.00",
+          "quantity": 12,
+          "available": true,
+          "description": "The Rainbow UkukukuLele ukulele harmoniously blends vibrant colors with versatile playability, making it the musician's ultimate toolkit for strumming a diverse array of cheerful melodies."
+        },
+
+        {
+          "id": "2005",
+          "category": "Acoustic",
+          "type": "Acoustic guitar",
+          "brand": "Bender",
+          "model": "BlackyFolk",
+          "image": {
+            "source": "/src/assets/catalogue/products/acoustic/bender-blackyfolk.jpg",
+            "alt": "Bender BlackyFolk"
+          },
+          "price": "749.00",
+          "quantity": 2,
+          "available": true,
+          "description": "The Bender BlackyFolk acoustic guitar combines a dark, brooding tone with versatile playability, making it the guitarist's ultimate toolkit for crafting a wide range of soulful melodies."
+        },
+
+        {
+          "id": "2006",
+          "category": "Acoustic",
+          "type": "Acoustic guitar",
+          "brand": "Matakine",
+          "model": "Nature Revenge",
+          "image": {
+            "source": "/src/assets/catalogue/products/acoustic/matakine-nature-revenge.jpg",
+            "alt": "Matakine Nature Revenge"
+          },
+          "price": "1749.00",
+          "quantity": 0,
+          "available": false,
+          "description": "The Matakine Nature Revenge acoustic guitar seamlessly merges natural tones with versatile playability, becoming the guitarist's ultimate toolkit for creating a wide spectrum of organic and powerful melodies."
         }
       ]
     },
@@ -272,6 +368,54 @@
           "quantity": 1,
           "available": true,
           "description": "The Vortex222 amp swirls your sound into a cyclone of effects, delivering an otherworldly experience for experimental musicians."
+        },
+
+        {
+          "id": "3004",
+          "category": "Amps",
+          "type": "Amp",
+          "brand": "Masta Braggie",
+          "model": "Brag' 469",
+          "image": {
+            "source": "/src/assets/catalogue/products/amps/masta-braggie-brag-469.jpg",
+            "alt": "Masta Braggie Brag' 469"
+          },
+          "price": "879.00",
+          "quantity": 2,
+          "available": true,
+          "description": "The Masta Braggie Brag' 469 guitar amplifier delivers a thunderous sound and versatile capabilities, serving as the guitarist's ultimate toolkit for creating a wide spectrum of tones."
+        },
+
+        {
+          "id": "3005",
+          "category": "Amps",
+          "type": "Amp",
+          "brand": "Yellow",
+          "model": "HoneyMoon",
+          "image": {
+            "source": "/src/assets/catalogue/products/amps/yellow-honeymoon.jpg",
+            "alt": "Yellow HoneyMoon"
+          },
+          "price": "1229.00",
+          "quantity": 0,
+          "available": false,
+          "description": "The Yellow HoneyMoon guitar amplifier combines a warm, honeyed tone with versatile features, making it the guitarist's ultimate toolkit for crafting a wide range of sonic experiences."
+        },
+
+        {
+          "id": "3006",
+          "category": "Amps",
+          "type": "Amp",
+          "brand": "Pinkstar",
+          "model": "V7",
+          "image": {
+            "source": "/src/assets/catalogue/products/amps/pinkstar-v7.jpg",
+            "alt": "Pinkstar V7"
+          },
+          "price": "429.00",
+          "quantity": 4,
+          "available": true,
+          "description": "The Pinkstar V7 guitar amplifier blends a rich, pink-tinged tone with versatile features, serving as the guitarist's ultimate toolkit for sculpting a diverse array of sonic landscapes."
         }
       ]
     },
@@ -329,6 +473,54 @@
           "quantity": 0,
           "available": false,
           "description": "Uzi16's digital prowess unleashes a symphony of futuristic tones, perfect for crafting electronic landscapes and beats."
+        },
+
+        {
+          "id": "4004",
+          "category": "Synths",
+          "type": "Synth",
+          "brand": "Masturia",
+          "model": "Ivy 1236",
+          "image": {
+            "source": "/src/assets/catalogue/products/synth/masturia-ivy-1236.jpg",
+            "alt": "Masturia Ivy 1236"
+          },
+          "price": "1599.00",
+          "quantity": 1,
+          "available": true,
+          "description": "The Masturia Ivy 1236 synthesizer fuses lush soundscapes with versatile components, making it the musician's ultimate toolkit for creating an extensive range of musical textures."
+        },
+
+        {
+          "id": "4005",
+          "category": "Synths",
+          "type": "Synth",
+          "brand": "D'Angelica",
+          "model": "Movoder Disco 73",
+          "image": {
+            "source": "/src/assets/catalogue/products/synth/d'angelica-movoder-disco-73.jpg",
+            "alt": "D'Angelica Movoder Disco 73"
+          },
+          "price": "2129.00",
+          "quantity": 3,
+          "available": true,
+          "description": "The D'Angelica Movoder Disco 73 synthesizer seamlessly combines funky disco vibes with versatile components, becoming the musician's ultimate toolkit for crafting a wide spectrum of groovy sounds."
+        },
+
+        {
+          "id": "4006",
+          "category": "Synths",
+          "type": "Synth",
+          "brand": "LoveNation",
+          "model": "Vitto 6",
+          "image": {
+            "source": "/src/assets/catalogue/products/synth/lovenation-vitto6.jpg",
+            "alt": "LoveNation Vitto 6"
+          },
+          "price": "2879.00",
+          "quantity": 0,
+          "available": false,
+          "description": "The LoveNation Vitto 6 synthesizer marries a romantic ambiance with versatile capabilities, serving as the musician's ultimate toolkit for conjuring a diverse range of heartfelt melodies."
         }
       ]
     },
@@ -386,6 +578,54 @@
           "quantity": 1,
           "available": true,
           "description": "DK707's thunderous resonance and versatile components make it a drummer's ultimate toolkit for crafting diverse rhythms."
+        },
+
+        {
+          "id": "5004",
+          "category": "Drums",
+          "type": "Drums",
+          "brand": "Orage Country",
+          "model": "TB Signature",
+          "image": {
+            "source": "/src/assets/catalogue/products/drums/Orage-Country-tb-signature.jpg",
+            "alt": "Orage Country Trav Blaker Signature"
+          },
+          "price": "2449.00",
+          "quantity": 0,
+          "available": false,
+          "description": "The Orage Country Trav Blaker Signature battery packs a punch with its thunderous performance and versatile features, making it an essential tool for musicians seeking a wide range of musical possibilities."
+        },
+
+        {
+          "id": "5005",
+          "category": "Drums",
+          "type": "Drums",
+          "brand": "Connor",
+          "model": "Jungle Dynamite",
+          "image": {
+            "source": "/src/assets/catalogue/products/drums/connor-jungle-dynamite.jpg",
+            "alt": "Connor Jungle Dynamite"
+          },
+          "price": "1349.00",
+          "quantity": 3,
+          "available": true,
+          "description": "The Connor Jungle Dynamite battery delivers explosive performance and versatile features, making it the drummer's ultimate toolkit for crafting diverse rhythms."
+        },
+
+        {
+          "id": "5006",
+          "category": "Drums",
+          "type": "Drums",
+          "brand": "Tamaha",
+          "model": "Iceberg",
+          "image": {
+            "source": "/src/assets/catalogue/products/drums/tamaha-iceberg.jpg",
+            "alt": "Tamaha Iceberg"
+          },
+          "price": "1469.00",
+          "quantity": 2,
+          "available": true,
+          "description": "The Tamaha Iceberg drums offer an ice-cold blend of power and versatility, serving as the ultimate toolkit for drummers to craft a wide range of rhythms."
         }
       ]
     }

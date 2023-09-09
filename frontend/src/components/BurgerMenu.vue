@@ -1,15 +1,22 @@
 <template>
 
-    <div class="burgerMenu" :class="{ hidden: !isBurgerMenuVisible }">
-        <Logo :closeBurgerMenu="closeBurgerMenu" parentComponent="burgermenu" class="logo-burgermenu"/>
+    <div class="burgerMenu" :class="{ hidden2: !isBurgerMenuVisible }">
+        <Logo :closeBurgerMenu="closeBurgerMenuAndOverlay" parentComponent="burgermenu" class="logo-burgermenu"/>
         <Icon 
             icon="carbon:close" 
             width="40" 
             class="closeIcon"
-            @click="closeBurgerMenu"
+            @click="closeBurgerMenuAndOverlay"
         />
-        <Navbar :closeBurgerMenu="closeBurgerMenu" parentComponent="burgermenu"/>
+        <Navbar :closeBurgerMenu="closeBurgerMenuAndOverlay" parentComponent="burgermenu"/>
     </div>
+
+    <Overlay 
+        :showOverlay="isBurgerMenuVisible" 
+        class="pageOverlay" 
+        v-show="isBurgerMenuVisible" 
+    >
+    </Overlay>
     
 </template>
 
@@ -19,6 +26,7 @@
     import Navbar from '@/sub-components/Navbar.vue';
     import { Icon } from '@iconify/vue';
     import { ref, onMounted } from 'vue';
+    import Overlay from '@/components/Overlay.vue';
 
     // statut par défaut de la visibilité de burgerMenu 
     const isBurgerMenuVisible = ref(false);
@@ -27,6 +35,11 @@
     const closeBurgerMenu = () => {
         isBurgerMenuVisible.value = false;
     };
+
+    const closeBurgerMenuAndOverlay = () => {
+        window.dispatchEvent(new Event('hide-overlay2'));
+        closeBurgerMenu();
+    }
 
     // écoute evenment personnalisé (crée sur BurgerMenuIcon) pour réafficher le burgerMenu
     onMounted(() => {
@@ -41,7 +54,7 @@
     
     @import '@/assets/sass/variables.scss';
 
-    .hidden {
+    .hidden2 { // nommage en hidden2 pour eviter conflit avec hidden utilisé sur ShoppingCart
         transform: translateX(100%);
     }
     .burgerMenu {
@@ -56,10 +69,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: transform .3s ease-in-out; 
+        transition: transform .2s ease-in-out; 
 
         @media screen and (min-width: $breakpointTablet) {
-            width: 60vw;
+            width: 33.33%;
         }
         
         @media screen and (min-width: $breakpointDesktop) {

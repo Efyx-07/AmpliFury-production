@@ -14,6 +14,9 @@
         const showBurgerMenuEvent = new Event('show-burgerMenu');
         // déclenche l'évènement 'show-burgerMenu' sur l'objet window
         window.dispatchEvent(showBurgerMenuEvent);
+        const showOverlayEvent = new Event('show-overlay')
+        // déclenche l'événement 'show-overlay' sur l'objet window
+        window.dispatchEvent(showOverlayEvent);
     };
 
 </script>

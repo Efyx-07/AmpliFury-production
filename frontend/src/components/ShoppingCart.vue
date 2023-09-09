@@ -464,11 +464,6 @@
             }
 
         } 
-        .pageOverlay {
-            position: fixed;
-            z-index: -1;
-            right: 0;           
-        }
 
     }
     

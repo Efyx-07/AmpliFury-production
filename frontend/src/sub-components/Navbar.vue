@@ -67,7 +67,9 @@
 
     // récupération via props de la fonction closeBurgerMenu definie dans composant parent BurgerMenu
     const handleNavButtonClick = () => {
-        props.closeBurgerMenu();
+        if(props.parentComponent === 'burgermenu') { // n'active la fonction que quand le composant parent est BurgerMenu
+            props.closeBurgerMenu();
+        };
     };
   
 </script>

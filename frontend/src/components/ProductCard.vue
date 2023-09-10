@@ -40,9 +40,18 @@
                     />
 
                     <Icon 
-                        icon="cil:heart" 
+                        icon="clarity:heart-line" 
                         class="customerIcon"
                         :class="customerIconClass" 
+                        v-if="!addedToWishlist"
+                        @click="addToWishlist"
+                    />
+
+                    <Icon 
+                        icon="clarity:heart-solid" 
+                        class="customerIcon heart-solid"
+                        :class="customerIconClass" 
+                        v-else
                         @click="addToWishlist"
                     />
             

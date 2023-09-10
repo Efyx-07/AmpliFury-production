@@ -8,6 +8,7 @@
         :product="selectedProduct" 
         :showDescription="true" 
         :showEyeIcon="false"
+        :showDetails="true"
     />
 
     </div>
@@ -46,6 +47,7 @@
     .productPage {
         padding: 0 1rem;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         background: $gradientBackground;
@@ -58,8 +60,8 @@
         }
 
         @media screen and (min-width: $breakpointDesktop) {
-            padding: 0 4rem;
-            height: calc(100vh - 8rem);
+            padding: 8rem;
+            height: unset;
         }
     }
 </style>

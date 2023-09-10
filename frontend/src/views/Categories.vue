@@ -27,6 +27,7 @@
           :product="product" 
           :showDescription="false" 
           :showEyeIcon="true"
+          :showDetails="false"
         />
       </div>
     </div>

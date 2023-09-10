@@ -77,6 +77,35 @@
         </div>
 
     </div>
+
+    <div class="product-details_container" v-if="showDetails">
+        <hr>
+        <div class="detail-container">
+            <p>Item id:</p>
+            <p class="detail-info">{{ product.id }}</p>
+        </div>
+        <hr>
+        <div class="detail-container">
+            <p>Category:</p>
+            <p class="detail-info">{{ product.type }}</p>
+        </div>
+        <hr>
+        <div class="detail-container">
+            <p>Added to catalogue since:</p>
+            <p class="detail-info">{{ product.referenceDate }}</p>
+        </div>
+        <hr>
+        <div class="detail-container">
+            <p>Color:</p>
+            <p class="detail-info">{{ product.color }}</p>
+        </div>
+        <hr>
+        <div class="detail-container">
+            <p>Warranty:</p>
+            <p class="detail-info">1 year {{ product.brand }} / 3 years {{ storeName }}</p>
+        </div>
+        <hr>
+    </div>
     
 </template>
 
@@ -94,12 +123,14 @@
     const notAvailableMention = 'on demand';
     const addedToCartMention = 'Added to cart';
     const addedToWishlistMention = 'Added to wishlist';
+    const storeName = "Amplifury";
 
     // déefinition des propriétés
     const props = defineProps({
         product: Object, // représente les détails du produit
         showEyeIcon: Boolean, // contrôle l'affichage de l'icone 
         showDescription: Boolean, // contrôle l'affichage de la description
+        showDetails: Boolean, // contrôle l'affichage des détails
     });
 
     // utilise useRouter pour accéder à l'instance du router
@@ -193,5 +224,21 @@
     @import '@/assets/sass/ProductCard-Product.scss';
     @import '@/assets/sass/ProductCard-Categories.scss';
     
+    .product-details_container {
+        width: 69rem; 
+        margin-top: 3rem;
+        .detail-container {
+            display: flex;
+            justify-content: space-between;
+
+            p {
+                margin: 0;
+                font-size: 1.2rem;
+            }
+            .detail-info {
+                font-weight: 600;
+            }
+        }
+    }
 
 </style>

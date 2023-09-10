@@ -115,15 +115,16 @@
     import { useRouter } from 'vue-router'; // utilise useRouter pour la navigation 
     import { useRoute } from 'vue-router'; // importe la fonction useRoute pour accéder aux informations de la route
     import { useCatalogueStore } from '@/stores/CatalogueStore'; // importe les datas du catalogue géré par le store Pinia
+    import { useGlobalDataStore } from '@/stores/GlobalDataStore';
     import { computed } from 'vue';
 
-    // datas
-    const currency = '$'; 
+    // datas 
     const availableMention = 'in stock'; 
     const notAvailableMention = 'on demand';
     const addedToCartMention = 'Added to cart';
     const addedToWishlistMention = 'Added to wishlist';
-    const storeName = "Amplifury";
+    const { storeName } = useGlobalDataStore(); // récupère le nom de la boutique à partir du store
+    const { currency } = useGlobalDataStore(); // récupère la devise utilisée par la boutique à partir du store
 
     // déefinition des propriétés
     const props = defineProps({

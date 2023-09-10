@@ -26,12 +26,16 @@
 
 <script setup>
 
+    import { useGlobalDataStore } from '@/stores/GlobalDataStore';
+
+    // datas
     const image = {
         source: "/src/assets/decoration/monkey-nobg.png",
         alt: "musician-monkey in forest"
     };
+    const { storeName } = useGlobalDataStore();
     const textTitle = "ENVIRONMENT CARE";
-    const text = "AmpliFury is deeply committed to environmental care. Partnering exclusively with brands that share this ethos, AmpliFury ensures its products resonate with sustainability. Understanding the significance of wood in instrument crafting, the company also takes a bold step by planting a tree for every instrument sold, contributing to the fight against deforestation.";
+    const text = `${ storeName } ` + "is deeply committed to environmental care. Partnering exclusively with brands that share this ethos, " + `${ storeName } ` + "ensures its products resonate with sustainability. Understanding the significance of wood in instrument crafting, the company also takes a bold step by planting a tree for every instrument sold, contributing to the fight against deforestation.";
 
 </script>
 

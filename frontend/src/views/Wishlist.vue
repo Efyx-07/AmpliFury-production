@@ -62,6 +62,7 @@
 <script setup>
 
     import { useCatalogueStore } from '@/stores/CatalogueStore';
+    import { useGlobalDataStore } from '@/stores/GlobalDataStore';
     import { computed } from 'vue';
     import { Icon } from '@iconify/vue';
     import { useRouter } from 'vue-router'; // utilise useRouter pour la navigation 
@@ -71,7 +72,7 @@
     const emptyWishlistMention = "Your wishlist is empty";
     const addAllToCartButtonMention = "Add all to cart";
     const clearWishlistButtonMention = "Clear wishlist";
-    const currency = '$';
+    const { currency } = useGlobalDataStore(); // récupère la devise utilisée par la boutique à partir du store
 
 
     //obtention de l'instance du store CatalogueStore

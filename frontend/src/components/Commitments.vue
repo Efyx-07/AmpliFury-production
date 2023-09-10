@@ -27,15 +27,18 @@
 <script setup>
 
     import { Icon } from '@iconify/vue';
+    import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 
     //datas
+    const { storeName } = useGlobalDataStore(); // récupère le nom de la boutique à partir du store
+    const { currency } = useGlobalDataStore(); // récupère la devise utilisée par la boutique à partir du store
     const sectionTitle = "WHAT WE DO";
-    const mainText = '"At AmpliFury, we\'re passionate about music. As an e-shop specializing in musical instruments, we offer a wide range of high-quality guitars, drums, keyboards, and more. Whether you\'re a beginner or a seasoned musician, AmpliFury is your ultimate destination to express and amplify your musical passion."'
+    const mainText = '"At ' + `${ storeName }` + ', we\'re passionate about music. As an e-shop specializing in musical instruments, we offer a wide range of high-quality guitars, drums, keyboards, and more. Whether you\'re a beginner or a seasoned musician, ' + `${ storeName } ` + 'is your ultimate destination to express and amplify your musical passion."'
 
     const deals = [
         {
             title: "Free shipping",
-            description: "Now you can shop for it and enjoy a good deal on AmpliFury store. Starting from 149 $.",
+            description: "Now you can shop for it and enjoy a good deal on " + `${ storeName } ` +  "store. Starting from 149 " + `${ currency }` + ".",
             icon: "la:shipping-fast"
         },
         {

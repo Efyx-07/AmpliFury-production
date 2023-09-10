@@ -1,15 +1,16 @@
 <template>
 
     <div class="copyright-container">
-        <p class="copyright">{{copyrightLogo}} {{ currentYear }} <span>{{ companyName }}</span></p>
+        <p class="copyright">{{copyrightLogo}} {{ currentYear }} <span>{{ storeName }}</span></p>
     </div>
 
 </template>
 
 <script setup>
+    import { useGlobalDataStore } from '@/stores/GlobalDataStore';
 
     //datas
-    const companyName = 'Amplifury';
+    const { storeName } = useGlobalDataStore(); // récupère le nom de la boutique à partir du store
     const copyrightLogo = '©'
     const currenDate = new Date();    
     const currentYear = currenDate.getFullYear();

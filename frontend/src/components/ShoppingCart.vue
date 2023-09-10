@@ -120,13 +120,14 @@
 
     import { Icon } from '@iconify/vue';
     import { useCatalogueStore } from '@/stores/CatalogueStore';
+    import { useGlobalDataStore } from '@/stores/GlobalDataStore';
     import { ref, onMounted, computed } from 'vue';
     import Overlay from '@/components/Overlay.vue';
 
     // datas
     
     const shoppingCartTitle = 'Your shopping Cart';
-    const currency = '$';
+    const { currency } = useGlobalDataStore(); // récupère la devise utilisée par la boutique à partir du store
     const emptyCart = {
             mention: 'Your cart is empty',
             buttonMention: 'Keep browsing',

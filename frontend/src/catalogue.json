@@ -21,7 +21,10 @@
           "quantity": 5,
           "available": true,
           "description": "A versatile classic with a modern twist, the M101 boasts rich tones and effortless playability.",
-          "referenceDate": "July 2019",
+          "referenceDate": {
+            "month": "July",
+            "year": "2019"
+          },
           "color": "Blue"
         },
 
@@ -39,7 +42,10 @@
           "quantity": 3,
           "available": true,
           "description": "Taking it up a notch, M102 adds enhanced sustain and dynamic response for the discerning player",
-          "referenceDate": "September 2021",
+          "referenceDate": {
+            "month": "September",
+            "year": "2020"
+          },
           "color": "Blue"
         },
 
@@ -57,7 +63,10 @@
           "quantity": 2,
           "available": true,
           "description": "The Lep Saul offers vintage charm with a hint of edge, delivering well-defined tones and impeccable resonance.",
-          "referenceDate": "October 2018",
+          "referenceDate": {
+            "month": "October",
+            "year": "2020"
+          },
           "color": "Red"
         },
 
@@ -75,7 +84,10 @@
           "quantity": 0,
           "available": false,
           "description": "Unconventional and bold, the Melody Faker yields unique soundscapes perfect for experimental musicians.",
-          "referenceDate": "July 2022",
+          "referenceDate": {
+            "month": "July",
+            "year": "2021"
+          },
           "color": "White"
         },
 
@@ -93,7 +105,10 @@
           "quantity": 1,
           "available": true,
           "description": "A paragon of elegance, the Lucilla's warm, balanced sound complements its exquisite design.",
-          "referenceDate": "June 2023",
+          "referenceDate": {
+            "month": "June",
+            "year": "2023"
+          },
           "color": "Green, Yellow"
         },
 
@@ -111,7 +126,10 @@
           "quantity": 0,
           "available": false,
           "description": "Crafted in collaboration, the GMK Signature emanates powerful, clear tones, meeting the demands of modern virtuosos.",
-          "referenceDate": "December 2021",
+          "referenceDate": {
+            "month": "August",
+            "year": "2023"
+          },
           "color": "Purple, Black"
         }
       ]
@@ -138,7 +156,10 @@
           "quantity": 5,
           "available": true,
           "description": "Empowering bassists with versatile tones, J37 offers a sleek design and impeccable playability.",
-          "referenceDate": "December 2016",
+          "referenceDate": {
+            "month": "December",
+            "year": "2016"
+          },
           "color": "Sunburst"
         },
 
@@ -156,7 +177,10 @@
           "quantity": 0,
           "available": false,
           "description": "Thunderous lows and articulate highs define the Blizzard, while its ergonomic build ensures comfort during every performance.",
-          "referenceDate": "May 2023",
+          "referenceDate": {
+            "month": "May",
+            "year": "2023"
+          },
           "color": "Pink, Blue"
         },
 
@@ -174,7 +198,10 @@
           "quantity": 1,
           "available": true,
           "description": "The signature Mycourtney delivers punchy, iconic bass sound that's both captivating and sonically rich.",
-          "referenceDate": "March 2018",
+          "referenceDate": {
+            "month": "March",
+            "year": "2018"
+          },
           "color": "Green, Yellow"
         },
 
@@ -192,7 +219,10 @@
           "quantity": 2,
           "available": true,
           "description": "The Epiklone Marcus Thriller electric bass guitar delivers a thrilling combination of powerful bass tones and versatile playability, making it the bassist's ultimate toolkit for laying down a wide range of groovy rhythms.",
-          "referenceDate": "October 2020",
+          "referenceDate": {
+            "month": "October",
+            "year": "2020"
+          },
           "color": "Red"
         },
 
@@ -210,7 +240,10 @@
           "quantity": 0,
           "available": false,
           "description": "The Ivarez Thunder electric bass guitar electrifies the stage with its thunderous tones and versatile playability, serving as the bassist's ultimate toolkit for crafting a diverse range of impactful basslines.",
-          "referenceDate": "April 2023",
+          "referenceDate": {
+            "month": "April",
+            "year": "2023"
+          },
           "color": "Rainbow"
         },
 
@@ -228,7 +261,10 @@
           "quantity": 2,
           "available": true,
           "description": "The Ivarez Hurricane electric bass guitar storms the music scene with its powerful tones and versatile playability, making it the bassist's ultimate toolkit for delivering a wide range of impactful and dynamic basslines.",
-          "referenceDate": "March 2023",
+          "referenceDate": {
+            "month": "May",
+            "year": "2023"
+          },
           "color": "Rainbow"
         }
       ]
@@ -255,7 +291,10 @@
           "quantity": 5,
           "available": true,
           "description": "Embrace the spirit of the Southwest with the Arizona's resonant tones and intricate inlays, a tribute to acoustic beauty.",
-          "referenceDate": "July 2023",
+          "referenceDate": {
+            "month": "July",
+            "year": "2017"
+          },
           "color": "Classic wood"
         },
 
@@ -273,7 +312,10 @@
           "quantity": 0,
           "available": false,
           "description": "The Velvet's mellow warmth and meticulous craftsmanship create a soothing melody in the hands of any guitarist.",
-          "referenceDate": "January 2023",
+          "referenceDate": {
+            "month": "January",
+            "year": "2023"
+          },
           "color": "Clear wood"
         },
 
@@ -291,7 +333,10 @@
           "quantity": 2,
           "available": true,
           "description": "Unleash your inner star with Girlstar's vibrant sound and artistic details, a harmonious blend of style and melody.",
-          "referenceDate": "July 2022",
+          "referenceDate": {
+            "month": "July",
+            "year": "2022"
+          },
           "color": "Pink"
         },
 
@@ -309,7 +354,10 @@
           "quantity": 12,
           "available": true,
           "description": "The Rainbow UkukukuLele ukulele harmoniously blends vibrant colors with versatile playability, making it the musician's ultimate toolkit for strumming a diverse array of cheerful melodies.",
-          "referenceDate": "February 2017",
+          "referenceDate": {
+            "month": "January",
+            "year": "2017"
+          },
           "color": "Sunburst wood"
         },
 
@@ -327,7 +375,10 @@
           "quantity": 2,
           "available": true,
           "description": "The Bender BlackyFolk acoustic guitar combines a dark, brooding tone with versatile playability, making it the guitarist's ultimate toolkit for crafting a wide range of soulful melodies.",
-          "referenceDate": "August 2023",
+          "referenceDate": {
+            "month": "August",
+            "year": "2023"
+          },
           "color": "Black"
         },
 
@@ -345,7 +396,10 @@
           "quantity": 0,
           "available": false,
           "description": "The Matakine Nature Revenge acoustic guitar seamlessly merges natural tones with versatile playability, becoming the guitarist's ultimate toolkit for creating a wide spectrum of organic and powerful melodies.",
-          "referenceDate": "September 2023",
+          "referenceDate": {
+            "month": "September",
+            "year": "2022"
+          },
           "color": "Green"
         }
       ]
@@ -372,7 +426,10 @@
           "quantity": 3,
           "available": true,
           "description": "From clean whispers to roaring thunder, the HSR9902 amp defines versatility with its range of tones and dynamic controls.",
-          "referenceDate": "October 2016",
+          "referenceDate": {
+            "month": "July",
+            "year": "2021"
+          },
           "color": "Brown"
         },
 
@@ -390,7 +447,10 @@
           "quantity": 0,
           "available": false,
           "description": "Unleash a sonic onslaught with the Headbanger's fierce distortion, embodying the iconic Marshiall power and punch.",
-          "referenceDate": "October 2017",
+          "referenceDate": {
+            "month": "October",
+            "year": "2021"
+          },
           "color": "Brown, Black"
         },
 
@@ -408,7 +468,10 @@
           "quantity": 1,
           "available": true,
           "description": "The Vortex222 amp swirls your sound into a cyclone of effects, delivering an otherworldly experience for experimental musicians.",
-          "referenceDate": "December 2017",
+          "referenceDate": {
+            "month": "December",
+            "year": "2017"
+          },
           "color": "Grey, Black"
         },
 
@@ -426,7 +489,10 @@
           "quantity": 2,
           "available": true,
           "description": "The Masta Braggie Brag' 469 guitar amplifier delivers a thunderous sound and versatile capabilities, serving as the guitarist's ultimate toolkit for creating a wide spectrum of tones.",
-          "referenceDate": "June 2019",
+          "referenceDate": {
+            "month": "July",
+            "year": "2019"
+          },
           "color": "Brown"
         },
 
@@ -444,7 +510,10 @@
           "quantity": 0,
           "available": false,
           "description": "The Yellow HoneyMoon guitar amplifier combines a warm, honeyed tone with versatile features, making it the guitarist's ultimate toolkit for crafting a wide range of sonic experiences.",
-          "referenceDate": "July 2023",
+          "referenceDate": {
+            "month": "July",
+            "year": "2023"
+          },
           "color": "Yellow"
         },
 
@@ -462,7 +531,10 @@
           "quantity": 4,
           "available": true,
           "description": "The Pinkstar V7 guitar amplifier blends a rich, pink-tinged tone with versatile features, serving as the guitarist's ultimate toolkit for sculpting a diverse array of sonic landscapes.",
-          "referenceDate": "August 2023",
+          "referenceDate": {
+            "month": "August",
+            "year": "2023"
+          },
           "color": "Pink"
         }
       ]
@@ -489,7 +561,10 @@
           "quantity": 1,
           "available": true,
           "description": "Navigate sonic realms with MT20's modular design, offering boundless possibilities for sound sculptors and explorers.",
-          "referenceDate": "October 2016",
+          "referenceDate": {
+            "month": "July",
+            "year": "2017"
+          },
           "color": "Black"
         },
 
@@ -507,7 +582,10 @@
           "quantity": 4,
           "available": true,
           "description": "Juny 70 resurrects vintage allure, its analog heart throbbing with nostalgia and modern electronic ingenuity.",
-          "referenceDate": "May 2017",
+          "referenceDate": {
+            "month": "May",
+            "year": "2019"
+          },
           "color": "Black"
         },
 
@@ -525,7 +603,10 @@
           "quantity": 0,
           "available": false,
           "description": "Uzi16's digital prowess unleashes a symphony of futuristic tones, perfect for crafting electronic landscapes and beats.",
-          "referenceDate": "November 2020",
+          "referenceDate": {
+            "month": "November",
+            "year": "2020"
+          },
           "color": "White"
         },
 
@@ -543,7 +624,10 @@
           "quantity": 1,
           "available": true,
           "description": "The Masturia Ivy 1236 synthesizer fuses lush soundscapes with versatile components, making it the musician's ultimate toolkit for creating an extensive range of musical textures.",
-          "referenceDate": "October 2022",
+          "referenceDate": {
+            "month": "October",
+            "year": "2020"
+          },
           "color": "Black"
         },
 
@@ -561,7 +645,10 @@
           "quantity": 3,
           "available": true,
           "description": "The D'Angelica Movoder Disco 73 synthesizer seamlessly combines funky disco vibes with versatile components, becoming the musician's ultimate toolkit for crafting a wide spectrum of groovy sounds.",
-          "referenceDate": "July 2023",
+          "referenceDate": {
+            "month": "July",
+            "year": "2023"
+          },
           "color": "Blue"
         },
 
@@ -579,7 +666,10 @@
           "quantity": 0,
           "available": false,
           "description": "The LoveNation Vitto 6 synthesizer marries a romantic ambiance with versatile capabilities, serving as the musician's ultimate toolkit for conjuring a diverse range of heartfelt melodies.",
-          "referenceDate": "September 2023",
+          "referenceDate": {
+            "month": "September",
+            "year": "2023"
+          },
           "color": "Purple"
         }
       ]
@@ -605,7 +695,12 @@
           "price": "3759.00",
           "quantity": 2,
           "available": true,
-          "description": "Unleash rhythmic fury with Devilkit's precision and power, designed to ignite stages with its commanding presence."
+          "description": "Unleash rhythmic fury with Devilkit's precision and power, designed to ignite stages with its commanding presence.",
+          "referenceDate": {
+            "month": "March",
+            "year": "2021"
+          },
+          "color": "red"
         },
 
         {
@@ -622,7 +717,10 @@
           "quantity": 0,
           "available": false,
           "description": "The Manchester kit sparkles with clarity and depth, capturing every drumbeat with a brilliant fusion of tradition and innovation.",
-          "referenceDate": "October 2021",
+          "referenceDate": {
+            "month": "October",
+            "year": "2021"
+          },
           "color": "White"
         },
 
@@ -640,7 +738,10 @@
           "quantity": 1,
           "available": true,
           "description": "DK707's thunderous resonance and versatile components make it a drummer's ultimate toolkit for crafting diverse rhythms.",
-          "referenceDate": "October 2021",
+          "referenceDate": {
+            "month": "October",
+            "year": "2021"
+          },
           "color": "Black"
         },
 
@@ -658,7 +759,10 @@
           "quantity": 0,
           "available": false,
           "description": "The Orage Country Trav Blaker Signature battery packs a punch with its thunderous performance and versatile features, making it an essential tool for musicians seeking a wide range of musical possibilities.",
-          "referenceDate": "June 2022",
+          "referenceDate": {
+            "month": "June",
+            "year": "2022"
+          },
           "color": "Pink"
         },
 
@@ -676,7 +780,10 @@
           "quantity": 3,
           "available": true,
           "description": "The Connor Jungle Dynamite battery delivers explosive performance and versatile features, making it the drummer's ultimate toolkit for crafting diverse rhythms.",
-          "referenceDate": "May 2023",
+          "referenceDate": {
+            "month": "May",
+            "year": "2023"
+          },
           "color": "Green"
         },
 
@@ -694,7 +801,10 @@
           "quantity": 2,
           "available": true,
           "description": "The Tamaha Iceberg drums offer an ice-cold blend of power and versatility, serving as the ultimate toolkit for drummers to craft a wide range of rhythms.",
-          "referenceDate": "September 2023",
+          "referenceDate": {
+            "month": "September",
+            "year": "2023"
+          },
           "color": "Blue"
         }
       ]

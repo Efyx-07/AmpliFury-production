@@ -92,7 +92,7 @@
         <hr>
         <div class="detail-container">
             <p>Added to catalogue since:</p>
-            <p class="detail-info">{{ product.referenceDate }}</p>
+            <p class="detail-info">{{ product.referenceDate.month }} {{ product.referenceDate.year }}</p>
         </div>
         <hr>
         <div class="detail-container">

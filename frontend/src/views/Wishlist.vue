@@ -10,7 +10,8 @@
 
         <!-- liste articles ajoutés à la wishlist -->
         <ul class="wishlist-items">
-            <li v-for="item in wishlistItems " :key="item.id">
+            <li v-for="(item, index) in wishlistItems " :key="item.id">
+                <h1>0{{ index + 1 }}</h1>
                 <img 
                     :src="item.image.source" 
                     :alt="item.image.alt"
@@ -43,6 +44,11 @@
                 />
             </li>
         </ul>
+
+        <!-- à lier au composant login quand il sera créé -->
+        <div class="loginButton_container">
+            <p>Log in to your account to save your wishlist and access from all your devices. </p>
+        </div>
 
         <!-- contient les boutons permettant de vider la wishlist soit en ajoutant tout au panier soit en supprimant tout de la wishlist -->
         <div class="wishlist-buttons_container" v-if="wishlistItemCount > 0">

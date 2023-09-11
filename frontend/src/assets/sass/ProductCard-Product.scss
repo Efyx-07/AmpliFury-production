@@ -178,6 +178,12 @@
         width: 69rem; 
     }
 
+    hr {
+        height: 1px;
+        background: rgba($darkColor, .2);
+        border: none;
+    }
+
     .detail-container {
         display: flex;
         justify-content: space-between;

@@ -1,7 +1,7 @@
 <template>
 
     <router-link to="/wishlist" class="wishlistIcon_container">
-        <Icon icon="cil:heart" class="customerIcon wishlistIcon"/>
+        <Icon icon="clarity:heart-line" class="customerIcon wishlistIcon"/>
         <div class="wishlistIcon-badge" v-if="wishlistItemCount > 0">
             <p class="incrementation">{{ wishlistItemCount }}</p>
         </div>

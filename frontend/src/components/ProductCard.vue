@@ -115,15 +115,7 @@
         </div>
         <hr>
     </div>
-
-    <!-- s'affiche quand un produit est ajouté à la wishlist. :product passe les infos produit à la modale -->
-    <AddedToWishlistModal 
-        v-if="isAddingToWishlist"
-        :product="product" 
-    />
-
-
-    
+   
 </template>
 
 <script setup>
@@ -134,7 +126,6 @@
     import { useCatalogueStore } from '@/stores/CatalogueStore'; // importe les datas du catalogue géré par le store Pinia
     import { useGlobalDataStore } from '@/stores/GlobalDataStore';
     import { computed, ref } from 'vue';
-    import AddedToWishlistModal from '@/components/AddedToWishlistModal.vue'
 
     // datas 
     const availableMention = 'in stock'; 
@@ -173,7 +164,7 @@
     const showImageClickable = route.name === 'Categories' || route.name === 'Category'; 
 
     // obtention instance store CatalogueStore
-    const store = useCatalogueStore(); 
+    const store = useCatalogueStore();
 
     // ajout de l'article dans le panier
     const addToCart = () => {
@@ -191,6 +182,8 @@
         if (addedToWishlist.value) { // retire l'article de la wishlist quand ajouté au panier
             store.removeFromWishlist(props.product);
         };
+
+        isAddingToCart.value = true;
     };
 
     // vérifie si l'article est dans le panier et retourne un booléen 
@@ -198,12 +191,9 @@
         return store.cartItems.some(item => item.id === props.product.id);
     });
 
-    const isAddingToWishlist = ref(false);
-
     // ajout de l'article dans la wishlist
     const addToWishlist = () => {
         store.addToWishlist(props.product);
-        isAddingToWishlist.value = true;
     };
 
     // vérifie si l'article est dans la wishlist et retourne un booléen 

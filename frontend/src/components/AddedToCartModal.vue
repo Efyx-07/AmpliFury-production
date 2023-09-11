@@ -5,10 +5,6 @@
 
             <div class="addNotificationModal-content">
                 <p class="notif-mention">{{ props.product.brand }} {{ props.product.model }} {{notifMentionWishlist}}</p>
-                <router-link to="/wishlist" class="button"> <!-- relie le bouton à la route Wishlist -->
-                    <p>{{ buttonText }}</p>
-                    <Icon icon="system-uicons:arrow-up" :rotate="1" class="button1-arrow"/>
-                </router-link>
             </div>
 
             <Icon 
@@ -28,8 +24,7 @@
     import { ref } from 'vue';
 
     //datas 
-    const notifMentionWishlist = 'has been added to your wishlist.';
-    const buttonText = 'View your wishlist';
+    const notifMentionWishlist = 'is now (nbre de fois) in your shopping cart.';
 
     const props = defineProps ({
         product: Object,

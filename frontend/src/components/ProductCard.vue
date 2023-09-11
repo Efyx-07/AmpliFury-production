@@ -125,7 +125,7 @@
     import { useRoute } from 'vue-router'; // importe la fonction useRoute pour accéder aux informations de la route
     import { useCatalogueStore } from '@/stores/CatalogueStore'; // importe les datas du catalogue géré par le store Pinia
     import { useGlobalDataStore } from '@/stores/GlobalDataStore';
-    import { computed, ref } from 'vue';
+    import { computed } from 'vue';
 
     // datas 
     const availableMention = 'in stock'; 
@@ -236,22 +236,5 @@
 
     @import '@/assets/sass/ProductCard-Product.scss';
     @import '@/assets/sass/ProductCard-Categories.scss';
-    
-    .product-details_container {
-        width: 69rem; 
-        margin-top: 3rem;
-        .detail-container {
-            display: flex;
-            justify-content: space-between;
-
-            p {
-                margin: 0;
-                font-size: 1.2rem;
-            }
-            .detail-info {
-                font-weight: 600;
-            }
-        }
-    }
 
 </style>

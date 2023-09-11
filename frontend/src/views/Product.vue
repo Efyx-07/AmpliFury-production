@@ -45,23 +45,20 @@
 
     @import '@/assets/sass/variables.scss';
     .productPage {
-        padding: 0 1rem;
+        padding: 2rem 1rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         background: $gradientBackground;
-        height: calc(100vh - 4rem);
 
 
         @media screen and (min-width: $breakpointTablet) {
-            padding: 0 2rem;
-            height: calc(100vh - 6rem);
+            padding: 4rem 2rem;
         }
 
         @media screen and (min-width: $breakpointDesktop) {
             padding: 8rem;
-            height: unset;
         }
     }
 </style>

@@ -168,5 +168,51 @@
             color: #CA0B0B;
         }
     }
-
 }
+
+.product-details_container {
+    width: 100%; 
+    margin-top: 2rem;
+
+    @media screen and (min-width: $breakpointDesktop) {
+        width: 69rem; 
+    }
+
+    .detail-container {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            margin: 0;
+            font-size: clamp(.9rem, 3vw, 3vw);
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: 1.2rem;
+            }
+        }
+        .detail-info {
+            font-weight: 600;
+        }
+    }
+}
+
+
+
+/*
+.product-details_container {
+    width: 69rem; 
+    margin-top: 3rem;
+    .detail-container {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .detail-info {
+            font-weight: 600;
+        }
+    }
+}
+*/

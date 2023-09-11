@@ -115,6 +115,14 @@
         </div>
         <hr>
     </div>
+
+    <!-- s'affiche quand un produit est ajouté à la wishlist. :product passe les infos produit à la modale -->
+    <AddedToWishlistModal 
+        v-if="isAddingToWishlist"
+        :product="product" 
+    />
+
+
     
 </template>
 
@@ -125,7 +133,8 @@
     import { useRoute } from 'vue-router'; // importe la fonction useRoute pour accéder aux informations de la route
     import { useCatalogueStore } from '@/stores/CatalogueStore'; // importe les datas du catalogue géré par le store Pinia
     import { useGlobalDataStore } from '@/stores/GlobalDataStore';
-    import { computed } from 'vue';
+    import { computed, ref } from 'vue';
+    import AddedToWishlistModal from '@/components/AddedToWishlistModal.vue'
 
     // datas 
     const availableMention = 'in stock'; 
@@ -189,10 +198,13 @@
         return store.cartItems.some(item => item.id === props.product.id);
     });
 
+    const isAddingToWishlist = ref(false);
+
     // ajout de l'article dans la wishlist
     const addToWishlist = () => {
         store.addToWishlist(props.product);
-    }
+        isAddingToWishlist.value = true;
+    };
 
     // vérifie si l'article est dans la wishlist et retourne un booléen 
     const addedToWishlist = computed(() =>{

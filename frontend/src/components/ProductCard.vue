@@ -141,6 +141,7 @@
         showEyeIcon: Boolean, // contrôle l'affichage de l'icone 
         showDescription: Boolean, // contrôle l'affichage de la description
         showDetails: Boolean, // contrôle l'affichage des détails
+        class: String, // défini une prop pour les classes conditionnelles
     });
 
     // utilise useRouter pour accéder à l'instance du router

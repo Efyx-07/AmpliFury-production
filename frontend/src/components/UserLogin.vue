@@ -38,14 +38,14 @@
 
             <div class="toRegister_container">
                 <p>{{ toRegisterMention }}</p>
-                <div class="toRegister-button_container">
+                <router-link to="/register" class="toRegister-button_container" @click="closeUserLoginAndOverlay">
                     <p>{{ toRegisterButtonMention }}</p>
                     <Icon 
                         icon="system-uicons:arrow-up" 
                         :rotate="1" 
                         class="arrow"
                     />
-                </div>
+                </router-link>
             </div>
         </div>
         
@@ -72,7 +72,7 @@
     const {inputMailPlaceholder} = useGlobalDataStore();
     const {inputPasswordPlaceholder} = useGlobalDataStore();
     const checkboxMention = "Keep me logged in";
-    const loginButtonMention = "Login";
+    const {loginButtonMention} = useGlobalDataStore();
     const toRegisterMention = "Are you new here?";
     const toRegisterButtonMention = "Register"
 

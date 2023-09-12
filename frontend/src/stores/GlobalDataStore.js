@@ -8,6 +8,7 @@ export const useGlobalDataStore = defineStore('globalData', {
         availableMention: 'in stock', // declaration produit disponible
         notAvailableMention: 'on demand', // declaration produit non-disponible
         inputMailPlaceholder: 'Your mail address', // declaration placeholder pour input mail
-        inputPasswordPlaceholder: 'Password' // declaration placeholder pour input password
+        inputPasswordPlaceholder: 'Password', // declaration placeholder pour input password
+        loginButtonMention: 'Login' // declaration mention pour se connecter
     }),
 });

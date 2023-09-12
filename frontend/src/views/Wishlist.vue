@@ -69,9 +69,9 @@
         </ul>
 
         <div class="wishlist-buttons_container">
-            <!-- à lier au composant login quand il sera créé -->
-            <div class="loginButton_container" v-if="wishlistItemCount > 0">
-                <p><span>Log in </span>to your account to save your wishlist and access from all your devices. </p>
+            <!-- ouvre la modale UserLogin -->
+            <div class="loginButton_container" v-if="wishlistItemCount > 0" @click="toggleUserLoginVisibility">
+                <p><span>{{ loginButtonMention }} </span>{{ loginButtonMentionPart2 }}</p>
             </div>
 
             <!-- contient les boutons permettant de vider la wishlist soit en ajoutant tout au panier soit en supprimant tout de la wishlist -->
@@ -122,6 +122,8 @@
     const { currency } = useGlobalDataStore(); // récupère la devise utilisée par la boutique à partir du store
     const { availableMention } = useGlobalDataStore(); // récupère le mention produit disponible à partir du store
     const { notAvailableMention } = useGlobalDataStore(); // récupère le mention produit non-disponible à partir du store
+    const {loginButtonMention} = useGlobalDataStore();
+    const loginButtonMentionPart2 = "to your account to save your wishlist and access from all your devices."
 
 
     //obtention de l'instance du store CatalogueStore
@@ -179,7 +181,16 @@
             productId: item.id // parametres de la route - transmet l'ID du produit selectionné
            } 
         });
-    }
+    };
+
+    // récupère l'évènement personnalisé créé dans UserIcon et permet l'ouverture de la modale UserLogin
+    const toggleUserLoginVisibility = () => {
+        const showUserLoginEvent = new Event('show-userLogin');
+        window.dispatchEvent(showUserLoginEvent);
+
+        const showOverlayEvent = new Event('show-overlay');
+        window.dispatchEvent(showOverlayEvent);
+    };
 
     // récupère les données stockées dans le local storage
     const savedWishlistItems = JSON.parse(localStorage.getItem('wishlistItems'));

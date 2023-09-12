@@ -137,8 +137,16 @@
         return useCatalogueStore().wishlistItems.length;
     });
 
-     // retire les articles du panier 
-     const removeFromWishlist = (item) => {
+    // permet le retour vers le haut de page
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    };
+
+    // retire les articles du panier 
+    const removeFromWishlist = (item) => {
         catalogueStore.removeFromWishlist(item);
     };
 
@@ -148,14 +156,16 @@
         catalogueStore.removeFromWishlist(item)
     };
 
-    // ajoute tous les articles de la wishlist au panier
+    // ajoute tous les articles de la wishlist au panier et renvoie en haut de la page
     const addAllFromWishlistToCart = () => {
         catalogueStore.addAllFromWishlistToCart();
+        scrollToTop();
     };
 
-    // supprime tous les articles de la wishlist 
+    // supprime tous les articles de la wishlist et renvoie en haut de la page
     const clearWishlist = () => {
         catalogueStore.clearWishlist();
+        scrollToTop();
     };
 
     // utilise useRouter pour accéder à l'instance du router

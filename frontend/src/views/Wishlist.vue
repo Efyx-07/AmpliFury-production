@@ -31,11 +31,13 @@
                         >
                     </div>
                     <div class="wishlistItem-card_infos-container">
-                        <div class="product-brand-and-model_container">
-                            <p class="product-brand">{{ item.brand }}</p>
-                            <p class="product-model">{{ item.model }}</p>
+                        <div class="product-nameAndPrice_container">
+                            <div class="product-brand-and-model_container">
+                                <p class="product-brand">{{ item.brand }}</p>
+                                <p class="product-model">{{ item.model }}</p>
+                            </div>
+                            <p class="product-price">{{ item.price }} {{ currency }}</p>
                         </div>
-                        <p class="product-price">{{ item.price }} {{ currency }}</p>
                         <div class="wishlistItem-card_line-container">
                             <p class="inStock" v-if="item.available">{{ availableMention }}</p>
                             <p class="onDemand" v-else>{{ notAvailableMention }}</p>
@@ -65,22 +67,33 @@
             </li>
         </ul>
 
-        <!-- à lier au composant login quand il sera créé -->
-        <div class="loginButton_container" v-if="wishlistItemCount > 0">
-            <p>Log in to your account to save your wishlist and access from all your devices. </p>
-        </div>
-
-        <!-- contient les boutons permettant de vider la wishlist soit en ajoutant tout au panier soit en supprimant tout de la wishlist -->
-        <div class="wishlist-buttons_container" v-if="wishlistItemCount > 0">
-            <div class="addAllToCart-button" @click="addAllFromWishlistToCart">
-                <p>{{ addAllToCartButtonMention }}</p>
+        <div class="wishlist-buttons_container">
+            <!-- à lier au composant login quand il sera créé -->
+            <div class="loginButton_container" v-if="wishlistItemCount > 0">
+                <p>Log in to your account to save your wishlist and access from all your devices. </p>
             </div>
-            <div class="clearWishlist-button" @click="clearWishlist">
-                <p>{{ clearWishlistButtonMention }}</p>
+
+            <!-- contient les boutons permettant de vider la wishlist soit en ajoutant tout au panier soit en supprimant tout de la wishlist -->
+            <div class="action-buttons_container" v-if="wishlistItemCount > 0">
+                <div class="addAllToCart-button button" @click="addAllFromWishlistToCart">
+                    <p>{{ addAllToCartButtonMention }}</p>
+                    <Icon 
+                        icon="system-uicons:arrow-up"
+                        :rotate="1" 
+                        class="arrow"
+                    />
+                </div>
+                <div class="clearWishlist-button button" @click="clearWishlist">
+                    <p>{{ clearWishlistButtonMention }}</p>
+                    <Icon 
+                        icon="system-uicons:arrow-up"
+                        :rotate="1" 
+                        class="arrow"
+                    />
+                </div>
             </div>
         </div>
-
-
+        
     </div>
     
 </template>
@@ -177,7 +190,7 @@
       gap: 2rem;
       background: $gradientBackground;
       position: relative;
-      height: 80vh;
+      min-height: 80vh;
 
       @media screen and (min-width: $breakpointTablet) {
         padding: 2rem 2rem 4rem 2rem;
@@ -258,6 +271,131 @@
             }
         }
 
+      }
+      .wishlist-items {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        list-style-type: none;
+        width: 100%;
+        padding-left: 0;
+
+        li {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+
+            @media screen and (min-width: 375px) {
+                flex-wrap: nowrap;
+            }
+            .wishlistItem-card {
+                display: flex;
+                background: $ultraLightColor;
+                border-radius: $containerBorderRadius;
+                box-shadow: $shadow;
+                height: 7rem;
+                width: 100%;
+
+                &_image-container {
+                    width: 7rem;
+                    height: 7rem;
+                    display: inline-block;
+                    position: relative;
+                    overflow: hidden;
+                    border-radius: $containerBorderRadius 0 0 $containerBorderRadius;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        position: relative;
+                        object-fit: cover;
+                    }
+                }
+
+                &_infos-container {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    width: 100%;
+                    padding:.5rem 1rem;
+
+                    p {
+                        margin: 0;
+                    }
+                    .product-nameAndPrice_container {
+                        display: flex;
+                        flex-direction: column;
+                        .product-brand-and-model_container {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: .3rem;
+
+                            p {
+                                font-size: clamp(1rem, 1.2rem, 1.5rem);
+                                white-space: nowrap;
+                            }
+
+                        }
+                        .product-price {
+                            font-size: 1.3rem;
+                            font-weight: 600;
+                        }
+                    }
+                    .wishlistItem-card_line-container {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        .inStock {
+                            color: #45AA43;
+                        }
+                        .onDemand {
+                            color: #CA0B0B;
+                        }
+                        .icons-container {
+                            display: flex;
+                            align-items: center;
+                            gap: .5rem;
+                            .icon {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+      }
+
+      &-buttons_container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        .loginButton_container {
+            width: 100%;
+            border: 1px solid $darkColor;
+            padding: 1rem;
+            cursor: pointer;
+
+            p {
+                margin: 0;
+                text-align: center;
+            }
+        }
+        .action-buttons_container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+
+            .button {
+                @extend .loginButton_container;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
       }
 
     }

@@ -5,6 +5,8 @@
   <Footer />
   <ShoppingCart />
   <BurgerMenu />
+  <UserLogin />
+
 
   <!-- Ajout de la view wishlist afin qu'elle soit présente dans le DOM à l'ouverture du site et au rafraichissement de toutes les pages
     (permet de conserver la persistance des données du nombre d'articles dans l'icone wishlist de Header chargées depuis LocalStorage)
@@ -21,6 +23,7 @@
   import Footer from '@/components/Footer.vue';
   import ShoppingCart from '@/components/ShoppingCart.vue';
   import BurgerMenu from '@/components/BurgerMenu.vue';
+  import UserLogin from '@/components/UserLogin.vue';
   import Wishlist from '@/views/Wishlist.vue';
 
   import { ref } from 'vue';

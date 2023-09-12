@@ -1,15 +1,17 @@
 <template>
     <div class="customersIcons-container">
-        <Icon icon="ph:user" class="customerIcon"/>
+        <UserIcon />
         <WishlistIcon />
         <CartIcon />
     </div>
 </template>
 
 <script setup>
-    import { Icon } from '@iconify/vue';
+
     import CartIcon from '@/sub-components/CartIcon.vue';
     import WishlistIcon from '@/sub-components/WishlistIcon.vue'
+    import UserIcon from '@/sub-components/UserIcon.vue';
+    
 </script>
 
 <style lang="scss" scoped>

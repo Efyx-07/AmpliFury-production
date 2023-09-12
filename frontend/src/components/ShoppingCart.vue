@@ -202,7 +202,7 @@
     const closeCartAndOverlay = () => {
         window.dispatchEvent(new Event('hide-overlay'));
         closeCart();
-    }
+    };
  
     // ecoute l'événement personnalisé (créé sur 'CartIcon') pour réafficher la fenetre
     onMounted(() => {

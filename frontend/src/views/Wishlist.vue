@@ -1,7 +1,7 @@
 <template>
 
     <div class="wishlist">
-        <h1 class="wishlistTitle">{{ wishlistPageTitle }} ({{ wishlistItemCount }})</h1>
+        <h1 class="wishlistTitle">{{ wishlistPageTitle }} <span>({{ wishlistItemCount }})</span></h1>
 
         <!-- mention visible quand wishlist est vide -->
         <div class="emptyWishlist" v-if="wishlistItemCount === 0">
@@ -20,7 +20,11 @@
         <!-- liste articles ajoutés à la wishlist -->
         <ul class="wishlist-items">
             <li v-for="(item, index) in wishlistItems " :key="item.id">
-                <h1>0{{ index + 1 }}</h1>
+                <div class="index-container">
+                    <h1>
+                        <span v-if="index <= 8">0</span>{{ index + 1 }}
+                    </h1>
+                </div>
                 <div class="wishlistItem-card">
                     <div class="wishlistItem-card_image-container">
                         <img 
@@ -43,20 +47,17 @@
                             <p class="onDemand" v-else>{{ notAvailableMention }}</p>
                             <div class="icons-container">
                                 <Icon 
-                                    icon="ph:eye-light" 
-                                    width="20" 
+                                    icon="ph:eye-light"
                                     class="watchIcon icon" 
                                     @click="navigateToProduct(item)"
                                 />
                                 <Icon 
-                                    icon="bi:cart" 
-                                    width="20" 
+                                    icon="bi:cart"
                                     class="cartIcon icon" 
                                     @click="addToCartFromWishlist(item)"
                                 />
                                 <Icon 
-                                    icon="ph:trash-light" 
-                                    width="25" 
+                                    icon="ph:trash-light"
                                     class="removeIcon icon" 
                                     @click="removeFromWishlist(item)"
                                 />
@@ -70,7 +71,7 @@
         <div class="wishlist-buttons_container">
             <!-- à lier au composant login quand il sera créé -->
             <div class="loginButton_container" v-if="wishlistItemCount > 0">
-                <p>Log in to your account to save your wishlist and access from all your devices. </p>
+                <p><span>Log in </span>to your account to save your wishlist and access from all your devices. </p>
             </div>
 
             <!-- contient les boutons permettant de vider la wishlist soit en ajoutant tout au panier soit en supprimant tout de la wishlist -->
@@ -183,17 +184,18 @@
     @import '@/assets/sass/variables.scss';
 
     .wishlist {
-      padding: 2rem 1rem 4rem 1rem;
+      padding: 2rem 1rem 3rem 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 2rem;
       background: $gradientBackground;
       position: relative;
-      min-height: 80vh;
+      min-height: 75vh;
 
       @media screen and (min-width: $breakpointTablet) {
         padding: 2rem 2rem 4rem 2rem;
+        min-height: 80vh;
       }
 
       @media screen and (min-width: $breakpointDesktop) {
@@ -205,6 +207,9 @@
       h1 {
           margin: 0;
           font-size: 2.5rem;
+          span {
+            font-weight: 400;
+          }
 
           @media screen and (min-width: $breakpointTablet) {
             font-size: 3rem;
@@ -251,6 +256,7 @@
             width: 50%;
 
             @media screen and (min-width: $breakpointDesktop) {
+                min-width: 20rem;
                 width: 60%;
                 justify-self: center;
             }
@@ -275,10 +281,18 @@
       .wishlist-items {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
         list-style-type: none;
         width: 100%;
         padding-left: 0;
+
+        @media screen and (min-width: $breakpointTablet) {
+            gap: 2rem;
+        }
+
+        @media screen and (min-width: $breakpointDesktop) {
+            max-width: 79rem;
+        }
 
         li {
             display: flex;
@@ -289,6 +303,27 @@
             @media screen and (min-width: 375px) {
                 flex-wrap: nowrap;
             }
+
+            @media screen and (min-width: $breakpointTablet) {
+                gap: 2rem;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                gap: 3rem;
+            }
+            .index-container {
+                display: flex;
+                justify-content: center;
+                width: 2rem;
+
+                span {
+                    font-weight: 700;
+                }
+
+                @media screen and (min-width: $breakpointDesktop) {
+                    width: 8rem;
+                }
+            }
             .wishlistItem-card {
                 display: flex;
                 background: $ultraLightColor;
@@ -297,13 +332,29 @@
                 height: 7rem;
                 width: 100%;
 
+                @media screen and (min-width: $breakpointTablet) {
+                    height: 10rem;
+                }
+
+                @media screen and (min-width: $breakpointDesktop) {
+                    height: 17rem;
+                }
+
                 &_image-container {
                     width: 7rem;
-                    height: 7rem;
+                    height: 100%;
                     display: inline-block;
                     position: relative;
                     overflow: hidden;
                     border-radius: $containerBorderRadius 0 0 $containerBorderRadius;
+
+                    @media screen and (min-width: $breakpointTablet) {
+                        width: 15rem;
+                    }
+
+                    @media screen and (min-width: $breakpointDesktop) {
+                        width: 20rem;
+                    }
 
                     img {
                         width: 100%;
@@ -321,12 +372,24 @@
                     width: 100%;
                     padding:.5rem 1rem;
 
+                    @media screen and (min-width: $breakpointTablet) {
+                        display: grid;
+                        grid-template-rows: 1fr 1fr 1fr;
+                        grid-template-columns: 1fr;
+                        padding: 1rem 2rem;
+                    }
+
                     p {
                         margin: 0;
                     }
                     .product-nameAndPrice_container {
                         display: flex;
                         flex-direction: column;
+
+                        @media screen and (min-width: $breakpointTablet) {
+                            align-items: center;
+                            grid-row: 2 / -2;
+                        }
                         .product-brand-and-model_container {
                             display: flex;
                             flex-wrap: wrap;
@@ -335,30 +398,55 @@
                             p {
                                 font-size: clamp(1rem, 1.2rem, 1.5rem);
                                 white-space: nowrap;
+
+                                @media screen and (min-width: $breakpointDesktop) {
+                                    font-size: 2rem;
+                                }
                             }
 
                         }
                         .product-price {
                             font-size: 1.3rem;
                             font-weight: 600;
+
+                            @media screen and (min-width: $breakpointDesktop) {
+                                font-size: 2.5rem;
+                            }
                         }
                     }
                     .wishlistItem-card_line-container {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
+
+                        @media screen and (min-width: $breakpointTablet) {
+                            grid-row: 3 /-1;
+                            align-items: flex-end;
+                        }
+
+                        p {
+                            @media screen and (min-width: $breakpointDesktop) {
+                                font-size: 1.2rem;
+                            }
+                        }
                         .inStock {
                             color: #45AA43;
                         }
                         .onDemand {
                             color: #CA0B0B;
                         }
+
                         .icons-container {
                             display: flex;
                             align-items: center;
                             gap: .5rem;
                             .icon {
+                                font-size: 1.25rem;
                                 cursor: pointer;
+
+                                @media screen and (min-width: $breakpointDesktop) {
+                                    font-size: 1.7rem;
+                                }
                             }
                         }
                     }
@@ -370,30 +458,85 @@
       &-buttons_container {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 1rem;
+        width: 100%;
+
+        @media screen and (min-width: $breakpointDesktop) {
+            max-width: 69rem;
+            gap: 4rem;
+        }
         .loginButton_container {
             width: 100%;
-            border: 1px solid $darkColor;
-            padding: 1rem;
+            padding: .5rem 1rem;
             cursor: pointer;
+            background: rgba($ultraLightColor, .5);
+            border-radius: $containerBorderRadius;
+
+            @media screen and (min-width: $breakpointDesktop) {
+                max-width: 50rem;
+            }
 
             p {
                 margin: 0;
                 text-align: center;
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+                font-size: .8rem;
+
+                @media screen and (min-width: $breakpointDesktop) {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    font-size: 1.5rem;
+                    font-weight: 300;
+                    justify-content: center;
+                }
+
+                span {
+                    margin: 0;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                }
+
             }
         }
         .action-buttons_container {
             width: 100%;
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 1rem;
-            align-items: center;
 
+            @media screen and (min-width: $breakpointTablet) {
+                flex-wrap: nowrap;
+            }
+
+            @media screen and (min-width: $breakpointDesktop) {
+                gap: 0rem;
+                flex-wrap: unset;
+                width: 50%;
+                justify-self: center;
+            }
             .button {
                 @extend .loginButton_container;
+                border: 1px solid $darkColor;
+                border-radius: unset;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                background: unset;
+
+                @media screen and (min-width: $breakpointDesktop) {
+                    border: none;
+                }
+
+                p, .arrow {
+                    font-size: 1.5rem;
+
+                    @media screen and (min-width: $breakpointDesktop) {
+                        font-size: 2rem;
+                    }
+                }
             }
         }
       }

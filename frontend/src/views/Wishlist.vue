@@ -1,18 +1,18 @@
 <template>
 
     <div class="wishlist">
-        <h1 class="wishlistTitle">{{ wishlistPageTitle }}({{ wishlistItemCount }})</h1>
+        <h1 class="wishlistTitle">{{ wishlistPageTitle }} ({{ wishlistItemCount }})</h1>
 
         <!-- mention visible quand wishlist est vide -->
         <div class="emptyWishlist" v-if="wishlistItemCount === 0">
             <p>{{ emptyWishlist.mention }}</p>
             <img :src="emptyWishlist.image.source" :alt="emptyWishlist.image.alt">
-            <router-link to="/categories" class="emptyWishlist-button">
+            <router-link to="/categories" class="keepBrowsing-button">
                 <p>{{ emptyWishlist.buttonMention }}</p>
                 <Icon 
-                    icon="system-uicons:arrow-up" 
-                    width="20" 
+                    icon="system-uicons:arrow-up"
                     :rotate="1" 
+                    class="arrow"
                 />
             </router-link>
         </div>
@@ -168,33 +168,98 @@
 <style lang="scss" scoped> 
 
     @import '@/assets/sass/variables.scss';
-    .wishlist {
-        min-height: 50vh;
-    }
-    .wishlist-items {
-        display: flex;
-        list-style-type: none;
-    }
-    .product-image {
-        width: 300px;
-        cursor: pointer;
-    }
-    .icon {
-        cursor: pointer;
-    }
 
-    .wishlist-buttons_container {
+    .wishlist {
+      padding: 2rem 1rem 4rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      background: $gradientBackground;
+      position: relative;
+      height: 80vh;
+
+      @media screen and (min-width: $breakpointTablet) {
+        padding: 2rem 2rem 4rem 2rem;
+      }
+
+      @media screen and (min-width: $breakpointDesktop) {
+        padding: 4rem 4rem 8rem 4rem;
+        gap: 4rem;
+        height: unset;
+      }
+
+      h1 {
+          margin: 0;
+          font-size: 2.5rem;
+
+          @media screen and (min-width: $breakpointTablet) {
+            font-size: 3rem;
+          }
+
+          @media screen and (min-width: $breakpointDesktop) {
+            font-size: clamp(4rem, 6vw, 6rem);
+            line-height: 1;
+          }
+      }
+      .emptyWishlist {
         display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
-        gap: 5rem;
-    }
-    .addAllToCart-button, .clearWishlist-button {
-        border: solid 1px $darkColor;
-        cursor: pointer;
-        padding: .5rem 1rem;
+        gap: 2rem;
+        padding: 2rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        @media screen and (min-width: $breakpointDesktop) {
+            position: unset;
+            top: unset;
+            transform: unset;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: unset;
+        }
 
         p {
+            font-size: 1.25rem;
+            font-weight: 300;
             margin: 0;
+
+            @media screen and (min-width: $breakpointTablet) {
+                font-size: 2rem;
+                text-align: center;
+            }
         }
+
+        img {
+            border-radius: 100%;
+            width: 50%;
+
+            @media screen and (min-width: $breakpointDesktop) {
+                width: 60%;
+                justify-self: center;
+            }
+        }
+        .keepBrowsing-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: $darkColor;
+            p, .arrow {
+                font-size: 1.25rem;
+
+                @media screen and (min-width: $breakpointTablet) {
+                    font-size: 2rem;
+                }
+            }
+        }
+
+      }
+
     }
+    
 </style>

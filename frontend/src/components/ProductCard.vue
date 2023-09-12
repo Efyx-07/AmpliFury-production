@@ -128,12 +128,12 @@
     import { computed } from 'vue';
 
     // datas 
-    const availableMention = 'in stock'; 
-    const notAvailableMention = 'on demand';
-    const addedToCartMention = 'Added to cart';
-    const addedToWishlistMention = 'Added to wishlist';
+    const { availableMention } = useGlobalDataStore(); // récupère le mention produit disponible à partir du store
+    const { notAvailableMention } = useGlobalDataStore(); // récupère le mention produit non-disponible à partir du store
     const { storeName } = useGlobalDataStore(); // récupère le nom de la boutique à partir du store
     const { currency } = useGlobalDataStore(); // récupère la devise utilisée par la boutique à partir du store
+    const addedToCartMention = 'Added to cart';
+    const addedToWishlistMention = 'Added to wishlist';
 
     // déefinition des propriétés
     const props = defineProps({

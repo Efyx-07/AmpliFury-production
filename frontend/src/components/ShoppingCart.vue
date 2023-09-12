@@ -140,8 +140,8 @@
             decreaseIcon: '-',
             increaseIcon: '+'
         };
-    const availableMention = 'in stock';
-    const notAvailableMention = 'in demand'; 
+    const { availableMention } = useGlobalDataStore(); // récupère le mention produit disponible à partir du store
+    const { notAvailableMention } = useGlobalDataStore(); // récupère le mention produit non-disponible à partir du store
     const clearCartButtonMention = 'Clear cart';
     const totalPriceMention = 'Subtotal';
     const linkToCheckout = 'Go to checkout';

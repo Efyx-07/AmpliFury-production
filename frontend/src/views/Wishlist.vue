@@ -5,48 +5,68 @@
 
         <!-- mention visible quand wishlist est vide -->
         <div class="emptyWishlist" v-if="wishlistItemCount === 0">
-            <p>{{ emptyWishlistMention }}</p>
+            <p>{{ emptyWishlist.mention }}</p>
+            <img :src="emptyWishlist.image.source" :alt="emptyWishlist.image.alt">
+            <router-link to="/categories" class="emptyWishlist-button">
+                <p>{{ emptyWishlist.buttonMention }}</p>
+                <Icon 
+                    icon="system-uicons:arrow-up" 
+                    width="20" 
+                    :rotate="1" 
+                />
+            </router-link>
         </div>
 
         <!-- liste articles ajoutés à la wishlist -->
         <ul class="wishlist-items">
             <li v-for="(item, index) in wishlistItems " :key="item.id">
                 <h1>0{{ index + 1 }}</h1>
-                <img 
-                    :src="item.image.source" 
-                    :alt="item.image.alt"
-                    class="product-image"
-                    @click="navigateToProduct(item)"
-                >
-                <div class="product-brand-and-model_container">
-                    <p class="product-brand">{{ item.brand }}</p>
-                    <p class="product-model">{{ item.model }}</p>
+                <div class="wishlistItem-card">
+                    <div class="wishlistItem-card_image-container">
+                        <img 
+                            :src="item.image.source" 
+                            :alt="item.image.alt"
+                            class="product-image"
+                            @click="navigateToProduct(item)"
+                        >
+                    </div>
+                    <div class="wishlistItem-card_infos-container">
+                        <div class="product-brand-and-model_container">
+                            <p class="product-brand">{{ item.brand }}</p>
+                            <p class="product-model">{{ item.model }}</p>
+                        </div>
+                        <p class="product-price">{{ item.price }} {{ currency }}</p>
+                        <div class="wishlistItem-card_line-container">
+                            <p class="inStock" v-if="item.available">{{ availableMention }}</p>
+                            <p class="onDemand" v-else>{{ notAvailableMention }}</p>
+                            <div class="icons-container">
+                                <Icon 
+                                    icon="ph:eye-light" 
+                                    width="20" 
+                                    class="watchIcon icon" 
+                                    @click="navigateToProduct(item)"
+                                />
+                                <Icon 
+                                    icon="bi:cart" 
+                                    width="20" 
+                                    class="cartIcon icon" 
+                                    @click="addToCartFromWishlist(item)"
+                                />
+                                <Icon 
+                                    icon="ph:trash-light" 
+                                    width="25" 
+                                    class="removeIcon icon" 
+                                    @click="removeFromWishlist(item)"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="product-price">{{ item.price }} {{ currency }}</p>
-
-                <Icon 
-                    icon="ph:eye-light" 
-                    width="20" 
-                    class="watchIcon icon" 
-                    @click="navigateToProduct(item)"
-                />
-                <Icon 
-                    icon="bi:cart" 
-                    width="20" 
-                    class="cartIcon icon" 
-                    @click="addToCartFromWishlist(item)"
-                />
-                <Icon 
-                    icon="ph:trash-light" 
-                    width="25" 
-                    class="removeIcon icon" 
-                    @click="removeFromWishlist(item)"
-                />
             </li>
         </ul>
 
         <!-- à lier au composant login quand il sera créé -->
-        <div class="loginButton_container">
+        <div class="loginButton_container" v-if="wishlistItemCount > 0">
             <p>Log in to your account to save your wishlist and access from all your devices. </p>
         </div>
 
@@ -75,10 +95,19 @@
 
     //datas
     const wishlistPageTitle = "Your wishlist";
-    const emptyWishlistMention = "Your wishlist is empty";
+    const emptyWishlist = {
+            mention: 'Your wishlist is empty',
+            buttonMention: 'Keep browsing',
+            image: {
+                source: '/src/assets/decoration/monkey-astonished.jpg',
+                alt: 'image of an empty wishlist'
+            }
+        };
     const addAllToCartButtonMention = "Add all to cart";
     const clearWishlistButtonMention = "Clear wishlist";
     const { currency } = useGlobalDataStore(); // récupère la devise utilisée par la boutique à partir du store
+    const { availableMention } = useGlobalDataStore(); // récupère le mention produit disponible à partir du store
+    const { notAvailableMention } = useGlobalDataStore(); // récupère le mention produit non-disponible à partir du store
 
 
     //obtention de l'instance du store CatalogueStore

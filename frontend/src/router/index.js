@@ -6,6 +6,7 @@ import Checkout from '@/views/Checkout.vue';
 import Wishlist from '@/views/Wishlist.vue';
 import Contact from '@/views/Contact.vue';
 import RegisterPage from '@/views/RegisterPage.vue';
+import AccountSettings from '@/views/AccountSettings.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,6 +55,11 @@ const router = createRouter({
       path: '/register',
       name: 'Register',
       component: RegisterPage
+    },
+    {
+      path: '/account-settings',
+      name: 'AccountSettings',
+      component: AccountSettings
     },
   ]
 });

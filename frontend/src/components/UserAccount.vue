@@ -10,6 +10,12 @@
                     @click="closeUserAccountAndOverlay"
                 />
             </div>
+            can:<br>
+            <router-link to="/account-settings"> Modify account </router-link>
+            <br>
+            <router-link to="/account-settings"> Remove account </router-link>
+            <br>
+            Sign out
         </div>
         
     </div>

@@ -129,7 +129,7 @@
             input {
                 width: 100%;
                 height: 3rem;
-                background: $ultraLightColor;
+                background: $lightColor;
                 border: none;
 
                 @media screen and (min-width: $breakpointDesktop) {
@@ -159,6 +159,7 @@
             text-decoration: none;
             color: $darkColor;
             padding-top: 1rem;
+            cursor: pointer;
             p, .arrow {
                 margin: 0;
                 font-size: 1.5rem;

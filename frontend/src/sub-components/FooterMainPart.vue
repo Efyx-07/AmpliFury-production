@@ -23,7 +23,7 @@
 
     // propriété calculée en fonction de la route - permet de modifier le style selon la route
     const isHomePage = computed(() => {
-        return props.route.name === 'Home' || props.route.name === 'Wishlist' || props.route.name === 'Categories' || props.route.name === 'Category' || props.route.name === 'ProductDetail';
+        return props.route.name === 'Home' || props.route.name === 'Wishlist' || props.route.name === 'Categories' || props.route.name === 'Category' || props.route.name === 'ProductDetail' || props.route.name === 'Register';
     });
 
 </script>

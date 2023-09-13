@@ -40,7 +40,7 @@
             <div class="toRegister_container">
                 <p>{{ toRegisterMention }}</p>
                 <router-link to="/register" class="toRegister-button_container" @click="closeUserLoginAndOverlay">
-                    <p>{{ toRegisterButtonMention }}</p>
+                    <p>{{ registerButtonMention }}</p>
                     <Icon 
                         icon="system-uicons:arrow-up" 
                         :rotate="1" 
@@ -75,7 +75,7 @@
     const checkboxMention = "Keep me logged in";
     const {loginButtonMention} = useGlobalDataStore();
     const toRegisterMention = "Are you new here?";
-    const toRegisterButtonMention = "Register"
+    const {registerButtonMention}= useGlobalDataStore();
 
     // statut par défaut de la visibilité de la fenetre
     const isUserLoginVisible = ref(false);
@@ -117,7 +117,7 @@
         right: 0;
         display: flex;
         justify-content: end;
-        box-shadow: -3px 0px 5px #33333341; 
+        box-shadow: -3px 0px 5px #33333341;
         transition: transform .3s ease-in-out;
         .userLogin {
             position: relative;
@@ -128,7 +128,7 @@
             flex-direction: column;
             align-items: center;
             gap: 5rem;
-            background: $gradientBackground2;
+            background: $accentColor;
 
             @media screen and (min-width: $breakpointTablet) {
                 width: 31rem;
@@ -184,10 +184,10 @@
                     margin: 0;
                     font-size: .7rem;
                     top: -.3rem;
-                    left: 3rem;
+                    left: 2rem;
                     background: $ultraLightColor;
                     padding: 0 1rem;
-                    border-radius: $containerBorderRadius;
+                    border-radius: 0 0 $containerBorderRadius 0;
                     box-shadow: $shadow;
                 }
             }

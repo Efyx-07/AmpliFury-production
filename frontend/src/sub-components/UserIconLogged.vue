@@ -1,6 +1,6 @@
 <template>
 
-    <div class="userIcon_container">
+    <div class="userIcon_container" @click="toggleUserAccountVisibility">
         <Icon icon="icon-park-outline:right-user" class="customerIcon userIcon"/>
         <div class="userIcon-badge"></div>
     </div>
@@ -10,6 +10,17 @@
 <script setup>
 
     import { Icon } from '@iconify/vue';
+
+    // ouvre la fenetre 'UserAccount' au clic de l'icone
+    const toggleUserAccountVisibility = () => {
+        // crée un nouvel evenement personnalisé 
+        const showUserAccountEvent = new Event('show-userAccount');
+        // déclenche l'événement 'show-cart' sur l'objet window
+        window.dispatchEvent(showUserAccountEvent);
+        const showOverlayEvent = new Event('show-overlay');
+        // déclenche l'événement 'show-overlay' sur l'objet window
+        window.dispatchEvent(showOverlayEvent);
+    }
 
 </script>
 

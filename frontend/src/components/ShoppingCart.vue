@@ -226,18 +226,15 @@
 <style lang="scss" scoped>
 
     @import '@/assets/sass/variables.scss';
+    @import '@/assets/sass/mixins.scss';
         .hiddenShoppingCart {
-            transform: translateX(100%);
+            transform: $hiddenModalTransform;
         }
         .shoppingCart_container {
-            position: fixed;
-            z-index: 999;
-            top: 0;
-            right: 0;
+            @include modalSettings;
             display: flex;
             justify-content: end;
-            box-shadow: -3px 0px 5px #33333341; 
-            transition: transform .3s ease-in-out;  
+
             .shoppingCart {
                 position: relative;
                 width: 100vw;

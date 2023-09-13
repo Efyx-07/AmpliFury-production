@@ -54,23 +54,19 @@
 <style lang="scss" scoped>
     
     @import '@/assets/sass/variables.scss';
+    @import '@/assets/sass/mixins.scss';
 
     .hiddenBurgerMenu { // nommage unique pour eviter conflit avec classe des composants similaires
-        transform: translateX(100%);
+        transform: $hiddenModalTransform;
     }
     .burgerMenu {
+        @include modalSettings;
         background: $accentColor;
-        box-shadow: -3px 0px 5px #33333341; 
-        position: fixed;
         width: 100vw;
         height: 100vh;
-        z-index: 999;
-        top: 0;
-        right: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: transform .2s ease-in-out; 
 
         @media screen and (min-width: $breakpointTablet) {
             width: 33.33%;

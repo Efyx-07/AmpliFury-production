@@ -2,3 +2,12 @@
     width: 90rem;
     padding: 0 5rem;
 }
+
+@mixin modalSettings {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    box-shadow: -3px 0px 5px #33333341;
+    transition: transform .3s ease-in-out;
+}

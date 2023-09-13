@@ -91,7 +91,7 @@
         closeUserLogin();
     };
  
-    // ecoute l'événement personnalisé (créé sur 'UserIcon') pour réafficher la fenetre
+    // ecoute l'événement personnalisé (créé sur 'UserIconLoggedOut') pour réafficher la fenetre
     onMounted(() => {
         window.addEventListener('show-userLogin', () => {
             isUserLoginVisible.value = true;
@@ -106,19 +106,15 @@
 <style lang="scss" scoped>
 
     @import '@/assets/sass/variables.scss';
+    @import '@/assets/sass/mixins.scss';
 
     .hiddenUserLogin { // nommage unique pour eviter conflit avec classe des composants similaires
-        transform: translateX(100%);
+        transform: $hiddenModalTransform;
     }
     .userLogin_container {
-        position: fixed;
-        z-index: 999;
-        top: 0;
-        right: 0;
+        @include modalSettings;
         display: flex;
         justify-content: end;
-        box-shadow: -3px 0px 5px #33333341;
-        transition: transform .3s ease-in-out;
         .userLogin {
             position: relative;
             width: 100vw;

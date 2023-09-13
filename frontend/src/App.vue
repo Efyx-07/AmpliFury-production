@@ -6,6 +6,7 @@
   <ShoppingCart />
   <BurgerMenu />
   <UserLogin />
+  <UserAccount />
 
 
   <!-- Ajout de la view wishlist afin qu'elle soit présente dans le DOM à l'ouverture du site et au rafraichissement de toutes les pages
@@ -24,6 +25,7 @@
   import ShoppingCart from '@/components/ShoppingCart.vue';
   import BurgerMenu from '@/components/BurgerMenu.vue';
   import UserLogin from '@/components/UserLogin.vue';
+  import UserAccount from '@/components/UserAccount.vue';
   import Wishlist from '@/views/Wishlist.vue';
 
   import { ref } from 'vue';

@@ -22,7 +22,8 @@
                     <p>{{ inputPasswordPlaceholder }}</p>
                 </div>
                 <div class="form-checkbox_container">
-                    <input type="checkbox"> <p>{{ checkboxMention }}</p>
+                    <input type="checkbox"> 
+                    <p>{{ checkboxMention }}</p>
                 </div>
                 <div class="login-button_container">
                     <p>{{ loginButtonMention }}</p>
@@ -84,8 +85,9 @@
         isUserLoginVisible.value = false;
     };
 
+    // déclenche evenement personnalisé 'hide-overlay3' et ferme fenetre userLogin
     const closeUserLoginAndOverlay = () => {
-        window.dispatchEvent(new Event('hide-overlay2'));
+        window.dispatchEvent(new Event('hide-overlay3'));
         closeUserLogin();
     };
  
@@ -94,7 +96,7 @@
         window.addEventListener('show-userLogin', () => {
             isUserLoginVisible.value = true;
         });
-        window.addEventListener('hide-overlay2', () => {
+        window.addEventListener('hide-overlay3', () => {
             isUserLoginVisible.value = true; 
         });
     });
@@ -105,7 +107,7 @@
 
     @import '@/assets/sass/variables.scss';
 
-    .hiddenUserLogin {
+    .hiddenUserLogin { // nommage unique pour eviter conflit avec classe des composants similaires
         transform: translateX(100%);
     }
     .userLogin_container {
@@ -122,6 +124,11 @@
             width: 100vw;
             height: 100vh;
             background: $lightColor;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5rem;
+            background: $gradientBackground2;
 
             @media screen and (min-width: $breakpointTablet) {
                 width: 31rem;
@@ -131,10 +138,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                position: sticky;
-                top:0;
-                z-index: 1;
-                background: $lightColor;
+                width: 100%;
 
                 h1 {
                     font-size: 2rem;
@@ -152,6 +156,83 @@
                     }
                 }
 
+            }
+        }
+        .userLogin-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            .mail-input_container, .password-input_container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                padding: 0 2rem;
+
+                input {
+                    width: 100%;
+                    height: 3rem;
+                    background: $ultraLightColor;
+                    border: none;
+                }
+
+                p {
+                    position: absolute;
+                    margin: 0;
+                    font-size: .7rem;
+                    top: -.3rem;
+                    left: 3rem;
+                    background: $ultraLightColor;
+                    padding: 0 1rem;
+                    border-radius: $containerBorderRadius;
+                    box-shadow: $shadow;
+                }
+            }
+            .form-checkbox_container {
+                display: flex;
+                gap: .5rem;
+
+                p {
+                    margin: 0;
+                }
+            }
+            .login-button_container {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                p, .arrow {
+                    margin: 0;
+                    font-size: 1.5rem;
+                }
+            }
+        }
+        .separator {
+            height: 1px;
+            width: 75%;
+            background: $darkColor;
+        }
+        .toRegister_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+
+            p {
+                margin: 0;
+                font-size: 1.2rem;
+            }
+            .toRegister-button_container {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: $darkColor;
+                p, .arrow {
+                    margin: 0;
+                    font-size: 1.5rem;
+                }
             }
         }
     }

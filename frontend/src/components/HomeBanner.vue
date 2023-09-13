@@ -33,7 +33,7 @@
     @import '@/assets/sass/variables.scss';
     .banner {
         height: calc(100vh - 4rem);
-        background: radial-gradient(ellipse at center, $ultraLightColor 0%, $accentColor 90%);
+        background: $gradientBackground2;
         position: relative;
 
         @media screen and (min-width: $breakpointTablet) {

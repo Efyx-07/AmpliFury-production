@@ -1,8 +1,11 @@
 <template>
     <div class="customersIcons-container">
-        <UserIcon />
+
+        <UserIconLogged />
+        <UserIconLoggedOut />
         <WishlistIcon />
         <CartIcon />
+
     </div>
 </template>
 
@@ -10,7 +13,9 @@
 
     import CartIcon from '@/sub-components/CartIcon.vue';
     import WishlistIcon from '@/sub-components/WishlistIcon.vue'
-    import UserIcon from '@/sub-components/UserIcon.vue';
+    import UserIconLoggedOut from '@/sub-components/UserIconLoggedOut.vue';
+    import UserIconLogged from '@/sub-components/UserIconLogged.vue';
+
     
 </script>
 

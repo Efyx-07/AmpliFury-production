@@ -1,7 +1,7 @@
 <template>
 
     <div class="userIcon_container" @click="toggleUserLoginVisibility">
-        <Icon icon="ph:user" class="customerIcon userIcon"/>
+        <Icon icon="icon-park-outline:wrong-user" class="customerIcon userIcon"/>
         <div class="userIcon-badge"></div>
     </div>
 
@@ -32,6 +32,7 @@
         position: relative;
         cursor: pointer;
         .userIcon {
+            color: $darkColor;
             font-size: $mobileIconSize1;
 
             @media screen and (min-width: $breakpointTablet) {

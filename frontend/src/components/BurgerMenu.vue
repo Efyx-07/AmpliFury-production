@@ -1,6 +1,6 @@
 <template>
 
-    <div class="burgerMenu" :class="{ hidden2: !isBurgerMenuVisible }">
+    <div class="burgerMenu" :class="{ hiddenBurgerMenu: !isBurgerMenuVisible }">
         <Logo :closeBurgerMenu="closeBurgerMenuAndOverlay" parentComponent="burgermenu" class="logo-burgermenu"/>
         <Icon 
             icon="carbon:close" 
@@ -36,12 +36,13 @@
         isBurgerMenuVisible.value = false;
     };
 
+    // déclenche evenement personnalisé 'hide-overlay2' et ferme fenetre burgerMenu
     const closeBurgerMenuAndOverlay = () => {
         window.dispatchEvent(new Event('hide-overlay2'));
         closeBurgerMenu();
-    }
+    };
 
-    // écoute evenment personnalisé (crée sur BurgerMenuIcon) pour réafficher le burgerMenu
+    // écoute evenment personnalisé (crée sur BurgerMenuIcon) pour réafficher burgerMenu
     onMounted(() => {
         window.addEventListener('show-burgerMenu', () => {
             isBurgerMenuVisible.value = true;
@@ -54,7 +55,7 @@
     
     @import '@/assets/sass/variables.scss';
 
-    .hidden2 { // nommage en hidden2 pour eviter conflit avec hidden utilisé sur ShoppingCart
+    .hiddenBurgerMenu { // nommage unique pour eviter conflit avec classe des composants similaires
         transform: translateX(100%);
     }
     .burgerMenu {

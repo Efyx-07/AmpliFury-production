@@ -1,6 +1,6 @@
 <template>
 
-    <div class="shoppingCart_container" :class="{ hidden: !isCartVisible }">
+    <div class="shoppingCart_container" :class="{ hiddenShoppingCart: !isCartVisible }">
 
         <div class="shoppingCart">
 
@@ -125,7 +125,6 @@
     import Overlay from '@/components/Overlay.vue';
 
     // datas
-    
     const shoppingCartTitle = 'Your shopping Cart';
     const { currency } = useGlobalDataStore(); // récupère la devise utilisée par la boutique à partir du store
     const emptyCart = {
@@ -189,7 +188,7 @@
     // déplace article vers la wishlist
     const toggleFromCartToWishlist = (item) => {
         catalogueStore.toggleFromCartToWishlist(item);
-    }
+    };
 
     // statut par défaut de la visibilité de la fenetre
     const isCartVisible = ref(false);
@@ -199,6 +198,7 @@
         isCartVisible.value = false;
     };
 
+    // déclenche evenement personnalisé 'hide-overlay' et ferme le cart
     const closeCartAndOverlay = () => {
         window.dispatchEvent(new Event('hide-overlay'));
         closeCart();
@@ -215,7 +215,6 @@
     });
 
 
-
     // récupère les données stockées dans le local storage
     const savedCartItems = JSON.parse(localStorage.getItem('cartItems'));
     if (savedCartItems) {
@@ -227,7 +226,7 @@
 <style lang="scss" scoped>
 
     @import '@/assets/sass/variables.scss';
-        .hidden {
+        .hiddenShoppingCart {
             transform: translateX(100%);
         }
         .shoppingCart_container {

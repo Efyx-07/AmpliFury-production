@@ -210,7 +210,7 @@
       flex-direction: column;
       align-items: center;
       gap: 2rem;
-      background: $gradientBackground;
+      background: $gradientBackground2;
       position: relative;
       min-height: 75vh;
 

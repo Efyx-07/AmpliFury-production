@@ -113,7 +113,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
-      background: $gradientBackground;
+      background: $gradientBackground2;
 
       @media screen and (min-width: $breakpointTablet) {
         padding: 2rem 2rem 4rem 2rem;

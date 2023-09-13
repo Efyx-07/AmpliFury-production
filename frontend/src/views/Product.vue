@@ -50,7 +50,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: $gradientBackground;
+        background: $gradientBackground2;
 
 
         @media screen and (min-width: $breakpointTablet) {

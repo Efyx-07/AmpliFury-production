@@ -14,3 +14,15 @@ PRODUCTS WAY
 
 => estampillage "NEW" sur productCard quand le produit a moins de 6mois
     filtrage supplementaire sur la view Categories (newer to older / older to newer )
+
+=> Shopping Cart : 
+
+	-statut in stock / on demand : 
+
+		-in stock / le compteur ne peut pas incrémenter au delà de la quantité disponible.
+			=> mention "uniquement X exemplaires en stock"
+		-on demand / à la place du compteur, bouton "contact us" (bouton vers la view 'Contact' à créer')
+
+=> Catégories : 
+
+	-Implementer un bouton "back"

@@ -1,19 +1,10 @@
-PARCOURS PRODUIT 
 
-- Wishlist :
+=> Créer et rendre fonctionnels les formulaires suivants: 
 
-	- persistance des données / avec date à laquelle le produit a été ajouté
-
-- Shopping Cart : 
-
-	-statut in stock / on demand : 
-
-		-in stock / le compteur ne peut pas incrémenter au delà de la quantité disponible.
-			=> mention "uniquement X exemplaires en stock"
-		-on demand / à la place du compteur, bouton "contact us" (bouton vers la view 'Contact' à créer')
-
-- Catégories : 
-
-	-Implementer un bouton "back"
+	- Newsletter (composant FooterMainPart)
+	- Connexion (composant UserLogin)
+	- Inscription (view RegisterPage)
+	- Contact (view Contact)
 
 
+=> Views AccountSettings et Checkout à gérer selon le back-end

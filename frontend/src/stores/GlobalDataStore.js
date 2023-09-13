@@ -7,7 +7,7 @@ export const useGlobalDataStore = defineStore('globalData', {
         currency: '$', // declaration devise utilisée par la boutique
         availableMention: 'in stock', // declaration produit disponible
         notAvailableMention: 'on demand', // declaration produit non-disponible
-        inputMailPlaceholder: 'Your mail address', // declaration placeholder pour input mail
+        inputMailPlaceholder: 'Mail address', // declaration placeholder pour input mail
         inputPasswordPlaceholder: 'Password', // declaration placeholder pour input password
         loginButtonMention: 'Login' // declaration mention pour se connecter
     }),

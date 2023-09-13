@@ -13,12 +13,12 @@
                 />
             </div>
             <form action="" class="userLogin-form">
-                <div class="mail-input_container">
-                    <input type="mail">
+                <div class="input_container">
+                    <input type="email" name="email" id="userLogin_email">
                     <p>{{ inputMailPlaceholder }}</p>
                 </div>
-                <div class="password-input_container">
-                    <input type="password">
+                <div class="input_container">
+                    <input type="password" name="password" id="userLogin_password">
                     <p>{{ inputPasswordPlaceholder }}</p>
                 </div>
                 <div class="form-checkbox_container">
@@ -164,7 +164,7 @@
             flex-direction: column;
             align-items: center;
             gap: 1rem;
-            .mail-input_container, .password-input_container {
+            .input_container {
                 width: 100%;
                 display: flex;
                 flex-direction: column;

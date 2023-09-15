@@ -1,0 +1,330 @@
+{
+  "categories": [
+    {
+      "name": "Guitars",
+      "categoryImage": {
+        "source": "src/assets/catalogue/category-images/guitars.jpg",
+        "alt": "Guitars"
+      },
+      "products": [
+        {
+          "brand": "Bender",
+          "model": "Telemaster M-101",
+          "image": {
+            "source": "src/assets/catalogue/products/guitars/bender-telemaster m101.jpg",
+            "alt": "Bender Telemaster M-101"
+          },
+          "price": 899,
+          "quantity": 5,
+          "available": true,
+          "description": "A versatile classic with a modern twist, the M101 boasts rich tones and effortless playability."
+        },
+
+        {
+          "brand": "Bender",
+          "model": "Telemaster M-102",
+          "image": {
+            "source": "src/assets/catalogue/products/guitars/bender-telemaster m102.jpg",
+            "alt": "Bender Telemaster M-102"
+          },
+          "price": 949,
+          "quantity": 3,
+          "available": true,
+          "description": "Taking it up a notch, M102 adds enhanced sustain and dynamic response for the discerning player"
+        },
+
+        {
+          "brand": "Gibbons",
+          "model": "Lep Saul",
+          "image": {
+            "source": "src/assets/catalogue/products/guitars/gibbons-lep saul.jpg",
+            "alt": "Gibbons Lep Saul"
+          },
+          "price": 1249,
+          "quantity": 2,
+          "available": true,
+          "description": "The Lep Saul offers vintage charm with a hint of edge, delivering well-defined tones and impeccable resonance."
+        },
+
+        {
+          "brand": "Gibbons",
+          "model": "Melody Faker",
+          "image": {
+            "source": "src/assets/catalogue/products/guitars/gibbons-melody faker.jpg",
+            "alt": "Gibbons Melody Faker"
+          },
+          "price": 1099,
+          "quantity": 0,
+          "available": false,
+          "description": "Unconventional and bold, the Melody Faker yields unique soundscapes perfect for experimental musicians."
+        },
+
+        {
+          "brand": "Greta",
+          "model": "Lucilla",
+          "image": {
+            "source": "src/assets/catalogue/products/guitars/greta-lucilla.jpg",
+            "alt": "Greta Lucilla"
+          },
+          "price": 2699,
+          "quantity": 1,
+          "available": true,
+          "description": "A paragon of elegance, the Lucilla's warm, balanced sound complements its exquisite design."
+        },
+
+        {
+          "brand": "Schelter",
+          "model": "GMK Signature",
+          "image": {
+            "source": "src/assets/catalogue/products/guitars/schelter-gmk signature.jpg",
+            "alt": "Schelter GMK Signature"
+          },
+          "price": 1499,
+          "quantity": 0,
+          "available": false,
+          "description": "Crafted in collaboration, the GMK Signature emanates powerful, clear tones, meeting the demands of modern virtuosos."
+        }
+      ]
+    },
+
+    {
+      "name": "Basses",
+      "categoryImage": {
+        "source": "src/assets/catalogue/category-images/basses.jpg",
+        "alt": "Basses"
+      },
+      "products": [
+        {
+          "brand": "Blender",
+          "model": "Decision J37",
+          "image": {
+            "source": "src/assets/catalogue/products/basses/bender decision j37.jpg",
+            "alt": "Blender Decision J37"
+          },
+          "price": 799,
+          "quantity": 5,
+          "available": true,
+          "description": "Empowering bassists with versatile tones, J37 offers a sleek design and impeccable playability."
+        },
+
+        {
+          "brand": "Ivarez",
+          "model": "Blizzard",
+          "image": {
+            "source": "src/assets/catalogue/products/basses/ivarez blizzard.jpg",
+            "alt": "Ivarez Blizzard"
+          },
+          "price": 1249,
+          "quantity": 0,
+          "available": false,
+          "description": "Thunderous lows and articulate highs define the Blizzard, while its ergonomic build ensures comfort during every performance."
+        },
+
+        {
+          "brand": "Kickenbacker",
+          "model": "Paul MyCourtney",
+          "image": {
+            "source": "src/assets/catalogue/products/basses/kickenbacker paul mycourtney.jpg",
+            "alt": "Kickenbacker Paul MyCourtney"
+          },
+          "price": 1399,
+          "quantity": 1,
+          "available": true,
+          "description": "The signature Mycourtney delivers punchy, iconic bass sound that's both captivating and sonically rich."
+        }
+      ]
+    },
+
+    {
+      "name": "Acoustic",
+      "categoryImage": {
+        "source": "src/assets/catalogue/category-images/acoustic.jpg",
+        "alt": "Acoustic"
+      },
+      "products": [
+        {
+          "brand": "Bender",
+          "model": "Arizona",
+          "image": {
+            "source": "src/assets/catalogue/products/acoustic/bender-arizona.jpg",
+            "alt": "Bender Arizona"
+          },
+          "price": 599,
+          "quantity": 5,
+          "available": true,
+          "description": "Embrace the spirit of the Southwest with the Arizona's resonant tones and intricate inlays, a tribute to acoustic beauty."
+        },
+
+        {
+          "brand": "Matakine",
+          "model": "Velvet",
+          "image": {
+            "source": "src/assets/catalogue/products/acoustic/matakine-velvet.jpg",
+            "alt": "Matakine Velvet"
+          },
+          "price": 1349,
+          "quantity": 0,
+          "available": false,
+          "description": "The Velvet's mellow warmth and meticulous craftsmanship create a soothing melody in the hands of any guitarist."
+        },
+
+        {
+          "brand": "Saylor",
+          "model": "Girlstar",
+          "image": {
+            "source": "src/assets/catalogue/products/acoustic/saylor girlstar.jpg",
+            "alt": "Saylor Girlstar"
+          },
+          "price": 899,
+          "quantity": 2,
+          "available": true,
+          "description": "Unleash your inner star with Girlstar's vibrant sound and artistic details, a harmonious blend of style and melody."
+        }
+      ]
+    },
+
+    {
+      "name": "Amps",
+      "categoryImage": {
+        "source": "src/assets/catalogue/category-images/amps.jpg",
+        "alt": "Amps"
+      },
+      "products": [
+        {
+          "brand": "Leavey",
+          "model": "HSR9902",
+          "image": {
+            "source": "src/assets/catalogue/products/amps/leavey-hsr9902.jpg",
+            "alt": "Leavey HSR9902"
+          },
+          "price": 799,
+          "quantity": 3,
+          "available": true,
+          "description": "From clean whispers to roaring thunder, the HSR9902 amp defines versatility with its range of tones and dynamic controls."
+        },
+
+        {
+          "brand": "Marshiall",
+          "model": "Headbanger",
+          "image": {
+            "source": "src/assets/catalogue/products/amps/marshall-headbanger.jpg",
+            "alt": "Marshiall Headbanger"
+          },
+          "price": 1399,
+          "quantity": 0,
+          "available": false,
+          "description": "Unleash a sonic onslaught with the Headbanger's fierce distortion, embodying the iconic Marshiall power and punch."
+        },
+
+        {
+          "brand": "Vex",
+          "model": "Vortex 222",
+          "image": {
+            "source": "src/assets/catalogue/products/amps/vex-vortex222.jpg",
+            "alt": "Vex Vortex 222"
+          },
+          "price": 1449,
+          "quantity": 1,
+          "available": true,
+          "description": "The Vortex222 amp swirls your sound into a cyclone of effects, delivering an otherworldly experience for experimental musicians."
+        }
+      ]
+    },
+
+    {
+      "name": "Synths",
+      "categoryImage": {
+        "source": "src/assets/catalogue/category-images/synths.jpg",
+        "alt": "Synths"
+      },
+      "products": [
+        {
+          "brand": "Borg",
+          "model": "MT20",
+          "image": {
+            "source": "src/assets/catalogue/products/synth/borg-mt20.jpg",
+            "alt": "Borg MT20"
+          },
+          "price": 4629,
+          "quantity": 1,
+          "available": true,
+          "description": "Navigate sonic realms with MT20's modular design, offering boundless possibilities for sound sculptors and explorers."
+        },
+
+        {
+          "brand": "Romand",
+          "model": "Juny 70",
+          "image": {
+            "source": "src/assets/catalogue/products/synth/romand-juny70.jpg",
+            "alt": "Romand Juny 70"
+          },
+          "price": 1399,
+          "quantity": 4,
+          "available": true,
+          "description": "Juny 70 resurrects vintage allure, its analog heart throbbing with nostalgia and modern electronic ingenuity."
+        },
+
+        {
+          "brand": "Voog",
+          "model": "Uzi 16",
+          "image": {
+            "source": "src/assets/catalogue/products/synth/Voog Uzi 16.jpg",
+            "alt": "Voog Uzi 16"
+          },
+          "price": 5999,
+          "quantity": 0,
+          "available": false,
+          "description": "Uzi16's digital prowess unleashes a symphony of futuristic tones, perfect for crafting electronic landscapes and beats."
+        }
+      ]
+    },
+
+    {
+      "name": "Drums",
+      "categoryImage": {
+        "source": "src/assets/catalogue/category-images/drums.jpg",
+        "alt": "Drums"
+      },
+      "products": [
+        {
+          "brand": "Connor",
+          "model": "DevilKit",
+          "image": {
+            "source": "src/assets/catalogue/products/drums/connor devilkit.jpg",
+            "alt": "Connor DevilKit"
+          },
+          "price": 3759,
+          "quantity": 2,
+          "available": true,
+          "description": "Unleash rhythmic fury with Devilkit's precision and power, designed to ignite stages with its commanding presence."
+        },
+
+        {
+          "brand": "Diamond",
+          "model": "Manchester",
+          "image": {
+            "source": "src/assets/catalogue/products/drums/diamond manchester.jpg",
+            "alt": "Diamond Manchester"
+          },
+          "price": 3299,
+          "quantity": 0,
+          "available": false,
+          "description": "The Manchester kit sparkles with clarity and depth, capturing every drumbeat with a brilliant fusion of tradition and innovation."
+        },
+
+        {
+          "brand": "Tamaha",
+          "model": "DK707",
+          "image": {
+            "source": "src/assets/catalogue/products/drums/yamaha dk707.jpg",
+            "alt": "Tamaha DK707"
+          },
+          "price": 4239,
+          "quantity": 1,
+          "available": true,
+          "description": "DK707's thunderous resonance and versatile components make it a drummer's ultimate toolkit for crafting diverse rhythms."
+        }
+      ]
+    }
+  ]
+}

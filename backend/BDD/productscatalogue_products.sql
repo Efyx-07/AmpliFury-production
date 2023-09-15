@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: productcatalogue
+-- Host: localhost    Database: productscatalogue
 -- ------------------------------------------------------
 -- Server version	8.1.0
 
@@ -62,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-15 11:29:28
+-- Dump completed on 2023-09-15 12:17:41

@@ -5,7 +5,7 @@ const cors = require('cors'); // importe cors
 const app = express(); // demarre le serveur express
 const PORT = process.env.PORT || 3000; // definit le port
 
-app.use(cors());
+app.use(cors()); // utilise cors en tant que middleware, permet au server Express d'accepter des requetes de n'importe quelle origine
 
 // connexion à la base de données
 const connection = mysql.createConnection({

@@ -1,15 +1,48 @@
+console.log('Hello')
 import { defineStore } from 'pinia';
-import catalogueData from '@/catalogue.json';
 
 export const useCatalogueStore = defineStore('catalogue', {
 
   state: () => ({
-    products: catalogueData.categories,
+    categories: [],
+    products: [],
     cartItems: [], // propriété permettant de stocker les articles dans le panier
     wishlistItems: [], // propriété permettant de stocker les articles dans la wishlist
   }),
 
   actions: {
+
+    // Action pour récupérer les catégories depuis le backend
+    async fetchCategories() {
+      try {
+        const response = await fetch('http://localhost:3000/categories'); // URL du server backend + route 
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des catégories');
+        }
+
+        const categories = await response.json();
+        this.categories = categories; // Mettez à jour les catégories dans le store
+      } catch (error) {
+        console.error('Erreur lors de la récupération des catégories :', error);
+      }
+      
+    },
+
+
+    // Action pour récupérer les produits depuis le backend
+    async fetchProducts() {
+      try {
+        const response = await fetch('http://localhost:3000/products'); // URL du server backend + route 
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des produits');
+        }
+
+        const products = await response.json();
+        this.products = products; // Mettez à jour les produits dans le store
+      } catch (error) {
+        console.error('Erreur lors de la récupération des produits :', error);
+      }
+    },
 
     // sauvegarde dans le Local Storage après chaque modification du panier
     saveInLocalStorage() {

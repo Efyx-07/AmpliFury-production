@@ -1,7 +1,11 @@
 const express = require('express'); // appelle l'instance express
 const mysql = require('mysql2'); // appelle l'instance mysql2
+const cors = require('cors'); // importe cors
+
 const app = express(); // demarre le serveur express
 const PORT = process.env.PORT || 3000; // definit le port
+
+app.use(cors());
 
 // connexion à la base de données
 const connection = mysql.createConnection({

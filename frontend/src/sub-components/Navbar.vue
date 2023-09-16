@@ -10,7 +10,7 @@
                 </router-link>
             </li>
             <li v-for="category in categories" :key="category.name">
-                <router-link :to="`/categories/${category.name}`" class="navButton_container" :class="navButtonContainerClasses" @click="handleNavButtonClick"> <!-- relie les autres boutons à leur route dynamique respective (categorie filtrée) -->
+                <router-link v-if="categories.length > 0" :to="`/categories/${category.name}`" class="navButton_container" :class="navButtonContainerClasses" @click="handleNavButtonClick"> <!-- relie les autres boutons à leur route dynamique respective (categorie filtrée) -->
                     <div class="potentiometer-icon" :class="potentiometerIconClasses">
                         <div class="potentiometer-icon-bar" :class="potentiometerIconBarClasses"></div>
                     </div>
@@ -28,7 +28,8 @@
     import { computed } from 'vue';
     
     const catalogueStore = useCatalogueStore();
-    const categories = catalogueStore.products;
+    const categories = catalogueStore.categories;
+    console.log(categories.length)
 
     // datas
     const defaultButtonName = "All products";

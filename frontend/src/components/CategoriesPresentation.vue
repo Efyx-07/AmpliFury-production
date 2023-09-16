@@ -13,9 +13,9 @@
         <ul class="categoryList">
           <li v-for="category in categories" :key="category.name">
             <div class="category_container">
-              <img :src="category.categoryImage.source" :alt="category.categoryImage.alt" class="category-image"/> <!-- image pour version tablet et desktop -->
+              <img :src="category.categoryImageSource" :alt="category.categoryImageAlt" class="category-image"/> <!-- image pour version tablet et desktop -->
               <router-link :to="`/categories/${category.name}`" class="toCategory-image"> <!-- image routée pour version mobile -->
-                <img :src="category.categoryImage.source" :alt="category.categoryImage.alt" class="category-image_mobile"/>
+                <img :src="category.categoryImageSource" :alt="category.categoryImageAlt" class="category-image_mobile"/>
                 <div class="categoryMobile-overlay"> <!-- overlay pour version mobile -->
                   <p>{{ category.name }}</p>
                 </div>
@@ -51,7 +51,7 @@
 
     // récupère les données du catalogue sur le store
     const catalogueStore = useCatalogueStore();
-    const categories = catalogueStore.products;
+    const categories = catalogueStore.categories;
      
   </script>
   

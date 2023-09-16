@@ -1,4 +1,3 @@
-console.log('Hello')
 import { defineStore } from 'pinia';
 
 export const useCatalogueStore = defineStore('catalogue', {

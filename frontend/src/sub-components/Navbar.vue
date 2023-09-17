@@ -29,7 +29,6 @@
     
     const catalogueStore = useCatalogueStore();
     const categories = catalogueStore.categories;
-    console.log(categories.length)
 
     // datas
     const defaultButtonName = "All products";

@@ -33,7 +33,7 @@
                 <li v-for="item in cartItems" :key="item.id" class="cart-item">
 
                     <div class="cart-item_image-container">
-                        <img :src="item.image.source" :alt="item.image.alt" class="cart-item_image">
+                        <img :src="item.image_source" :alt="item.image_alt" class="cart-item_image">
                     </div>
                     <div class="cart-item_infos-counter_container">
                         <div class="cart-item_infos-container">

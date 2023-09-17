@@ -28,8 +28,8 @@
                 <div class="wishlistItem-card">
                     <div class="wishlistItem-card_image-container">
                         <img 
-                            :src="item.image.source" 
-                            :alt="item.image.alt"
+                            :src="item.image_source" 
+                            :alt="item.image_alt"
                             class="product-image"
                             @click="navigateToProduct(item)"
                         >

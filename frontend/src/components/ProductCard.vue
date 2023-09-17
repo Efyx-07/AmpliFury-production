@@ -5,16 +5,16 @@
         <div class="product-image_container" :class="productImageContainerClass">
             <!-- image click actif/inactif selon la vue -->
             <img 
-                :src="product.image.source" 
-                :alt="product.image.alt" 
+                :src="product.image_source" 
+                :alt="product.image_alt" 
                 class="product-image" 
                 @click="navigateToProduct"
                 v-if = "showImageClickable"
                 :class="[productImageClass, { 'clickable': showImageClickable }]"
             >
             <img 
-                :src="product.image.source" 
-                :alt="product.image.alt" 
+                :src="product.image_source" 
+                :alt="product.image_alt" 
                 class="product-image"
                 v-else
             >

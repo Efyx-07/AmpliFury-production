@@ -33,10 +33,12 @@
 
     // extrait le parametre productId de la route
     const productId = route.params.productId;
-
+    console.log(productId)
+    
     // recherche et retourne le produit correspondant dans la liste en comparant les Id
     const selectedProduct = computed(() => {
-        return allProducts.find(product => product.id === productId);
+        const product = allProducts.find(product => product.id.toString() === productId); // conversion product.id en string pour comparaison de même type
+        return product;
     });
 
 </script>

@@ -90,8 +90,8 @@
     <div class="product-details_container" v-if="showDetails">
         <hr>
         <div class="detail-container">
-            <p>Item id:</p>
-            <p class="detail-info">{{ product.id }}</p>
+            <p>Item reference:</p>
+            <p class="detail-info">{{ product.reference }}</p>
         </div>
         <hr>
         <div class="detail-container">
@@ -101,7 +101,7 @@
         <hr>
         <div class="detail-container">
             <p>Added to catalogue since:</p>
-            <p class="detail-info">{{ product.referenceDate.month }} {{ product.referenceDate.year }}</p>
+            <p class="detail-info">{{ product.reference_month }} {{ product.reference_year }}</p>
         </div>
         <hr>
         <div class="detail-container">

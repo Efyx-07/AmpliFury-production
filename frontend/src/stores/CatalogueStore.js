@@ -12,8 +12,8 @@ export const useCatalogueStore = defineStore('catalogue', {
     async loadCatalogueData() {
       try {
         const catalogueData = await api.fetchCatalogueData();
-        // Mettez à jour la propriété products avec les données de l'API
-        this.products = catalogueData.categories; // Assurez-vous que la structure de données est correcte
+        // met à jour la propriété products avec les données de l'API
+        this.products = catalogueData.categories; 
       } catch (error) {
         console.error('Erreur lors du chargement des données catalogue :', error);
       }

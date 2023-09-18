@@ -65,10 +65,11 @@
       const filtered = []; // Initialise un tableau vide pour les produits filtrés
       // parcourt les categories du store
       catalogueStore.products.forEach(category => {
-        // filtre les produits de la catégorie en fonction de la catégorie sélectionnée dans la route
-        const categoryProducts = category.products.filter(product => product.category === categoryFilter);
-        // ajoute les produits filtrés de cette catégorie au tableau "filtered"
-        filtered.push(...categoryProducts);
+        const categoryProducts = category.products.filter(product => {
+          const productType = product.type; // utilise propriété type pour la comparaison
+          return productType === categoryFilter; // filtre les produits de la catégorie en fonction de la catégorie sélectionnée dans la route
+        }); 
+        filtered.push(...categoryProducts); // ajoute les produits filtrés de cette catégorie au tableau "filtered"
       });
       return filtered; // retourne la liste des produits filtrés par catégorie
     } else {

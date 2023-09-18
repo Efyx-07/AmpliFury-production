@@ -1,59 +1,59 @@
 <template>
 
-    <section class="categories-presentation">
-      
-        <div class="title-and-button1_container">
-          <h1>{{ sectionTitle }}</h1>
-          <router-link to="/categories" class="button1"> <!-- relie le bouton à la route Categories version tablet et desktop -->
-            <p>{{ button1Text }}</p>
-            <Icon icon="system-uicons:arrow-up" :rotate="1" class="button1-arrow"/>
-          </router-link>
-        </div>
-
-        <ul class="categoryList">
-          <li v-for="category in categories" :key="category.name">
-            <div class="category_container">
-              <img :src="category.categoryImageSource" :alt="category.categoryImageAlt" class="category-image"/> <!-- image pour version tablet et desktop -->
-              <router-link :to="`/categories/${category.name}`" class="toCategory-image"> <!-- image routée pour version mobile -->
-                <img :src="category.categoryImageSource" :alt="category.categoryImageAlt" class="category-image_mobile"/>
-                <div class="categoryMobile-overlay"> <!-- overlay pour version mobile -->
-                  <p>{{ category.name }}</p>
-                </div>
-              </router-link>
-              <div class="category-image-overlay"> <!-- overlay pour version tablet et desktop -->
-                <p class="categoryName">{{ category.name }}</p>
-                <router-link :to="`/categories/${category.name}`" class="toCategory-button">
-                  <p>{{ categoryButton }}</p>
-                  <Icon icon="system-uicons:arrow-up" :rotate="1" class="arrow"/>
-                </router-link>
-              </div>
-            </div>
-          </li>
-        </ul>
-
-        <router-link to="/categories" class="button1Mobile"> <!-- relie le bouton à la route Categories version mobile -->
-            <p>{{ button1Text }}</p>
-            <Icon icon="system-uicons:arrow-up" width="30" :rotate="1" />
-        </router-link>
-
-    </section>
-
-  </template>
-  
-  <script setup>
-    import { useCatalogueStore } from '@/stores/CatalogueStore';
-    import { Icon } from '@iconify/vue';
+  <section class="categories-presentation">
     
-    // data
-    const sectionTitle = "OUR CATEGORIES";
-    const button1Text = "Explore All";
-    const categoryButton = "Explore";
+      <div class="title-and-button1_container">
+        <h1>{{ sectionTitle }}</h1>
+        <router-link to="/categories" class="button1"> <!-- relie le bouton à la route Categories version tablet et desktop -->
+          <p>{{ button1Text }}</p>
+          <Icon icon="system-uicons:arrow-up" :rotate="1" class="button1-arrow"/>
+        </router-link>
+      </div>
 
-    // récupère les données du catalogue sur le store
-    const catalogueStore = useCatalogueStore();
-    const categories = catalogueStore.categories;
-     
-  </script>
+      <ul class="categoryList">
+        <li v-for="category in categories" :key="category.name">
+          <div class="category_container">
+            <img :src="category.categoryImage.source" :alt="category.categoryImage.alt" class="category-image"/> <!-- image pour version tablet et desktop -->
+            <router-link :to="`/categories/${category.name}`" class="toCategory-image"> <!-- image routée pour version mobile -->
+              <img :src="category.categoryImage.source" :alt="category.categoryImage.alt" class="category-image_mobile"/>
+              <div class="categoryMobile-overlay"> <!-- overlay pour version mobile -->
+                <p>{{ category.name }}</p>
+              </div>
+            </router-link>
+            <div class="category-image-overlay"> <!-- overlay pour version tablet et desktop -->
+              <p class="categoryName">{{ category.name }}</p>
+              <router-link :to="`/categories/${category.name}`" class="toCategory-button">
+                <p>{{ categoryButton }}</p>
+                <Icon icon="system-uicons:arrow-up" :rotate="1" class="arrow"/>
+              </router-link>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <router-link to="/categories" class="button1Mobile"> <!-- relie le bouton à la route Categories version mobile -->
+          <p>{{ button1Text }}</p>
+          <Icon icon="system-uicons:arrow-up" width="30" :rotate="1" />
+      </router-link>
+
+  </section>
+
+</template>
+
+<script setup>
+  import { useCatalogueStore } from '@/stores/CatalogueStore';
+  import { Icon } from '@iconify/vue';
+  
+  // data
+  const sectionTitle = "OUR CATEGORIES";
+  const button1Text = "Explore All";
+  const categoryButton = "Explore";
+
+  // récupère les données du catalogue sur le store
+  const catalogueStore = useCatalogueStore();
+  const categories = catalogueStore.products;
+   
+</script>
   
   <style lang="scss" scoped>
 

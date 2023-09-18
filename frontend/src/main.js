@@ -16,14 +16,7 @@ const initApp = async () => {
 
     try {
         // appels fetch sur le store
-        await catalogueStore.fetchCategories();
-    } catch (error) {
-        console.log('Erreur lors du chragement des categories: ', error);
-    };
-
-    try {
-        // appels fetch sur le store
-        catalogueStore.fetchProducts();
+        await catalogueStore.fetchCatalogueData();
     } catch (error) {
         console.log('Erreur lors du chragement des categories: ', error);
     };
@@ -34,10 +27,3 @@ const initApp = async () => {
 
 initApp();
 
-// appels fetch sur le store
-//catalogueStore.fetchCategories();
-//catalogueStore.fetchProducts();
-
-//app.use(router);
-
-//app.mount('#app');

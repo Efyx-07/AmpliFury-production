@@ -31,7 +31,7 @@ router.get("/", (req, res) => {
             const products = productsResults;
             const formattedData = formatData(categories, products);
             // renvoie les résultats au format JSON en réponse
-            res.json(formattedData);
+            res.json({ categories: formattedData });
         });
     });
 });

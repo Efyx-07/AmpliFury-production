@@ -1,64 +1,15 @@
 import { defineStore } from 'pinia';
+import catalogueData from '@/catalogue.json';
 
 export const useCatalogueStore = defineStore('catalogue', {
 
   state: () => ({
-    categories: [],
-    products: [],
+    products: catalogueData.categories,
     cartItems: [], // propriété permettant de stocker les articles dans le panier
     wishlistItems: [], // propriété permettant de stocker les articles dans la wishlist
   }),
 
   actions: {
-
-    // action pour récupérer les catégories depuis le backend
-    async fetchCategories() {
-      try {
-        const response = await fetch('http://localhost:3000/categories'); // URL du server backend + route 
-        if (!response.ok) {
-          throw new Error('Erreur lors de la récupération des catégories');
-        }
-
-        const categories = await response.json();
-        this.categories = categories; // met à jour les catégories dans le store
-      } catch (error) {
-        console.error('Erreur lors de la récupération des catégories :', error);
-      }
-      
-    },
-
-
-    // action pour récupérer les produits depuis le backend
-    async fetchProducts() {
-      try {
-        const response = await fetch('http://localhost:3000/products'); // URL du server backend + route 
-        if (!response.ok) {
-          throw new Error('Erreur lors de la récupération des produits');
-        }
-
-        const products = await response.json();
-        this.products = products; // met à jour les produits dans le store
-      } catch (error) {
-        console.error('Erreur lors de la récupération des produits :', error);
-      }
-    },
-
-    // organise les produits par catégorie
-    organizeProductsByCategory() {
-      const productsByCategory = {}; // crée un objet vide qui sera utilisé pour organiser les produits en fonction de leurs catégories. ex: 1: [produit1, produit2, ...], etc 
-
-      // parcourt les produit et les range par categorie
-      this.products.forEach(product => {
-        const categoryId = product.category_id; // récupère l'id de la categorie
-        if(!productsByCategory[categoryId]) {
-          productsByCategory[categoryId] = []; // crée un tableau vide pour la catégorie si elle n'existe pas encore
-        }
-        productsByCategory[categoryId].push(product); // ajoute le produit à la catégorie correspondante
-      });
-
-      this.productsByCategory = productsByCategory; // met à jour les produits organisés par catégorie
-    },
-
 
     // sauvegarde dans le Local Storage après chaque modification du panier
     saveInLocalStorage() {
@@ -106,12 +57,12 @@ export const useCatalogueStore = defineStore('catalogue', {
     },
 
     // action privée - génére un ordre aléatoire des produits
-    _randomizeProducts() {
-      return this.products.slice().sort(() => Math.random() - 0.5);
+    _randomizeProducts(products) {
+      return products.slice().sort(() => Math.random() - 0.5);
     },
 
-     // tri par prix croissant
-     sortProductsByAscPrice() {
+    // tri par prix croissant
+    sortProductsByAscPrice() {
       this.products.forEach(category => {
         category.products.sort((a, b) => a.price - b.price);
       });
@@ -198,11 +149,6 @@ export const useCatalogueStore = defineStore('catalogue', {
   },
 
   getters: {
-
-    // récupère les produits organisés par catégorie
-    productsByCategoryArray() {
-      return Object.values(this.productsByCategory);
-    },
 
     // convertit le prix des articles en number et calcule la somme des articles du panier (au format 2 décimales apres la virgule)
     totalPrice(){

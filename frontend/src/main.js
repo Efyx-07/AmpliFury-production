@@ -5,24 +5,24 @@ import { useCatalogueStore } from './stores/CatalogueStore';
 import App from './App.vue';
 import router from './router';
 
-// attend la fin du chargement des données pour initialiser l'app
+// Attend la fin du chargement des données pour initialiser l'application
 const initApp = async () => {
-    const app = createApp(App);
+  const app = createApp(App);
 
-    // initialisation de Pinia
-    app.use(createPinia());
-    //création d'un instance du store
-    const catalogueStore = useCatalogueStore();
+  // Initialisation de Pinia
+  app.use(createPinia());
+  // Création d'une instance du store
+  const catalogueStore = useCatalogueStore();
 
-    try {
-        // appels fetch sur le store
-        await catalogueStore.fetchCatalogueData();
-    } catch (error) {
-        console.log('Erreur lors du chragement des categories: ', error);
-    };
+  try {
+    // Appel à la méthode pour charger les données depuis l'API
+    await catalogueStore.loadCatalogueData();
+  } catch (error) {
+    console.error('Erreur lors du chargement des données :', error);
+  }
 
-    app.use(router);
-    app.mount('#app');
+  app.use(router);
+  app.mount('#app');
 };
 
 initApp();

@@ -1,15 +1,23 @@
 import { defineStore } from 'pinia';
-import catalogueData from '@/catalogue.json';
+import * as api from '@/services/api'; // Importez toutes les fonctions de votre fichier api.js
 
 export const useCatalogueStore = defineStore('catalogue', {
-
   state: () => ({
-    products: catalogueData.categories,
-    cartItems: [], // propriété permettant de stocker les articles dans le panier
-    wishlistItems: [], // propriété permettant de stocker les articles dans la wishlist
+    products: [], // Initialisez products comme un tableau vide pour l'instant
+    cartItems: [],
+    wishlistItems: [],
   }),
 
   actions: {
+    async loadCatalogueData() {
+      try {
+        const catalogueData = await api.fetchCatalogueData();
+        // Mettez à jour la propriété products avec les données de l'API
+        this.products = catalogueData.categories; // Assurez-vous que la structure de données est correcte
+      } catch (error) {
+        console.error('Erreur lors du chargement des données catalogue :', error);
+      }
+    },
 
     // sauvegarde dans le Local Storage après chaque modification du panier
     saveInLocalStorage() {

@@ -4,7 +4,7 @@ const mysql = require('mysql2'); // appelle l'instance mysql2
 const connection = mysql.createConnection({
     host: 'localhost', // adresse du serveur MySQL
     user: 'root', // nom utilisateur MySQL
-    password: 'FXMysql2023!', // mot de passe MySQL
+    password: 'FXMysql', // mot de passe MySQL
     database: 'productscatalogue' // nom BDD MySQL
 });
 

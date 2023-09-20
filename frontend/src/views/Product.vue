@@ -33,7 +33,6 @@
 
     // extrait le parametre productId de la route
     const productId = route.params.productId;
-    console.log(productId)
     
     // recherche et retourne le produit correspondant dans la liste en comparant les Id
     const selectedProduct = computed(() => {

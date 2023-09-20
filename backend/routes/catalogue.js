@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const connection = require('../db'); // importe la connexion à la base de données
+const { productsCatalogueConnection } = require('../db'); // importe la connexion à la base de données
 
 // emet une requête à une table de la BDD pour le catalogue complet
 router.get("/", (req, res) => {
@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     const productsQuery = 'SELECT * FROM products';
 
     // exécute la requête pour les catégories
-    connection.query(categoriesQuery, (err, categoriesResults) => {
+    productsCatalogueConnection.query(categoriesQuery, (err, categoriesResults) => {
         if (err) {
             console.error('Erreur lors de la récupération des catégories : ', err);
             res.status(500).json({ error: 'Erreur lors de la récupération des catégories' });
@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
         }
 
         // exécute la requête pour les produits
-        connection.query(productsQuery, (err, productsResults) => {
+        productsCatalogueConnection .query(productsQuery, (err, productsResults) => {
             if (err) {
                 console.error('Erreur lors de la récupération des produits : ', err);
                 res.status(500).json({ error: 'Erreur lors de la récupération des produits' });

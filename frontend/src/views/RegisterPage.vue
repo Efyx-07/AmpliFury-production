@@ -43,6 +43,7 @@
     import { Icon } from '@iconify/vue';
     import { useGlobalDataStore } from '@/stores/GlobalDataStore';
     import { ref } from 'vue';
+    import { useRouter } from 'vue-router';
 
     // datas
     const registerPageTitle = "Register";
@@ -57,6 +58,8 @@
     const lastName = ref('');
     const email = ref('');
     const password = ref('');
+
+    const router = useRouter();
     
 
     const validate = async () => {
@@ -84,7 +87,11 @@
             if (response.ok) {
                 // L'inscription a réussi, vous pouvez rediriger l'utilisateur vers une page de confirmation ou de connexion.
                 // Par exemple, avec Vue Router :
-                router.push('/connexion'); // Redirigez vers la page de connexion
+                router.push('/'); // Redirigez vers la page de connexion
+
+                // Affichez le message d'inscription réussie ici
+                const data = await response.json();
+                console.log(data.message); // Ceci affichera le message dans la console
             } else {
                 // Gérez les erreurs d'inscription ici, par exemple, affichez un message d'erreur à l'utilisateur.
                 console.error('Erreur lors de l\'inscription :', response.statusText);

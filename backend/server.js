@@ -10,6 +10,8 @@ const PORT = process.env.PORT || 3000; // definit le port
 
 app.use(cors()); // utilise cors en tant que middleware, permet au server Express d'accepter des requetes de n'importe quelle origine
 
+app.use(express.json()); // middleware - analyse le corps des requetes JSON
+
 app.use('/catalogue', catalogueRouter); // utilise la route catalogue
 app.use('/users', usersRouter); // utilise la route users
 app.use('/auth', authRouter); // utilise la route auth

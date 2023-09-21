@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt'); // importe bcrypt
 router.post('/register', async(req, res) => {
 
     // récupère les données du formulaire d'inscription depuis req.body
-    const { firstName, lastName, email, password} = req.body; 
+    const { firstName, lastName, email, password } = req.body; 
 
     try {
 

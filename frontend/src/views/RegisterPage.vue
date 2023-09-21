@@ -4,53 +4,33 @@
 
         <h1>{{ registerPageTitle }}</h1>
 
-        <form action="" class="registration-form">
+        <form action="" class="registration-form" @submit.prevent="validate">
 
             <div class="input_container">
-                <input type="text" name="first_name" id="registration_firstName">
+                <input type="text" name="first_name" id="registration_firstName" v-model="firstName">
                 <p>{{ inputFirstNamePlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="text" name="last_name" id="registration_lastName">
+                <input type="text" name="last_name" id="registration_lastName" v-model="lastName">
                 <p>{{ inputLastNamePlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="text" name="address" id="registration_address">
-                <p>{{ inputAddressPlaceholder }}</p>
-            </div>
-            <div class="input_container">
-                <input type="number" name="postal_code" id="registration_postalCode">
-                <p>{{ inputPostalCodePlaceholder }}</p>
-            </div>
-            <div class="input_container">
-                <input type="text" name="city" id="registration_city">
-                <p>{{ inputCityPlaceholder }}</p>
-            </div>
-            <div class="input_container">
-                <input type="text" name="country" id="registration_country">
-                <p>{{ inputCountryPlaceholder }}</p>
-            </div>
-            <div class="input_container">
-                <input type="email" name="email" id="registration_email">
+                <input type="email" name="email" id="registration_email" v-model="email">
                 <p>{{ inputMailPlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="password" name="password" id="registration_password">
+                <input type="password" name="password" id="registration_password" v-model="password">
                 <p>{{ inputPasswordPlaceholder }}</p>
             </div>
-            <div class="input_container">
-                <input type="password" name="confirm_password">
-                <p>{{ inputConfirmPasswordPlaceholder }}</p>
-            </div>
 
-            <div class="login-button_container">
+            <button class="login-button_container" type="submit">
                 <p>{{ registerButtonMention }}</p>
                 <Icon 
                     icon="system-uicons:arrow-up" 
                     :rotate="1" 
                     class="arrow"
                 />
-            </div>
+            </button>
             
         </form>
 
@@ -67,15 +47,12 @@
     const registerPageTitle = "Register";
     const {inputFirstNamePlaceholder} = useGlobalDataStore();
     const {inputLastNamePlaceholder} = useGlobalDataStore();
-    const {inputAddressPlaceholder} = useGlobalDataStore();
-    const {inputPostalCodePlaceholder} = useGlobalDataStore();
-    const {inputCityPlaceholder} = useGlobalDataStore();
-    const {inputCountryPlaceholder} = useGlobalDataStore();
     const {inputMailPlaceholder} = useGlobalDataStore();
     const {inputPasswordPlaceholder} = useGlobalDataStore();
-    const {inputConfirmPasswordPlaceholder} = useGlobalDataStore();
     const {registerButtonMention}= useGlobalDataStore();
 
+
+    
 </script>
 
 <style lang="scss" scoped>

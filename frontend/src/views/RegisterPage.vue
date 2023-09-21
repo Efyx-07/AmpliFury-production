@@ -42,6 +42,7 @@
 
     import { Icon } from '@iconify/vue';
     import { useGlobalDataStore } from '@/stores/GlobalDataStore';
+    import { ref } from 'vue';
 
     // datas
     const registerPageTitle = "Register";
@@ -52,7 +53,48 @@
     const {registerButtonMention}= useGlobalDataStore();
 
 
+    const firstName = ref('');
+    const lastName = ref('');
+    const email = ref('');
+    const password = ref('');
     
+
+    const validate = async () => {
+
+        // extrait les valeurs des objets ref
+        const firstNameValue = firstName.value;
+        const lastNameValue = lastName.value;
+        const emailValue = email.value;
+        const passwordValue = password.value;
+
+        try {        
+            const response = await fetch('http://localhost:3000/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firstName: firstNameValue,
+                    lastName: lastNameValue,
+                    email: emailValue,
+                    password: passwordValue,
+                }),
+            });
+
+            if (response.ok) {
+                // L'inscription a réussi, vous pouvez rediriger l'utilisateur vers une page de confirmation ou de connexion.
+                // Par exemple, avec Vue Router :
+                router.push('/connexion'); // Redirigez vers la page de connexion
+            } else {
+                // Gérez les erreurs d'inscription ici, par exemple, affichez un message d'erreur à l'utilisateur.
+                console.error('Erreur lors de l\'inscription :', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erreur lors de l\inscription: ', error)
+        }
+    };
+
+
 </script>
 
 <style lang="scss" scoped>

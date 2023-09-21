@@ -14,6 +14,22 @@
                 <input type="text" name="last_name" id="registration_lastName" v-model="lastName">
                 <p>{{ inputLastNamePlaceholder }}</p>
             </div>
+            <!-- <div class="input_container">
+                <input type="text" name="address" id="registration_address">
+                <p>{{ inputAddressPlaceholder }}</p>
+            </div>
+            <div class="input_container">
+                <input type="number" name="postal_code" id="registration_postalCode">
+                <p>{{ inputPostalCodePlaceholder }}</p>
+            </div>
+            <div class="input_container">
+                <input type="text" name="city" id="registration_city">
+                <p>{{ inputCityPlaceholder }}</p>
+            </div>
+            <div class="input_container">
+                <input type="text" name="country" id="registration_country">
+                <p>{{ inputCountryPlaceholder }}</p>
+            </div> -->
             <div class="input_container">
                 <input type="email" name="email" id="registration_email" v-model="email">
                 <p>{{ inputMailPlaceholder }}</p>
@@ -22,6 +38,10 @@
                 <input type="password" name="password" id="registration_password" v-model="password">
                 <p>{{ inputPasswordPlaceholder }}</p>
             </div>
+            <!-- <div class="input_container">
+                <input type="password" name="confirm_password">
+                <p>{{ inputConfirmPasswordPlaceholder }}</p>
+            </div> -->
 
             <button class="login-button_container" type="submit">
                 <p>{{ registerButtonMention }}</p>
@@ -49,11 +69,17 @@
     const registerPageTitle = "Register";
     const {inputFirstNamePlaceholder} = useGlobalDataStore();
     const {inputLastNamePlaceholder} = useGlobalDataStore();
+    // const {inputAddressPlaceholder} = useGlobalDataStore();
+    // const {inputPostalCodePlaceholder} = useGlobalDataStore();
+    // const {inputCityPlaceholder} = useGlobalDataStore();
+    // const {inputCountryPlaceholder} = useGlobalDataStore();
     const {inputMailPlaceholder} = useGlobalDataStore();
     const {inputPasswordPlaceholder} = useGlobalDataStore();
+    // const {inputConfirmPasswordPlaceholder} = useGlobalDataStore();
     const {registerButtonMention}= useGlobalDataStore();
 
 
+    // propriétés du formulaire
     const firstName = ref('');
     const lastName = ref('');
     const email = ref('');
@@ -61,7 +87,7 @@
 
     const router = useRouter();
     
-
+    // valide le formulaire 
     const validate = async () => {
 
         // extrait les valeurs des objets ref
@@ -85,9 +111,8 @@
             });
 
             if (response.ok) {
-                // L'inscription a réussi, vous pouvez rediriger l'utilisateur vers une page de confirmation ou de connexion.
-                // Par exemple, avec Vue Router :
-                router.push('/'); // Redirigez vers la page de connexion
+                // inscription réussie, redirection vers une page de confirmation
+                router.push('/'); 
 
                 // Affichez le message d'inscription réussie ici
                 const data = await response.json();
@@ -97,7 +122,7 @@
                 console.error('Erreur lors de l\'inscription :', response.statusText);
             }
         } catch (error) {
-            console.error('Erreur lors de l\inscription: ', error)
+            console.error('Erreur lors de l\inscription: ', error);
         }
     };
 

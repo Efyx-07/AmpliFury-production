@@ -12,27 +12,27 @@
                     @click="closeUserLoginAndOverlay"
                 />
             </div>
-            <form action="" class="userLogin-form">
+            <form action="" class="userLogin-form" @submit.prevent="validateLogin">
                 <div class="input_container">
-                    <input type="email" name="email" id="userLogin_email">
+                    <input type="email" name="email" id="userLogin_email" v-model="email">
                     <p>{{ inputMailPlaceholder }}</p>
                 </div>
                 <div class="input_container">
-                    <input type="password" name="password" id="userLogin_password">
+                    <input type="password" name="password" id="userLogin_password" v-model="password">
                     <p>{{ inputPasswordPlaceholder }}</p>
                 </div>
                 <div class="form-checkbox_container">
                     <input type="checkbox"> 
                     <p>{{ checkboxMention }}</p>
                 </div>
-                <div class="login-button_container">
+                <button class="login-button_container" type="submit">
                     <p>{{ loginButtonMention }}</p>
                     <Icon 
                         icon="system-uicons:arrow-up" 
                         :rotate="1" 
                         class="arrow"
                     />
-                </div>
+                </button>
             </form>
 
             <div class="separator"></div>
@@ -67,6 +67,7 @@
     import Overlay from '@/components/Overlay.vue';
     import { useGlobalDataStore } from '@/stores/GlobalDataStore';
     import { ref, onMounted } from 'vue';
+    import { useRouter } from 'vue-router';
 
     // datas
     const userLoginTitle = "Customer center login";
@@ -100,6 +101,47 @@
             isUserLoginVisible.value = true; 
         });
     });
+
+    // propriétés du formulaire
+    const email = ref('');
+    const password = ref('');
+
+    const router = useRouter();
+
+    // valide le formulaire
+    const validateLogin = async () => {
+
+        // extrait les valeurs des objets ref
+        const emailValue = email.value;
+        const passwordValue = password.value;
+
+        try {
+            const response = await fetch('http://localhost:3000/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: emailValue,
+                    password: passwordValue,
+                }),
+            });
+
+            if (response.ok) {
+                // connexion réussie, redirection vers une page de confirmation
+                router.push('/'); 
+
+                // Affichez le message d'inscription réussie ici
+                const data = await response.json();
+                console.log(data.message); // Ceci affichera le message dans la console
+                
+            } else {
+                console.error('Erreur lors de la connexion :', response.statusText);
+            }
+        } catch (error) { 
+            console.error('Erreur lors de la connexion: ', error);
+        }
+    };
 
 </script>
 

@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
 
         // génère un token JWT et le renvoie à l'utilisateur
         const token = generateJwtToken(emailCheck[0].id); 
-        res.json({ token });
+        res.status(200).json({ success: true, message: 'Connexion réussie', token });
 
     } catch (err) {
         console.error('Erreur lors de la connexion: ', err);

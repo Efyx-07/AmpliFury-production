@@ -114,11 +114,11 @@
                 // inscription réussie, redirection vers une page de confirmation
                 router.push('/'); 
 
-                // Affichez le message d'inscription réussie ici
+                // affiche le message d'inscription réussie ici
                 const data = await response.json();
-                console.log(data.message); // Ceci affichera le message dans la console
+                console.log(data.message); // affiche le message dans la console
             } else {
-                // Gérez les erreurs d'inscription ici, par exemple, affichez un message d'erreur à l'utilisateur.
+                // affiche un message d'erreur à l'utilisateur.
                 console.error('Erreur lors de l\'inscription :', response.statusText);
             }
         } catch (error) {

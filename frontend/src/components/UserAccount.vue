@@ -15,7 +15,14 @@
             <br>
             <router-link to="/account-settings"> Remove account </router-link>
             <br>
-            Sign out
+            <button class="signOut-button_container" type="submit" @click="handleSignOut">
+                <p>{{ signOutButtonMention }}</p>
+                <Icon 
+                    icon="system-uicons:arrow-up" 
+                    :rotate="1" 
+                    class="arrow"
+                />
+            </button>
         </div>
         
     </div>
@@ -32,9 +39,11 @@
     import { Icon } from '@iconify/vue';
     import Overlay from '@/components/Overlay.vue';
     import { ref, onMounted } from 'vue';
+    import { useUserStore } from '@/stores/UserStore';
 
     //datas
     const userAccountTitle = 'Your account';
+    const signOutButtonMention = 'Sign out';
 
     // statut par défaut de la visibilité de la fenetre
     const isUserAccountVisible = ref(false);
@@ -59,6 +68,16 @@
             isUserAccountVisible.value = true; 
         });
     });
+
+    // gère le bouton de deconnexion
+    const userStore = useUserStore();
+
+    const handleSignOut = () => {
+        localStorage.removeItem('token') // supprime le token du localStorage
+        userStore.clearToken(); // reinitialise le store 
+        userStore.isConnected = false; // l'utilisateur est connecté
+        closeUserAccountAndOverlay();
+    };
 
 </script>
 <style lang="scss" scoped>

@@ -1,8 +1,8 @@
 <template>
     <div class="customersIcons-container">
 
-        <UserIconLogged />
-        <UserIconLoggedOut />
+        <UserIconLogged v-if="userStore.isConnected"/>
+        <UserIconLoggedOut v-else/>
         <WishlistIcon />
         <CartIcon />
 
@@ -15,6 +15,9 @@
     import WishlistIcon from '@/sub-components/WishlistIcon.vue'
     import UserIconLoggedOut from '@/sub-components/UserIconLoggedOut.vue';
     import UserIconLogged from '@/sub-components/UserIconLogged.vue';
+    import { useUserStore } from '@/stores/UserStore';
+
+    const userStore = useUserStore();
 
     
 </script>

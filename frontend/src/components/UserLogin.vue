@@ -68,6 +68,7 @@
     import { useGlobalDataStore } from '@/stores/GlobalDataStore';
     import { ref, onMounted } from 'vue';
     import { useRouter } from 'vue-router';
+    import { useUserStore } from '@/stores/UserStore';
 
     // datas
     const userLoginTitle = "Customer center login";
@@ -107,6 +108,7 @@
     const password = ref('');
 
     const router = useRouter();
+    const userStore = useUserStore();
 
     // valide le formulaire
     const handleLogin = async () => {
@@ -138,6 +140,11 @@
                 // si connexion réussie, obtient le token du server et le stocke dans le localStorage
                 const token = data.token;
                 localStorage.setItem('token', token);
+
+                // stocke également le token dans le store Pinia
+                userStore.setToken(token);
+                userStore.isConnected = true; // l'utilisateur est connecté
+
                 
             } else {
                 console.error('Erreur lors de la connexion :', response.statusText);

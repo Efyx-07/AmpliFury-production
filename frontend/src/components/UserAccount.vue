@@ -76,7 +76,7 @@
         localStorage.removeItem('token') // supprime le token du localStorage
         userStore.clearToken(); // reinitialise le store 
         userStore.isConnected = false; // l'utilisateur est connecté
-        closeUserAccountAndOverlay();
+        closeUserAccountAndOverlay(); // ferme fenetre et overlay
     };
 
 </script>

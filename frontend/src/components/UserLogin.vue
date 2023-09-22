@@ -12,7 +12,7 @@
                     @click="closeUserLoginAndOverlay"
                 />
             </div>
-            <form action="" class="userLogin-form" @submit.prevent="validateLogin">
+            <form action="" class="userLogin-form" @submit.prevent="handleLogin">
                 <div class="input_container">
                     <input type="email" name="email" id="userLogin_email" v-model="email">
                     <p>{{ inputMailPlaceholder }}</p>
@@ -109,7 +109,7 @@
     const router = useRouter();
 
     // valide le formulaire
-    const validateLogin = async () => {
+    const handleLogin = async () => {
 
         // extrait les valeurs des objets ref
         const emailValue = email.value;
@@ -134,6 +134,10 @@
                 // Affichez le message d'inscription réussie ici
                 const data = await response.json();
                 console.log(data.message); // Ceci affichera le message dans la console
+
+                // si connexion réussie, obtient le token du server et le stocke dans le localStorage
+                const token = data.token;
+                localStorage.setItem('token', token);
                 
             } else {
                 console.error('Erreur lors de la connexion :', response.statusText);

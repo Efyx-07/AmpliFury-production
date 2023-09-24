@@ -52,5 +52,23 @@ async function hashPassword(password) {
     };
 };
 
+// emet une requête à une table de la BDD pour récupérer la liste des utilisateurs et leurs données
+router.get("/", (req, res) => {
+    // requête SQL pour obtenir tous les utilisateurs
+    const usersQuery = 'SELECT * FROM users';
+
+    // exécute la requête pour les utilisateurs
+    usersConnection.query(usersQuery, (err, usersResults) => {
+        if (err) {
+            console.error('Erreur lors de la récupération des users : ', err);
+            res.status(500).json({ error: 'Erreur lors de la récupération des users' });
+            return;
+        }
+
+        // formate les résultats en un objet JSON contenant les utilisateurs et leurs données
+        const users = usersResults;
+        res.json({ users });
+    });
+});
 
 module.exports = router;

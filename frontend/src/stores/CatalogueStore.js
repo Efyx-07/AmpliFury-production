@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
-import * as api from '@/services/api'; // Importez toutes les fonctions de votre fichier api.js
+import * as api from '@/services/api'; // importe les fonctions de l'api du fichier api.js
 
 export const useCatalogueStore = defineStore('catalogue', {
   state: () => ({
-    products: [], // Initialisez products comme un tableau vide pour l'instant
+    products: [], // initialise products comme un tableau vide
     cartItems: [],
     wishlistItems: [],
   }),
@@ -15,7 +15,7 @@ export const useCatalogueStore = defineStore('catalogue', {
         // met à jour la propriété products avec les données de l'API
         this.products = catalogueData.categories; 
       } catch (error) {
-        console.error('Erreur lors du chargement des données catalogue :', error);
+        console.error('Erreur lors du chargement des données catalogue: ', error);
       }
     },
 

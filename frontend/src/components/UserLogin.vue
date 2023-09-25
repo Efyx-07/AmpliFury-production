@@ -135,7 +135,7 @@
 
                 // Affichez le message d'inscription réussie ici
                 const data = await response.json();
-                console.log(data.message); // Ceci affichera le message dans la console
+                console.log(data.message); 
 
                 // si connexion réussie, obtient le token du server et le stocke dans le localStorage
                 const token = data.token;

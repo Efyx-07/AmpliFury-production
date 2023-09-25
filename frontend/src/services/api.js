@@ -1,7 +1,9 @@
+const hostName = 'http://localhost:3000'; // adresse du serveur backend
+
 // récupère du backend API des datas du catalogue
 export async function fetchCatalogueData() {
     try {
-      const response = await fetch('http://localhost:3000/catalogue');
+      const response = await fetch(`${hostName}/catalogue`);
       if (!response.ok) {
         throw new Error('Erreur lors de la récupération des données catalogue');
       }
@@ -17,7 +19,7 @@ export async function fetchCatalogueData() {
 // récupère du backend API des datas des users
 export async function fetchUsersData() {
   try {
-    const response = await fetch('http://localhost:3000/users');
+    const response = await fetch(`${hostName}/users`);
     if (!response.ok) {
       throw new Error('Erreur lors de la récupération des données utilisateurs');
     }
@@ -28,4 +30,27 @@ export async function fetchUsersData() {
     console.error('Erreur lors de la récupération des données utilisateurs: ', error);
     throw error;
   }
+};
+
+// récupère les données de l'utilisateur connecté
+export async function fetchUserData() {
+  try {
+    const response = await fetch(`${hostName}/profile`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`, // utilise le token stocké localement
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Erreur lors de la récupération des données utilisateur');
+    }
+  
+    const userData = await response.json();
+    console.log('Réponse du backend :', userData)
+    return userData;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données utilisateur: ', error);
+    throw error;
+  };
 };

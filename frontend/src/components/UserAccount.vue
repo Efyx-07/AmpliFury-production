@@ -23,6 +23,10 @@
                     class="arrow"
                 />
             </button>
+
+            <div class="user-infos_container">
+                <p></p>
+            </div>
         </div>
         
     </div>
@@ -78,6 +82,8 @@
         userStore.isConnected = false; // l'utilisateur est connecté
         closeUserAccountAndOverlay(); // ferme fenetre et overlay
     };
+
+
 
 </script>
 <style lang="scss" scoped>

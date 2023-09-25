@@ -35,6 +35,7 @@ const verifyAuth = (req, res, next) => {
 
 // route pour obtenir les données de l'utilisateur connecté
 router.get('/profile', verifyAuth, async(req, res) => {
+    console.log('Route /profile atteinte')
     const userId = req.user.id;
 
     try {

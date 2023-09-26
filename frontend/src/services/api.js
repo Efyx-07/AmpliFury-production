@@ -32,25 +32,3 @@ export async function fetchUsersData() {
   }
 };
 
-// récupère les données de l'utilisateur connecté
-export async function fetchUserData() {
-  try {
-    const response = await fetch(`${hostName}/profile`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`, // utilise le token stocké localement
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error('Erreur lors de la récupération des données utilisateur');
-    }
-  
-    const userData = await response.json();
-    console.log('Réponse du backend :', userData)
-    return userData;
-  } catch (error) {
-    console.error('Erreur lors de la récupération des données utilisateur: ', error);
-    throw error;
-  };
-};

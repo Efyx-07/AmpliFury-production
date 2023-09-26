@@ -23,10 +23,6 @@
                     class="arrow"
                 />
             </button>
-
-            <div class="user-infos_container">
-                <p></p>
-            </div>
         </div>
         
     </div>

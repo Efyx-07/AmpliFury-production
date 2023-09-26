@@ -133,7 +133,7 @@
                 // connexion réussie, redirection vers une page de confirmation
                 router.push('/'); 
 
-                // Affichez le message d'inscription réussie ici
+                // Affichez le message de connexion réussie ici
                 const data = await response.json();
                 console.log(data.message); 
 

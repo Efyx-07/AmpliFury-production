@@ -1,6 +1,7 @@
 :root {
     --darkColor: #1a1a1a;
     --lightColor: #f7f7f7;
+    --accentColor: #90AAAA;
 }
 
 *, 
@@ -20,4 +21,32 @@ html {
 body {
     margin: 0 auto;
     background: var(--lightColor);
+
+    /* Customize the scrollbar color and width */
+    scrollbar-color: var(--accentColor) var(--darkColor);
+    scrollbar-width: 12px;
 }
+
+body::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: var(--darkColor);        /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--accentColor);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid var(--darkColor);  /* creates padding around scroll thumb */
+  }
+
+  body::-moz-scrollbar-track {
+    background: var(--darkColor);
+  }
+
+  body::-moz-scrollbar-thumb {
+    background-color: var(--accentColor);
+    border-radius: 20px;
+    border: 3px solid var(--darkColor);
+  }

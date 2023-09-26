@@ -9,6 +9,23 @@ const util = require('util'); // importe util
 const secretKey = 'amplifury_secret_key'; // clé secrète
 const expiresIn = '1h'; // durée de validité du token
 
+// middleware, verifie authentification
+function verifyAuth(req, res, next) {
+    const token = req.header('Authorization'); // récupère le token depuis l'en-tête Authorization
+
+    if (!token) {
+        return res.status(401).json({ error: 'Authentification requise' });
+    };
+
+    try {
+        const decoded = jwt.verify(token, secretKey); // vérifie le token et la clé secrète
+        req.user = decoded.userId; // ajoute l'ID utilisateur à l'objet req
+        next(); // passe à la prochaine étape de la requète
+    } catch (error) {
+        return res.status(401).json({ error: 'Token invalide' });
+    };
+};
+
 // connexion utilisateur
 router.post('/login', async (req, res) => {
 
@@ -39,7 +56,17 @@ router.post('/login', async (req, res) => {
 
         // génère un token JWT et le renvoie à l'utilisateur
         const token = generateJwtToken(rows[0].id);
-        res.status(200).json({ success: true, message: 'Connexion réussie', token });
+        res.status(200).json({ 
+            success: true, 
+            message: 'Connexion réussie', 
+            token: token,
+            user: {
+                id: rows[0].id,
+                firstName: rows[0].first_name,
+                lastName: rows[0].last_name,
+                email: rows[0].email
+            }
+         });
     } catch (err) {
         console.error('Erreur lors de la connexion :', err);
         res.status(500).json({ error: 'Erreur lors de la connexion' });
@@ -54,3 +81,4 @@ function generateJwtToken(userId) {
 }
 
 module.exports = router;
+module.exports.verifyAuth = verifyAuth;

@@ -112,7 +112,6 @@
 
     // valide le formulaire
     const handleLogin = async () => {
-
         // extrait les valeurs des objets ref
         const emailValue = email.value;
         const passwordValue = password.value;
@@ -135,6 +134,7 @@
 
                 // Affichez le message de connexion réussie ici
                 const data = await response.json();
+                console.log('Réponse du serveur :', data);
                 console.log(data.message); 
 
                 // si connexion réussie, obtient le token du server et le stocke dans le localStorage

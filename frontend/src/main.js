@@ -35,12 +35,14 @@ const initApp = async () => {
     userStore.isConnected = true;
   };
 
-  try {
-    // appel à la méthode pour charger les données depuis l'API
-    await userStore.loadUsersData();
-  } catch (error) {
-    console.error('Erreur lors du chargement des données :', error);
-  }
+  // recupère les données utilisateur dans le localStorage, permet la persistance des données de l'utilisateur connecté après rafraichissement de la page
+  const localStorageUserData = localStorage.getItem('userData');
+  if(localStorageUserData) {
+      const userData = JSON.parse(localStorageUserData);
+      // initialise le store avec les données utilisateur du localStorage
+      userStore.setUserData(userData);
+      console.log('donnees du localStorage:', localStorageUserData)
+  };
 
   app.use(router);
   app.mount('#app');

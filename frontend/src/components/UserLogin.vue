@@ -132,10 +132,14 @@
                 // connexion réussie, redirection vers une page de confirmation
                 router.push('/'); 
 
-                // Affichez le message de connexion réussie ici
+                // récupère les données de l'utilisateur depuis la reponse du serveur et affiche le message de connexion reussie
                 const data = await response.json();
-                console.log('Réponse du serveur :', data);
+                console.log('Réponse du serveur :', data.user);
                 console.log(data.message); 
+                userStore.setUserData(data.user);
+                console.log('données stockées: ', userStore.userData)
+                // stocke les données utilisateur dans le localStorage
+                localStorage.setItem('userData', JSON.stringify(data.user));
 
                 // si connexion réussie, obtient le token du server et le stocke dans le localStorage
                 const token = data.token;
@@ -144,7 +148,6 @@
                 // stocke également le token dans le store Pinia
                 userStore.setToken(token);
                 userStore.isConnected = true; // l'utilisateur est connecté
-
                 
             } else {
                 console.error('Erreur lors de la connexion :', response.statusText);

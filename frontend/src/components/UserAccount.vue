@@ -23,6 +23,10 @@
                     class="arrow"
                 />
             </button>
+
+            <div class="user-infos_container">
+                <p v-if="userData">{{ userData.firstName }} {{ userData.lastName }}</p>
+            </div>
         </div>
         
     </div>
@@ -38,7 +42,7 @@
 
     import { Icon } from '@iconify/vue';
     import Overlay from '@/components/Overlay.vue';
-    import { ref, onMounted } from 'vue';
+    import { ref, onMounted, watch } from 'vue';
     import { useUserStore } from '@/stores/UserStore';
 
     //datas
@@ -79,9 +83,22 @@
         closeUserAccountAndOverlay(); // ferme fenetre et overlay
     };
 
+    // ref par défaut des données de l'utilisateur connecté
+    const userData = ref(null);
 
+    // recupère les données utilisateur dans le localStorage, permet la persistance des données de l'utilisateur connecté après rafraichissement de la page
+    const localStorageUserData = localStorage.getItem('userData');
+    if(localStorageUserData) {
+        userStore.setUserData(JSON.parse(localStorageUserData));
+    };
+
+    // surveille les changements de userData dans le store et met à jour userData
+    watch(() => userStore.userData, (newUserData) => {
+        userData.value = newUserData;
+    });
 
 </script>
+
 <style lang="scss" scoped>
 
     @import '@/assets/sass/variables.scss';

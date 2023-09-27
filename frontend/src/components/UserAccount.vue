@@ -87,6 +87,11 @@
     // ref par défaut des données de l'utilisateur connecté
     const userData = ref(null);
 
+    // charge userData depuis le localStorage avant de rendre le composant avec méthode du store
+    onMounted(async() => {
+        await userStore.loadUserDataFromLocalStorage();
+    });
+
     // surveille les changements de userData dans le store et met à jour userData
     watch(() => userStore.userData, (newUserData) => {
         userData.value = newUserData;

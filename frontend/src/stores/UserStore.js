@@ -29,5 +29,13 @@ export const useUserStore = defineStore('users', {
             this.userData = userData;
             this.saveUserDataInLocalStorage();
         },
+
+        // charge les données utilisateur à partir du localStorage
+        async loadUserDataFromLocalStorage() {
+            const localStorageUserData = localStorage.getItem('userData');
+            if (localStorageUserData) {
+                this.userData = JSON.parse(localStorageUserData);
+            };
+        },
     },
 });

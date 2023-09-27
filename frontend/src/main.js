@@ -13,6 +13,7 @@ const initApp = async () => {
 
   // initialise Pinia
   app.use(createPinia());
+
   // crée une instance du store
   const catalogueStore = useCatalogueStore();
 
@@ -33,15 +34,6 @@ const initApp = async () => {
     // si un token est present dans le localStorage, le stocke dans le store Pinia
     userStore.setToken(storedToken);
     userStore.isConnected = true;
-  };
-
-  // recupère les données utilisateur dans le localStorage, permet la persistance des données de l'utilisateur connecté après rafraichissement de la page
-  const localStorageUserData = localStorage.getItem('userData');
-  if(localStorageUserData) {
-      const userData = JSON.parse(localStorageUserData);
-      // initialise le store avec les données utilisateur du localStorage
-      userStore.setUserData(userData);
-      console.log('donnees du localStorage:', localStorageUserData)
   };
 
   app.use(router);

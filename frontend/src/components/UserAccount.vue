@@ -73,11 +73,12 @@
         });
     });
 
-    // gère le bouton de deconnexion
     const userStore = useUserStore();
 
+    // gère le bouton de deconnexion
     const handleSignOut = () => {
         localStorage.removeItem('token') // supprime le token du localStorage
+        localStorage.removeItem('userData');// supprime les données utilisateur du localStorage
         userStore.clearToken(); // reinitialise le store 
         userStore.isConnected = false; // l'utilisateur est connecté
         closeUserAccountAndOverlay(); // ferme fenetre et overlay
@@ -85,12 +86,6 @@
 
     // ref par défaut des données de l'utilisateur connecté
     const userData = ref(null);
-
-    // recupère les données utilisateur dans le localStorage, permet la persistance des données de l'utilisateur connecté après rafraichissement de la page
-    const localStorageUserData = localStorage.getItem('userData');
-    if(localStorageUserData) {
-        userStore.setUserData(JSON.parse(localStorageUserData));
-    };
 
     // surveille les changements de userData dans le store et met à jour userData
     watch(() => userStore.userData, (newUserData) => {

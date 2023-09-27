@@ -19,10 +19,15 @@ export const useUserStore = defineStore('users', {
             this.token = null;
         },
 
+        // sauvegarde les données de l'utilisateur connecté dans le localStorage
+        saveUserDataInLocalStorage() {
+            localStorage.setItem('userData', JSON.stringify(this.userData));
+        },
+
         // charge les données utilisateur à partir de la reponse JSON
         setUserData(userData) {
             this.userData = userData;
-            console.log(userData)
+            this.saveUserDataInLocalStorage();
         },
     },
 });

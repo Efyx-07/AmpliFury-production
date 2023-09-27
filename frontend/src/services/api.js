@@ -7,7 +7,6 @@ export async function fetchCatalogueData() {
       if (!response.ok) {
         throw new Error('Erreur lors de la récupération des données catalogue');
       }
-  
       const catalogueData = await response.json();
       return catalogueData;
     } catch (error) {

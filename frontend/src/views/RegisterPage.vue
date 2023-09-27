@@ -7,24 +7,29 @@
         <form action="" class="registration-form" @submit.prevent="validate">
 
             <div class="input_container">
-                <input type="text" name="first_name" required id="registration_firstName" v-model="firstName">
+                <input type="text" name="first_name" required id="registration_firstName" v-model="firstName" @input="validateFirstName">
                 <p>{{ inputFirstNamePlaceholder }}</p>
+                <p v-if="!firstNameValid && firstName !== ''">Please enter a valid {{ inputFirstNamePlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="text" name="last_name" required id="registration_lastName" v-model="lastName">
+                <input type="text" name="last_name" required id="registration_lastName" v-model="lastName" @input="validateLastName">
                 <p>{{ inputLastNamePlaceholder }}</p>
+                <p v-if="!lastNameValid && lastName !== ''">Please enter a valid {{ inputLastNamePlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="text" name="address" id="registration_address" v-model="address">
+                <input type="text" name="address" id="registration_address" v-model="address" @input="validateAddress">
                 <p>{{ inputAddressPlaceholder }}</p>
+                <p v-if="!addressValid && address !== ''">Please enter a valid {{ inputAddressPlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="number" name="postal_code" id="registration_postalCode" v-model="postalCode">
+                <input type="number" name="postal_code" id="registration_postalCode" v-model="postalCode" @input="validatePostalCode">
                 <p>{{ inputPostalCodePlaceholder }}</p>
+                <p v-if="!postalCodeValid && postalCode !== ''">Please enter a valid {{ inputPostalCodePlaceholder }} numeric format </p>
             </div>
             <div class="input_container">
-                <input type="text" name="city" id="registration_city" v-model="city">
+                <input type="text" name="city" id="registration_city" v-model="city" @input="validateCity">
                 <p>{{ inputCityPlaceholder }}</p>
+                <p v-if="!cityValid && city !== ''">Please enter a valid {{ inputCityPlaceholder }}</p>
             </div>
             <div class="input_container">
                 <input name="country" id="registration_country" v-model="country">
@@ -67,16 +72,18 @@
 
     // datas
     const registerPageTitle = "Register";
-    const {inputFirstNamePlaceholder} = useGlobalDataStore();
-    const {inputLastNamePlaceholder} = useGlobalDataStore();
-    const {inputAddressPlaceholder} = useGlobalDataStore();
-    const {inputPostalCodePlaceholder} = useGlobalDataStore();
-    const {inputCityPlaceholder} = useGlobalDataStore();
-    const {inputCountryPlaceholder} = useGlobalDataStore();
-    const {inputMailPlaceholder} = useGlobalDataStore();
-    const {inputPasswordPlaceholder} = useGlobalDataStore();
-    const {inputConfirmPasswordPlaceholder} = useGlobalDataStore();
-    const {registerButtonMention}= useGlobalDataStore();
+    const {
+        inputFirstNamePlaceholder,
+        inputLastNamePlaceholder,
+        inputAddressPlaceholder,
+        inputPostalCodePlaceholder,
+        inputCityPlaceholder,
+        inputCountryPlaceholder,
+        inputMailPlaceholder,
+        inputPasswordPlaceholder,
+        inputConfirmPasswordPlaceholder,
+        registerButtonMention,
+    } = useGlobalDataStore();
 
 
     // propriétés du formulaire
@@ -91,9 +98,53 @@
     const confirmPassword = ref('');
 
     const router = useRouter();
+
+    // États de validation
+    const firstNameValid = ref(true);
+    const lastNameValid = ref(true);
+    const addressValid = ref(true);
+    const postalCodeValid = ref(true);
+    const cityValid = ref(true);
+    const countryValid = ref (true);
+    const emailValid = ref (true);
+    const passwordValid = ref (true);
+    const confirmPasswordValid = ref (true);
+
+    // Fonctions de validation pour chaque champ
+    const validateFirstName = () => {
+        const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ -']+$/;
+        firstNameValid.value = nameRegex.test(firstName.value);
+    };
+
+    const validateLastName = () => {
+        const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ -']+$/;
+        lastNameValid.value = nameRegex.test(lastName.value);
+    };
+
+    const validateAddress = () => {
+        const alphanumericRegex = /^[A-Za-z0-9, -']+$/;
+        addressValid.value = alphanumericRegex.test(address.value) || address.value === '';
+    };
+
+    const validatePostalCode = () => {
+        const postalCodeRegex = /^[0-9]*$/;
+        postalCodeValid.value = postalCode.value === '' || postalCodeRegex.test(postalCode.value);
+    };
+
+    const validateCity = () => {
+        const cityRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ -']+$/;
+        cityValid.value = cityRegex.test(city.value);
+    };
     
     // valide le formulaire 
     const validate = async () => {
+
+        // Valide chaque champ individuellement
+        validateFirstName();
+        validateLastName();
+        validateAddress();
+        validatePostalCode();
+        validateCity();
 
         // extrait les valeurs des objets ref
         const firstNameValue = firstName.value;
@@ -106,37 +157,44 @@
         const passwordValue = password.value;
         const confirmPasswordValue = confirmPassword.value;
 
-        try {        
-            const response = await fetch('http://localhost:3000/users/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    firstName: firstNameValue,
-                    lastName: lastNameValue,
-                    address: addressValue,
-                    postalCode: postalCodeValue,
-                    city: cityValue,
-                    country: countryValue,
-                    email: emailValue,
-                    password: passwordValue,
-                }),
-            });
+        if (firstNameValid.value && lastNameValid.value) {
 
-            if (response.ok) {
-                // inscription réussie, redirection vers une page de confirmation
-                router.push('/'); 
+            try {        
+                const response = await fetch('http://localhost:3000/users/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        firstName: firstNameValue,
+                        lastName: lastNameValue,
+                        address: addressValue,
+                        postalCode: postalCodeValue,
+                        city: cityValue,
+                        country: countryValue,
+                        email: emailValue,
+                        password: passwordValue,
+                    }),
+                });
 
-                // affiche le message d'inscription réussie ici
-                const data = await response.json();
-                console.log(data.message); // affiche le message dans la console
-            } else {
-                // affiche un message d'erreur à l'utilisateur.
-                console.error('Erreur lors de l\'inscription :', response.statusText);
+                if (response.ok) {
+                    // inscription réussie, redirection vers une page de confirmation
+                    router.push('/'); 
+
+                    // affiche le message d'inscription réussie ici
+                    const data = await response.json();
+                    console.log(data.message); // affiche le message dans la console
+                } else {
+                    // affiche un message d'erreur à l'utilisateur.
+                    console.error('Erreur lors de l\'inscription :', response.statusText);
+                }
+            } catch (error) {
+                console.error('Erreur lors de l\inscription: ', error);
             }
-        } catch (error) {
-            console.error('Erreur lors de l\inscription: ', error);
+
+        } else {
+            // Affiche un message d'erreur à l'utilisateur si le formulaire n'est pas valide
+            console.error('Veuillez corriger les erreurs dans le formulaire.');
         }
     };
 

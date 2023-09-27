@@ -7,41 +7,41 @@
         <form action="" class="registration-form" @submit.prevent="validate">
 
             <div class="input_container">
-                <input type="text" name="first_name" id="registration_firstName" v-model="firstName">
+                <input type="text" name="first_name" required id="registration_firstName" v-model="firstName">
                 <p>{{ inputFirstNamePlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="text" name="last_name" id="registration_lastName" v-model="lastName">
+                <input type="text" name="last_name" required id="registration_lastName" v-model="lastName">
                 <p>{{ inputLastNamePlaceholder }}</p>
             </div>
-            <!-- <div class="input_container">
-                <input type="text" name="address" id="registration_address">
+            <div class="input_container">
+                <input type="text" name="address" id="registration_address" v-model="address">
                 <p>{{ inputAddressPlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="number" name="postal_code" id="registration_postalCode">
+                <input type="number" name="postal_code" id="registration_postalCode" v-model="postalCode">
                 <p>{{ inputPostalCodePlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="text" name="city" id="registration_city">
+                <input type="text" name="city" id="registration_city" v-model="city">
                 <p>{{ inputCityPlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="text" name="country" id="registration_country">
+                <input name="country" id="registration_country" v-model="country">
                 <p>{{ inputCountryPlaceholder }}</p>
-            </div> -->
+            </div> 
             <div class="input_container">
-                <input type="email" name="email" id="registration_email" v-model="email">
+                <input type="email" name="email" required id="registration_email" v-model="email">
                 <p>{{ inputMailPlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="password" name="password" id="registration_password" v-model="password">
+                <input type="password" name="password" required id="registration_password" v-model="password">
                 <p>{{ inputPasswordPlaceholder }}</p>
             </div>
-            <!-- <div class="input_container">
-                <input type="password" name="confirm_password">
+            <div class="input_container">
+                <input type="password" name="confirm_password" required v-model="confirmPassword">
                 <p>{{ inputConfirmPasswordPlaceholder }}</p>
-            </div> -->
+            </div>
 
             <button class="login-button_container" type="submit">
                 <p>{{ registerButtonMention }}</p>
@@ -69,21 +69,26 @@
     const registerPageTitle = "Register";
     const {inputFirstNamePlaceholder} = useGlobalDataStore();
     const {inputLastNamePlaceholder} = useGlobalDataStore();
-    // const {inputAddressPlaceholder} = useGlobalDataStore();
-    // const {inputPostalCodePlaceholder} = useGlobalDataStore();
-    // const {inputCityPlaceholder} = useGlobalDataStore();
-    // const {inputCountryPlaceholder} = useGlobalDataStore();
+    const {inputAddressPlaceholder} = useGlobalDataStore();
+    const {inputPostalCodePlaceholder} = useGlobalDataStore();
+    const {inputCityPlaceholder} = useGlobalDataStore();
+    const {inputCountryPlaceholder} = useGlobalDataStore();
     const {inputMailPlaceholder} = useGlobalDataStore();
     const {inputPasswordPlaceholder} = useGlobalDataStore();
-    // const {inputConfirmPasswordPlaceholder} = useGlobalDataStore();
+    const {inputConfirmPasswordPlaceholder} = useGlobalDataStore();
     const {registerButtonMention}= useGlobalDataStore();
 
 
     // propriétés du formulaire
     const firstName = ref('');
     const lastName = ref('');
+    const address = ref('');
+    const postalCode = ref('');
+    const city = ref('');
+    const country = ref('');
     const email = ref('');
     const password = ref('');
+    const confirmPassword = ref('');
 
     const router = useRouter();
     
@@ -93,8 +98,13 @@
         // extrait les valeurs des objets ref
         const firstNameValue = firstName.value;
         const lastNameValue = lastName.value;
+        const addressValue = address.value;
+        const postalCodeValue = postalCode.value;
+        const cityValue = city.value;
+        const countryValue = country.value;
         const emailValue = email.value;
         const passwordValue = password.value;
+        const confirmPasswordValue = confirmPassword.value;
 
         try {        
             const response = await fetch('http://localhost:3000/users/register', {
@@ -105,6 +115,10 @@
                 body: JSON.stringify({
                     firstName: firstNameValue,
                     lastName: lastNameValue,
+                    address: addressValue,
+                    postalCode: postalCodeValue,
+                    city: cityValue,
+                    country: countryValue,
                     email: emailValue,
                     password: passwordValue,
                 }),

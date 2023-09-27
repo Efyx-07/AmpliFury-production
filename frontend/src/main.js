@@ -35,7 +35,7 @@ const initApp = async () => {
     userStore.setToken(storedToken);
     userStore.isConnected = true;
   };
-
+  
   app.use(router);
   app.mount('#app');
 };

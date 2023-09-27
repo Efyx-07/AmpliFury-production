@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt'); // importe bcrypt
 router.post('/register', async(req, res) => {
 
     // récupère les données du formulaire d'inscription depuis req.body
-    const { firstName, lastName, email, password} = req.body; 
+    const { firstName, lastName, address, postalCode, city, country, email, password } = req.body; 
 
     try {
 
@@ -15,8 +15,8 @@ router.post('/register', async(req, res) => {
         const hashedPassword = await hashPassword(password); 
 
         // insert les données dans la base de données 'users' avec le password haché
-        const insertQuery = 'INSERT INTO users (first_name, last_name, email, password_hash) VALUES (?, ?, ?, ?)';
-        const values = [firstName, lastName, email, hashedPassword]; 
+        const insertQuery = 'INSERT INTO users (first_name, last_name, address, postal_code, city, country, email, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        const values = [firstName, lastName, address, postalCode, city, country, email, hashedPassword]; 
 
         usersConnection.query(insertQuery, values, (err, results) => {
             if (err) {

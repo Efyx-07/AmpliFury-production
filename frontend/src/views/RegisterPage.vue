@@ -7,12 +7,14 @@
         <form action="" class="registration-form" @submit.prevent="validate">
 
             <div class="input_container">
-                <input type="text" name="first_name" required id="registration_firstName" v-model="firstName" @input="validateFirstName">
+                <input type="text" name="first_name" required id="registration_firstName" v-model="firstName" @input="validateFirstName"
+                placeholder="Required">
                 <p>{{ inputFirstNamePlaceholder }}</p>
                 <p v-if="!firstNameValid && firstName !== ''">Please enter a valid {{ inputFirstNamePlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="text" name="last_name" required id="registration_lastName" v-model="lastName" @input="validateLastName">
+                <input type="text" name="last_name" required id="registration_lastName" v-model="lastName" @input="validateLastName"
+                placeholder="Required">
                 <p>{{ inputLastNamePlaceholder }}</p>
                 <p v-if="!lastNameValid && lastName !== ''">Please enter a valid {{ inputLastNamePlaceholder }}</p>
             </div>
@@ -29,23 +31,30 @@
             <div class="input_container">
                 <input type="text" name="city" id="registration_city" v-model="city" @input="validateCity">
                 <p>{{ inputCityPlaceholder }}</p>
-                <p v-if="!cityValid && city !== ''">Please enter a valid {{ inputCityPlaceholder }}</p>
+                <p v-if="!cityValid && city !== ''">Please enter a valid {{ inputCityPlaceholder }} </p>
             </div>
             <div class="input_container">
-                <input name="country" id="registration_country" v-model="country">
+                <input name="country" id="registration_country" v-model="country" @input="validateCountry">
                 <p>{{ inputCountryPlaceholder }}</p>
+                <p v-if="!countryValid && country !== ''">Please enter a valid {{ inputCountryPlaceholder }} </p>
             </div> 
             <div class="input_container">
-                <input type="email" name="email" required id="registration_email" v-model="email">
+                <input type="email" name="email" required id="registration_email" v-model="email" @input="validateEmail"
+                placeholder="Required">
                 <p>{{ inputMailPlaceholder }}</p>
+                <p v-if="!emailValid && email !== ''">Please enter a valid {{ inputMailPlaceholder }} </p>
             </div>
             <div class="input_container">
-                <input type="password" name="password" required id="registration_password" v-model="password">
+                <input type="password" name="password" required id="registration_password" v-model="password" @input="validatePassword"
+                placeholder="Required: Should have 1 lowercase letter, 1 uppercase letter, 1 number, and be at least 8 characters long">
                 <p>{{ inputPasswordPlaceholder }}</p>
+                <p v-if="!passwordValid && password !== ''">Please enter a good format {{ inputPasswordPlaceholder }} </p>
             </div>
             <div class="input_container">
-                <input type="password" name="confirm_password" required v-model="confirmPassword">
+                <input type="password" name="confirm_password" required v-model="confirmPassword" @input="validateConfirmPassword"
+                placeholder="Required">
                 <p>{{ inputConfirmPasswordPlaceholder }}</p>
+                <p v-if="!confirmPasswordValid && confirmPassword !== ''">Not identical to your password </p>
             </div>
 
             <button class="login-button_container" type="submit">
@@ -99,7 +108,7 @@
 
     const router = useRouter();
 
-    // États de validation
+    // états de validation
     const firstNameValid = ref(true);
     const lastNameValid = ref(true);
     const addressValid = ref(true);
@@ -110,31 +119,68 @@
     const passwordValid = ref (true);
     const confirmPasswordValid = ref (true);
 
+    // RegExp
+    const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
+    const alphanumericRegex = /^[A-Za-z0-9, -']+$/;
+    const numericRegex = /^[0-9]*$/;
+    const emailRegex = /^[a-z0-9.-]+@[a-z0-9._-]{2,}\.[a-z]{2,8}$/
+    // password doit comporter 1 majuscule, 1 minuscule, 1 nombre et avoir 1 longueur de 8 charactères minimum
+    const passwordRegex = /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/ 
+
     // Fonctions de validation pour chaque champ
+
     const validateFirstName = () => {
-        const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ -']+$/;
-        firstNameValid.value = nameRegex.test(firstName.value);
+        firstNameValid.value = nameTypeRegex.test(firstName.value);
     };
 
     const validateLastName = () => {
-        const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ -']+$/;
-        lastNameValid.value = nameRegex.test(lastName.value);
+        lastNameValid.value = nameTypeRegex.test(lastName.value);
     };
 
     const validateAddress = () => {
-        const alphanumericRegex = /^[A-Za-z0-9, -']+$/;
         addressValid.value = alphanumericRegex.test(address.value) || address.value === '';
     };
 
     const validatePostalCode = () => {
-        const postalCodeRegex = /^[0-9]*$/;
-        postalCodeValid.value = postalCode.value === '' || postalCodeRegex.test(postalCode.value);
+        postalCodeValid.value = postalCode.value === '' || numericRegex.test(postalCode.value);
     };
 
     const validateCity = () => {
-        const cityRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ -']+$/;
-        cityValid.value = cityRegex.test(city.value);
+        cityValid.value = city.value === '' || nameTypeRegex.test(city.value);
     };
+
+    const validateCountry = () => {
+        countryValid.value = country.value === '' || nameTypeRegex.test(country.value);
+    };
+
+    const validateEmail = () => {
+        emailValid.value = emailRegex.test(email.value);
+    };
+
+    
+    const validatePassword = () => {
+        // regex pour vérifier les critères
+        const uppercaseRegex = /[A-Z]/;
+        const lowercaseRegex = /[a-z]/;
+        const digitRegex = /[0-9]/;
+
+        // vérifie la longueur du mot de passe
+        const minLength = 8;
+
+        // valide si tous les critères sont respectés
+        const isValid =
+            password.value.length >= minLength &&
+            uppercaseRegex.test(password.value) &&
+            lowercaseRegex.test(password.value) &&
+            digitRegex.test(password.value);
+
+        passwordValid.value = isValid;
+    };
+
+    const validateConfirmPassword = () => {
+        confirmPasswordValid.value = password.value === confirmPassword.value;
+    };
+
     
     // valide le formulaire 
     const validate = async () => {
@@ -142,9 +188,9 @@
         // Valide chaque champ individuellement
         validateFirstName();
         validateLastName();
-        validateAddress();
-        validatePostalCode();
-        validateCity();
+        validateEmail();
+        validatePassword();
+        validateConfirmPassword();
 
         // extrait les valeurs des objets ref
         const firstNameValue = firstName.value;
@@ -157,7 +203,16 @@
         const passwordValue = password.value;
         const confirmPasswordValue = confirmPassword.value;
 
-        if (firstNameValid.value && lastNameValid.value) {
+        // détermine les champs requis pour soumettre le formulaire
+        const requiredFieldsValid =
+            firstNameValid.value &&
+            lastNameValid.value &&
+            emailValid.value &&
+            passwordValid.value &&
+            confirmPasswordValid.value;
+
+        // soumet le formulaire avec au moins les champs requis
+        if (requiredFieldsValid) {
 
             try {        
                 const response = await fetch('http://localhost:3000/users/register', {

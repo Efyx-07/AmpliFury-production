@@ -7,6 +7,7 @@ import Wishlist from '@/views/Wishlist.vue';
 import Contact from '@/views/Contact.vue';
 import RegisterPage from '@/views/RegisterPage.vue';
 import AccountSettings from '@/views/AccountSettings.vue';
+import RegistrationConfirmation from '@/views/RegistrationConfirmation.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -60,6 +61,11 @@ const router = createRouter({
       path: '/account-settings',
       name: 'AccountSettings',
       component: AccountSettings
+    },
+    {
+      path: '/registration-confirmation',
+      name: 'RegistrationConfirmation',
+      component: RegistrationConfirmation
     },
   ]
 });

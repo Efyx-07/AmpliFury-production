@@ -120,11 +120,11 @@
 
         .inStock {
             margin: 0;
-            color: #45AA43;
+            color: $greenColor;
         }
         .onDemand {
             margin: 0;
-            color: #CA0B0B;
+            color: $redColor;
         }
         .action-icons_container {
             display: flex;
@@ -162,10 +162,10 @@
             font-weight: 400;
         }
         .validateIcon {
-            color: #45AA43;
+            color: $greenColor;
         }
         .validateIcon2 {
-            color: #CA0B0B;
+            color: $redColor;
         }
     }
 }

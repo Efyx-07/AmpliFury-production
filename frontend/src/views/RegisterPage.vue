@@ -4,17 +4,15 @@
 
         <h1>{{ registerPageTitle }}</h1>
 
-        <form action="" class="registration-form" @submit.prevent="validate">
+        <form class="registration-form" @submit.prevent="validate">
 
             <div class="input_container">
-                <input type="text" name="first_name" required id="registration_firstName" v-model="firstName" @input="validateFirstName"
-                placeholder="Required">
+                <input type="text" name="first_name" required id="registration_firstName" v-model="firstName" @input="validateFirstName">
                 <p>{{ inputFirstNamePlaceholder }}</p>
                 <p v-if="!firstNameValid && firstName !== ''">Please enter a valid {{ inputFirstNamePlaceholder }}</p>
             </div>
             <div class="input_container">
-                <input type="text" name="last_name" required id="registration_lastName" v-model="lastName" @input="validateLastName"
-                placeholder="Required">
+                <input type="text" name="last_name" required id="registration_lastName" v-model="lastName" @input="validateLastName">
                 <p>{{ inputLastNamePlaceholder }}</p>
                 <p v-if="!lastNameValid && lastName !== ''">Please enter a valid {{ inputLastNamePlaceholder }}</p>
             </div>
@@ -39,20 +37,18 @@
                 <p v-if="!countryValid && country !== ''">Please enter a valid {{ inputCountryPlaceholder }} </p>
             </div> 
             <div class="input_container">
-                <input type="email" name="email" required id="registration_email" v-model="email" @input="validateEmail"
-                placeholder="Required">
+                <input type="email" name="email" required id="registration_email" v-model="email" @input="validateEmail">
                 <p>{{ inputMailPlaceholder }}</p>
                 <p v-if="!emailValid && email !== ''">Please enter a valid {{ inputMailPlaceholder }} </p>
             </div>
             <div class="input_container">
                 <input type="password" name="password" required id="registration_password" v-model="password" @input="validatePassword"
-                placeholder="Required: Should have 1 lowercase letter, 1 uppercase letter, 1 number, and be at least 8 characters long">
+                placeholder="Should have 1 lowercase letter, 1 uppercase letter, 1 number, and be at least 8 characters long">
                 <p>{{ inputPasswordPlaceholder }}</p>
                 <p v-if="!passwordValid && password !== ''">Please enter a good format {{ inputPasswordPlaceholder }} </p>
             </div>
             <div class="input_container">
-                <input type="password" name="confirm_password" required v-model="confirmPassword" @input="validateConfirmPassword"
-                placeholder="Required">
+                <input type="password" name="confirm_password" required v-model="confirmPassword" @input="validateConfirmPassword">
                 <p>{{ inputConfirmPasswordPlaceholder }}</p>
                 <p v-if="!confirmPasswordValid && confirmPassword !== ''">Not identical to your password </p>
             </div>
@@ -114,18 +110,16 @@
     const addressValid = ref(true);
     const postalCodeValid = ref(true);
     const cityValid = ref(true);
-    const countryValid = ref (true);
+    const countryValid = ref(true);
     const emailValid = ref (true);
     const passwordValid = ref (true);
     const confirmPasswordValid = ref (true);
 
     // RegExp
     const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
-    const alphanumericRegex = /^[A-Za-z0-9, -']+$/;
+    const alphanumericRegex = /^[A-Za-z0-9, \-'’]+$/;
     const numericRegex = /^[0-9]*$/;
-    const emailRegex = /^[a-z0-9.-]+@[a-z0-9._-]{2,}\.[a-z]{2,8}$/
-    // password doit comporter 1 majuscule, 1 minuscule, 1 nombre et avoir 1 longueur de 8 charactères minimum
-    const passwordRegex = /(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/ 
+    const emailRegex = /^[a-z0-9.-]+@[a-z0-9._-]{2,}\.[a-z]{2,8}$/;
 
     // Fonctions de validation pour chaque champ
 
@@ -138,19 +132,19 @@
     };
 
     const validateAddress = () => {
-        addressValid.value = alphanumericRegex.test(address.value) || address.value === '';
+        addressValid.value = alphanumericRegex.test(address.value);
     };
 
     const validatePostalCode = () => {
-        postalCodeValid.value = postalCode.value === '' || numericRegex.test(postalCode.value);
+        postalCodeValid.value = numericRegex.test(postalCode.value);
     };
 
     const validateCity = () => {
-        cityValid.value = city.value === '' || nameTypeRegex.test(city.value);
+        cityValid.value = nameTypeRegex.test(city.value);
     };
 
     const validateCountry = () => {
-        countryValid.value = country.value === '' || nameTypeRegex.test(country.value);
+        countryValid.value = nameTypeRegex.test(country.value);
     };
 
     const validateEmail = () => {
@@ -188,6 +182,10 @@
         // Valide chaque champ individuellement
         validateFirstName();
         validateLastName();
+        validateAddress();
+        validatePostalCode();
+        validateCity();
+        validateCountry(); 
         validateEmail();
         validatePassword();
         validateConfirmPassword();
@@ -201,12 +199,15 @@
         const countryValue = country.value;
         const emailValue = email.value;
         const passwordValue = password.value;
-        const confirmPasswordValue = confirmPassword.value;
 
         // détermine les champs requis pour soumettre le formulaire
         const requiredFieldsValid =
             firstNameValid.value &&
             lastNameValid.value &&
+            addressValid.value &&
+            postalCode.value &&
+            cityValid.value &&
+            countryValid.value &&
             emailValid.value &&
             passwordValid.value &&
             confirmPasswordValid.value;
@@ -234,7 +235,7 @@
 
                 if (response.ok) {
                     // inscription réussie, redirection vers une page de confirmation
-                    router.push('/'); 
+                    router.push('/registration-confirmation'); 
 
                     // affiche le message d'inscription réussie ici
                     const data = await response.json();
@@ -252,7 +253,6 @@
             console.error('Veuillez corriger les erreurs dans le formulaire.');
         }
     };
-
 
 </script>
 

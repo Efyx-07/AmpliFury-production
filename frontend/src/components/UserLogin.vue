@@ -21,6 +21,7 @@
                     <input type="password" name="password" id="userLogin_password" v-model="password">
                     <p>{{ inputPasswordPlaceholder }}</p>
                 </div>
+                <div class="error-message" v-if="error">Email or password are incorrect</div>
                 <div class="form-checkbox_container">
                     <input type="checkbox"> 
                     <p>{{ checkboxMention }}</p>
@@ -106,9 +107,11 @@
     // propriétés du formulaire
     const email = ref('');
     const password = ref('');
+    const error = ref(false); // gére affichage de l'erreur
 
     const router = useRouter();
     const userStore = useUserStore();
+
 
     // valide le formulaire
     const handleLogin = async () => {
@@ -144,11 +147,21 @@
                 // stocke également le token dans le store Pinia
                 userStore.setToken(token);
                 userStore.isConnected = true; // l'utilisateur est connecté
+
+                // si connexion reussie, déclenche evenement personnalisé 'hide-overlay3' et ferme fenetre userLogin
+                closeUserLoginAndOverlay();
+
+                // repasse à false pour effacer affichage de l'erreur en cas de succés de la validation
+                error.value = false;
                 
             } else {
+                // affiche une erreur et empeche la redirection
+                error.value = true;
                 console.error('Erreur lors de la connexion :', response.statusText);
             }
         } catch (error) { 
+            // affiche une erreur en cas d'echec de la requete
+            error.value = true;
             console.error('Erreur lors de la connexion: ', error);
         }
     };
@@ -257,6 +270,9 @@
                     margin: 0;
                     font-size: 1.5rem;
                 }
+            }
+            .error-message {
+                color: $redColor;
             }
         }
         .separator {

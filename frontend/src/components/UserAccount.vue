@@ -10,22 +10,26 @@
                     @click="closeUserAccountAndOverlay"
                 />
             </div>
-            can:<br>
-            <router-link to="/account-settings"> Modify account </router-link>
-            <br>
-            <router-link to="/account-settings"> Remove account </router-link>
-            <br>
-            <button class="signOut-button_container" type="submit" @click="handleSignOut">
-                <p>{{ signOutButtonMention }}</p>
-                <Icon 
-                    icon="system-uicons:arrow-up" 
-                    :rotate="1" 
-                    class="arrow"
-                />
-            </button>
 
-            <div class="user-infos_container">
-                <p v-if="userData">{{ userData.firstName }} {{ userData.lastName }}</p>
+            <p class="topline" v-if="userData">Hello {{ userData.firstName }} !</p>
+
+            <div class="option-buttons_container">
+                <router-link to="/account-settings" @click="closeUserAccountAndOverlay" class="button_container">
+                    <p>Modify your account</p>
+                    <Icon 
+                        icon="system-uicons:arrow-up" 
+                        :rotate="1" 
+                        class="arrow"
+                    />
+                </router-link>
+                <div class="button_container" type="submit" @click="handleSignOut">
+                    <p>{{ signOutButtonMention }}</p>
+                    <Icon 
+                        icon="system-uicons:arrow-up" 
+                        :rotate="1" 
+                        class="arrow"
+                    />
+                </div>
             </div>
         </div>
         
@@ -44,6 +48,7 @@
     import Overlay from '@/components/Overlay.vue';
     import { ref, onMounted, watch } from 'vue';
     import { useUserStore } from '@/stores/UserStore';
+    import { useRouter } from 'vue-router';
 
     //datas
     const userAccountTitle = 'Your account';
@@ -74,6 +79,7 @@
     });
 
     const userStore = useUserStore();
+    const router = useRouter(); 
 
     // gère le bouton de deconnexion
     const handleSignOut = () => {
@@ -82,6 +88,9 @@
         userStore.clearToken(); // reinitialise le store 
         userStore.isConnected = false; // l'utilisateur est connecté
         closeUserAccountAndOverlay(); // ferme fenetre et overlay
+
+        // déconnexion réussie, redirection vers page Home
+        router.push('/'); 
     };
 
     // ref par défaut des données de l'utilisateur connecté
@@ -115,7 +124,6 @@
             position: relative;
             width: 100vw;
             height: 100vh;
-            background: $lightColor;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -148,6 +156,23 @@
                     }
                 }
 
+            }
+            .option-buttons_container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                .button_container {
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    color: $darkColor;
+                    cursor: pointer;
+                    p, .arrow {
+                        margin: 0;
+                        font-size: 1.5rem;
+                    }
+                }
             }
         }
     }

@@ -132,7 +132,7 @@
             });
 
             if (response.ok) {
-                // connexion réussie, redirection vers une page de confirmation
+                // connexion réussie, redirection vers page Home
                 router.push('/'); 
 
                 // récupère les données de l'utilisateur depuis la reponse du serveur et affiche le message de connexion reussie

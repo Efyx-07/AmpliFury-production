@@ -28,6 +28,7 @@ export const useUserStore = defineStore('users', {
         setUserData(userData) {
             this.userData = userData;
             this.saveUserDataInLocalStorage();
+            console.log(userData)
         },
 
         // charge les données utilisateur à partir du localStorage

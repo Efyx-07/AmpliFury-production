@@ -64,7 +64,11 @@ router.post('/login', async (req, res) => {
                 id: rows[0].id,
                 firstName: rows[0].first_name,
                 lastName: rows[0].last_name,
-                email: rows[0].email
+                address: rows[0].address,
+                postalCode: rows[0].postal_code,
+                city: rows[0].city,
+                country: rows[0].country,
+                email: rows[0].email,
             }
          });
     } catch (err) {

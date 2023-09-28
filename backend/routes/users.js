@@ -9,6 +9,30 @@ router.post('/register', async(req, res) => {
     // récupère les données du formulaire d'inscription depuis req.body
     const { firstName, lastName, address, postalCode, city, country, email, password } = req.body; 
 
+    // effectue les mêmes validations côté serveur que côté client
+    const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
+    const alphanumericRegex = /^[A-Za-z0-9, \-'’]+$/;
+    const numericRegex = /^[0-9]*$/;
+    const emailRegex = /^[a-z0-9.-]+@[a-z0-9._-]{2,}\.[a-z]{2,8}$/;
+    const uppercaseRegex = /[A-Z]/;
+    const lowercaseRegex = /[a-z]/;
+    const digitRegex = /[0-9]/;
+    const minLength = 8;
+
+    if (!nameTypeRegex.test(firstName) ||
+        !nameTypeRegex.test(lastName) ||
+        !alphanumericRegex.test(address) ||
+        (!numericRegex.test(postalCode)) ||
+        !nameTypeRegex.test(city) ||
+        !nameTypeRegex.test(country) ||
+        !emailRegex.test(email) ||
+        (password.length < minLength) ||
+        (!uppercaseRegex.test(password)) ||
+        (!lowercaseRegex.test(password)) ||
+        (!digitRegex.test(password))) {
+        return res.status(400).json({ error: 'Champs invalides' });
+    };
+
     try {
 
         // utilise bcrypt pour hacher le password

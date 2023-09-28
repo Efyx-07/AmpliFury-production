@@ -250,6 +250,8 @@
             .login-button_container {
                 display: flex;
                 align-items: center;
+                background: none;
+                border: none;
                 cursor: pointer;
                 p, .arrow {
                     margin: 0;

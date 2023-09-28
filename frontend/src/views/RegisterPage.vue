@@ -53,7 +53,7 @@
                 <p v-if="!confirmPasswordValid && confirmPassword !== ''">Not identical to your password </p>
             </div>
 
-            <button class="login-button_container" type="submit">
+            <button class="register-button_container" type="submit">
                 <p>{{ registerButtonMention }}</p>
                 <Icon 
                     icon="system-uicons:arrow-up" 
@@ -331,10 +331,12 @@
                 }
             }
         }
-        .login-button_container {
+        .register-button_container {
             display: flex;
             align-items: center;
             text-decoration: none;
+            background: none;
+            border: none;
             color: $darkColor;
             padding-top: 1rem;
             cursor: pointer;

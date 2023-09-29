@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { usersConnection } = require('../db'); // importe la connexion à la base de données
 const bcrypt = require('bcrypt'); // importe bcrypt 
+const { verifyAuth } = require('./auth'); // importe le middleware verifyAuth depuis auth.js
 
 // inscription utilisateur 
 router.post('/register', async(req, res) => {
@@ -93,6 +94,43 @@ router.get("/", (req, res) => {
         const users = usersResults;
         res.json({ users });
     });
+});
+
+// modification profil utilisateur 
+router.post('/update', verifyAuth, async (req, res) => {
+    
+    // récupère l'ID de l'utilisateur authentifié depuis req.user
+    const userId = req.user;
+
+    console.log('ID de l\'utilisateur authentifié:', userId);
+
+    // récupère les données de mise à jour à partir de req.body
+    const { newFirstName, newLastName, newAddress, newPostalCode, newCity, newCountry } = req.body;
+    
+    try {
+        // effectue la mise à jour des informations de l'utilisateur dans la base de données
+        const updateQuery = `
+            UPDATE users
+            SET first_name = ?, last_name = ?, address = ?, postal_code = ?, city = ?, country = ?
+            WHERE id = ?       
+        `; 
+
+        const values = [newFirstName, newLastName, newAddress, newPostalCode, newCity, newCountry, userId];
+
+        usersConnection.query(updateQuery, values, (err, results) => {
+            if(err) {
+                console.error('Erreur lors de la mise à jour des informations de l\'utilisateur :', err);
+                res.status(500).json({ error: 'Erreur lors de la mise à jour des informations de l\'utilisateur' });
+                return;
+            };
+
+            // mise à jour réussie
+            res.status(200).json({ message: 'Mise à jour réussie' });
+        });
+    } catch (err) {
+        console.error('Erreur lors de la mise à jour des informations de l\'utilisateur :', err);
+        res.status(500).json({ error: 'Erreur lors de la mise à jour des informations de l\'utilisateur' });
+    };
 });
 
 module.exports = router;

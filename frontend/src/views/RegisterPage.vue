@@ -179,7 +179,7 @@
     // valide le formulaire 
     const validate = async () => {
 
-        // Valide chaque champ individuellement
+        // valide chaque champ individuellement
         validateFirstName();
         validateLastName();
         validateAddress();
@@ -212,7 +212,7 @@
             passwordValid.value &&
             confirmPasswordValid.value;
 
-        // soumet le formulaire avec au moins les champs requis
+        // soumet le formulaire avec les champs requis
         if (requiredFieldsValid) {
 
             try {        

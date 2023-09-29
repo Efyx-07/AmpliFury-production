@@ -7,128 +7,99 @@
         <form class="edit-form" @submit.prevent="updateProfile">
 
             <div class="item_container">
-                <p v-if="userData" class="item-name">{{ inputFirstNamePlaceholder }}: <span>{{ userData.firstName }}</span></p>
+                <p class="item-name">{{ inputFirstNamePlaceholder }}</p>
                 <div class="input-container">
-                    <input type="text" name="first_name" required id="edit_firstName" v-model="newFirstName">
-                    <button type="button" @click="editFirstName">
-                        <p>{{ editButtonMention }}</p>
-                        <Icon 
-                            icon="system-uicons:arrow-up" 
-                            :rotate="1" 
-                            class="arrow"
-                        />
-                    </button>
+                    <input 
+                        type="text" 
+                        name="first_name" 
+                        required 
+                        id="edit_firstName" 
+                        v-model="newFirstName"
+                        @input="validateNewFirstName"
+                    >
                 </div>
             </div>
 
             <div class="item_container">
-                <p v-if="userData" class="item-name">{{ inputLastNamePlaceholder }}: <span>{{ userData.lastName }}</span></p>
+                <p class="item-name">{{ inputLastNamePlaceholder }}</p>
                 <div class="input-container">
-                    <input type="text" name="last_name" required id="edit_firstName" v-model="newLastName">
-                    <button type="button" @click="editLastName">
-                        <p>{{ editButtonMention }}</p>
-                        <Icon 
-                            icon="system-uicons:arrow-up" 
-                            :rotate="1" 
-                            class="arrow"
-                        />
-                    </button>
-                </div>
-            </div>
-            
-            <div class="item_container">
-                <p v-if="userData" class="item-name">{{ inputAddressPlaceholder }}: <span>{{ userData.address }}</span></p>
-                <div class="input-container">
-                    <input type="text" name="address" required id="edit_address" v-model="newAddress">
-                    <button type="button" @click="editAddress">
-                        <p>{{ editButtonMention }}</p>
-                        <Icon 
-                            icon="system-uicons:arrow-up" 
-                            :rotate="1" 
-                            class="arrow"
-                        />
-                    </button>
+                    <input 
+                        type="text" 
+                        name="last_name" 
+                        required 
+                        id="edit_lastName" 
+                        v-model="newLastName"
+                        @input="validateNewLastName"
+                    >
                 </div>
             </div>
 
             <div class="item_container">
-                <p v-if="userData" class="item-name">{{ inputPostalCodePlaceholder }}: <span>{{ userData.postalCode }}</span></p>
+                <p class="item-name">{{ inputAddressPlaceholder }}</p>
                 <div class="input-container">
-                    <input type="text" name="postalCode" required id="edit_postalCode" v-model="newPostalCode">
-                    <button type="button" @click="editPostalCode">
-                        <p>{{ editButtonMention }}</p>
-                        <Icon 
-                            icon="system-uicons:arrow-up" 
-                            :rotate="1" 
-                            class="arrow"
-                        />
-                    </button>
+                    <input 
+                        type="text" 
+                        name="address" 
+                        required 
+                        id="edit_address" 
+                        v-model="newAddress"
+                        @input="validateNewAddress"
+                    >
                 </div>
             </div>
 
             <div class="item_container">
-                <p v-if="userData" class="item-name">{{ inputCityPlaceholder }}: <span>{{ userData.city }}</span></p>
+                <p class="item-name">{{ inputPostalCodePlaceholder }}</p>
                 <div class="input-container">
-                    <input type="text" name="city" required id="edit_city" v-model="newCity">
-                    <button type="button" @click="editCity">
-                        <p>{{ editButtonMention }}</p>
-                        <Icon 
-                            icon="system-uicons:arrow-up" 
-                            :rotate="1" 
-                            class="arrow"
-                        />
-                    </button>
+                    <input 
+                        type="text" 
+                        name="postalCode" 
+                        required 
+                        id="edit_postalCode" 
+                        v-model="newPostalCode"
+                        @input="validateNewPostalCode"
+                    >
                 </div>
             </div>
 
             <div class="item_container">
-                <p v-if="userData" class="item-name">{{ inputCountryPlaceholder }}: <span>{{ userData.country }}</span></p>
+                <p class="item-name">{{ inputCityPlaceholder }}</p>
                 <div class="input-container">
-                    <input type="text" name="country" required id="edit_country" v-model="newCountry">
-                    <button type="button" @click="editCountry">
-                        <p>{{ editButtonMention }}</p>
-                        <Icon 
-                            icon="system-uicons:arrow-up" 
-                            :rotate="1" 
-                            class="arrow"
-                        />
-                    </button>
+                    <input 
+                        type="text" 
+                        name="city" 
+                        required 
+                        id="edit_city" 
+                        v-model="newCity"
+                        @input="validateNewCity"
+                    >
                 </div>
             </div>
 
             <div class="item_container">
-                <p v-if="userData" class="item-name">{{ inputMailPlaceholder }}: <span>{{ userData.email }}</span></p>
+                <p class="item-name">{{ inputCountryPlaceholder }}</p>
                 <div class="input-container">
-                    <input type="text" name="email" required id="edit_email" v-model="newEmail">
-                    <button type="button" @click="editEmail">
-                        <p>{{ editButtonMention }}</p>
-                        <Icon 
-                            icon="system-uicons:arrow-up" 
-                            :rotate="1" 
-                            class="arrow"
-                        />
-                    </button>
+                    <input 
+                        type="text" 
+                        name="country" 
+                        required 
+                        id="edit_country" 
+                        v-model="newCountry"
+                        @input="validateNewCountry"
+                    >
                 </div>
             </div>
 
             <div class="item_container">
-                <p class="item-name">Current Password:</p>
+                <p class="item-name">Current password</p>
                 <div class="input-container">
-                    <input type="password" name="currentPassword" required id="currentPassword" v-model="currentPassword">
-                </div>
-            </div>
-
-            <div class="item_container">
-                <p class="item-name">New Password:</p>
-                <div class="input-container">
-                    <input type="password" name="newPassword" required id="newPassword" v-model="newPassword">
-                </div>
-            </div>
-
-            <div class="item_container">
-                <p class="item-name">Confirm New Password:</p>
-                <div class="input-container">
-                    <input type="password" name="confirmNewPassword" required id="confirmNewPassword" v-model="confirmNewPassword">
+                    <input 
+                        type="password" 
+                        name="currentPassword" 
+                        required 
+                        id="currentPassword" 
+                        v-model="currentPassword"
+                    >
                 </div>
             </div>
 
@@ -153,11 +124,11 @@
     import { useGlobalDataStore } from '@/stores/GlobalDataStore';
     import { ref, onMounted, watch } from 'vue';
     import { Icon } from '@iconify/vue';
+    import { useRouter } from 'vue-router';
 
     // datas
     const accountSettingsTitle = 'Account settings';
-    const editButtonMention = 'Modify';
-    const editFormButtonMention = 'Submit';
+    const editFormButtonMention = 'Save changes';
 
     const {
         inputFirstNamePlaceholder,
@@ -169,23 +140,158 @@
         inputMailPlaceholder,
         inputPasswordPlaceholder,
         inputConfirmPasswordPlaceholder,
-        registerButtonMention,
     } = useGlobalDataStore();
 
+
+    const router = useRouter();
     const userStore = useUserStore();
 
     // ref par défaut des données de l'utilisateur connecté
     const userData = ref(null);
 
+    const currentPassword = ref('');
+
+    const newFirstName = ref('');
+    const newLastName = ref('');
+    const newAddress = ref('');
+    const newPostalCode = ref('');
+    const newCity = ref('');
+    const newCountry = ref('');
+
+    // états de validation
+    const newFirstNameValid = ref(true);
+    const newLastNameValid = ref(true);
+    const newAddressValid = ref(true);
+    const newPostalCodeValid = ref(true);
+    const newCityValid = ref(true);
+    const newCountryValid = ref(true);
+    const currentPasswordValid = ref(true);
+
+    // RegExp
+    const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
+    const alphanumericRegex = /^[A-Za-z0-9, \-'’]+$/;
+    const numericRegex = /^[0-9]*$/;
+
+    // Fonctions de validation pour chaque champ
+
+    const validateNewFirstName = () => {
+        newFirstNameValid.value = nameTypeRegex.test(newFirstName.value);
+    };
+
+    const validateNewLastName = () => {
+        newLastNameValid.value = nameTypeRegex.test(newLastName.value);
+    };
+
+    const validateNewAddress = () => {
+        newAddressValid.value = alphanumericRegex.test(newAddress.value);
+    };
+
+    const validateNewPostalCode = () => {
+        newPostalCodeValid.value = numericRegex.test(newPostalCode.value);
+    };
+
+    const validateNewCity = () => {
+        newCityValid.value = nameTypeRegex.test(newCity.value);
+    };
+
+    const validateNewCountry = () => {
+        newCountryValid.value = nameTypeRegex.test(newCountry.value);
+    };
+
+    // valide le formulaire changement nom et adresse
+
+    const updateProfile = async () => {
+
+        // valide chaque champ individuellement
+        validateNewFirstName();
+        validateNewLastName();
+        validateNewAddress();
+        validateNewPostalCode();
+        validateNewCity();
+        validateNewCountry();
+
+        // extrait les valeurs des objets ref
+        const newFirstNameValue = newFirstName.value;
+        const newLastNameValue = newLastName.value;
+        const newAddressValue = newAddress.value;
+        const newPostalCodeValue = newPostalCode.value;
+        const newCityValue = newCity.value;
+        const newCountryValue = newCountry.value;
+        const currentPasswordValue = currentPassword.value;
+
+        // détermine les champs requis pour soumettre le formulaire
+        const requiredFieldsValid =
+            newFirstNameValid.value &&
+            newLastNameValid.value &&
+            newAddressValid.value &&
+            newPostalCode.value &&
+            newCityValid.value &&
+            newCountryValid.value &&
+            currentPasswordValid.value
+
+        // soumet le formulaire avec les champs requis
+        if (requiredFieldsValid) {
+
+            const token = localStorage.getItem('token');
+            console.log('Token avant la requete coté frontend:', token)
+
+        try {        
+            const response = await fetch('http://localhost:3000/users/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    firstName: newFirstNameValue,
+                    lastName: newLastNameValue,
+                    address: newAddressValue,
+                    postalCode: newPostalCodeValue,
+                    city: newCityValue,
+                    country: newCountryValue,
+                    password: currentPasswordValue,
+                }),
+            });
+
+            if (response.ok) {
+                // redirection vers une page de confirmation
+                router.push('/registration-confirmation'); 
+
+                // affiche le message d'inscription réussie ici
+                const data = await response.json();
+                console.log(data.message); // affiche le message dans la console
+            } else {
+                // affiche un message d'erreur à l'utilisateur.
+                console.error('Erreur lors de la mise à jour:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erreur lors de la mise à jour: ', error);
+        }
+
+        } else {
+        // Affiche un message d'erreur à l'utilisateur si le formulaire n'est pas valide
+        console.error('Veuillez corriger les erreurs dans le formulaire.');
+        }
+    };
+
+
     // charge userData depuis le localStorage avant de rendre le composant avec méthode du store
     onMounted(async() => {
         await userStore.loadUserDataFromLocalStorage();
+
+        if(userStore.userData) {
+            newFirstName.value = userStore.userData.firstName;
+            newLastName.value = userStore.userData.lastName;
+            newAddress.value = userStore.userData.address;
+            newPostalCode.value = userStore.userData.postalCode;
+            newCity.value = userStore.userData.city;
+            newCountry.value = userStore.userData.country;
+        };
     });
 
     // surveille les changements de userData dans le store et met à jour userData
     watch(() => userStore.userData, (newUserData) => {
         userData.value = newUserData;
-        console.log(userData)
     });
 
 </script>
@@ -263,6 +369,7 @@
                     height: 3rem;
                     background: $lightColor;
                     border: none;
+                    font-size: 1rem;
 
                     @media screen and (min-width: $breakpointDesktop) {
                         height: 3.5rem;

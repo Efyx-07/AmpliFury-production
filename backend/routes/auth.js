@@ -10,24 +10,7 @@ const secretKey = 'amplifury_secret_key'; // clé secrète
 const expiresIn = '1h'; // durée de validité du token
 
 // middleware, verifie authentification
-function verifyAuth(req, res, next) {
-    const token = req.header('Authorization'); // récupère le token depuis l'en-tête Authorization
-    console.log('Token reçu:', token);
-    if (!token) {
-        console.log('Token manquant');
-        return res.status(401).json({ error: 'Authentification requise' });
-    };
 
-    try {
-        const decoded = jwt.verify(token, secretKey); // vérifie le token et la clé secrète
-        console.log('Token décodé:', decoded);
-        console.log('ID de l\'utilisateur:', decoded.userId)
-        req.user = decoded.userId; // ajoute l'ID utilisateur à l'objet req
-        next(); // passe à la prochaine étape de la requète
-    } catch (error) {
-        return res.status(401).json({ error: 'Token invalide' });
-    };
-};
 
 // connexion utilisateur
 router.post('/login', async (req, res) => {
@@ -88,4 +71,4 @@ function generateJwtToken(userId) {
 }
 
 module.exports = router;
-module.exports.verifyAuth = verifyAuth;
+//module.exports.verifyAuth = verifyAuth;

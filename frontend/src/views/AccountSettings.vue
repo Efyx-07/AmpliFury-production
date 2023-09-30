@@ -137,9 +137,9 @@
         inputPostalCodePlaceholder,
         inputCityPlaceholder,
         inputCountryPlaceholder,
-        inputMailPlaceholder,
+     /* inputMailPlaceholder,
         inputPasswordPlaceholder,
-        inputConfirmPasswordPlaceholder,
+        inputConfirmPasswordPlaceholder, */
     } = useGlobalDataStore();
 
 
@@ -148,9 +148,7 @@
 
     // ref par défaut des données de l'utilisateur connecté
     const userData = ref(null);
-
     const currentPassword = ref('');
-
     const newFirstName = ref('');
     const newLastName = ref('');
     const newAddress = ref('');

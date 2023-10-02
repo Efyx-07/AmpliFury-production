@@ -55,18 +55,18 @@
     const userStore = useUserStore();
 
     // ref par défaut des données de l'utilisateur connecté
-    const userData = ref(null);
-    const newFirstName = ref(''); 
+    const userData = ref(userStore.userData);
+    const newFirstName = ref(userStore.firstName); 
 
     // valide le formulaire changement nom et adresse
     const updateProfile = async () => {
 
         try {
-            // Récupérer le token du local storage
-            const token = localStorage.getItem('token'); // Assurez-vous que 'token' correspond à la clé sous laquelle le token est stocké dans le local storage
+            // récupère le token du local storage
+            const token = localStorage.getItem('token'); 
             console.log('Token:', token);
             if (!token) {
-                console.error('Token is not defined'); // Affichez un message d'erreur si le token n'est pas défini
+                console.error('Token is not defined'); // affiche un message d'erreur si le token n'est pas défini
                 return;
             }
 
@@ -74,7 +74,7 @@
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // Utilisez le token dans l'en-tête de la requête
+                    'Authorization': `Bearer ${token}` // utilise le token dans l'en-tête de la requête
                 },
                 body: JSON.stringify({
                     firstName: newFirstName.value,
@@ -82,12 +82,17 @@
             });
 
             if (response.ok) {
+
+                // met à jour les nouvelles données  dans le store
+                userStore.setUserData({ ...userStore.userData, firstName: newFirstName.value });
+
                 // redirection vers une page de confirmation
                 router.push('/registration-confirmation');
 
                 // affiche le message d'inscription réussie ici
                 const data = await response.json();
                 console.log(data.message); // affiche le message dans la console
+
             } else {
                 // affiche un message d'erreur à l'utilisateur.
                 console.error('Erreur lors de la mise à jour:', response.statusText);
@@ -99,9 +104,11 @@
 
     // charge userData depuis le localStorage avant de rendre le composant avec méthode du store
     onMounted(async() => {
+
         await userStore.loadUserDataFromLocalStorage();
 
         if(userStore.userData) {
+            userData.value = userStore.userData;
             newFirstName.value = userStore.userData.firstName;
         };
     });
@@ -109,7 +116,6 @@
     // surveille les changements de userData dans le store et met à jour userData
     watch(() => userStore.userData, (newUserData) => {
         userData.value = newUserData;
-        console.log('les nouvelles données sont: ', newUserData)
     });
 
 </script>

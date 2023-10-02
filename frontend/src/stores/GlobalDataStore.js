@@ -20,6 +20,7 @@ export const useGlobalDataStore = defineStore('globalData', {
         inputPostalCodePlaceholder: 'Postal code', // declaration placeholder pour input postal code
         inputCityPlaceholder: 'City', // declaration placeholder pour input city
         inputCountryPlaceholder: 'Country', // declaration placeholder pour input country
+        errorFieldMessageMention: 'Please enter a valid', // mention message d'erreur des champs de formulaires
 
         // BUTTONS
         loginButtonMention: 'Login', // declaration mention pour se connecter

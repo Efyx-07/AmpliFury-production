@@ -121,37 +121,29 @@
     const numericRegex = /^[0-9]*$/;
     const emailRegex = /^[a-z0-9.-]+@[a-z0-9._-]{2,}\.[a-z]{2,8}$/;
 
-    // Fonctions de validation pour chaque champ
-
+    // fonctions de validation pour chaque champ
     const validateFirstName = () => {
         firstNameValid.value = nameTypeRegex.test(firstName.value);
     };
-
     const validateLastName = () => {
         lastNameValid.value = nameTypeRegex.test(lastName.value);
     };
-
     const validateAddress = () => {
         addressValid.value = alphanumericRegex.test(address.value);
     };
-
     const validatePostalCode = () => {
         postalCodeValid.value = numericRegex.test(postalCode.value);
     };
-
     const validateCity = () => {
         cityValid.value = nameTypeRegex.test(city.value);
     };
-
     const validateCountry = () => {
         countryValid.value = nameTypeRegex.test(country.value);
     };
-
     const validateEmail = () => {
         emailValid.value = emailRegex.test(email.value);
     };
 
-    
     const validatePassword = () => {
         // regex pour vérifier les critères
         const uppercaseRegex = /[A-Z]/;

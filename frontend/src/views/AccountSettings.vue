@@ -18,6 +18,9 @@
                         @input="validateNewFirstName"
                     >
                 </div>
+                <p class="error-alert" v-if="!newFirstNameValid && newFirstName !== ''">
+                    {{errorFieldMessageMention}} {{ inputFirstNamePlaceholder.toLowerCase() }}
+                </p>
             </div>
 
             <div class="item_container">
@@ -32,6 +35,9 @@
                         @input="validateNewLastName"
                     >
                 </div>
+                <p class="error-alert" v-if="!newLastNameValid && newLastName !== ''">
+                    {{errorFieldMessageMention}} {{ inputLastNamePlaceholder.toLowerCase() }}
+                </p>
             </div>
 
             <div class="item_container">
@@ -46,13 +52,16 @@
                         @input="validateNewAddress"
                     >
                 </div>
+                <p class="error-alert" v-if="!newAddressValid && newAddress !== ''">
+                    {{errorFieldMessageMention}} {{ inputAddressPlaceholder.toLowerCase() }}
+                </p>
             </div>
 
             <div class="item_container">
                 <p class="item-name">{{ inputPostalCodePlaceholder }}</p>
                 <div class="input-container">
                     <input 
-                        type="text" 
+                        type="number" 
                         name="postalCode" 
                         required 
                         id="edit_postalCode" 
@@ -60,6 +69,9 @@
                         @input="validateNewPostalCode"
                     >
                 </div>
+                <p class="error-alert" v-if="!newPostalCodeValid && newPostalCode !== ''">
+                    {{errorFieldMessageMention}} {{ inputPostalCodePlaceholder.toLowerCase() }}
+                </p>
             </div>
 
             <div class="item_container">
@@ -74,6 +86,9 @@
                         @input="validateNewCity"
                     >
                 </div>
+                <p class="error-alert" v-if="!newCityValid && newCity !== ''">
+                    {{errorFieldMessageMention}} {{ inputCityPlaceholder.toLowerCase() }} 
+                </p>
             </div>
 
             <div class="item_container">
@@ -88,11 +103,10 @@
                         @input="validateNewCountry"
                     >
                 </div>
+                <p class="error-alert" v-if="!newCountryValid && newCountry !== ''">
+                    {{errorFieldMessageMention}} {{ inputCountryPlaceholder.toLowerCase() }} 
+                </p>
             </div>
-
-
-
-
 
             <button class="editForm-button_container" type="submit">
                 <p>{{ editFormButtonMention }}</p>
@@ -128,6 +142,7 @@
         inputPostalCodePlaceholder,
         inputCityPlaceholder,
         inputCountryPlaceholder,
+        errorFieldMessageMention,
     } = useGlobalDataStore();
 
     const router = useRouter();
@@ -135,6 +150,7 @@
 
     // ref par défaut des données de l'utilisateur connecté
     const userData = ref(userStore.userData);
+    const currentPassword = ref('');
     const newFirstName = ref(userStore.firstName); 
     const newLastName = ref(userStore.lastName);
     const newAddress = ref(userStore.address);
@@ -142,8 +158,50 @@
     const newCity = ref(userStore.city);
     const newCountry = ref(userStore.country);
 
+    // états de validation
+    const newFirstNameValid = ref(true);
+    const newLastNameValid = ref(true);
+    const newAddressValid = ref(true);
+    const newPostalCodeValid = ref(true);
+    const newCityValid = ref(true);
+    const newCountryValid = ref(true);
+
+    // RegExp
+    const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
+    const alphanumericRegex = /^[A-Za-z0-9, \-'’]+$/;
+    const numericRegex = /^[0-9]*$/;
+
+    // fonctions de validation pour chaque champ
+    const validateNewFirstName = () => {
+        newFirstNameValid.value = nameTypeRegex.test(newFirstName.value);
+    };
+    const validateNewLastName = () => {
+        newLastNameValid.value = nameTypeRegex.test(newLastName.value);
+    };
+    const validateNewAddress = () => {
+        newAddressValid.value = alphanumericRegex.test(newAddress.value);
+    };
+    const validateNewPostalCode = () => {
+        newPostalCodeValid.value = numericRegex.test(newPostalCode.value);
+    };
+    const validateNewCity = () => {
+        newCityValid.value = nameTypeRegex.test(newCity.value);
+    };
+    const validateNewCountry = () => {
+        newCountryValid.value = nameTypeRegex.test(newCountry.value);
+    };
+
+
     // valide le formulaire changement nom et adresse
     const updateProfile = async () => {
+
+        // valide chaque champ individuellement
+        validateNewFirstName();
+        validateNewLastName();
+        validateNewAddress();
+        validateNewPostalCode();
+        validateNewCity();
+        validateNewCountry();
 
         try {
             // récupère le token du local storage
@@ -301,25 +359,11 @@
                         height: 3.5rem;
                     }
                 }
-
-                button {
-                    display: flex;
-                    align-items: center;
-                    position: absolute;
-                    top: 50%;
-                    right: 1rem;
-                    transform: translateY(-50%);
-                    background: $accentColor;
-                    color: $darkColor;
-                    border: none;
-                    padding: .5rem 1rem;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    p, .arrow {
-                        margin: 0;
-                        font-weight: 600;
-                    }
-                }
+            }
+            .error-alert {
+                margin: 0;
+                color: $redColor;
+                align-self: self-end;
             }
         }
 

@@ -207,6 +207,7 @@ async function hashPassword(password) {
     };
 };
 
+
 module.exports = {
     registerUser,
     loginUser,

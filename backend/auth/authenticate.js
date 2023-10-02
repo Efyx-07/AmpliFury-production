@@ -11,7 +11,7 @@ function authenticateToken(req, res, next) {
   
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(401).json({ error: 'Token manquant ou invalide.' });
-    }
+    };
   
     const token = authHeader.split(' ')[1];
 
@@ -22,13 +22,13 @@ function authenticateToken(req, res, next) {
       req.user = decoded.userId;
       next();
     });
-  }
+  };
 
 // fonction pour générer un token JWT avec l'id de l'utilisateur et la clé secrète
 function generateJwtToken(userId) {
     const token = jwt.sign({ userId }, secretKey, { expiresIn });
     return token;
-}
+};
 
 module.exports.generateJwtToken = generateJwtToken;
 module.exports.authenticateToken = authenticateToken;

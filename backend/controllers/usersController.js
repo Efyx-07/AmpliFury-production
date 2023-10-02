@@ -124,9 +124,6 @@ async function updateUser(req, res) {
         const updateQuery = "UPDATE users SET first_name=? WHERE id=?";
         const values = [firstName, userId];
 
-        console.log('Requête SQL :', updateQuery);
-        console.log('Valeurs :', values);
-
         // Exécute la requête de mise à jour
         usersConnection.query(updateQuery, values, (err, results) => {
             if (err) {

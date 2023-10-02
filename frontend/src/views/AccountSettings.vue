@@ -51,15 +51,12 @@
         inputFirstNamePlaceholder,
     } = useGlobalDataStore();
 
-
     const router = useRouter();
     const userStore = useUserStore();
 
     // ref par défaut des données de l'utilisateur connecté
     const userData = ref(null);
-    const newFirstName = ref('');
-
-    
+    const newFirstName = ref(''); 
 
     // valide le formulaire changement nom et adresse
     const updateProfile = async () => {
@@ -100,7 +97,6 @@
         }
     };
 
-
     // charge userData depuis le localStorage avant de rendre le composant avec méthode du store
     onMounted(async() => {
         await userStore.loadUserDataFromLocalStorage();
@@ -113,6 +109,7 @@
     // surveille les changements de userData dans le store et met à jour userData
     watch(() => userStore.userData, (newUserData) => {
         userData.value = newUserData;
+        console.log('les nouvelles données sont: ', newUserData)
     });
 
 </script>

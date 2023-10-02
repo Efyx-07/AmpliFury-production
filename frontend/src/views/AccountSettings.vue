@@ -20,89 +20,6 @@
                 </div>
             </div>
 
-            <div class="item_container">
-                <p class="item-name">{{ inputLastNamePlaceholder }}</p>
-                <div class="input-container">
-                    <input 
-                        type="text" 
-                        name="last_name" 
-                        required 
-                        id="edit_lastName" 
-                        v-model="newLastName"
-                        @input="validateNewLastName"
-                    >
-                </div>
-            </div>
-
-            <div class="item_container">
-                <p class="item-name">{{ inputAddressPlaceholder }}</p>
-                <div class="input-container">
-                    <input 
-                        type="text" 
-                        name="address" 
-                        required 
-                        id="edit_address" 
-                        v-model="newAddress"
-                        @input="validateNewAddress"
-                    >
-                </div>
-            </div>
-
-            <div class="item_container">
-                <p class="item-name">{{ inputPostalCodePlaceholder }}</p>
-                <div class="input-container">
-                    <input 
-                        type="text" 
-                        name="postalCode" 
-                        required 
-                        id="edit_postalCode" 
-                        v-model="newPostalCode"
-                        @input="validateNewPostalCode"
-                    >
-                </div>
-            </div>
-
-            <div class="item_container">
-                <p class="item-name">{{ inputCityPlaceholder }}</p>
-                <div class="input-container">
-                    <input 
-                        type="text" 
-                        name="city" 
-                        required 
-                        id="edit_city" 
-                        v-model="newCity"
-                        @input="validateNewCity"
-                    >
-                </div>
-            </div>
-
-            <div class="item_container">
-                <p class="item-name">{{ inputCountryPlaceholder }}</p>
-                <div class="input-container">
-                    <input 
-                        type="text" 
-                        name="country" 
-                        required 
-                        id="edit_country" 
-                        v-model="newCountry"
-                        @input="validateNewCountry"
-                    >
-                </div>
-            </div>
-
-            <div class="item_container">
-                <p class="item-name">Current password</p>
-                <div class="input-container">
-                    <input 
-                        type="password" 
-                        name="currentPassword" 
-                        required 
-                        id="currentPassword" 
-                        v-model="currentPassword"
-                    >
-                </div>
-            </div>
-
             <button class="editForm-button_container" type="submit">
                 <p>{{ editFormButtonMention }}</p>
                 <Icon 
@@ -132,14 +49,6 @@
 
     const {
         inputFirstNamePlaceholder,
-        inputLastNamePlaceholder,
-        inputAddressPlaceholder,
-        inputPostalCodePlaceholder,
-        inputCityPlaceholder,
-        inputCountryPlaceholder,
-     /* inputMailPlaceholder,
-        inputPasswordPlaceholder,
-        inputConfirmPasswordPlaceholder, */
     } = useGlobalDataStore();
 
 
@@ -148,112 +57,36 @@
 
     // ref par défaut des données de l'utilisateur connecté
     const userData = ref(null);
-    const currentPassword = ref('');
     const newFirstName = ref('');
-    const newLastName = ref('');
-    const newAddress = ref('');
-    const newPostalCode = ref('');
-    const newCity = ref('');
-    const newCountry = ref('');
 
-    // états de validation
-    const newFirstNameValid = ref(true);
-    const newLastNameValid = ref(true);
-    const newAddressValid = ref(true);
-    const newPostalCodeValid = ref(true);
-    const newCityValid = ref(true);
-    const newCountryValid = ref(true);
-    const currentPasswordValid = ref(true);
-
-    // RegExp
-    const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
-    const alphanumericRegex = /^[A-Za-z0-9, \-'’]+$/;
-    const numericRegex = /^[0-9]*$/;
-
-    // Fonctions de validation pour chaque champ
-
-    const validateNewFirstName = () => {
-        newFirstNameValid.value = nameTypeRegex.test(newFirstName.value);
-    };
-
-    const validateNewLastName = () => {
-        newLastNameValid.value = nameTypeRegex.test(newLastName.value);
-    };
-
-    const validateNewAddress = () => {
-        newAddressValid.value = alphanumericRegex.test(newAddress.value);
-    };
-
-    const validateNewPostalCode = () => {
-        newPostalCodeValid.value = numericRegex.test(newPostalCode.value);
-    };
-
-    const validateNewCity = () => {
-        newCityValid.value = nameTypeRegex.test(newCity.value);
-    };
-
-    const validateNewCountry = () => {
-        newCountryValid.value = nameTypeRegex.test(newCountry.value);
-    };
+    
 
     // valide le formulaire changement nom et adresse
-
     const updateProfile = async () => {
 
-        // valide chaque champ individuellement
-        validateNewFirstName();
-        validateNewLastName();
-        validateNewAddress();
-        validateNewPostalCode();
-        validateNewCity();
-        validateNewCountry();
+        try {
+            // Récupérer le token du local storage
+            const token = localStorage.getItem('token'); // Assurez-vous que 'token' correspond à la clé sous laquelle le token est stocké dans le local storage
+            console.log('Token:', token);
+            if (!token) {
+                console.error('Token is not defined'); // Affichez un message d'erreur si le token n'est pas défini
+                return;
+            }
 
-        // extrait les valeurs des objets ref
-        const newFirstNameValue = newFirstName.value;
-        const newLastNameValue = newLastName.value;
-        const newAddressValue = newAddress.value;
-        const newPostalCodeValue = newPostalCode.value;
-        const newCityValue = newCity.value;
-        const newCountryValue = newCountry.value;
-        const currentPasswordValue = currentPassword.value;
-
-        // détermine les champs requis pour soumettre le formulaire
-        const requiredFieldsValid =
-            newFirstNameValid.value &&
-            newLastNameValid.value &&
-            newAddressValid.value &&
-            newPostalCode.value &&
-            newCityValid.value &&
-            newCountryValid.value &&
-            currentPasswordValid.value
-
-        // soumet le formulaire avec les champs requis
-        if (requiredFieldsValid) {
-
-            const token = localStorage.getItem('token');
-            console.log('Token avant la requete coté frontend:', token)
-
-        try {        
             const response = await fetch('http://localhost:3000/users/update', {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
+                    'Authorization': `Bearer ${token}` // Utilisez le token dans l'en-tête de la requête
                 },
                 body: JSON.stringify({
-                    firstName: newFirstNameValue,
-                    lastName: newLastNameValue,
-                    address: newAddressValue,
-                    postalCode: newPostalCodeValue,
-                    city: newCityValue,
-                    country: newCountryValue,
-                    password: currentPasswordValue,
+                    firstName: newFirstName.value,
                 }),
             });
 
             if (response.ok) {
                 // redirection vers une page de confirmation
-                router.push('/registration-confirmation'); 
+                router.push('/registration-confirmation');
 
                 // affiche le message d'inscription réussie ici
                 const data = await response.json();
@@ -265,11 +98,6 @@
         } catch (error) {
             console.error('Erreur lors de la mise à jour: ', error);
         }
-
-        } else {
-        // Affiche un message d'erreur à l'utilisateur si le formulaire n'est pas valide
-        console.error('Veuillez corriger les erreurs dans le formulaire.');
-        }
     };
 
 
@@ -279,11 +107,6 @@
 
         if(userStore.userData) {
             newFirstName.value = userStore.userData.firstName;
-            newLastName.value = userStore.userData.lastName;
-            newAddress.value = userStore.userData.address;
-            newPostalCode.value = userStore.userData.postalCode;
-            newCity.value = userStore.userData.city;
-            newCountry.value = userStore.userData.country;
         };
     });
 

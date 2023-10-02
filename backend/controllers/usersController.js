@@ -112,39 +112,36 @@ async function loginUser(req, res) {
 
 // controller pour mise à jour données utilisateur
 async function updateUser(req, res) {
-
-    // récupère l'ID de l'utilisateur authentifié depuis req.user
-    const userId = req.user;
-
-    // récupère les données de mise à jour à partir de req.body
-    const { newFirstName, newLastName, newAddress, newPostalCode, newCity, newCountry } = req.body;
-    
+    // Récupère le nouveau prénom à partir de req.body
+    const { firstName } = req.body;
+    console.log('Nouveau prénom reçu :', firstName);
     try {
-        // effectue la mise à jour des informations de l'utilisateur dans la base de données
-        const updateQuery = `
-            UPDATE users
-            SET first_name = ?, last_name = ?, address = ?, postal_code = ?, city = ?, country = ?
-            WHERE id = ?       
-        `; 
+        // Récupère l'ID de l'utilisateur authentifié depuis req.user
+        const userId = req.user;
+        console.log('id user est : ', userId)
 
-        const values = [newFirstName, newLastName, newAddress, newPostalCode, newCity, newCountry, userId];
+        // Met à jour le prénom de l'utilisateur dans la base de données
+        const updateQuery = "UPDATE users SET first_name=? WHERE id=?";
+        const values = [firstName, userId];
 
+        console.log('Requête SQL :', updateQuery);
+        console.log('Valeurs :', values);
+
+        // Exécute la requête de mise à jour
         usersConnection.query(updateQuery, values, (err, results) => {
-            if(err) {
-                console.error('Erreur lors de la mise à jour des informations de l\'utilisateur :', err);
-                res.status(500).json({ error: 'Erreur lors de la mise à jour des informations de l\'utilisateur' });
+            if (err) {
+                console.error('Erreur lors de la mise à jour de l\'utilisateur :', err);
+                res.status(500).json({ error: 'Erreur lors de la mise à jour' });
                 return;
-            };
+            }
 
-            // mise à jour réussie
-            res.status(200).json({ message: 'Mise à jour réussie' });
+            res.status(200).json({ message: 'Informations mises à jour avec succès' });
         });
-    } catch (err) {
-        console.error('Erreur lors de la mise à jour des informations de l\'utilisateur :', err);
-        res.status(500).json({ error: 'Erreur lors de la mise à jour des informations de l\'utilisateur' });
-    };
-};
-
+    } catch (error) {
+        console.error('Erreur lors de la mise à jour de l\'utilisateur :', error);
+        res.status(500).json({ error: 'Erreur lors de la mise à jour' });
+    }
+}
 // controller pour supprimer compte utilisateur (à mettre en place coté frontend)
 async function deleteUser(req, res) {
     const userId = req.user;

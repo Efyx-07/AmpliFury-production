@@ -7,7 +7,16 @@ const authenticate = require('../auth/authenticate');
 async function registerUser(req, res) {
 
     // récupère les données du formulaire d'inscription depuis req.body
-    const { firstName, lastName, address, postalCode, city, country, email, password } = req.body; 
+    const { 
+        firstName, 
+        lastName, 
+        address, 
+        postalCode, 
+        city, 
+        country, 
+        email, 
+        password 
+    } = req.body; 
 
     // effectue les mêmes validations côté serveur que côté client
     const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
@@ -40,7 +49,16 @@ async function registerUser(req, res) {
 
         // insert les données dans la base de données 'users' avec le password haché
         const insertQuery = 'INSERT INTO users (first_name, last_name, address, postal_code, city, country, email, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
-        const values = [firstName, lastName, address, postalCode, city, country, email, hashedPassword]; 
+        const values = [
+            firstName, 
+            lastName, 
+            address, 
+            postalCode, 
+            city, 
+            country, 
+            email, 
+            hashedPassword
+        ]; 
 
         usersConnection.query(insertQuery, values, (err, results) => {
             if (err) {
@@ -112,17 +130,33 @@ async function loginUser(req, res) {
 
 // controller pour mise à jour données utilisateur
 async function updateUser(req, res) {
-    // Récupère le nouveau prénom à partir de req.body
-    const { firstName } = req.body;
-    console.log('Nouveau prénom reçu :', firstName);
+    // Récupère les nouvelles informations à partir de req.body
+    const { 
+        firstName, 
+        lastName, 
+        address, 
+        postalCode,
+        city,
+        country,
+    } = req.body;
+
     try {
         // Récupère l'ID de l'utilisateur authentifié depuis req.user
         const userId = req.user;
-        console.log('id user est : ', userId)
 
-        // Met à jour le prénom de l'utilisateur dans la base de données
-        const updateQuery = "UPDATE users SET first_name=? WHERE id=?";
-        const values = [firstName, userId];
+        // Met à jour les informations profil de l'utilisateur dans la base de données
+        const updateQuery = 
+        "UPDATE users SET first_name=?, last_name=?, address=?, postal_code=?, city=?, country=? WHERE id=?";
+
+        const values = [
+            firstName, 
+            lastName,
+            address, 
+            postalCode,
+            city,
+            country,
+            userId
+        ];
 
         // Exécute la requête de mise à jour
         usersConnection.query(updateQuery, values, (err, results) => {

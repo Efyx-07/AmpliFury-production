@@ -20,6 +20,80 @@
                 </div>
             </div>
 
+            <div class="item_container">
+                <p class="item-name">{{ inputLastNamePlaceholder }}</p>
+                <div class="input-container">
+                    <input 
+                        type="text" 
+                        name="last_name" 
+                        required 
+                        id="edit_lastName" 
+                        v-model="newLastName"
+                        @input="validateNewLastName"
+                    >
+                </div>
+            </div>
+
+            <div class="item_container">
+                <p class="item-name">{{ inputAddressPlaceholder }}</p>
+                <div class="input-container">
+                    <input 
+                        type="text" 
+                        name="address" 
+                        required 
+                        id="edit_address" 
+                        v-model="newAddress"
+                        @input="validateNewAddress"
+                    >
+                </div>
+            </div>
+
+            <div class="item_container">
+                <p class="item-name">{{ inputPostalCodePlaceholder }}</p>
+                <div class="input-container">
+                    <input 
+                        type="text" 
+                        name="postalCode" 
+                        required 
+                        id="edit_postalCode" 
+                        v-model="newPostalCode"
+                        @input="validateNewPostalCode"
+                    >
+                </div>
+            </div>
+
+            <div class="item_container">
+                <p class="item-name">{{ inputCityPlaceholder }}</p>
+                <div class="input-container">
+                    <input 
+                        type="text" 
+                        name="city" 
+                        required 
+                        id="edit_city" 
+                        v-model="newCity"
+                        @input="validateNewCity"
+                    >
+                </div>
+            </div>
+
+            <div class="item_container">
+                <p class="item-name">{{ inputCountryPlaceholder }}</p>
+                <div class="input-container">
+                    <input 
+                        type="text" 
+                        name="country" 
+                        required 
+                        id="edit_country" 
+                        v-model="newCountry"
+                        @input="validateNewCountry"
+                    >
+                </div>
+            </div>
+
+
+
+
+
             <button class="editForm-button_container" type="submit">
                 <p>{{ editFormButtonMention }}</p>
                 <Icon 
@@ -49,6 +123,11 @@
 
     const {
         inputFirstNamePlaceholder,
+        inputLastNamePlaceholder,
+        inputAddressPlaceholder,
+        inputPostalCodePlaceholder,
+        inputCityPlaceholder,
+        inputCountryPlaceholder,
     } = useGlobalDataStore();
 
     const router = useRouter();
@@ -57,6 +136,11 @@
     // ref par défaut des données de l'utilisateur connecté
     const userData = ref(userStore.userData);
     const newFirstName = ref(userStore.firstName); 
+    const newLastName = ref(userStore.lastName);
+    const newAddress = ref(userStore.address);
+    const newPostalCode = ref(userStore.postalCode);
+    const newCity = ref(userStore.city);
+    const newCountry = ref(userStore.country);
 
     // valide le formulaire changement nom et adresse
     const updateProfile = async () => {
@@ -64,7 +148,7 @@
         try {
             // récupère le token du local storage
             const token = localStorage.getItem('token'); 
-            console.log('Token:', token);
+
             if (!token) {
                 console.error('Token is not defined'); // affiche un message d'erreur si le token n'est pas défini
                 return;
@@ -78,13 +162,26 @@
                 },
                 body: JSON.stringify({
                     firstName: newFirstName.value,
+                    lastName: newLastName.value,
+                    address: newAddress.value,
+                    postalCode: newPostalCode.value,
+                    city: newCity.value,
+                    country: newCountry.value,
                 }),
             });
 
             if (response.ok) {
 
                 // met à jour les nouvelles données  dans le store
-                userStore.setUserData({ ...userStore.userData, firstName: newFirstName.value });
+                userStore.setUserData({ 
+                    ...userStore.userData, 
+                    firstName: newFirstName.value, 
+                    lastName: newLastName.value,
+                    address: newAddress.value,
+                    postalCode: newPostalCode.value,
+                    city: newCity.value,
+                    country: newCountry.value,
+                 });
 
                 // redirection vers une page de confirmation
                 router.push('/registration-confirmation');
@@ -110,6 +207,11 @@
         if(userStore.userData) {
             userData.value = userStore.userData;
             newFirstName.value = userStore.userData.firstName;
+            newLastName.value = userStore.userData.lastName;
+            newAddress.value = userStore.userData.address;
+            newPostalCode.value = userStore.userData.postalCode;
+            newCity.value = userStore.userData.city;
+            newCountry.value = userStore.userData.country;
         };
     });
 

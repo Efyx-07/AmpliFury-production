@@ -103,7 +103,7 @@ async function loginUser(req, res) {
         if (!isPasswordMatch) {
             res.status(401).json({ error: 'Identifiant invalide' });
             return;
-        }
+        };
 
         // génère un token JWT et le renvoie à l'utilisateur
         const token = authenticate.generateJwtToken(rows[0].id);
@@ -138,11 +138,27 @@ async function updateUser(req, res) {
         postalCode,
         city,
         country,
+        password
     } = req.body;
 
     try {
         // Récupère l'ID de l'utilisateur authentifié depuis req.user
         const userId = req.user;
+
+        // compare le mot de passe actuel fourni par l'utilisateur avec celui stocké dans la base de données
+        const selectQuery = 'SELECT password_hash FROM users WHERE id = ?';
+        const query = util.promisify(usersConnection.query).bind(usersConnection);
+        const rows = await query(selectQuery, [userId]);
+
+        // compare le password haché avec celui renseigné
+        const hashedPassword = rows[0].password_hash;
+        const isPasswordMatch = await bcrypt.compare(password, hashedPassword);
+
+        // si aucune correspondance entre les passwords, envoie une erreur d'authentification
+        if (!isPasswordMatch) {
+            res.status(401).json({ error: 'Identifiant invalide' });
+            return;
+        };
 
         // Met à jour les informations profil de l'utilisateur dans la base de données
         const updateQuery = 
@@ -172,7 +188,7 @@ async function updateUser(req, res) {
         console.error('Erreur lors de la mise à jour de l\'utilisateur :', error);
         res.status(500).json({ error: 'Erreur lors de la mise à jour' });
     }
-}
+};
 
 // controller pour supprimer compte utilisateur (à mettre en place coté frontend)
 async function deleteUser(req, res) {

@@ -108,6 +108,22 @@
                 </p>
             </div>
 
+            <div class="item_container">
+                <p class="item-name">Current password</p>
+                <div class="input-container">
+                    <input 
+                        type="password" 
+                        name="currentPassword" 
+                        required 
+                        id="currentPassword" 
+                        v-model="currentPassword"
+                    >
+                </div>
+                <p class="error-alert" v-if="invalidPassword">
+                    {{errorFieldMessageMention}} {{ inputPasswordPlaceholder.toLowerCase() }} 
+                </p>
+            </div>
+
             <button class="editForm-button_container" type="submit">
                 <p>{{ editFormButtonMention }}</p>
                 <Icon 
@@ -142,6 +158,7 @@
         inputPostalCodePlaceholder,
         inputCityPlaceholder,
         inputCountryPlaceholder,
+        inputPasswordPlaceholder,
         errorFieldMessageMention,
     } = useGlobalDataStore();
 
@@ -191,9 +208,13 @@
         newCountryValid.value = nameTypeRegex.test(newCountry.value);
     };
 
+    // définition variable pour gérer message erreur du password
+    const invalidPassword = ref(false);
 
     // valide le formulaire changement nom et adresse
     const updateProfile = async () => {
+
+        const currentPasswordValue = currentPassword.value
 
         // valide chaque champ individuellement
         validateNewFirstName();
@@ -237,6 +258,7 @@
                         postalCode: newPostalCode.value,
                         city: newCity.value,
                         country: newCountry.value,
+                        password: currentPasswordValue,
                     }),
                 });
 
@@ -261,8 +283,14 @@
                     console.log(data.message); // affiche le message dans la console
 
                 } else {
-                    // affiche un message d'erreur à l'utilisateur.
-                    console.error('Erreur lors de la mise à jour:', response.statusText);
+                    if (response.status === 401) {
+                        // message d'erreur si la vérification du password échoue
+                        console.error('Invalid password');
+                        invalidPassword.value = true;
+                    } else {
+                        // affiche un message d'erreur à l'utilisateur.
+                        console.error('Erreur lors de la mise à jour:', response.statusText);
+                    }
                 }
             } catch (error) {
                 console.error('Erreur lors de la mise à jour: ', error);

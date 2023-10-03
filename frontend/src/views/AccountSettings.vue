@@ -17,6 +17,11 @@
                         v-model="newFirstName"
                         @input="validateNewFirstName"
                     >
+                    <Icon 
+                        v-if="newFirstNameValid"
+                        :icon="validateIconName"
+                        class="validateIcon"
+                    />
                 </div>
                 <p class="error-alert" v-if="!newFirstNameValid && newFirstName !== ''">
                     {{errorFieldMessageMention}} {{ inputFirstNamePlaceholder.toLowerCase() }}
@@ -34,6 +39,11 @@
                         v-model="newLastName"
                         @input="validateNewLastName"
                     >
+                    <Icon 
+                        v-if="newLastNameValid"
+                        :icon="validateIconName"  
+                        class="validateIcon"
+                    />
                 </div>
                 <p class="error-alert" v-if="!newLastNameValid && newLastName !== ''">
                     {{errorFieldMessageMention}} {{ inputLastNamePlaceholder.toLowerCase() }}
@@ -51,6 +61,11 @@
                         v-model="newAddress"
                         @input="validateNewAddress"
                     >
+                    <Icon 
+                        v-if="newAddressValid"
+                        :icon="validateIconName"  
+                        class="validateIcon"
+                    />
                 </div>
                 <p class="error-alert" v-if="!newAddressValid && newAddress !== ''">
                     {{errorFieldMessageMention}} {{ inputAddressPlaceholder.toLowerCase() }}
@@ -68,6 +83,11 @@
                         v-model="newPostalCode"
                         @input="validateNewPostalCode"
                     >
+                    <Icon 
+                        v-if="newPostalCodeValid"
+                        :icon="validateIconName"  
+                        class="validateIcon"
+                    />
                 </div>
                 <p class="error-alert" v-if="!newPostalCodeValid && newPostalCode !== ''">
                     {{errorFieldMessageMention}} {{ inputPostalCodePlaceholder.toLowerCase() }}
@@ -85,6 +105,11 @@
                         v-model="newCity"
                         @input="validateNewCity"
                     >
+                    <Icon 
+                        v-if="newCityValid"
+                        :icon="validateIconName" 
+                        class="validateIcon"
+                    />
                 </div>
                 <p class="error-alert" v-if="!newCityValid && newCity !== ''">
                     {{errorFieldMessageMention}} {{ inputCityPlaceholder.toLowerCase() }} 
@@ -102,6 +127,11 @@
                         v-model="newCountry"
                         @input="validateNewCountry"
                     >
+                    <Icon 
+                        v-if="newCountryValid"
+                        :icon="validateIconName"  
+                        class="validateIcon"
+                    />
                 </div>
                 <p class="error-alert" v-if="!newCountryValid && newCountry !== ''">
                     {{errorFieldMessageMention}} {{ inputCountryPlaceholder.toLowerCase() }} 
@@ -124,7 +154,16 @@
                 </p>
             </div>
 
-            <button class="editForm-button_container" type="submit">
+            <div class="success-alert" v-if="profileUpdated">
+                <p>Profile updated!</p>
+                <Icon 
+                    v-if="newCountryValid"
+                    :icon="validateIconName"  
+                    class="validateIcon"
+                />
+            </div>
+
+            <button class="editForm-button_container" type="submit" v-else>
                 <p>{{ editFormButtonMention }}</p>
                 <Icon 
                     icon="system-uicons:arrow-up" 
@@ -145,7 +184,6 @@
     import { useGlobalDataStore } from '@/stores/GlobalDataStore';
     import { ref, onMounted, watch } from 'vue';
     import { Icon } from '@iconify/vue';
-    import { useRouter } from 'vue-router';
 
     // datas
     const accountSettingsTitle = 'Account settings';
@@ -160,9 +198,9 @@
         inputCountryPlaceholder,
         inputPasswordPlaceholder,
         errorFieldMessageMention,
+        validateIconName,
     } = useGlobalDataStore();
 
-    const router = useRouter();
     const userStore = useUserStore();
 
     // ref par défaut des données de l'utilisateur connecté
@@ -210,6 +248,12 @@
 
     // définition variable pour gérer message erreur du password
     const invalidPassword = ref(false);
+
+    // définition variable pour gérer message succés mise à jour profil
+    const profileUpdated = ref(false);
+
+    // gére la durée d'affichage du message de succés validation formulaire
+    const successMessageDuration = 500; 
 
     // valide le formulaire changement nom et adresse
     const updateProfile = async () => {
@@ -275,12 +319,16 @@
                         country: newCountry.value,
                     });
 
-                    // redirection vers une page de confirmation
-                    router.push('/registration-confirmation');
-
                     // affiche le message d'inscription réussie ici
                     const data = await response.json();
+
+                    // message de succés si le formulaire est validé
                     console.log(data.message); // affiche le message dans la console
+                    profileUpdated.value = true;
+
+                    setTimeout(() => {
+                        profileUpdated.value = false;
+                    }, successMessageDuration);
 
                 } else {
                     if (response.status === 401) {
@@ -400,12 +448,43 @@
                         height: 3.5rem;
                     }
                 }
+                .validateIcon{
+                    font-size: 1rem;
+                    position: absolute;
+                    top: 50%;
+                    right: 1rem;
+                    transform: translateY(-50%);
+                    color: $greenColor;
+                }
             }
             .error-alert {
                 margin: 0;
                 color: $redColor;
                 align-self: self-end;
             }
+        }
+        .success-alert {
+           display: flex; 
+           align-items: center;
+           gap: 1rem;
+           background: rgba($lightColor,.5);
+           padding: 0 1rem;
+           border-radius: $containerBorderRadius + 15px;
+           margin-top: 1rem;
+           
+           p {
+            margin: 0;
+           }
+           .validateIcon {
+            color: $greenColor;
+           }
+           p, .validateIcon {
+            font-size: 1.5rem;
+
+            @media screen and (min-width: $breakpointDesktop) {
+                font-size: 2rem;
+            }
+           }
         }
 
         .editForm-button_container {
@@ -415,7 +494,7 @@
             background: none;
             border: none;
             color: $darkColor;
-            padding-top: 1rem;
+            margin-top: 1rem;
             cursor: pointer;
             p, .arrow {
                 margin: 0;

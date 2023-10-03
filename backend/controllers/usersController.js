@@ -18,7 +18,7 @@ async function registerUser(req, res) {
         password 
     } = req.body; 
 
-    // effectue les mêmes validations côté serveur que côté client
+    // effectue les mêmes validations côté serveur que côté client en appelant la fonction verifyFormFields
     const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
     const alphanumericRegex = /^[A-Za-z0-9, \-'’]+$/;
     const numericRegex = /^[0-9]*$/;
@@ -141,6 +141,20 @@ async function updateUser(req, res) {
         password
     } = req.body;
 
+    // effectue les mêmes validations côté serveur que côté client en appelant la fonction verifyFormFields
+    const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
+    const alphanumericRegex = /^[A-Za-z0-9, \-'’]+$/;
+    const numericRegex = /^[0-9]*$/;
+
+    if (!nameTypeRegex.test(firstName) ||
+        !nameTypeRegex.test(lastName) ||
+        !alphanumericRegex.test(address) ||
+        (!numericRegex.test(postalCode)) ||
+        !nameTypeRegex.test(city) ||
+        !nameTypeRegex.test(country)) {
+        return res.status(400).json({ error: 'Champs invalides' });
+    };
+
     try {
         // Récupère l'ID de l'utilisateur authentifié depuis req.user
         const userId = req.user;
@@ -223,7 +237,6 @@ async function hashPassword(password) {
         throw err;
     };
 };
-
 
 module.exports = {
     registerUser,

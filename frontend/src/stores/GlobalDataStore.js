@@ -24,6 +24,9 @@ export const useGlobalDataStore = defineStore('globalData', {
 
         // BUTTONS
         loginButtonMention: 'Login', // declaration mention pour se connecter
-        registerButtonMention: 'Register' // declaration mention pour s'inscrire
+        registerButtonMention: 'Register', // declaration mention pour s'inscrire
+
+        // ICONS
+        validateIconName: "ooui:success" // Icone 'validé'
     }),
 });

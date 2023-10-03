@@ -138,6 +138,7 @@ async function updateUser(req, res) {
         postalCode,
         city,
         country,
+        email,
         password
     } = req.body;
 
@@ -145,13 +146,15 @@ async function updateUser(req, res) {
     const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
     const alphanumericRegex = /^[A-Za-z0-9, \-'’]+$/;
     const numericRegex = /^[0-9]*$/;
+    const emailRegex = /^[a-z0-9.-]+@[a-z0-9._-]{2,}\.[a-z]{2,8}$/;
 
     if (!nameTypeRegex.test(firstName) ||
         !nameTypeRegex.test(lastName) ||
         !alphanumericRegex.test(address) ||
-        (!numericRegex.test(postalCode)) ||
+        !numericRegex.test(postalCode) ||
         !nameTypeRegex.test(city) ||
-        !nameTypeRegex.test(country)) {
+        !nameTypeRegex.test(country) ||
+        !emailRegex.test(email) ) {
         return res.status(400).json({ error: 'Champs invalides' });
     };
 
@@ -176,7 +179,7 @@ async function updateUser(req, res) {
 
         // Met à jour les informations profil de l'utilisateur dans la base de données
         const updateQuery = 
-        "UPDATE users SET first_name=?, last_name=?, address=?, postal_code=?, city=?, country=? WHERE id=?";
+        "UPDATE users SET first_name=?, last_name=?, address=?, postal_code=?, city=?, country=?, email=? WHERE id=?";
 
         const values = [
             firstName, 
@@ -185,6 +188,7 @@ async function updateUser(req, res) {
             postalCode,
             city,
             country,
+            email,
             userId
         ];
 

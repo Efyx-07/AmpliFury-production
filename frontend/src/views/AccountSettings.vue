@@ -139,6 +139,28 @@
             </div>
 
             <div class="item_container">
+                <p class="item-name">{{ inputMailPlaceholder }}</p>
+                <div class="input-container">
+                    <input 
+                        type="email" 
+                        name="email" 
+                        required 
+                        id="edit_email" 
+                        v-model="newEmail"
+                        @input="validateNewEmail"
+                    >
+                    <Icon 
+                        v-if="newEmailValid"
+                        :icon="validateIconName"  
+                        class="validateIcon"
+                    />
+                </div>
+                <p class="error-alert" v-if="!newEmailValid && newEmail !== ''">
+                    {{errorFieldMessageMention}} {{ inputMailPlaceholder.toLowerCase() }} 
+                </p>
+            </div>
+
+            <div class="item_container">
                 <p class="item-name">Current password</p>
                 <div class="input-container">
                     <input 
@@ -196,6 +218,7 @@
         inputPostalCodePlaceholder,
         inputCityPlaceholder,
         inputCountryPlaceholder,
+        inputMailPlaceholder,
         inputPasswordPlaceholder,
         errorFieldMessageMention,
         validateIconName,
@@ -211,6 +234,7 @@
     const newAddress = ref(userStore.address);
     const newPostalCode = ref(userStore.postalCode);
     const newCity = ref(userStore.city);
+    const newEmail = ref(userStore.email);
     const newCountry = ref(userStore.country);
 
     // états de validation
@@ -220,11 +244,13 @@
     const newPostalCodeValid = ref(true);
     const newCityValid = ref(true);
     const newCountryValid = ref(true);
+    const newEmailValid = ref(true);
 
     // RegExp
     const nameTypeRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
     const alphanumericRegex = /^[A-Za-z0-9, \-'’]+$/;
     const numericRegex = /^[0-9]*$/;
+    const emailRegex = /^[a-z0-9.-]+@[a-z0-9._-]{2,}\.[a-z]{2,8}$/;
 
     // fonctions de validation pour chaque champ
     const validateNewFirstName = () => {
@@ -244,6 +270,9 @@
     };
     const validateNewCountry = () => {
         newCountryValid.value = nameTypeRegex.test(newCountry.value);
+    };
+    const validateNewEmail = () => {
+        newEmailValid.value = emailRegex.test(newEmail.value);
     };
 
     // définition variable pour gérer message erreur du password
@@ -267,6 +296,7 @@
         validateNewPostalCode();
         validateNewCity();
         validateNewCountry();
+        validateNewEmail();
 
         // détermine les champs valides pour soumettre le formulaire
 
@@ -277,6 +307,7 @@
             newPostalCodeValid.value &&
             newCityValid.value &&
             newCountryValid.value;
+            newEmailValid.value;
 
         if (validFields) {
 
@@ -302,6 +333,7 @@
                         postalCode: newPostalCode.value,
                         city: newCity.value,
                         country: newCountry.value,
+                        email: newEmail.value,
                         password: currentPasswordValue,
                     }),
                 });
@@ -317,6 +349,7 @@
                         postalCode: newPostalCode.value,
                         city: newCity.value,
                         country: newCountry.value,
+                        email: newEmail.value,
                     });
 
                     // affiche le message d'inscription réussie ici
@@ -359,6 +392,7 @@
             newPostalCode.value = userStore.userData.postalCode;
             newCity.value = userStore.userData.city;
             newCountry.value = userStore.userData.country;
+            newEmail.value = userStore.userData.email;
         };
     });
 

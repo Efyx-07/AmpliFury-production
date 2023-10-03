@@ -203,57 +203,70 @@
         validateNewCity();
         validateNewCountry();
 
-        try {
-            // récupère le token du local storage
-            const token = localStorage.getItem('token'); 
+        // détermine les champs valides pour soumettre le formulaire
 
-            if (!token) {
-                console.error('Token is not defined'); // affiche un message d'erreur si le token n'est pas défini
-                return;
+        const validFields = 
+            newFirstNameValid.value &&
+            newLastNameValid.value &&
+            newAddressValid.value &&
+            newPostalCodeValid.value &&
+            newCityValid.value &&
+            newCountryValid.value;
+
+        if (validFields) {
+
+            try {
+                // récupère le token du local storage
+                const token = localStorage.getItem('token'); 
+
+                if (!token) {
+                    console.error('Token is not defined'); // affiche un message d'erreur si le token n'est pas défini
+                    return;
+                }
+
+                const response = await fetch('http://localhost:3000/users/update', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}` // utilise le token dans l'en-tête de la requête
+                    },
+                    body: JSON.stringify({
+                        firstName: newFirstName.value,
+                        lastName: newLastName.value,
+                        address: newAddress.value,
+                        postalCode: newPostalCode.value,
+                        city: newCity.value,
+                        country: newCountry.value,
+                    }),
+                });
+
+                if (response.ok) {
+
+                    // met à jour les nouvelles données  dans le store
+                    userStore.setUserData({ 
+                        ...userStore.userData, 
+                        firstName: newFirstName.value, 
+                        lastName: newLastName.value,
+                        address: newAddress.value,
+                        postalCode: newPostalCode.value,
+                        city: newCity.value,
+                        country: newCountry.value,
+                    });
+
+                    // redirection vers une page de confirmation
+                    router.push('/registration-confirmation');
+
+                    // affiche le message d'inscription réussie ici
+                    const data = await response.json();
+                    console.log(data.message); // affiche le message dans la console
+
+                } else {
+                    // affiche un message d'erreur à l'utilisateur.
+                    console.error('Erreur lors de la mise à jour:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Erreur lors de la mise à jour: ', error);
             }
-
-            const response = await fetch('http://localhost:3000/users/update', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // utilise le token dans l'en-tête de la requête
-                },
-                body: JSON.stringify({
-                    firstName: newFirstName.value,
-                    lastName: newLastName.value,
-                    address: newAddress.value,
-                    postalCode: newPostalCode.value,
-                    city: newCity.value,
-                    country: newCountry.value,
-                }),
-            });
-
-            if (response.ok) {
-
-                // met à jour les nouvelles données  dans le store
-                userStore.setUserData({ 
-                    ...userStore.userData, 
-                    firstName: newFirstName.value, 
-                    lastName: newLastName.value,
-                    address: newAddress.value,
-                    postalCode: newPostalCode.value,
-                    city: newCity.value,
-                    country: newCountry.value,
-                 });
-
-                // redirection vers une page de confirmation
-                router.push('/registration-confirmation');
-
-                // affiche le message d'inscription réussie ici
-                const data = await response.json();
-                console.log(data.message); // affiche le message dans la console
-
-            } else {
-                // affiche un message d'erreur à l'utilisateur.
-                console.error('Erreur lors de la mise à jour:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Erreur lors de la mise à jour: ', error);
         }
     };
 

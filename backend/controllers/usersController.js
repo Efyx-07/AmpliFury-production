@@ -173,6 +173,7 @@ async function updateUser(req, res) {
         res.status(500).json({ error: 'Erreur lors de la mise à jour' });
     }
 }
+
 // controller pour supprimer compte utilisateur (à mettre en place coté frontend)
 async function deleteUser(req, res) {
     const userId = req.user;

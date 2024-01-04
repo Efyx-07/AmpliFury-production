@@ -1,15 +1,13 @@
-CREATE DATABASE productcatalogue;
+CREATE DATABASE amplifury;
 
-
-
-CREATE TABLE Categories (
-id INT AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(255) NOT NULL,
-categoryImageSource VARCHAR(255),
-categoryImageAlt VARCHAR(255)
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    categoryImageSource VARCHAR(255),
+    categoryImageAlt VARCHAR(255)
 );
 
-INSERT INTO Categories (name, categoryImageSource, categoryImageAlt) VALUES
+INSERT INTO categories (name, categoryImageSource, categoryImageAlt) VALUES
 	('Guitars', '/src/assets/catalogue/category-images/guitars.jpg', 'Guitars'),
     ('Basses', '/src/assets/catalogue/category-images/basses.jpg', 'Basses'),
     ('Acoustic', '/src/assets/catalogue/category-images/acoustic.jpg', 'Acoustic'),
@@ -17,10 +15,7 @@ INSERT INTO Categories (name, categoryImageSource, categoryImageAlt) VALUES
     ('Synths', '/src/assets/catalogue/category-images/synths.jpg', 'Synths'),
     ('Drums', '/src/assets/catalogue/category-images/drums.jpg', 'Drums');
 
-
-
-
-CREATE TABLE Products (
+CREATE TABLE products (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     category_id INT,
     reference VARCHAR(5),
@@ -39,7 +34,7 @@ CREATE TABLE Products (
     FOREIGN KEY (category_id) REFERENCES Categories(id)
 );
 
-INSERT INTO Products (category_id, reference, type, brand, model, image_source, image_alt, price, quantity, available, description, reference_month, reference_year, color) VALUES
+INSERT INTO products (category_id, reference, type, brand, model, image_source, image_alt, price, quantity, available, description, reference_month, reference_year, color) VALUES
 	(1,'0001', 'Guitars', 'Bender', 'Telemaster M-101', '/src/assets/catalogue/products/guitars/bender-telemaster%20m101.jpg', 
     'Bender Telemaster M-101', '899.00', 5, true, 
     'A versatile classic with a modern twist, the M101 boasts rich tones and effortless playability.', 
@@ -219,3 +214,15 @@ INSERT INTO Products (category_id, reference, type, brand, model, image_source, 
     'Tamaha Iceberg', '1469.00', 2, true, 
     'The Tamaha Iceberg drums offer an ice-cold blend of power and versatility, serving as the ultimate toolkit for drummers to craft a wide range of rhythms.', 
     'September', '2023', 'Blue');
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255),
+    postal_code INT,
+    city VARCHAR(255),
+    country VARCHAR(255), 
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL
+);

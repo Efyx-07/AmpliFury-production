@@ -1,4 +1,4 @@
-const { usersConnection } = require('../db'); // importe la connexion à la base de données
+const { amplifuryConnection } = require('../db'); // importe la connexion à la base de données
 const bcrypt = require('bcrypt'); // importe bcrypt 
 const util = require('util'); // importe util
 const authenticate = require('../auth/authenticate');
@@ -47,7 +47,7 @@ async function registerUser(req, res) {
         // utilise bcrypt pour hacher le password
         const hashedPassword = await hashPassword(password); 
 
-        // insert les données dans la base de données 'users' avec le password haché
+        // insère les données dans la table 'users' avec le password haché
         const insertQuery = 'INSERT INTO users (first_name, last_name, address, postal_code, city, country, email, password_hash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
         const values = [
             firstName, 
@@ -60,7 +60,7 @@ async function registerUser(req, res) {
             hashedPassword
         ]; 
 
-        usersConnection.query(insertQuery, values, (err, results) => {
+        amplifuryConnection.query(insertQuery, values, (err, results) => {
             if (err) {
                 console.error('Erreur lors de l\inscription: ', err);
                 res.status(500).json({ error: 'Erreur lors de l\inscription' });
@@ -84,9 +84,9 @@ async function loginUser(req, res) {
     const { email, password } = req.body;
 
     try {
-        // effectue une requête dans la base de données 'users' pour vérifier l'email
+        // effectue une requête dans la table 'users' pour vérifier l'email
         const selectQuery = 'SELECT * FROM users WHERE email = ?';
-        const query = util.promisify(usersConnection.query).bind(usersConnection); // convertit la fonction query de mysql2 en promise
+        const query = util.promisify(amplifuryConnection.query).bind(amplifuryConnection); // convertit la fonction query de mysql2 en promise
         const rows = await query(selectQuery, [email]);
 
         // si aucun utilisateur n'est trouvé avec l'email, envoie une erreur d'authentification
@@ -164,7 +164,7 @@ async function updateUser(req, res) {
 
         // compare le mot de passe actuel fourni par l'utilisateur avec celui stocké dans la base de données
         const selectQuery = 'SELECT password_hash FROM users WHERE id = ?';
-        const query = util.promisify(usersConnection.query).bind(usersConnection);
+        const query = util.promisify(amplifuryConnection.query).bind(amplifuryConnection);
         const rows = await query(selectQuery, [userId]);
 
         // compare le password haché avec celui renseigné
@@ -193,7 +193,7 @@ async function updateUser(req, res) {
         ];
 
         // Exécute la requête de mise à jour
-        usersConnection.query(updateQuery, values, (err, results) => {
+        amplifuryConnection.query(updateQuery, values, (err, results) => {
             if (err) {
                 console.error('Erreur lors de la mise à jour de l\'utilisateur :', err);
                 res.status(500).json({ error: 'Erreur lors de la mise à jour' });
@@ -216,7 +216,7 @@ async function deleteUser(req, res) {
         const deleteQuery = 'DELETE FROM users WHERE id = ?';
         const values = [userId];
 
-        usersConnection.query(deleteQuery, values, (err, results) => {
+        amplifuryConnection.query(deleteQuery, values, (err, results) => {
             if (err) {
                 console.error('Erreur lors de la suppression du compte de l\'utilisateur :', err);
                 res.status(500).json({ error: 'Erreur lors de la suppression du compte de l\'utilisateur' });

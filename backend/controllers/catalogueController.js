@@ -1,4 +1,4 @@
-const { productsCatalogueConnection } = require('../db'); // importe la connexion à la base de données
+const { amplifuryConnection } = require('../db'); // importe la connexion à la base de données
 
 // emet une requête GET du catalogue complet
 function getCatalogue(req, res) {
@@ -9,7 +9,7 @@ function getCatalogue(req, res) {
     const productsQuery = 'SELECT * FROM products';
 
     // exécute la requête pour les catégories
-    productsCatalogueConnection.query(categoriesQuery, (err, categoriesResults) => {
+    amplifuryConnection.query(categoriesQuery, (err, categoriesResults) => {
         if (err) {
             console.error('Erreur lors de la récupération des catégories : ', err);
             res.status(500).json({ error: 'Erreur lors de la récupération des catégories' });
@@ -17,7 +17,7 @@ function getCatalogue(req, res) {
         }
 
         // exécute la requête pour les produits
-        productsCatalogueConnection.query(productsQuery, (err, productsResults) => {
+        amplifuryConnection.query(productsQuery, (err, productsResults) => {
             if (err) {
                 console.error('Erreur lors de la récupération des produits : ', err);
                 res.status(500).json({ error: 'Erreur lors de la récupération des produits' });

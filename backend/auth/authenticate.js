@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken'); // importe jwt
+require('dotenv').config(); // charge les variables d'environnement à partir du fichier .env
 
 // clé secrète pour signer et valider les JWT + durée de validité du token
-const secretKey = 'amplifury_secret_key'; 
+const secretKey = process.env.AUTH_SECRETKEY;
 const expiresIn = '1h';
 
 

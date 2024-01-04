@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '@/views/HomePage.vue';
 import Categories from '@/views/Categories.vue'; 
 import Product from '@/views/Product.vue';
-import Checkout from '@/views/Checkout.vue';
 import Wishlist from '@/views/Wishlist.vue';
 import Contact from '@/views/Contact.vue';
 import RegisterPage from '@/views/RegisterPage.vue';
@@ -36,11 +35,6 @@ const router = createRouter({
       path: '/product/:productId', // création d'une route dynamique pour afficher un produit individuellement
       name: 'ProductDetail',
       component: Product
-    },
-    {
-      path: '/checkout',
-      name: 'Checkout',
-      component: Checkout
     },
     {
       path: '/wishlist',

@@ -320,7 +320,9 @@
                     return;
                 }
 
-                const response = await fetch('http://localhost:3000/users/update', {
+                const { hostName } = useGlobalDataStore();
+
+                const response = await fetch(`${hostName}/users/update`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

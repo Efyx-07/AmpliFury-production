@@ -5,6 +5,7 @@ export const useGlobalDataStore = defineStore('globalData', {
     state: () => ({
 
         // GLOBAL
+        hostName: 'http://localhost:3000', // entrer ici l'adresse du serveur backend, ne doit se déclarer qu'à cet endroit
         storeName: 'AmpliFury', // declaration du nom de la boutique
         currency: '$', // declaration devise utilisée par la boutique
         availableMention: 'in stock', // declaration produit disponible

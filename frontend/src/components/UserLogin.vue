@@ -119,8 +119,10 @@
         const emailValue = email.value;
         const passwordValue = password.value;
 
+        const { hostName } = useGlobalDataStore();
+
         try {
-            const response = await fetch('http://localhost:3000/users/login', {
+            const response = await fetch(`${hostName}/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -207,8 +207,11 @@
         // soumet le formulaire avec les champs requis
         if (requiredFieldsValid) {
 
-            try {        
-                const response = await fetch('http://localhost:3000/users/register', {
+            try {  
+                
+                const { hostName } = useGlobalDataStore();
+                
+                const response = await fetch(`${hostName}/users/register`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

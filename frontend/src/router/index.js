@@ -3,7 +3,6 @@ import HomePage from '@/views/HomePage.vue';
 import Categories from '@/views/Categories.vue'; 
 import Product from '@/views/Product.vue';
 import Wishlist from '@/views/Wishlist.vue';
-import Contact from '@/views/Contact.vue';
 import RegisterPage from '@/views/RegisterPage.vue';
 import AccountSettings from '@/views/AccountSettings.vue';
 import RegistrationConfirmation from '@/views/RegistrationConfirmation.vue';
@@ -40,11 +39,6 @@ const router = createRouter({
       path: '/wishlist',
       name: 'Wishlist',
       component: Wishlist
-    },
-    {
-      path: '/contact',
-      name: 'Contact',
-      component: Contact
     },
     {
       path: '/register',

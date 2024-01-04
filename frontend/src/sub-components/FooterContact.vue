@@ -2,7 +2,7 @@
 
     <div class="contactPart">
         <h1>{{ contactTitle }}</h1>
-        <router-link to="/contact" class="toContactButton">
+        <router-link to="/" class="toContactButton">
             <p>{{ toContactButtonMention }}</p>
             <Icon icon="system-uicons:arrow-up" :rotate="1" class="arrow"/>
         </router-link>

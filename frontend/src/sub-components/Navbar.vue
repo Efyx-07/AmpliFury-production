@@ -89,7 +89,6 @@ const handleNavButtonClick = () => {
             gap:.3rem;
             align-items: center;
             cursor: pointer;
-
             .potentiometerIcon-header {
                 width: 30px;
                 height: 30px;

@@ -32,6 +32,8 @@ const handleNavButtonClick = () => {
 <style lang="scss" scoped>
 
 @import '@/assets/sass/variables.scss'; 
+
+// style classes conditionnelles
 .logo-header {
     width: 2.5rem;
 

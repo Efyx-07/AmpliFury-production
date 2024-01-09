@@ -1,5 +1,6 @@
 <template>
   
+  <SupBar />
   <Header />
   <RouterView /> <!-- affiche la vue correspondante en fonction de l'URL -->
   <Footer />
@@ -7,7 +8,6 @@
   <BurgerMenu />
   <UserLogin />
   <UserAccount />
-
 
   <!-- Ajout de la view wishlist afin qu'elle soit présente dans le DOM à l'ouverture du site et au rafraichissement de toutes les pages
     (permet de conserver la persistance des données du nombre d'articles dans l'icone wishlist de Header chargées depuis LocalStorage)
@@ -20,6 +20,7 @@
 <script setup>
 
   import { RouterView } from 'vue-router'; // importe le composant RouterView
+  import SupBar from '@/sub-components/Supbar.vue';
   import Header from '@/components/Header.vue';
   import Footer from '@/components/Footer.vue';
   import ShoppingCart from '@/components/ShoppingCart.vue';

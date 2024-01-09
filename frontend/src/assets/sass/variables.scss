@@ -1,3 +1,4 @@
+// colors
 $darkColor: #1a1a1a;
 $lightColor: #f7f7f7;
 $ultraLightColor: #FFFFFF;
@@ -8,15 +9,18 @@ $greenColor: #45AA43;
 $gradientBackground: radial-gradient(ellipse at center, $accentColor 0%, $lightColor 90%);
 $gradientBackground2: radial-gradient(ellipse at center, $ultraLightColor 0%, $accentColor 90%);
 
+// effects
 $shadow: 0px 3px 5px #33333341;
-
 $containerBorderRadius: 15px;
 
+// icons size
 $mobileIconSize1: 1.25rem;
 $tabletIconSize1: 1.75rem;
 $desktopIconSize1: 1.5rem;
 
+// modal transform
+$hiddenModalTransform: translateX(100%);
+
+// breakpoints
 $breakpointTablet: 750px;
 $breakpointDesktop: 1140px;
-
-$hiddenModalTransform: translateX(100%);

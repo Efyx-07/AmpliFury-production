@@ -19,7 +19,7 @@ html {
 }
 
 body {
-    margin: 0 auto;
+    margin: 0;
     background: var(--lightColor);
 
     /* Customize the scrollbar color and width */
